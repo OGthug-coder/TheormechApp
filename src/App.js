@@ -1,43 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import bridge from '@vkontakte/vk-bridge';
-import View from '@vkontakte/vkui/dist/components/View/View';
-import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
+import React from 'react';
+import { View, Panel, PanelHeader, Group, CellButton } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Home from './panels/Home';
-import Persik from './panels/Persik';
+class App extends React.Component {
 
-const App = () => {
-	const [activePanel, setActivePanel] = useState('home');
-	const [fetchedUser, setUser] = useState(null);
-	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
+	constructor(props) {
+		super(props);
 
-	useEffect(() => {
-		bridge.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-		});
-		async function fetchData() {
-			const user = await bridge.send('VKWebAppGetUserInfo');
-			setUser(user);
-			setPopout(null);
-		}
-		fetchData();
-	}, []);
+		this.state = {
+			activePanel: 'profile',
+		};
+	}
 
-	const go = e => {
-		setActivePanel(e.currentTarget.dataset.to);
-	};
+	render() {
 
-	return (
-		<View activePanel={activePanel} popout={popout}>
-			<Home id='home' fetchedUser={fetchedUser} go={go} />
-			<Persik id='persik' go={go} />
-		</View>
-	);
+		return (
+
+			<View activePanel={this.state.activePanel}>
+        		<Panel id="profile">
+          			<PanelHeader>Profile</PanelHeader>
+          			<Group>
+            			<CellButton onClick={ () => this.setState({ activePanel: 'tasks' }) }>
+              				Go to Tasks
+            			</CellButton>
+          			</Group>
+        		</Panel>
+        		<Panel id="tasks">
+          			<PanelHeader>Tasks</PanelHeader>
+          			<Group>
+            			<CellButton onClick={ () => this.setState({ activePanel: 'profile' }) }>
+              				Go to Profile
+            			</CellButton>
+          			</Group>
+        		</Panel>
+        	</View>
+
+		)
+	}
 }
 
 export default App;
