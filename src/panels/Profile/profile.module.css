@@ -1,0 +1,53 @@
+.profile_card {
+    display: grid;
+    margin: 40px 20px 40px 20px;
+    background-color: #588EFF;
+    border-radius: 25px;
+    grid-template-columns: 10px 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "slider about" "slider ." "slider .";
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    font-family: "Titillium Web", sans-serif;
+    color: white;
+}
+
+.slider {
+    grid-area: slider;
+    width: 4px;
+    height: 150px;
+    background-color: white;
+    border-radius: 25px;
+    margin: auto 10px auto 10px;
+}
+
+.about {
+    display: grid;
+    margin: 30px auto auto;
+    grid-template-columns: 100px 1fr;
+    grid-template-areas: "user_photo bio";
+    grid-gap: 25px;
+}
+
+.about img {
+    grid-area: user_photo;
+    width: 100px;
+    height: 100px;
+}
+
+.bio {
+    margin-top: 10px;
+    grid-area: bio;
+
+}
+.name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.name + div {
+    margin-top: 5px;
+}
+
+.city {
+    margin-top: 10px;
+}
