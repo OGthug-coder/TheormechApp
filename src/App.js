@@ -1,6 +1,13 @@
 import React from 'react';
-import { View, Panel, PanelHeader, Group, CellButton } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Group, CellButton, Div, UsersStack } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
+
+import test1 from './img/test1.jpg'
+import test2 from './img/test2.jpg'
+import test3 from './img/test3.jpg'
+
+import Profile from './panels/Profile/Profile.js'
+import Tasks from './panels/Tasks/Tasks.js'
 
 class App extends React.Component {
 
@@ -25,19 +32,12 @@ class App extends React.Component {
             			</CellButton>
           			</Group>
         		</Panel>
-        		<Panel id="tasks">
-          			<PanelHeader>Tasks</PanelHeader>
-          			<Group>
-            			<CellButton onClick={ () => this.setState({ activePanel: 'profile' }) }>
-              				Go to Profile
-            			</CellButton>
-          			</Group>
-        		</Panel>
+        		<Tasks id='tasks' parent={this}/>
         	</View>
 
 		)
 	}
 }
 
-export default App;
+	export default App;
 
