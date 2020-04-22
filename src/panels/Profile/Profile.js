@@ -24,8 +24,8 @@ class Profile extends React.Component {
                                 Санкт-Петербург
                             </div>
                         </div>
-                        <LevelFragment />
                     </div>
+                    <LevelFragment />
                 </div>
             </div>
         )

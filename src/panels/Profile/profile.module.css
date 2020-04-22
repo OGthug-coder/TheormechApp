@@ -4,7 +4,7 @@
     background-color: #588EFF;
     border-radius: 25px;
     grid-template-columns: 10px 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 150px 1fr 100px;
     grid-template-areas: "slider about" "slider ." "slider .";
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     font-family: "Titillium Web", sans-serif;
