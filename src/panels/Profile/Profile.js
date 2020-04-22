@@ -10,9 +10,9 @@ class Profile extends React.Component {
         return (
             <div>
                 <div className={s.profile_card}>
-                    <div className={s.slider}> </div>
+                    <div className={s.slider}></div>
                     <div className={s.about}>
-                        <img src={require("../../img/1.png")} alt='user photo' />
+                        <img src={require("../../img/1.png")} alt='user photo'/>
                         <div className={s.bio}>
                             <div className={s.name}>
                                 Бакута Артём
@@ -25,7 +25,15 @@ class Profile extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <LevelFragment />
+                    <LevelFragment className={"level_fragment"} />
+                    <div className={s.logo}>
+                        <img src={require("../../img/ic_tm_logo.svg")} alt={"logo"}/>
+                        <div>
+                            Высшая школа теоретической механики
+                        </div>
+                    </div>
+                </div>
+                <div className={s.background}>
                 </div>
             </div>
         )

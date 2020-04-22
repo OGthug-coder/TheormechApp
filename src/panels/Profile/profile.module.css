@@ -1,14 +1,18 @@
 .profile_card {
     display: grid;
-    margin: 40px 20px 40px 20px;
+
     background-color: #588EFF;
     border-radius: 25px;
     grid-template-columns: 10px 1fr;
-    grid-template-rows: 150px 1fr 100px;
-    grid-template-areas: "slider about" "slider ." "slider .";
+    grid-template-rows: min-content min-content min-content;
+    grid-template-areas:
+            "slider about"
+            "slider level_fragment"
+            "slider logo";
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     font-family: "Titillium Web", sans-serif;
     color: white;
+    margin: 40px 20px 40px 20px;
 }
 
 .slider {
@@ -51,3 +55,38 @@
 .city {
     margin-top: 10px;
 }
+
+.level_fragment {
+    grid-area: level_fragment;
+}
+
+.logo {
+    grid-area: logo;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: auto auto 20px;
+}
+
+.logo img{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo div {
+    margin-top: 20px;
+}
+
+.background {
+    /*TODO change background*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: url("../../img/Background.svg") no-repeat;
+    height: 100%;
+    width: 100%;
+
+}
+
+
+
