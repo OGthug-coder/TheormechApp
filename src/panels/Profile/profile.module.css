@@ -1,14 +1,10 @@
 .profile_card {
     display: grid;
-
     background-color: #588EFF;
     border-radius: 25px;
     grid-template-columns: 10px 1fr;
     grid-template-rows: min-content min-content min-content;
-    grid-template-areas:
-            "slider about"
-            "slider level_fragment"
-            "slider logo";
+    grid-template-areas: "slider about" "slider level_fragment" "slider logo";
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     font-family: "Titillium Web", sans-serif;
     color: white;
@@ -43,6 +39,7 @@
     grid-area: bio;
 
 }
+
 .name {
     font-weight: bold;
     font-size: 16px;
@@ -67,7 +64,7 @@
     margin: auto auto 20px;
 }
 
-.logo img{
+.logo img {
     margin-left: auto;
     margin-right: auto;
 }
@@ -77,16 +74,31 @@
 }
 
 .background {
-    /*TODO change background*/
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background: url("../../img/Background.svg") no-repeat;
-    height: 100%;
-    width: 100%;
-
+    background: #E5E5E5;
 }
 
+.background div:nth-child(1) {
+    z-index: -1;
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 182px;
+    top: -100px;
+    border-radius: 50%;
+    transform: rotate(65.54deg);
+    background: radial-gradient(66.57% 80.57% at 95.1% 39.09%, rgba(41, 48, 217, 0.37) 23.21%, #3532D1 66.52%, rgba(24, 21, 173, 0.85) 100%);
+}
+
+.background div:nth-child(2) {
+    z-index: -1;
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: -200px;
+    top: 300px;
+    border-radius: 50%;
+    background: radial-gradient(108.07% 112.44% at 95.1% 39.09%, rgba(213, 41, 217, 0.37) 20.75%, #D132B8 66.52%, rgba(126, 83, 133, 0.90212) 99.98%, rgba(22, 174, 64, 0.854667) 99.99%, rgba(83, 133, 103, 0.90212) 99.99%, rgba(173, 21, 140, 0.85) 100%);
+    transform: rotate(-110.67deg);
+}
 
 

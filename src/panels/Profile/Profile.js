@@ -34,6 +34,8 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className={s.background}>
+                    <div />
+                    <div />
                 </div>
             </div>
         )
