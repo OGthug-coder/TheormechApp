@@ -1,4 +1,5 @@
 .profile_container {
+    scroll-snap-stop: always;
     height: 100%;
     display: grid;
 }

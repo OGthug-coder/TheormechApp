@@ -8,34 +8,32 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            activePanel: 'profile',
-        };
+        this.state = {};
     }
 
     render() {
 
         return (
             <>
-                <Profile id={"profile"}/>
-				{/*<Panel id="profile">*/
-				}
-				{/*	<PanelHeader>Profile</PanelHeader>*/
-				}
-				{/*	<Group>*/
-				}
-				{/*		/!*<CellButton onClick={ () => this.setState({ activePanel: 'tasks' }) }>*!/*/
-				}
-				{/*		/!*	Go to Tasks*!/*/
-				}
-				{/*		/!*</CellButton>*!/*/
-				}
-				{/*	</Group>*/
-				}
-				{/*</Panel>*/
-				}
-				{/*<Tasks id='tasks' parent={this}/>*/
-				}
+                <Profile/>
+                {/*<Panel id="profile">*/
+                }
+                {/*	<PanelHeader>Profile</PanelHeader>*/
+                }
+                {/*	<Group>*/
+                }
+                {/*		/!*<CellButton onClick={ () => this.setState({ activePanel: 'tasks' }) }>*!/*/
+                }
+                {/*		/!*	Go to Tasks*!/*/
+                }
+                {/*		/!*</CellButton>*!/*/
+                }
+                {/*	</Group>*/
+                }
+                {/*</Panel>*/
+                }
+                {/*<Tasks id='tasks' parent={this}/>*/
+                }
             </>
         )
     }
