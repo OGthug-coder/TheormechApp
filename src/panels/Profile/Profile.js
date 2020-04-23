@@ -8,7 +8,7 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div>
+            <section className={s.profile_container}>
                 <div className={s.profile_card}>
                     <div className={s.slider}></div>
                     <div className={s.about}>
@@ -37,7 +37,7 @@ class Profile extends React.Component {
                     <div />
                     <div />
                 </div>
-            </div>
+            </section>
         )
     }
 }
