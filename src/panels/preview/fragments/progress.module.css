@@ -1,0 +1,53 @@
+
+.progress {
+    border: 1px solid #588EFF;
+    border-radius: 15px;
+    height: 100px;
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "score time";
+    justify-items: center;
+    font-weight: bold;
+    padding-top: 14px;
+}
+
+
+.score {
+    grid-area: score;
+}
+
+.time {
+    grid-area: time;
+}
+
+.progress_item__counter {
+    display: grid;
+    grid-template-columns: 1fr 10px 1fr;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    grid-gap: 2px;
+}
+
+.progress_item__title {
+    font-size: 18px;
+}
+
+.progress_item__block {
+    width: 45px;
+    height: 45px;
+    border-radius: 15px;
+    background: #E8E8E8;
+}
+
+.progress_item__block div {
+    margin: 13px;
+}
+
+.special {
+    color: #588EFF;
+}
+
+

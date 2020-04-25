@@ -28,6 +28,7 @@
 }
 
 .content_wrapper {
+    display: grid;
     background: white;
     grid-area: content;
     font-family: "Titillium Web", sans-serif;
@@ -49,6 +50,15 @@
 .description {
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+.progress {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.progress div {
+    font-size: 18px;
 }
 
 .button {
