@@ -8,7 +8,7 @@ class LevelFragment extends React.Component {
         return (
             <div className={s.level_wrapper}>
                 <div className={s.dignity}>
-                    <img src={require("../../img/brain_outline_28.svg")}/>
+                    <img src={require("../../img/profile/brain_outline_28.svg")}/>
                     <div>
                         Да ты Стив Джобс!
                     </div>
@@ -21,7 +21,7 @@ class LevelFragment extends React.Component {
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
-                    <img className={s.sticker} src={require("../../img/Steve.svg")}/>
+                    <img className={s.sticker} src={require("../../img/profile/Steve.svg")}/>
                 </div>
             </div>
         )
