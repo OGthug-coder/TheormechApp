@@ -1,6 +1,7 @@
 import React from 'react';
 import ModalFragment from "./fragments/ModalFragment";
 
+import s from "./preview.module.css";
 
 class Preview extends React.Component{
     constructor(props) {
@@ -11,8 +12,8 @@ class Preview extends React.Component{
 
     render() {
         return (
-            <section className={"preview-wrapper"}>
-                <div className={"background-image"}>
+            <section className={s.preview_wrapper}>
+                <div className={s.background}>
                     <img src={require("../../img/preview/ic_preview_background.svg")} alt={"background"} />
                 </div>
                 <ModalFragment />

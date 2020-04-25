@@ -12,7 +12,9 @@ class ModalFragment extends React.Component {
     render() {
         return (
             <section className={s.modal_window}>
-                <div className={s.slider}></div>
+                <div className={s.slider_wrapper}>
+                    <div className={s.slider}></div>
+                </div>
                 <div className={s.content_wrapper}>
                     <div className={s.title} >
                         Как приручить интеграл Римана?

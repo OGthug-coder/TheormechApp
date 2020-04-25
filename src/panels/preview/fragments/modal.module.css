@@ -1,0 +1,68 @@
+.modal_window {
+    position: absolute;
+    margin-top: 70px;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 20px 1fr;
+    grid-template-areas: "slider" "content" "button";
+}
+
+.slider_wrapper {
+    display: grid;
+    height: 20px;
+    width: 100%;
+    grid-area: slider;
+    border-radius: 15px 15px 0 0;
+    background: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.slider {
+    margin: 10px auto 10px;
+    height: 4px;
+    width: 150px;
+    background-color: #ECECEC;
+    border-radius: 25px;
+
+}
+
+.content_wrapper {
+    background: white;
+    grid-area: content;
+    font-family: "Titillium Web", sans-serif;
+    color: black;
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.status {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #588EFF;
+}
+
+.description {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.button {
+    width: 220px;
+    height: 50px;
+    background: #588EFF;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.button button {
+    width: 100%;
+    height: 100%;
+    font-family: "Titillium Web", sans-serif;
+    font-size: 18px;
+    color: white;
+}

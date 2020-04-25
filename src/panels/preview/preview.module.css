@@ -1,0 +1,12 @@
+.preview_wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+
+}
+
+.background {
+    z-index: -1;
+    position: fixed;
+}
