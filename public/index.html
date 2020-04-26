@@ -2,10 +2,27 @@
 <html lang="en">
 	<head>
 			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes, user-scalable=no, viewport-fit=cover">
 			<meta name="theme-color" content="#000000">
 			<meta content="IE=Edge" http-equiv="X-UA-Compatible">
 			<title>TheormechApp</title>
+		<!-- This is necessary to prevent bounce effect on extra scroll.
+ 				Dont know why css file doesnt work, you still should try it -->
+		<style>
+			html, body {
+				height: 100%;
+				overflow: hidden;
+			}
+
+			#root {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				overflow: hidden;
+			}
+		</style>
 	</head>
 	<body>
 			<div id="root"></div>
