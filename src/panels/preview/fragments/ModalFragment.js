@@ -31,12 +31,23 @@ class ModalFragment extends React.Component {
                         </div>
                         <ProgressFragment />
                     </div>
-                    <section className={s.question_list}>
-                        <QuestionItemFragment />
-                        <QuestionItemFragment />
-                        <QuestionItemFragment />
-                        <QuestionItemFragment />
-                    </section>
+                    <ul className={s.question_list}>
+                        <li className={s.question_item}>
+                            <QuestionItemFragment />
+                        </li>
+                        <li className={s.question_item}>
+                            <QuestionItemFragment />
+                        </li>
+                        <li className={s.question_item}>
+                            <QuestionItemFragment />
+                        </li>
+                        <li className={s.question_item}>
+                            <QuestionItemFragment />
+                        </li>
+                        <li className={s.question_item}>
+                            <QuestionItemFragment />
+                        </li>
+                    </ul>
 
                 </div>
                 <div className={s.button}>
