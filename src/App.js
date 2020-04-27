@@ -1,8 +1,9 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Profile from './panels/profile/Profile.js'
+import Profile from './panels/profile/Profile.js';
 import Preview from "./panels/preview/Preview";
+import Question from "./panels/question/Question";
 
 class App extends React.Component {
 
@@ -16,7 +17,8 @@ class App extends React.Component {
 
         return (
             <>
-                <Preview />
+                <Question />
+                {/*<Preview />*/}
                 {/*<Profile/>*/}
                 {/*<Panel id="profile">*/
                 }
