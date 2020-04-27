@@ -23,8 +23,7 @@ class QuestionItemFragment extends React.Component {
         };
 
         return (
-            <button
-                className={s.answer_item}>
+            <button className={s.answer_item}>
                 <div className={s.number}>
                     {numberMap[this.state.questionNumber]}
                 </div>

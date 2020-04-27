@@ -1,0 +1,16 @@
+.answer_item {
+    outline: none;
+    border: #588EFF;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    grid-template-areas: "number answer";
+    background-color: white;
+}
+
+.number {
+    grid-area: number;
+}
+
+.text {
+    grid-area: answer;
+}
