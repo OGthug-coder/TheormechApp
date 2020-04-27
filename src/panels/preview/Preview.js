@@ -1,7 +1,7 @@
 import React from 'react';
 import ModalFragment from "./fragments/ModalFragment";
 
-import s from "./preview.module.css";
+import s from "./Preview.module.css";
 
 class Preview extends React.Component{
     constructor(props) {

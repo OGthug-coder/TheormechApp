@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './profile.module.css';
+import s from './ProfileFragment.module.css';
 import LevelFragment from "./LevelFragment";
 
 

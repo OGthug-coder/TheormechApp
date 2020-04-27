@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './questionItem.module.css';
+import s from './QuestionItemFragment.module.css';
 
 class QuestionItemFragment extends React.Component {
     constructor(props) {

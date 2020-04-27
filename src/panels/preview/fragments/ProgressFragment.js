@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './progress.module.css';
+import s from './ProgressFragment.module.css';
 
 class ProgressFragment extends React.Component {
     constructor(props) {

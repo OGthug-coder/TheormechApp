@@ -1,5 +1,5 @@
 import React from "react";
-import s from './modal.module.css';
+import s from './ModalFragment.module.css';
 import ProgressFragment from "./ProgressFragment";
 import QuestionItemFragment from "./QuestionItemFragment";
 
