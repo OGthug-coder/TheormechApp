@@ -10,11 +10,12 @@
 
 .question_preview {
     color: #838383;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
 }
 
 .answer {
+    margin-top: 12px;
     background-image: url("../../../img/preview/ic_question_mark.svg");
     background-repeat: no-repeat;
     background-origin: content-box;

@@ -3,7 +3,7 @@
     border: 1px solid #588EFF;
     border-radius: 15px;
     height: 100px;
-    width: 300px;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "score time";

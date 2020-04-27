@@ -55,8 +55,8 @@
 }
 
 .progress {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .progress div {
@@ -82,6 +82,7 @@
 .button button {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 15px;
     width: 220px;
     height: 50px;
     background: #588EFF;
