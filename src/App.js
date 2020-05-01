@@ -16,7 +16,7 @@ class App extends React.Component {
 
         return (
             <>
-                <News/>
+                <Profile/>
                 {/*<Panel id="profile">*/
                 }
                 {/*	<PanelHeader>Profile</PanelHeader>*/
