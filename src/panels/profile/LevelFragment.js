@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './level.module.css';
+import s from './LevelFragment.module.css';
 
 class LevelFragment extends React.Component {
 

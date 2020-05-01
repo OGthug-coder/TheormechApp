@@ -1,0 +1,97 @@
+.modal_window {
+    position: absolute;
+    margin-top: 70px;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 20px 1fr;
+    grid-template-areas: "slider" "content" "button";
+}
+
+.slider_wrapper {
+    display: grid;
+    height: 20px;
+    width: 100%;
+    grid-area: slider;
+    border-radius: 15px 15px 0 0;
+    background: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.slider {
+    margin: 10px auto 10px;
+    height: 4px;
+    width: 150px;
+    background-color: #ECECEC;
+    border-radius: 25px;
+
+}
+
+.content_wrapper {
+    display: grid;
+    background: white;
+    grid-area: content;
+    font-family: "Titillium Web", sans-serif;
+    color: black;
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.status {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #588EFF;
+}
+
+.description {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.progress {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.progress div {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.question_item {
+    margin-bottom: 20px;
+    margin-left: -40px;
+    list-style-type:none;
+}
+
+.button {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 30;
+    display: grid;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(163, 163, 163, 0.81) 100%);
+
+}
+
+.button button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    width: 220px;
+    height: 50px;
+    background: #588EFF;
+    border-radius: 15px;
+    border-style: none;
+    text-align: center;
+    font-family: "Titillium Web", sans-serif;
+    font-size: 18px;
+    color: white;
+    outline: none;
+}
