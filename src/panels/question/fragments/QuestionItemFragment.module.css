@@ -1,6 +1,6 @@
 .answer_item {
     outline: none;
-    border: #588EFF;
+    border: 2px solid #588EFF;
     display: grid;
     grid-template-columns: 30px 1fr;
     grid-template-areas: "number answer";
