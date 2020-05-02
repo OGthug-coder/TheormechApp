@@ -1,17 +1,17 @@
 import React from 'react';
 
 import s from './news.module.css';
-import TestFragment from "./TestFragment";
+import Task from "./Task";
 
 class News extends React.Component {
 
     render() {
         return (
             <section className={s.news_container}>
-                <TestFragment className={"test_fragment"}/>
-                <TestFragment className={"test_fragment"}/>
-                <TestFragment className={"test_fragment"}/>
-                <TestFragment className={"test_fragment"}/>
+                <Task className={"task"}/>
+                <Task className={"task"}/>
+                <Task className={"task"}/>
+                <Task className={"task"}/>
                 <div className={s.background}>
                     <div />
                     <div />

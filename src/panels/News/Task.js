@@ -1,9 +1,9 @@
 import React from 'react';
 
-import s from './test.module.css';
+import s from './task.module.css';
 
 
-class TestFragment extends React.Component {
+class Task extends React.Component {
 
     render() {
         return (
@@ -19,7 +19,7 @@ class TestFragment extends React.Component {
                         <div className={s.progress}>
                             <span className={s.dot_on}></span>
                             <span className={s.dot_on}></span>
-                            <span className={s.dot_off}></span>
+                            <span className={s.dot}></span>
                         </div>    
                     </div>
             
@@ -31,4 +31,4 @@ class TestFragment extends React.Component {
     }
 }
 
-export default TestFragment;
+export default Task;
