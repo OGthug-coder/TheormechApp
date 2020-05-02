@@ -1,8 +1,11 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
 
+
 import Profile from './panels/Profile/Profile.js'
 import News from './panels/News/News.js'
+import Preview from "./panels/preview/Preview";
+
 
 class App extends React.Component {
 
@@ -16,7 +19,8 @@ class App extends React.Component {
 
         return (
             <>
-                <Profile/>
+                <Preview />
+                {/*<Profile/>*/}
                 {/*<Panel id="profile">*/
                 }
                 {/*	<PanelHeader>Profile</PanelHeader>*/
