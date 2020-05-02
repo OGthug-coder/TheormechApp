@@ -1,8 +1,11 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Profile from './panels/profile/Profile.js'
+
+import Profile from './panels/Profile/Profile.js'
+import News from './panels/News/News.js'
 import Preview from "./panels/preview/Preview";
+
 
 class App extends React.Component {
 
