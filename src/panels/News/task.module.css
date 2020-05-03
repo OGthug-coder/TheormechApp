@@ -27,9 +27,7 @@
 
 
 .name {
-    
-    margin: 5px;
-    
+    margin: 5px auto 0;
     font-family: 'Titillium Web', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -38,11 +36,11 @@
     display: flex;
     align-items: center;
     text-align: center;
-    letter-spacing: -0.04em; 
+    letter-spacing: -0.04em;
+    text-align: center;
 }
 
 .info {
-    
     display: grid;
     grid-template-columns: 3fr 0.6fr 0.2fr;
     
