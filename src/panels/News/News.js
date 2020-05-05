@@ -12,11 +12,7 @@ class News extends React.Component {
                 <Task className={"task"}/>
                 <Task className={"task"}/>
                 <Task className={"task"}/>
-                <div className={s.background}>
-                    <div />
-                    <div />
-                    <div />
-                </div>
+
             </section>
         )
     }

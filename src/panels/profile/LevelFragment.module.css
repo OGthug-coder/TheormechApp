@@ -28,6 +28,7 @@
 }
 
 .quote {
+    font-weight: bold;
     grid-area: quote;
     margin-right: 20px;
     margin-left: 20px;

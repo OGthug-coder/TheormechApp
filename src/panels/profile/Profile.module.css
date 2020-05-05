@@ -8,16 +8,15 @@
 .profile_card {
     grid-area: card;
     display: grid;
-
     background-color: #588EFF;
     border-radius: 25px;
-    grid-template-columns: 10px 1fr;
+    grid-template-columns: 20px 1fr;
     grid-template-rows: minmax(100px, 150px) minmax(200px, 300px) minmax(100px,150px);
     grid-template-areas: "slider about" "slider level_fragment" "slider logo";
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     font-family: "Titillium Web", sans-serif;
     color: white;
-    /*margin: auto 20px auto 20px;*/
+    grid-gap: 5px;
 }
 
 .slider {
