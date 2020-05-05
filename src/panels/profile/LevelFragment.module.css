@@ -1,8 +1,8 @@
 .level_wrapper {
     display: grid;
-    grid-template-rows: 40px 1fr 4fr;
+    grid-template-rows: 40px min-content min-content;
     grid-template-areas: "dignity" "quote" "sticker";
-    grid-gap: 10px;
+    grid-gap: 5px;
 
 }
 
@@ -10,7 +10,7 @@
     grid-area: dignity;
     font-size: 16px;
     display: grid;
-    margin: 10px auto 10px auto;
+    margin: auto;
     grid-template-columns: 40px 1fr;
     grid-template-areas:"brain text";
 }

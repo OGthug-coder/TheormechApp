@@ -4,12 +4,15 @@
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    padding: 20px;
     font-family: "Titillium Web", sans-serif;
     align-items: center;
-    margin: auto auto auto 20px;
-}
+    padding: 10px;
 
+}
+/*no scrollbar*/
+.news_container::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
 
 .task {
     grid-area: task;

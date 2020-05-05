@@ -1,6 +1,5 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
-import Draggable from "react-draggable";
 
 import News from './panels/News/News.js';
 import Profile from "./panels/profile/Profile";
@@ -43,8 +42,7 @@ class App extends React.Component {
 
         if (Math.abs(position.x) > 100) {
             this.setState({showed: true});
-        }
-        else {
+        } else {
             this.setState({showed: false});
         }
 
@@ -58,17 +56,8 @@ class App extends React.Component {
                     <News/>
                 </div>
 
-                <div className={`${s.profile_swipe} ${this.state.showed ? s.showed : s.hidden}`}>
-                    <Draggable
-                        axis="x"
-                        scale={1}
-                        onStart={this.onStart}
-                        onDrag={this.handleDrag}
-                        onStop={this.onStop}>
-                        <div>
-                            <Profile/>
-                        </div>
-                    </Draggable>
+                <div className={`${s.profile} ${this.state.showed ? s.showed : s.hidden}`}>
+                    <Profile/>
                 </div>
 
             </div>
