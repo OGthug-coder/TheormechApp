@@ -13,8 +13,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            right: -375,
-
+            showed: false,
             deltaPosition: {
                 x: 0, y: 0
             }
@@ -23,11 +22,11 @@ class App extends React.Component {
     }
 
     handleDrag = (e, ui) => {
-
         const {x, y} = this.state.deltaPosition;
         console.log({x, y})
+
         this.setState({
-            showed: false,
+
             deltaPosition: {
                 x: x + ui.deltaX,
                 y: y + ui.deltaY,
@@ -41,10 +40,14 @@ class App extends React.Component {
 
     onStop = () => {
         const position = this.state.deltaPosition
+
         if (Math.abs(position.x) > 100) {
             this.setState({showed: true});
-            console.log(true)
         }
+        else {
+            this.setState({showed: false});
+        }
+
         this.setState({activeDrags: --this.state.activeDrags});
     };
 
@@ -55,7 +58,7 @@ class App extends React.Component {
                     <News/>
                 </div>
 
-                <div className={`${s.profile_swipe} ${this.state.showed ? s.showed : ''}`}>
+                <div className={`${s.profile_swipe} ${this.state.showed ? s.showed : s.hidden}`}>
                     <Draggable
                         axis="x"
                         scale={1}
