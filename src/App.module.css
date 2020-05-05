@@ -1,21 +1,18 @@
 
 .main_window {
     scroll-snap-type: x mandatory;
+    height: 100%;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     display: grid;
     grid-template-columns: 95vw 1fr;
     grid-template-areas: "news profile";
+    align-content: center;
 }
 /*no scrollbar*/
 .main_window::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
-}
-
-.profile {
-    scroll-snap-align: start;
-    grid-area: profile;
-    margin: auto;
 }
 
 .news_wrapper {
@@ -25,6 +22,15 @@
     height: 100vh;
     overflow: hidden;
     grid-area: news;
+}
+
+.profile {
+    scroll-snap-align: start;
+    width: 95vw;
+    height: 100%;
+    grid-area: profile;
+    display: grid;
+    align-content: center;
 }
 
 .background {

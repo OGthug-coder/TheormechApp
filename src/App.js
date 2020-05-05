@@ -27,9 +27,9 @@ class App extends React.Component {
                         <Profile/>
                     </div>
                     <div className={s.background}>
-                        <div />
-                        <div />
-                        <div />
+                        <div/>
+                        <div/>
+                        <div/>
                     </div>
                 </div>
 
