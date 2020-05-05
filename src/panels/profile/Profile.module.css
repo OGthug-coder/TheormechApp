@@ -2,9 +2,13 @@
     scroll-snap-stop: always;
     height: 100%;
     display: grid;
+    grid-template-columns: 400px;
+    grid-template-areas: 'card';
+
 }
 
 .profile_card {
+    grid-area: card;
     display: grid;
     align-items: center;
     background-color: #588EFF;

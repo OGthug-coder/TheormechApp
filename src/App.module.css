@@ -1,0 +1,9 @@
+
+
+.profile_swipe {
+    position: fixed;
+    height: 300px;
+    z-index: 1;
+    top: 5vh;
+    right: -360px;
+}

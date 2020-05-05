@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './ProfileFragment.module.css';
+import s from './Profile.module.css';
 import LevelFragment from "./LevelFragment";
 
 
@@ -33,10 +33,10 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={s.background}>
-                    <div />
-                    <div />
-                </div>
+                {/*<div className={s.background}>*/}
+                {/*    <div />*/}
+                {/*    <div />*/}
+                {/*</div>*/}
             </section>
         )
     }

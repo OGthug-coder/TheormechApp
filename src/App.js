@@ -2,10 +2,11 @@ import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
 
 
-import Profile from './panels/profile/Profile.js'
-import News from './panels/News/News.js'
-import Preview from "./panels/preview/Preview";
+import Swipe from 'react-easy-swipe';
+import News from './panels/News/News.js';
+import Profile from "./panels/profile/Profile";
 
+import s from './App.module.css';
 
 class App extends React.Component {
 
@@ -15,31 +16,26 @@ class App extends React.Component {
         this.state = {};
     }
 
+    onSwipeMove(position, event) {
+        console.log(`Moved ${position.x} pixels horizontally`, event);
+        console.log(`Moved ${position.y} pixels vertically`, event);
+    }
+
     render() {
 
         return (
-            <>
-                <News />
-                {/*<Profile/>*/}
-                {/*<Panel id="profile">*/
-                }
-                {/*	<PanelHeader>Profile</PanelHeader>*/
-                }
-                {/*	<Group>*/
-                }
-                {/*		/!*<CellButton onClick={ () => this.setState({ activePanel: 'tasks' }) }>*!/*/
-                }
-                {/*		/!*	Go to Tasks*!/*/
-                }
-                {/*		/!*</CellButton>*!/*/
-                }
-                {/*	</Group>*/
-                }
-                {/*</Panel>*/
-                }
-                {/*<Tasks id='tasks' parent={this}/>*/
-                }
-            </>
+            <div className={s.main_window}>
+                <div className={s.news_wrapper}>
+                    <News/>
+                </div>
+
+                <div className={s.profile_swipe}>
+                    <Swipe onSwipeMove={this.onSwipeMove}>
+                        <Profile />
+                    </Swipe>
+                </div>
+
+            </div>
         )
     }
 }
