@@ -16,14 +16,12 @@ class Question extends React.Component {
     render() {
         return (
             <section className={s.question_window}>
-                <div className={s.background}>
-                    <div className={s.about}>
-                        <div className={s.question_number}>
-                            Вопрос 12/20
-                        </div>
-                        <div className={s.timer}>
-                            Оставшееся время: <span>14:52</span>
-                        </div>
+                <div className={s.about}>
+                    <div className={s.question_number}>
+                        Вопрос 12/20
+                    </div>
+                    <div className={s.timer}>
+                        Оставшееся время: <span>14:52</span>
                     </div>
                 </div>
                 <div className={s.question_card}>
@@ -52,10 +50,18 @@ class Question extends React.Component {
                         <div className={s.score_container}>
                             Счёт: <span className={s.score}>10</span>
                         </div>
-                        <button className={s.next_question}>
-                            Следующий
-                        </button>
+                        <a href="#" className={s.next_question}>
+                            Следующий &#8250;
+                        </a>
                     </div>
+                    <div className={s.wave_card}>
+                        <div className={s.wave_one}/>
+                        <div className={s.wave_two}/>  
+                    </div>
+                </div>
+                <div className={s.wave}>
+                    <div className={s.wave_one}/>
+                    <div className={s.wave_two}/>  
                 </div>
             </section>
         )
