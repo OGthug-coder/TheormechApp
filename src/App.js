@@ -19,13 +19,13 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route path={'/TheormechApp'}>
+                    <Route path={'/preview'}>
+                        <Preview/>
+                    </Route>
+                    <Route path={'/'}>
                         <div className={s.main_window}>
                             <Main/>
                         </div>
-                    </Route>
-                    <Route path={'/preview'}>
-                        <Preview/>
                     </Route>
                 </Switch>
 
