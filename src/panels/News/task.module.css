@@ -86,7 +86,6 @@
 
 
 .start_button {
-    
     margin: auto;
     height: 40px;
     width: 200px;
@@ -94,17 +93,19 @@
     background-color: #588EFF;
     border-radius: 20px;
     border: 0;
-    
+    outline: none;
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+    color: #F3FDFF;
     font-family: 'Titillium Web', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    outline: none;
-
-    color: #F3FDFF;
-
     text-shadow: 0px 4px 6px #34ABB5;
+}
+.link div {
+    margin-top: 7px;
 }

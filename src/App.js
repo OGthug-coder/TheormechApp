@@ -1,10 +1,10 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
-
-import News from './panels/News/News.js';
-import Profile from "./panels/profile/Profile";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import s from './App.module.css';
+import Preview from "./panels/preview/Preview";
+import Main from "./panels/Main/Main";
 
 class App extends React.Component {
 
@@ -17,23 +17,18 @@ class App extends React.Component {
 
     render() {
         return (
-            <>
+            <Router>
                 <div className={s.main_window}>
-                    <div className={s.news_wrapper}>
-                        <News/>
-                    </div>
-
-                    <div className={s.profile}>
-                        <Profile/>
-                    </div>
-                    <div className={s.background}>
-                        <div/>
-                        <div/>
-                        <div/>
-                    </div>
+                    <Switch>
+                        <Route path={'/TheormechApp'}>
+                            <Main />
+                        </Route>
+                        <Route path={'/preview'}>
+                            <Preview />
+                        </Route>
+                    </Switch>
                 </div>
-
-            </>
+            </Router>
 
         )
     }

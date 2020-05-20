@@ -12,3 +12,8 @@
     height: auto;
     position: fixed;
 }
+
+/*no scrollbar*/
+.preview_wrapper::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
