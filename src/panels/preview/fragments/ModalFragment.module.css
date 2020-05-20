@@ -8,6 +8,7 @@
     justify-items: center;
     grid-template-rows: 20px 1fr;
     grid-template-areas: "slider" "content" "button";
+    background-color: white;
 }
 
 .slider_wrapper {
