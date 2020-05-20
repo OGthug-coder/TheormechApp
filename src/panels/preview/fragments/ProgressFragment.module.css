@@ -22,11 +22,10 @@
 
 .progress_item__counter {
     display: grid;
-    grid-template-columns: 1fr 10px 1fr;
+    grid-template-columns: 45px 10px 45px;
+    grid-template-rows: 45px;
     justify-items: center;
     align-items: center;
-    align-content: center;
-    justify-content: center;
     grid-gap: 2px;
 }
 
@@ -39,10 +38,9 @@
     height: 45px;
     border-radius: 15px;
     background: #E8E8E8;
-}
-
-.progress_item__block div {
-    margin: 13px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 .special {

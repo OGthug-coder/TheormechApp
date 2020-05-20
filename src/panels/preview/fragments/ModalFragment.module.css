@@ -1,5 +1,7 @@
 .modal_window {
     /*position: absolute;*/
+    scroll-behavior: smooth;
+    overflow: scroll;
     margin-top: 70px;
     width: 100%;
     display: grid;
@@ -59,9 +61,13 @@
     margin-right: 15px;
 }
 
-.progress div {
+.progress {
     font-size: 18px;
     margin-bottom: 10px;
+}
+
+.question_list:last-child {
+    margin-bottom: 60px;
 }
 
 .question_item {

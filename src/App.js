@@ -18,16 +18,17 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className={s.main_window}>
-                    <Switch>
-                        <Route path={'/TheormechApp'}>
-                            <Main />
-                        </Route>
-                        <Route path={'/preview'}>
-                            <Preview />
-                        </Route>
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route path={'/TheormechApp'}>
+                        <div className={s.main_window}>
+                            <Main/>
+                        </div>
+                    </Route>
+                    <Route path={'/preview'}>
+                        <Preview/>
+                    </Route>
+                </Switch>
+
             </Router>
 
         )
