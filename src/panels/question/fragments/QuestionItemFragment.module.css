@@ -1,0 +1,52 @@
+.answer_item {
+    margin: 20px auto;
+    width: 270px;
+    height: 50px;
+    z-index: 3;
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 30px 220px;
+
+    background: #FFFF;
+    border: 1px solid #588EFF;
+    box-sizing: border-box;
+    border-radius: 25px;
+    text-align: center;
+    color: #000000;
+}
+
+.answer_item:hover {
+    background: #5F92FD;
+    color: #FFFF;
+}
+
+.number {
+    margin: auto;
+  
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.04em;
+
+
+}
+
+.text {
+    margin: auto;
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.04em;
+
+    
+}

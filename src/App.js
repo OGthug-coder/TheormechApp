@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import s from './App.module.css';
 import Preview from "./panels/preview/Preview";
 import Main from "./panels/Main/Main";
+import Question from "./panels/question/Question";
+
 
 class App extends React.Component {
 
@@ -30,7 +32,6 @@ class App extends React.Component {
                 </Switch>
 
             </Router>
-
         )
     }
 
