@@ -2,6 +2,7 @@ import React from "react";
 import s from './ModalFragment.module.css';
 import ProgressFragment from "./ProgressFragment";
 import QuestionItemFragment from "./QuestionItemFragment";
+import {Link} from "react-router-dom";
 
 class ModalFragment extends React.Component {
     constructor(props) {
@@ -52,9 +53,9 @@ class ModalFragment extends React.Component {
 
                 </div>
                 <div className={s.button}>
-                    <button>
-                        Пройти тест
-                    </button>
+                        <Link to={'/question'} className={s.link}>
+                            <div> Пройти тест </div>
+                        </Link>
                 </div>
             </section>
         )

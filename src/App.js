@@ -21,6 +21,9 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
+                    <Route path={'/question'}>
+                        <Question/>
+                    </Route>
                     <Route path={'/preview'}>
                         <Preview/>
                     </Route>
