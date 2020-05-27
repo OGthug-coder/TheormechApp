@@ -1,0 +1,19 @@
+
+.main_window {
+    scroll-snap-type: x mandatory;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 95vw 1fr;
+    grid-template-areas: "news profile";
+    align-content: center;
+}
+/*no scrollbar*/
+.main_window::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+
+

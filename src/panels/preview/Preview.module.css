@@ -8,7 +8,12 @@
 
 .background {
     z-index: -1;
-    width: 100%;
-    height: auto;
+    height: 100px;
     position: fixed;
+    left: -300px;
+}
+
+/*no scrollbar*/
+.preview_wrapper::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
 }

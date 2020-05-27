@@ -15,7 +15,10 @@ class Preview extends React.Component{
         return (
             <section className={s.preview_wrapper}>
                 <div className={s.background}>
-                    <img src={require("../../img/preview/ic_preview_background.svg")} alt={"background"} />
+                    <img
+                        src={require("../../img/preview/ic_preview_background.svg")}
+                        alt={"background"}
+                        height={'700'}/>
                 </div>
                 <ModalFragment />
                 <Answer />

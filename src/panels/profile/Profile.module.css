@@ -1,21 +1,15 @@
-.profile_container {
-    scroll-snap-stop: always;
-    height: 100%;
-    display: grid;
-}
-
 .profile_card {
+    margin-right: 5vw;
     display: grid;
-    align-items: center;
     background-color: #588EFF;
     border-radius: 25px;
-    grid-template-columns: 10px 1fr;
-    grid-template-rows: minmax(180px, 180px) minmax(200px, 300px) minmax(100px,120px);
+    grid-template-columns: 20px 1fr;
+    grid-template-rows: minmax(100px, 150px) minmax(320px, 340px) min-content;
     grid-template-areas: "slider about" "slider level_fragment" "slider logo";
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     font-family: "Titillium Web", sans-serif;
     color: white;
-    margin: auto 20px auto 20px;
+    grid-gap: 5px;
 }
 
 .slider {
@@ -28,11 +22,13 @@
 }
 
 .about {
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
-    margin: 30px auto auto;
     grid-template-columns: 100px 1fr;
     grid-template-areas: "user_photo bio";
     grid-gap: 20px;
+    align-items: center;
 }
 
 .about img {
@@ -68,7 +64,7 @@
     grid-area: logo;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin: auto auto 20px;
+    margin: auto 5px 20px;
 }
 
 .logo img {

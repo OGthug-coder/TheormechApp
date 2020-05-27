@@ -1,7 +1,7 @@
 .question_item {
     display: grid;
-    grid-template-columns: 30px 1fr 30px;
-    grid-gap: 20px;
+    grid-template-columns: 30px minmax(120px, 3000px) 40px;
+    grid-gap: 15px;
 }
 
 .question_status {

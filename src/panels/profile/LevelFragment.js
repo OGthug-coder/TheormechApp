@@ -10,18 +10,17 @@ class LevelFragment extends React.Component {
                 <div className={s.dignity}>
                     <img src={require("../../img/profile/brain_outline_28.svg")}/>
                     <div>
-                        Да ты Стив Джобс!
+                        Да ты Дэвид Гилберт!
                     </div>
                 </div>
                 <div className={s.quote}>
-                    Компьютер — это самый удивительный инструмент, с каким я когда-либо сталкивался. Это велосипед для
-                    нашего сознания.
+                    Он стал поэтом — для математика у него не хватало фантазии.
                 </div>
                 <div className={s.sticker_wrapper}>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
-                    <img className={s.sticker} src={require("../../img/profile/Steve.svg")}/>
+                    <img className={s.sticker} src={require("../../img/profile/hilbert.svg")}/>
                 </div>
             </div>
         )
