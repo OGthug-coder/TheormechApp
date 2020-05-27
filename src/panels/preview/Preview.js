@@ -1,5 +1,6 @@
 import React from 'react';
 import ModalFragment from "./fragments/ModalFragment";
+import Answer from "../answer/Answer";
 
 import s from "./Preview.module.css";
 
@@ -20,6 +21,7 @@ class Preview extends React.Component{
                         height={'700'}/>
                 </div>
                 <ModalFragment />
+                <Answer />
             </section>
         )
     }

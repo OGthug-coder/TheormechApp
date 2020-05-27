@@ -19,6 +19,7 @@ class App extends React.Component {
 
     render() {
         return (
+
             <Router>
                 <Switch>
                     <Route path={'/question'}>
@@ -35,10 +36,10 @@ class App extends React.Component {
                 </Switch>
 
             </Router>
+
         )
     }
 
 }
 
 export default App;
-

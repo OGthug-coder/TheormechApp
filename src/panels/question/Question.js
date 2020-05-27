@@ -51,9 +51,10 @@ class Question extends React.Component {
                             Счёт: <span className={s.score}>10</span>
                         </div>
                         <a href="#" className={s.next_question}>
-                            Следующий &#8250;
+                            Следующий &raquo;
                         </a>
                     </div>
+                    <button className={s.slider}></button>
                     <div className={s.wave_card}>
                         <div className={s.wave_one}/>
                         <div className={s.wave_two}/>  

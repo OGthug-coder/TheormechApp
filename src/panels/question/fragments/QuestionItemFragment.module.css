@@ -22,9 +22,9 @@
 }
 
 .number {
-    margin: auto;
+    margin-left: 15px;
   
-    font-family: Roboto, sans-serif;
+    font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -39,7 +39,7 @@
 .text {
     margin: auto;
 
-    font-family: Roboto, sans-serif;
+    font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
