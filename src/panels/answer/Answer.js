@@ -6,7 +6,9 @@ class Answer extends React.Component{
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            onClick: props.onClick,
+        };
     }
 
     render() {
@@ -16,9 +18,7 @@ class Answer extends React.Component{
                     <div className={s.question_label}>
                         <img src={require("../../img/answer/question.png")} width="24" height="24" />
                     </div>
-                    <a href="#" className={s.exit}>
-                        &#10006;
-                    </a>
+                    <button className={s.exit} onClick={this.state.onClick} />
                 </div>
                 <div className={s.question}>В каком случае относительная скорость движущихся автомобилей максимальна?</div>
                 <div className={s.ans_title}>Правильный ответ:</div>

@@ -5,6 +5,9 @@ import s from './QuestionItemFragment.module.css';
 class QuestionItemFragment extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            onClick: props.onClick,
+        }
     }
 
 
@@ -23,7 +26,7 @@ class QuestionItemFragment extends React.Component {
                             Автомобили движутся...
                         </div>
                     </div>
-                    <button className={s.answer} />
+                    <button className={s.answer} onClick={this.state.onClick}/>
                 </div>
                 <div className={s.separator} />
             </>

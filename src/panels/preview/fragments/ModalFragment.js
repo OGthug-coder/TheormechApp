@@ -8,11 +8,16 @@ class ModalFragment extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            onClick: props.onClick,
+            className: props.className
+        };
+
     }
 
     render() {
         return (
-            <section className={s.modal_window}>
+            <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
                 <div className={s.slider_wrapper}>
                     <div className={s.slider}></div>
                 </div>
@@ -35,19 +40,19 @@ class ModalFragment extends React.Component {
                     </div>
                     <ul className={s.question_list}>
                         <li className={s.question_item}>
-                            <QuestionItemFragment/>
+                            <QuestionItemFragment onClick={this.state.onClick}/>
                         </li>
                         <li className={s.question_item}>
-                            <QuestionItemFragment/>
+                            <QuestionItemFragment onClick={this.state.onClick}/>
                         </li>
                         <li className={s.question_item}>
-                            <QuestionItemFragment/>
+                            <QuestionItemFragment onClick={this.state.onClick}/>
                         </li>
                         <li className={s.question_item}>
-                            <QuestionItemFragment/>
+                            <QuestionItemFragment onClick={this.state.onClick}/>
                         </li>
                         <li className={s.question_item}>
-                            <QuestionItemFragment/>
+                            <QuestionItemFragment onClick={this.state.onClick}/>
                         </li>
                     </ul>
 

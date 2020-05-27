@@ -4,12 +4,23 @@ import Answer from "../answer/Answer";
 
 import s from "./Preview.module.css";
 
-class Preview extends React.Component{
+class Preview extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            show_answer_window: false,
+        };
+
+        this.show_answer_window = () => {
+            this.setState({show_answer_window: true})
+        };
+
+        this.hide_answer_window = () => {
+            this.setState({show_answer_window: false})
+        };
     }
+
 
     render() {
         return (
@@ -20,8 +31,9 @@ class Preview extends React.Component{
                         alt={"background"}
                         height={'700'}/>
                 </div>
-                <ModalFragment />
-                <Answer />
+                <ModalFragment onClick={this.show_answer_window}/>
+                {this.state.show_answer_window ? <Answer onClick={this.hide_answer_window}/> : ""}
+
             </section>
         )
     }
