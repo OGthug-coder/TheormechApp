@@ -5,7 +5,6 @@ import '@vkontakte/vkui/dist/vkui.css';
 import Profile from './panels/profile/Profile.js'
 import News from './panels/News/News.js'
 import Preview from "./panels/preview/Preview";
-import Question from "./panels/question/Question";
 
 
 class App extends React.Component {
@@ -20,8 +19,7 @@ class App extends React.Component {
 
         return (
             <>
-                <Question />
-                {/*<Preview />*/}
+                <News />
                 {/*<Profile/>*/}
                 {/*<Panel id="profile">*/
                 }
@@ -47,4 +45,3 @@ class App extends React.Component {
 }
 
 export default App;
-
