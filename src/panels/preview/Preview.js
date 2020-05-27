@@ -20,7 +20,6 @@ class Preview extends React.Component{
                 <ModalFragment />
                 <Answer />
             </section>
-            
         )
     }
 }

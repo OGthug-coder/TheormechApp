@@ -1,5 +1,5 @@
 .answer_block {
-    position: absolute;
+    position: fixed;
     z-index: 100;
     display: grid;
     grid-template-rows: 1fr 1fr 0.5fr 0.75fr 0.5fr 1fr;
@@ -88,7 +88,7 @@
 .explanation_title {
     margin-top: 10px;
 
-    font-family: Roboto, sans-serif;
+    font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -103,7 +103,7 @@
 .explanation {
     margin: 10px;
 
-    font-family: Roboto, sans-serif;
+    font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
