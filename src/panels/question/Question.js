@@ -8,9 +8,8 @@ class Question extends React.Component {
         super(props);
 
         this.state = {
-            position: 10,
+            position: 10
         };
-
     }
 
     onClick(e) {
@@ -28,8 +27,36 @@ class Question extends React.Component {
 
     onSwipeEnd = (event) => {
         console.log('End swiping...', event);
-        this.setState({position: 0});
+        const start = this.state.position;
+        const id = setInterval(start < 0 ? backAnimationDown : backAnimationUp, 1, this);
+        let speed = Math.abs(start) / 83.82916675;
+        let time = 0;
+
+        function backAnimationDown(context) {
+            let pos = context.state.position;
+            time += 0.01;
+            console.log(time);
+            if (pos > 0) {
+                clearInterval(id);
+            } else {
+                let move = nextMove(time) * speed;
+                console.log(move);
+                context.setState({position: pos + move});
+            }
+        }
+
+        function backAnimationUp(context) {
+            let pos = context.state.position;
+            if (pos < 0) {
+                clearInterval(id);
+            } else {
+                context.setState({position: pos - speed});
+            }
+        }
+
+        const nextMove = (t) => 1 + (-t)*t*t*t*t;
     }
+
 
     render() {
         return (
@@ -42,8 +69,10 @@ class Question extends React.Component {
                         Оставшееся время: <span>14:52</span>
                     </div>
                 </div>
-                <div className={s.question_card}
-                     style={ {top: `${this.state.position}px`} }>
+                <div className={`${s.question_card} `}
+                     style={{
+                         top: `${this.state.position}px`
+                     }}>
                     <div className={s.question_text}>
                         В каком случае относительная скорость движущихся автомобилей максимальна?
                     </div>
