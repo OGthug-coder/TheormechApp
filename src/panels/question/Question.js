@@ -36,7 +36,7 @@ class Question extends React.Component {
             let pos = context.state.position;
             time += 0.01;
             console.log(time);
-            if (pos > 0) {
+            if (Math.abs(pos) <= 10) {
                 clearInterval(id);
             } else {
                 let move = nextMove(time) * speed;
@@ -54,7 +54,7 @@ class Question extends React.Component {
             }
         }
 
-        const nextMove = (t) => 1 + (-t)*t*t*t*t;
+        const nextMove = (t) => 1 - t*t*t*t*t;
     }
 
 
