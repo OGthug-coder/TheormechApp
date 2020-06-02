@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Swipe from 'react-easy-swipe';
 import s from './Question.module.css';
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 
@@ -7,10 +7,28 @@ class Question extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            position: 10,
+        };
+
     }
 
     onClick(e) {
         console.log('pushed');
+    }
+
+    onSwipeStart = (event) => {
+        console.log('Start swiping...', event);
+    }
+
+    onSwipeMove = (position, event) => {
+
+        this.setState({position: position.y});
+    }
+
+    onSwipeEnd = (event) => {
+        console.log('End swiping...', event);
+        this.setState({position: 0});
     }
 
     render() {
@@ -24,7 +42,8 @@ class Question extends React.Component {
                         Оставшееся время: <span>14:52</span>
                     </div>
                 </div>
-                <div className={s.question_card}>
+                <div className={s.question_card}
+                     style={ {top: `${this.state.position}px`} }>
                     <div className={s.question_text}>
                         В каком случае относительная скорость движущихся автомобилей максимальна?
                     </div>
@@ -32,19 +51,19 @@ class Question extends React.Component {
                         <QuestionItemFragment
                             answerType={'str'}
                             answerText={'Автомобили движутся навстречу друг другу'}
-                            questionNumber={1} />
+                            questionNumber={1}/>
                         <QuestionItemFragment
                             answerType={'str'}
                             answerText={'Догоняют друг друга'}
-                            questionNumber={2} />
+                            questionNumber={2}/>
                         <QuestionItemFragment
                             answerType={'str'}
                             answerText={'Векторы их скоростей составляют острый угол'}
-                            questionNumber={3} />
+                            questionNumber={3}/>
                         <QuestionItemFragment
                             answerType={'str'}
                             answerText={'Не знаю'}
-                            questionNumber={4} />
+                            questionNumber={4}/>
                     </div>
                     <div className={s.control}>
                         <div className={s.score_container}>
@@ -54,15 +73,21 @@ class Question extends React.Component {
                             Следующий &raquo;
                         </a>
                     </div>
-                    <button className={s.slider}></button>
+                    <Swipe
+                        onSwipeStart={this.onSwipeStart}
+                        onSwipeMove={this.onSwipeMove}
+                        onSwipeEnd={this.onSwipeEnd}>
+                        <button className={s.slider}/>
+                    </Swipe>
+
                     <div className={s.wave_card}>
                         <div className={s.wave_one}/>
-                        <div className={s.wave_two}/>  
+                        <div className={s.wave_two}/>
                     </div>
                 </div>
                 <div className={s.wave}>
                     <div className={s.wave_one}/>
-                    <div className={s.wave_two}/>  
+                    <div className={s.wave_two}/>
                 </div>
             </section>
         )
