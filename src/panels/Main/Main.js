@@ -1,5 +1,5 @@
 import React from 'react';
-import News from "./News/News";
+import TestList from "./testList/TestList";
 import Profile from "./Profile/Profile";
 
 import s from './Main.module.css';
@@ -7,13 +7,14 @@ import s from './Main.module.css';
 class Main extends React.Component {
     constructor(props) {
         super(props);
+        this.application = props.application;
     }
 
     render() {
         return (
             <>
                 <div className={s.news_wrapper}>
-                    <News/>
+                    <TestList application={this.application}/>
                 </div>
                 <div className={s.profile}>
                     <Profile/>

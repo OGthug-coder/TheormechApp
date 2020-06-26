@@ -6,6 +6,7 @@ import s from './App.module.css';
 import Preview from "./panels/preview/Preview";
 import Main from "./panels/Main/Main";
 import Question from "./panels/question/Question";
+import Application from "./Application";
 
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {};
+        this.application = new Application();
 
     }
 
@@ -30,7 +32,7 @@ class App extends React.Component {
                     </Route>
                     <Route path={'/'}>
                         <div className={s.main_window}>
-                            <Main/>
+                            <Main application={this.application} />
                         </div>
                     </Route>
                 </Switch>

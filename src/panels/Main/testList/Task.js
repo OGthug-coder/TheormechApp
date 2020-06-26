@@ -5,6 +5,16 @@ import {Link} from "react-router-dom";
 
 
 class Task extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: props.title,
+            img: props.img,
+            date: props.date,
+            progress: props.progress,
+        }
+    }
 
     render() {
         return (
@@ -12,11 +22,11 @@ class Task extends React.Component {
                 <div className={s.card}>
                     <div className={s.pic}/>
                     <div className={s.name}>
-                        Как приручить интеграл Римана?
+                        {this.state.title}
                     </div>
 
                     <div className={s.info}>
-                        <div className={s.date}>28.04.2020</div>
+                        <div className={s.date}>{this.state.date}</div>
                         <div className={s.progress}>
                             <span className={s.dot_on}></span>
                             <span className={s.dot_on}></span>
