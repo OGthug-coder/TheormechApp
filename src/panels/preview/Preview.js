@@ -1,6 +1,6 @@
 import React from 'react';
 import ModalFragment from "./fragments/ModalFragment";
-import Answer from "../answer/Answer";
+import Answer from "./fragments/Answer";
 
 import s from "./Preview.module.css";
 

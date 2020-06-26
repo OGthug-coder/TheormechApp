@@ -18,7 +18,8 @@
 }
 
 .pic {
-    background-image:url(../../img/news/background_image.jpg);
+    /*TODO fix image*/
+    /*background-image:url(src/img/news/background_image.jpg);*/
     background-repeat: no-repeat;
     background-size: cover;
     border-top-left-radius: 25px;
@@ -43,14 +44,14 @@
 .info {
     display: grid;
     grid-template-columns: 3fr 0.6fr 0.2fr;
-    
+
     text-align: center;
 }
 
 .date {
     text-align: left;
     margin-left: 15px;
-    
+
     font-family: Titillium Web;
     font-style: normal;
     font-weight: bold;

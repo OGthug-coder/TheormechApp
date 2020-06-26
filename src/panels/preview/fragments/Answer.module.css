@@ -28,7 +28,8 @@
 }
 
 .exit {
-    background: url("../../img/answer/exit.svg") no-repeat;
+    /*TODO fix image*/
+    /*background: url("src/img/answer/exit.svg") no-repeat;*/
     margin: auto;
     margin-top: 25px;
     height: 20px;

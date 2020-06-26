@@ -1,6 +1,6 @@
 import React from 'react';
-import News from "../News/News";
-import Profile from "../profile/Profile";
+import News from "./News/News";
+import Profile from "./Profile/Profile";
 
 import s from './Main.module.css';
 
