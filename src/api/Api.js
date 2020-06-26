@@ -5,7 +5,7 @@ class Api {
             {
                 "id": 5,
                 "pathToImage": null,
-                "title": "title",
+                "title": "Как приручить интеграл Римана?",
                 "description": "descidghd",
                 "questions": [
                     {
@@ -21,7 +21,7 @@ class Api {
             {
                 "id": 6,
                 "pathToImage": null,
-                "title": "title",
+                "title": "Знаешь механику?",
                 "description": "new_test",
                 "questions": [
                     {
@@ -37,7 +37,7 @@ class Api {
             {
                 "id": 7,
                 "pathToImage": null,
-                "title": "title",
+                "title": "Бор или как создать свой институт",
                 "description": "new_test",
                 "questions": [
                     {

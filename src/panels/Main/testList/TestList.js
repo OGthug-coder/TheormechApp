@@ -11,20 +11,21 @@ class TestList extends React.Component {
         this.testListService = this.application.provideTestListService();
     }
 
-    bindData() {
-        const tests = this.testListService.getTests();
-        console.log(tests);
-    }
-
 
     render() {
-        this.bindData();
+        const tests = this.testListService.getTests();
         return (
             <section className={s.news_container}>
-                <Task className={"task"}/>
-                <Task className={"task"}/>
-                <Task className={"task"}/>
-                <Task className={"task"}/>
+                {tests.map(test => <Task title={test.title}
+                        img={test.img}
+                        date={test.date}
+                        progress={test.progress}>
+                    </Task>
+                )}
+                {/*<Task/>*/}
+                {/*<Task/>*/}
+                {/*<Task/>*/}
+                {/*<Task/>*/}
 
             </section>
         )

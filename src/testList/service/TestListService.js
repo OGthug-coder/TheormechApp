@@ -4,7 +4,17 @@ class TestListService {
     }
 
     getTests() {
-        return this.api.requestTests();
+        const testsDto = this.api.requestTests();
+        let tests = [];
+        testsDto.forEach((t) => tests.push({
+            title: t.title,
+            //TODO: do image loading
+            img: null,
+            date: t.creationDate,
+            //TODO: return length of test from API
+            progress: 1
+        }));
+        return tests;
     }
 }
 
