@@ -17,7 +17,7 @@ class Main extends React.Component {
                     <TestList application={this.application} sortBy={'date'}/>
                 </div>
                 <div className={s.profile}>
-                    <Profile/>
+                    <Profile application={this.application}/>
                 </div>
                 <div className={s.background}>
                     <div/>
