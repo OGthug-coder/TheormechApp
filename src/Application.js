@@ -2,25 +2,23 @@ import TestListService from "./testList/service/TestListService";
 import Api from "./api/Api";
 
 class Application {
-    constructor() {
-        this.testListService = null;
-        this.api = null;
-    }
+    #testListService;
+    #api;
 
     provideTestListService() {
-        if (this.testListService === null) {
-            this.testListService = new TestListService(this.provideApi());
+        if (this.#testListService == null) {
+            this.#testListService = new TestListService(this.provideApi());
         }
 
-        return this.testListService;
+        return this.#testListService;
     }
 
     provideApi() {
-        if (this.api === null) {
-            this.api = new Api();
+        if (this.#api == null) {
+            this.#api = new Api();
         }
 
-        return this.api;
+        return this.#api;
     }
 }
 

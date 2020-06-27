@@ -22,11 +22,6 @@ class TestList extends React.Component {
                         progress={test.progress}>
                     </Task>
                 )}
-                {/*<Task/>*/}
-                {/*<Task/>*/}
-                {/*<Task/>*/}
-                {/*<Task/>*/}
-
             </section>
         )
     }

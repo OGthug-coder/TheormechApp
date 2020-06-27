@@ -16,7 +16,10 @@ class Api {
                         "serialNumber": 0
                     }
                 ],
-                "creationDate": "01-10-2000 00:00:01"
+                "creationDate": "01-10-2000 00:00:01",
+                //new
+                "length": 12,
+                "active_question": 0
             },
             {
                 "id": 6,
@@ -32,7 +35,10 @@ class Api {
                         "serialNumber": 0
                     }
                 ],
-                "creationDate": "01-10-2000 00:00:01"
+                "creationDate": "01-10-2000 00:00:01",
+                //new
+                "length": 12,
+                "active_question": 3
             },
             {
                 "id": 7,
@@ -48,7 +54,10 @@ class Api {
                         "serialNumber": 0
                     }
                 ],
-                "creationDate": "01-10-2000 00:00:01"
+                "creationDate": "01-10-2000 00:00:01",
+                //new
+                "length": 12,
+                "active_question": 10
             }
         ]
     }
