@@ -20,17 +20,6 @@ class TestList extends React.Component {
         this.setState({tests: this.testListService.getTests()})
     }
 
-    compare(o1, o2) {
-        // replace day and month
-        let date2 = o2.props['date'].split('-')
-        date2 = date2[1] + '-' + date2[0] + '-' + date2[2]
-        // replace day and month
-        let date1 = o1.props['date'].split('-')
-        date1 = date1[1] + '-' + date1[0] + '-' + date1[2]
-        return new Date(date2) - new Date(date1);
-    }
-
-
     prepareList() {
         let finished = [];
         let unfinished = [];
@@ -53,8 +42,8 @@ class TestList extends React.Component {
                 )
             }
         });
-        finished.sort(this.compare);
-        unfinished.sort(this.compare);
+        finished = this.testListService.sort(finished)
+        unfinished = this.testListService.sort(unfinished)
         return unfinished.concat(finished);
     }
 
