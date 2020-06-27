@@ -10,7 +10,7 @@ class TestListService {
             title: t.title,
             img: t.pathToImage,
             date: t.creationDate,
-            progress: this.getProgress(t.active_question, t.length)
+            progress: this.getProgress(t.active_question, t.questions.length)
         }));
 
         return tests;
@@ -19,7 +19,6 @@ class TestListService {
     sort(list) {
         return list.sort(this.compare);
     }
-
 
     getProgress(activeQuestion, totalNumber) {
         const percent = activeQuestion / totalNumber;

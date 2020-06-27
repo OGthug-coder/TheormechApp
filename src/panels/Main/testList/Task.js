@@ -28,9 +28,9 @@ class Task extends React.Component {
                     <div className={s.info}>
                         <div className={s.date}>{this.state.date}</div>
                         <div className={s.progress}>
-                            <span className={this.state.progress >= 1 ? s.dot_on : s.dot}></span>
-                            <span className={this.state.progress >= 2 ? s.dot_on : s.dot}></span>
-                            <span className={this.state.progress >= 3 ? s.dot_on : s.dot}></span>
+                            <span className={this.state.progress >= 1 ? s.dot_on : s.dot}/>
+                            <span className={this.state.progress >= 2 ? s.dot_on : s.dot}/>
+                            <span className={this.state.progress >= 3 ? s.dot_on : s.dot}/>
                         </div>
                     </div>
 

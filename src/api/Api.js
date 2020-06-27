@@ -18,8 +18,7 @@ class Api {
                 ],
                 "creationDate": "01-10-2020 00:01:01",
                 //new
-                "length": 12,
-                "active_question": 0
+                "active_question": 1
             },
             {
                 "id": 4,
@@ -37,7 +36,6 @@ class Api {
                 ],
                 "creationDate": "01-12-2020 00:01:01",
                 //new
-                "length": 12,
                 "active_question": 0
             },
             {
@@ -56,8 +54,7 @@ class Api {
                 ],
                 "creationDate": "02-10-2020 00:02:01",
                 //new
-                "length": 12,
-                "active_question": 3
+                "active_question": 0
             },
             {
                 "id": 7,
@@ -75,8 +72,7 @@ class Api {
                 ],
                 "creationDate": "03-10-2020 00:03:01",
                 //new
-                "length": 12,
-                "active_question": 12
+                "active_question": 0
             },
             {
                 "id": 8,
@@ -94,8 +90,7 @@ class Api {
                 ],
                 "creationDate": "02-10-2020 00:03:01",
                 //new
-                "length": 12,
-                "active_question": 12
+                "active_question": 1
             }
         ]
     }
