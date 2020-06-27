@@ -18,10 +18,8 @@
 }
 
 .pic {
-    /*TODO fix image*/
-    /*background-image:url(src/img/news/background_image.jpg);*/
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 100%;
+    height: 100%;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
 }
