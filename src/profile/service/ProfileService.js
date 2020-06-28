@@ -6,8 +6,6 @@ class ProfileService {
 
     getUser() {
         const userData = this.api.getVkProfile();
-        userData.then()
-
         return userData;
     }
 }

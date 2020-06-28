@@ -27,14 +27,16 @@ class TestList extends React.Component {
         this.state.tests.map(test => {
             if (test.progress === 3) {
                 finished.push(
-                    <Task title={test.title}
+                    <Task id={test.id}
+                          title={test.title}
                           img={test.img}
                           date={test.date.split(' ')[0]}
                           progress={test.progress}
                     />)
             } else {
                 unfinished.push(
-                    <Task title={test.title}
+                    <Task id={test.id}
+                          title={test.title}
                           img={test.img}
                           date={test.date.split(' ')[0]}
                           progress={test.progress}

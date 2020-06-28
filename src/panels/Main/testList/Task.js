@@ -9,6 +9,7 @@ class Task extends React.Component {
         super(props);
 
         this.state = {
+            id: props.id,
             title: props.title,
             img: props.img,
             date: props.date,

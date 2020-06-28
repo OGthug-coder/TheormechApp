@@ -10,7 +10,7 @@ class Application {
 
     provideTestListService() {
         if (this.#testListService == null) {
-            this.#testListService = new TestListService(this.provideApi());
+            this.#testListService = new TestListService(this.provideApi(), this.provideUser().then(user => user.id));
         }
 
         return this.#testListService;
@@ -34,7 +34,9 @@ class Application {
 
     provideUser() {
         if (this.#user == null) {
-            this.#user = this.provideApi().getVkProfile();
+            //TODO need to handle two promise and concat them
+            let vkUser = this.provideApi().getVkProfile();
+            let user = this.provideApi().requestUserById(vkUser.id)
         }
 
         return this.#user;

@@ -19,8 +19,6 @@ class Api {
                     }
                 ],
                 "creationDate": "01-10-2020 00:01:01",
-                //new
-                "active_question": 1
             },
             {
                 "id": 4,
@@ -37,8 +35,6 @@ class Api {
                     }
                 ],
                 "creationDate": "01-12-2020 00:01:01",
-                //new
-                "active_question": 0
             },
             {
                 "id": 6,
@@ -55,8 +51,6 @@ class Api {
                     }
                 ],
                 "creationDate": "02-10-2020 00:02:01",
-                //new
-                "active_question": 0
             },
             {
                 "id": 7,
@@ -73,8 +67,6 @@ class Api {
                     }
                 ],
                 "creationDate": "03-10-2020 00:03:01",
-                //new
-                "active_question": 0
             },
             {
                 "id": 8,
@@ -91,8 +83,6 @@ class Api {
                     }
                 ],
                 "creationDate": "02-10-2020 00:03:01",
-                //new
-                "active_question": 1
             }
         ]
     }
@@ -123,8 +113,45 @@ class Api {
         return userDto;
     }
 
-    requestUser() {
-
+    requestUserById(id) {
+        const response = [
+            {
+                "id": 137239419,
+                "score": 1,
+                "school": null,
+                "age": 0,
+                "usersTests": [
+                    {
+                        "id": 1,
+                        "test": {
+                            "id": 5,
+                            "pathToImage": null,
+                            "title": "title",
+                            "description": "descidghd",
+                            "questions": [
+                                {
+                                    "id": 3,
+                                    "questionText": "nothing",
+                                    "pathToImage": "None",
+                                    "answers": [],
+                                    "serialNumber": 0
+                                }
+                            ],
+                            "creationDate": "01-10-2000 00:00:01"
+                        },
+                        "question": {
+                            "id": 3,
+                            "questionText": "nothing",
+                            "pathToImage": "None",
+                            "answers": [],
+                            "serialNumber": 0
+                        },
+                        "start_time": "20-04-2020 01:09:12"
+                    }
+                ]
+            }
+        ];
+        return new Promise(() => response);
     }
 }
 

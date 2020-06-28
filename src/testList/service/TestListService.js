@@ -1,16 +1,18 @@
 class TestListService {
-    constructor(api) {
+    constructor(api, user) {
         this.api = api;
+        this.user = user;
     }
 
     getTests() {
         const testsDto = this.api.requestTests();
         let tests = [];
         testsDto.forEach(t => tests.push({
+            id: t.id,
             title: t.title,
             img: t.pathToImage,
             date: t.creationDate,
-            progress: this.getProgress(t.active_question, t.questions.length)
+            progress: this.getProgress(t.questions.length, t.id)
         }));
 
         return tests;
@@ -20,8 +22,21 @@ class TestListService {
         return list.sort(this.compare);
     }
 
-    getProgress(activeQuestion, totalNumber) {
-        const percent = activeQuestion / totalNumber;
+    getProgress(length, id) {
+        let userTests = this.user.usersTests;
+        let activeQuestion = 0;
+        if (userTests.length !== 0) {
+            // Check if user has started this test
+            // if so, get the number of the question he stopped
+            let test = userTests.filter(test => test.id === id);
+            activeQuestion =
+                test.length !== 0
+                && test.question.length > 0
+                    ? test.question.serialNumber
+                    : 0;
+        }
+
+        const percent = activeQuestion / length;
         if (percent === 0) {
             return 0;
         } else if (percent === 1) {
