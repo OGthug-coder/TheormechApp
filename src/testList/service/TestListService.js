@@ -23,30 +23,30 @@ class TestListService {
     }
 
     getProgress(length, id) {
-        let userTests = this.user.usersTests;
-        let activeQuestion = 0;
-        if (userTests.length !== 0) {
-            // Check if user has started this test
-            // if so, get the number of the question he stopped
-            let test = userTests.filter(test => test.id === id);
-            activeQuestion =
-                test.length !== 0
-                && test.question.length > 0
-                    ? test.question.serialNumber
-                    : 0;
-        }
-
-        const percent = activeQuestion / length;
-        if (percent === 0) {
-            return 0;
-        } else if (percent === 1) {
-            return 3;
-        } else if (percent > 0.6) {
-            return 2;
-        } else if (percent > 0) {
-            return 1;
-        }
-
+        // let userTests = this.user.usersTests;
+        // let activeQuestion = 0;
+        // if (userTests.length !== 0) {
+        //     // Check if user has started this test
+        //     // if so, get the number of the question he stopped
+        //     let test = userTests.filter(test => test.id === id);
+        //     activeQuestion =
+        //         test.length !== 0
+        //         && test.question.length > 0
+        //             ? test.question.serialNumber
+        //             : 0;
+        // }
+        //
+        // const percent = activeQuestion / length;
+        // if (percent === 0) {
+        //     return 0;
+        // } else if (percent === 1) {
+        //     return 3;
+        // } else if (percent > 0.6) {
+        //     return 2;
+        // } else if (percent > 0) {
+        //     return 1;
+        // }
+        return 0;
     }
 
     compare(o1, o2) {

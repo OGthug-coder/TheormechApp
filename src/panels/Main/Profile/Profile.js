@@ -15,9 +15,8 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        this.application.provideUser().then(
-            user => this.setState({user: user})
-        );
+        let user = this.application.provideUser();
+        user.then((user) => this.setState({user: user}));
     }
 
 

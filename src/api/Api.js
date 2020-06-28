@@ -1,5 +1,3 @@
-import bridge from '@vkontakte/vk-bridge';
-
 class Api {
 
     requestTests() {
@@ -88,8 +86,8 @@ class Api {
     }
 
     getVkProfile() {
-        let userDto = bridge.send('VKWebAppGetUserInfo')
-            .catch(e => console.log(e));
+        // let userDto = bridge.send('VKWebAppGetUserInfo')
+        //     .catch(e => console.log(e));
         const response = {
             bdate: "1.10",
             city: {
@@ -110,49 +108,68 @@ class Api {
             timezone: 3,
         };
 
-        return userDto;
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(response), 500);
+        });
     }
 
     requestUserById(id) {
-        const response = [
-            {
-                "id": 137239419,
-                "score": 1,
-                "school": null,
-                "age": 0,
-                "usersTests": [
-                    {
-                        "id": 1,
-                        "test": {
-                            "id": 5,
-                            "pathToImage": null,
-                            "title": "title",
-                            "description": "descidghd",
-                            "questions": [
-                                {
-                                    "id": 3,
-                                    "questionText": "nothing",
-                                    "pathToImage": "None",
-                                    "answers": [],
-                                    "serialNumber": 0
-                                }
-                            ],
-                            "creationDate": "01-10-2000 00:00:01"
-                        },
-                        "question": {
-                            "id": 3,
-                            "questionText": "nothing",
-                            "pathToImage": "None",
-                            "answers": [],
-                            "serialNumber": 0
-                        },
-                        "start_time": "20-04-2020 01:09:12"
-                    }
-                ]
-            }
-        ];
-        return new Promise(() => response);
+        const response = {
+            id: 137239419,
+            bdate: "1.10",
+            city: {
+                id: 0,
+                title: ""
+            },
+            country: {
+                id: 0,
+                title: ""
+            },
+            first_name: "Artyom",
+            last_name: "Bakuta",
+            photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
+            photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
+            photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
+            sex: 2,
+            timezone: 3,
+            "score": 1,
+            "school": null,
+            "age": 0,
+            "usersTests": [
+                {
+                    "id": 1,
+                    "test": {
+                        "id": 5,
+                        "pathToImage": null,
+                        "title": "title",
+                        "description": "descidghd",
+                        "questions": [
+                            {
+                                "id": 3,
+                                "questionText": "nothing",
+                                "pathToImage": "None",
+                                "answers": [],
+                                "serialNumber": 0
+                            }
+                        ],
+                        "creationDate": "01-10-2000 00:00:01"
+                    },
+                    "question": {
+                        "id": 3,
+                        "questionText": "nothing",
+                        "pathToImage": "None",
+                        "answers": [],
+                        "serialNumber": 0
+                    },
+                    "start_time": "20-04-2020 01:09:12"
+                }
+            ]
+        };
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(response), 500);
+        });
     }
+
 }
 
 export default Api;

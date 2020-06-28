@@ -1,6 +1,7 @@
 import TestListService from "./testList/service/TestListService";
 import Api from "./api/Api";
 import ProfileService from "./profile/service/ProfileService";
+import NoUserFoundException from "./exceptions/NoUserFoundException";
 
 class Application {
     #testListService;
@@ -10,7 +11,7 @@ class Application {
 
     provideTestListService() {
         if (this.#testListService == null) {
-            this.#testListService = new TestListService(this.provideApi(), this.provideUser().then(user => user.id));
+            this.#testListService = new TestListService(this.provideApi(), this.provideUser());
         }
 
         return this.#testListService;
@@ -33,15 +34,17 @@ class Application {
     }
 
     provideUser() {
-        if (this.#user == null) {
-            //TODO need to handle two promise and concat them
-            let vkUser = this.provideApi().getVkProfile();
-            let user = this.provideApi().requestUserById(vkUser.id)
+        if (this.#user === undefined) {
+            this.#user = this.provideApi().getVkProfile()
+                .then(vk_profile => vk_profile.id)
+                .then(id => {
+                    let user = this.provideApi().requestUserById(id);
+                    return user;
+                });
         }
 
         return this.#user;
     }
-
 
 
 }
