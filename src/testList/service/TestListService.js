@@ -5,48 +5,47 @@ class TestListService {
     }
 
     getTests() {
-        const testsDto = this.api.requestTests();
-        let tests = [];
-        testsDto.forEach(t => tests.push({
-            id: t.id,
-            title: t.title,
-            img: t.pathToImage,
-            date: t.creationDate,
-            progress: this.getProgress(t.questions.length, t.id)
-        }));
-
-        return tests;
+        return this.api.requestTests().then(testsDto => {
+            return this.user.then(user => {
+                let tests = [];
+                testsDto.forEach(t => tests.push({
+                    id: t.id,
+                    title: t.title,
+                    img: t.pathToImage,
+                    date: t.creationDate,
+                    progress: this.getProgress(t.questions.length, t.id, user)
+                }));
+                return tests;
+            });
+        });
     }
 
     sort(list) {
         return list.sort(this.compare);
     }
 
-    getProgress(length, id) {
-        // let userTests = this.user.usersTests;
-        // let activeQuestion = 0;
-        // if (userTests.length !== 0) {
-        //     // Check if user has started this test
-        //     // if so, get the number of the question he stopped
-        //     let test = userTests.filter(test => test.id === id);
-        //     activeQuestion =
-        //         test.length !== 0
-        //         && test.question.length > 0
-        //             ? test.question.serialNumber
-        //             : 0;
-        // }
-        //
-        // const percent = activeQuestion / length;
-        // if (percent === 0) {
-        //     return 0;
-        // } else if (percent === 1) {
-        //     return 3;
-        // } else if (percent > 0.6) {
-        //     return 2;
-        // } else if (percent > 0) {
-        //     return 1;
-        // }
-        return 0;
+    getProgress(length, id, user) {
+        let userTests = user.usersTests;
+        let activeQuestion = 0;
+        if (userTests.length !== 0) {
+            // Check if user has started this test
+            // if so, get the number of the question he stopped
+            let test = userTests.filter(test => test.test.id === id);
+            activeQuestion =
+                test.length === 1
+                    ? test[0].lastQuestion.serialNumber + 1
+                    : 0;
+        }
+        const percent = activeQuestion / length;
+        if (percent === 0) {
+            return 0;
+        } else if (percent === 1) {
+            return 3;
+        } else if (percent > 0.6) {
+            return 2;
+        } else if (percent > 0) {
+            return 1;
+        }
     }
 
     compare(o1, o2) {

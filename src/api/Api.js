@@ -1,7 +1,7 @@
 class Api {
 
     requestTests() {
-        return [
+        const response = [
             {
                 "id": 5,
                 "pathToImage": "https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612",
@@ -82,7 +82,10 @@ class Api {
                 ],
                 "creationDate": "02-10-2020 00:03:01",
             }
-        ]
+        ];
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(response), 500);
+        });
     }
 
     getVkProfile() {
@@ -154,7 +157,7 @@ class Api {
                         ],
                         "creationDate": "01-10-2000 00:00:01"
                     },
-                    "question": {
+                    "lastQuestion": {
                         "id": 3,
                         "questionText": "nothing",
                         "pathToImage": "None",
