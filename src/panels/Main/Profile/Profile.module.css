@@ -31,12 +31,6 @@
     align-items: center;
 }
 
-.about img {
-    grid-area: user_photo;
-    width: 100px;
-    height: 100px;
-}
-
 .bio {
     margin-top: 10px;
     grid-area: bio;

@@ -2,6 +2,7 @@ import React from 'react';
 
 import s from './Profile.module.css';
 import LevelFragment from "./LevelFragment";
+import {Avatar} from "@vkontakte/vkui";
 
 
 class Profile extends React.Component {
@@ -25,7 +26,7 @@ class Profile extends React.Component {
             <div className={s.profile_card}>
                 <div className={s.slider}/>
                 <div className={s.about}>
-                    <img src={require("../../../img/profile/1.png")} alt='user photo'/>
+                    <Avatar src={this.state.user !== undefined ? this.state.user.photo_200 : ""} size={100} />
                     <div className={s.bio}>
                         <div className={s.name}>
                             {
@@ -39,12 +40,11 @@ class Profile extends React.Component {
                             Студент теормеха
                         </div>
                         <div className={s.city}>
-                            {
-                                this.state.user !== undefined
-                                && this.state.user.city.title != ''
-                                    ? this.state.user.city.title
-                                    : "Планета Земля"
-                            }
+                            {/*{*/}
+                            {/*    this.state.user !== undefined*/}
+                            {/*        ? this.state.user.city.title*/}
+                            {/*        : "Планета Земля"*/}
+                            {/*}*/}
                         </div>
                     </div>
                 </div>
