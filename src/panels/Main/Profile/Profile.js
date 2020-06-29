@@ -21,16 +21,17 @@ class Profile extends React.Component {
 
 
     render() {
+        let user = this.state.user;
         return (
             <div className={s.profile_card}>
                 <div className={s.slider}/>
                 <div className={s.about}>
-                    <Avatar src={this.state.user !== undefined ? this.state.user.photo_200 : ""} size={100} />
+                    <Avatar src={this.state.user !== undefined ? this.state.user.photo_200 : ""} size={100}/>
                     <div className={s.bio}>
                         <div className={s.name}>
                             {
-                                this.state.user !== undefined
-                                    ? this.state.user.first_name + " " + this.state.user.last_name
+                                user !== undefined
+                                    ? user.first_name + " " + user.last_name
                                     : ""
                             }
 
@@ -39,11 +40,11 @@ class Profile extends React.Component {
                             Студент теормеха
                         </div>
                         <div className={s.city}>
-                            {/*{*/}
-                            {/*    this.state.user !== undefined*/}
-                            {/*        ? this.state.user.city.title*/}
-                            {/*        : "Планета Земля"*/}
-                            {/*}*/}
+                            {
+                                user !== undefined && user.city.title !== ""
+                                    ? user.city.title
+                                    : "Планета Земля"
+                            }
                         </div>
                     </div>
                 </div>

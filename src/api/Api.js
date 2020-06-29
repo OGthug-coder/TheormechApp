@@ -95,15 +95,15 @@ class Api {
             bdate: "1.10",
             city: {
                 id: 0,
-                title: ""
+                title: "Санкт-Петербург"
             },
             country: {
                 id: 0,
                 title: ""
             },
-            first_name: "Artyom",
+            first_name: "Артем",
             id: 137239419,
-            last_name: "Bakuta",
+            last_name: "Бакута",
             photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
             photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
             photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
@@ -122,14 +122,14 @@ class Api {
             bdate: "1.10",
             city: {
                 id: 0,
-                title: ""
+                title: "Санкт-Петербург"
             },
             country: {
                 id: 0,
                 title: ""
             },
-            first_name: "Artyom",
-            last_name: "Bakuta",
+            first_name: "Артем",
+            last_name: "Бакута",
             photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
             photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
             photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
