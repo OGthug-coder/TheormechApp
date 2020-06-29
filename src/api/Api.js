@@ -84,7 +84,7 @@ class Api {
             }
         ];
         return new Promise((resolve) => {
-            setTimeout(() => resolve(response), 500);
+            setTimeout(() => resolve(response), 200);
         });
     }
 
@@ -112,7 +112,7 @@ class Api {
         };
 
         return new Promise((resolve) => {
-            setTimeout(() => resolve(response), 500);
+            setTimeout(() => resolve(response), 200);
         });
     }
 
@@ -169,7 +169,7 @@ class Api {
             ]
         };
         return new Promise((resolve) => {
-            setTimeout(() => resolve(response), 500);
+            setTimeout(() => resolve(response), 200);
         });
     }
 
