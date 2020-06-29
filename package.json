@@ -32,6 +32,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-easy-swipe": "0.0.18",
     "react-router-dom": "^5.2.0"
   },
   "browserslist": {
