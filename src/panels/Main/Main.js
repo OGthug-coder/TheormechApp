@@ -14,10 +14,10 @@ class Main extends React.Component {
         return (
             <>
                 <div className={s.news_wrapper}>
-                    <TestList application={this.application}/>
+                    <TestList application={this.application} sortBy={'date'}/>
                 </div>
                 <div className={s.profile}>
-                    <Profile/>
+                    <Profile application={this.application}/>
                 </div>
                 <div className={s.background}>
                     <div/>

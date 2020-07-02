@@ -7,21 +7,54 @@ class TestList extends React.Component {
     constructor(props) {
         super(props);
         this.application = props.application;
-
         this.testListService = this.application.provideTestListService();
+
+        this.state = {
+            sortBy: props.socket,
+            tests: []
+        }
+
+    }
+
+    componentDidMount() {
+        this.testListService.getTests()
+            .then(tests => this.setState({tests: tests}));
+    }
+
+    prepareList() {
+        let finished = [];
+        let unfinished = [];
+
+        this.state.tests.map(test => {
+            if (test.progress === 3) {
+                finished.push(
+                    <Task id={test.id}
+                          title={test.title}
+                          img={test.img}
+                          date={test.date.split(' ')[0]}
+                          progress={test.progress}
+                    />)
+            } else {
+                unfinished.push(
+                    <Task id={test.id}
+                          title={test.title}
+                          img={test.img}
+                          date={test.date.split(' ')[0]}
+                          progress={test.progress}
+                    />
+                )
+            }
+        });
+        finished = this.testListService.sort(finished)
+        unfinished = this.testListService.sort(unfinished)
+        return unfinished.concat(finished);
     }
 
 
     render() {
-        const tests = this.testListService.getTests();
         return (
             <section className={s.news_container}>
-                {tests.map(test => <Task title={test.title}
-                        img={test.img}
-                        date={test.date}
-                        progress={test.progress}>
-                    </Task>
-                )}
+                {this.prepareList()}
             </section>
         )
     }

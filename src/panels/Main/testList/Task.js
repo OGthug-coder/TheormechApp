@@ -9,6 +9,7 @@ class Task extends React.Component {
         super(props);
 
         this.state = {
+            id: props.id,
             title: props.title,
             img: props.img,
             date: props.date,
@@ -20,7 +21,7 @@ class Task extends React.Component {
         return (
             <div className={s.field}>
                 <div className={s.card}>
-                    <div className={s.pic}/>
+                    <img className={s.pic} src={this.state.img}/>
                     <div className={s.name}>
                         {this.state.title}
                     </div>
@@ -28,9 +29,9 @@ class Task extends React.Component {
                     <div className={s.info}>
                         <div className={s.date}>{this.state.date}</div>
                         <div className={s.progress}>
-                            <span className={s.dot_on}></span>
-                            <span className={s.dot_on}></span>
-                            <span className={s.dot}></span>
+                            <span className={this.state.progress >= 1 ? s.dot_on : s.dot}/>
+                            <span className={this.state.progress >= 2 ? s.dot_on : s.dot}/>
+                            <span className={this.state.progress >= 3 ? s.dot_on : s.dot}/>
                         </div>
                     </div>
 
