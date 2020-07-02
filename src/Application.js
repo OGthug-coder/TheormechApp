@@ -1,16 +1,27 @@
 import TestListService from "./testList/service/TestListService";
 import Api from "./api/Api";
 import ProfileService from "./profile/service/ProfileService";
-import NoUserFoundException from "./exceptions/NoUserFoundException";
+import PreviewService from "./preview/service/PreviewService";
+import TestRepo from "./testrepo/TestRepo";
 
 class Application {
     #testListService;
     #profileService;
     #user;
     #api;
+    #previewService;
+    #testRepo;
+
+    provideTestRepo() {
+        if (this.#testRepo === undefined) {
+            this.#testRepo = new TestRepo();
+        }
+
+        return this.#testRepo;
+    }
 
     provideTestListService() {
-        if (this.#testListService == null) {
+        if (this.#testListService === undefined) {
             this.#testListService = new TestListService(this.provideApi(), this.provideUser());
         }
 
@@ -18,7 +29,7 @@ class Application {
     }
 
     provideApi() {
-        if (this.#api == null) {
+        if (this.#api === undefined) {
             this.#api = new Api();
         }
 
@@ -26,12 +37,21 @@ class Application {
     }
 
     provideProfileService() {
-        if (this.#profileService == null) {
+        if (this.#profileService === undefined) {
             this.#profileService = new ProfileService(this.provideApi());
         }
 
         return this.#profileService;
     }
+
+    providePreviewService() {
+        if (this.#previewService === undefined) {
+            this.#previewService = new PreviewService(this.provideApi(), this.provideTestRepo());
+        }
+
+        return this.#previewService;
+    }
+
 
     provideUser() {
         if (this.#user === undefined) {

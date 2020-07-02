@@ -28,7 +28,7 @@ class App extends React.Component {
                         <Question/>
                     </Route>
                     <Route path={'/preview'}>
-                        <Preview/>
+                        <Preview application={this.application} />
                     </Route>
                     <Route path={'/'}>
                         <div className={s.main_window}>

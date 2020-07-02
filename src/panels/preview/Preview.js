@@ -8,9 +8,14 @@ class Preview extends React.Component {
     constructor(props) {
         super(props);
 
+        this.application = props.application;
+        this.previewService = props.previewService;
+
         this.state = {
             show_answer_window: false,
         };
+
+        // this.previewService.getTest()
 
         this.show_answer_window = () => {
             this.setState({show_answer_window: true})

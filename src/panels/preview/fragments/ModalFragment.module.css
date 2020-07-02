@@ -9,6 +9,8 @@
     grid-template-rows: 20px 1fr;
     grid-template-areas: "slider" "content" "button";
     background-color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .slider_wrapper {

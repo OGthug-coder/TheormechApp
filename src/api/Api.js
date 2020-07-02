@@ -1,6 +1,6 @@
 class Api {
 
-    requestTests() {
+    requestTestList() {
         const response = [
             {
                 "id": 5,
@@ -170,6 +170,29 @@ class Api {
         };
         return new Promise((resolve) => {
             setTimeout(() => resolve(response), 200);
+        });
+    }
+
+    requestTest(id) {
+        const response = {
+            "id": 5,
+            "pathToImage": "https://media.gettyimages.com/photos/abstract-network-background-picture-id836272842?s=612x612",
+            "title": "Как приручить интеграл Римана?",
+            "description": "descidghd",
+            "questions": [
+                {
+                    "id": 3,
+                    "questionText": "nothing",
+                    "pathToImage": "None",
+                    "answers": [],
+                    "serialNumber": 0
+                }
+            ],
+            "creationDate": "01-10-2020 00:01:01",
+        };
+
+        return new Promise(resolve => {
+            setTimeout(() => resolve(response), 200)
         });
     }
 

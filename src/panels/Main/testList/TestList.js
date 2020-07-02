@@ -14,11 +14,9 @@ class TestList extends React.Component {
             tests: []
         }
 
-    }
-
-    componentDidMount() {
         this.testListService.getTests()
             .then(tests => this.setState({tests: tests}));
+
     }
 
     prepareList() {

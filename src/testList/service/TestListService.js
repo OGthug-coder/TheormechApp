@@ -5,7 +5,7 @@ class TestListService {
     }
 
     getTests() {
-        return this.api.requestTests().then(testsDto => {
+        return this.api.requestTestList().then(testsDto => {
             return this.user.then(user => {
                 let tests = [];
                 testsDto.forEach(t => tests.push({
