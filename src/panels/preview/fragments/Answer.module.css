@@ -28,10 +28,8 @@
 }
 
 .exit {
-    /*TODO fix image*/
-    /*background: url("src/img/answer/exit.svg") no-repeat;*/
-    margin: auto;
-    margin-top: 25px;
+    background: url("../../../img/answer/exit.svg") no-repeat;
+    margin: 25px auto auto;
     height: 20px;
     width: 20px;
     outline: none;
