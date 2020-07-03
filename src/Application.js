@@ -1,11 +1,13 @@
 import TestListService from "./testList/service/TestListService";
 import Api from "./api/Api";
 import ProfileService from "./profile/service/ProfileService";
+import QuestionService from "./question/service/QuestionService";
 import NoUserFoundException from "./exceptions/NoUserFoundException";
 
 class Application {
     #testListService;
     #profileService;
+    #questionService;
     #user;
     #api;
 
@@ -44,6 +46,14 @@ class Application {
         }
 
         return this.#user;
+    }
+
+    provideQuestionService() {
+        if (this.#questionService == null) {
+            this.#questionService = new QuestionService(this.provideApi());
+        }
+
+        return this.#questionService;
     }
 
 

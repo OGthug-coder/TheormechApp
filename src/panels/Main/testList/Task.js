@@ -8,6 +8,7 @@ class Task extends React.Component {
     constructor(props) {
         super(props);
 
+        this.application = props.application;
         this.state = {
             id: props.id,
             title: props.title,
@@ -38,7 +39,7 @@ class Task extends React.Component {
 
                 </div>
                 <div className={s.start_button}>
-                    <Link to={'/preview'} className={s.link}>
+                    <Link to={'/preview'} className={s.link} application={this.application}>
                         <div>Начать тест</div>
                     </Link>
                 </div>

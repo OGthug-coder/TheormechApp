@@ -25,7 +25,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route path={'/question'}>
-                        <Question/>
+                        <Question application={this.application}/>
                     </Route>
                     <Route path={'/preview'}>
                         <Preview/>

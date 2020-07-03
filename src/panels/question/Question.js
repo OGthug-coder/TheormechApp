@@ -7,9 +7,17 @@ class Question extends React.Component {
     constructor(props) {
         super(props);
 
+        this.application = props.application;
+        this.questionService = this.application.provideQuestionService();
+
         this.state = {
             position: 10
         };
+    }
+
+    componentDidMount() {
+        this.questionService.getQuestion()
+            .then(question => this.setState({question: question}));
     }
 
     onClick(e) {
@@ -17,6 +25,7 @@ class Question extends React.Component {
     }
 
     onSwipeStart = (event) => {
+        this.state.question !== undefined ? console.log(this.state.question.answers[0]) : console.log('kek');
         console.log('Start swiping...', event);
     }
 
@@ -63,35 +72,41 @@ class Question extends React.Component {
             <section className={s.question_window}>
                 <div className={s.about}>
                     <div className={s.question_number}>
-                        Вопрос 12/20
+                        {
+                            this.state.question !== undefined
+                                ? this.state.question.serialNumber : ""
+                        }
                     </div>
                     <div className={s.timer}>
                         Оставшееся время: <span>14:52</span>
                     </div>
                 </div>
                 <div className={`${s.question_card} `}
-                     style={{
-                         top: `${this.state.position}px`
-                     }}>
+                    style={{
+                        top: `${this.state.position}px`
+                    }}>
                     <div className={s.question_text}>
-                        В каком случае относительная скорость движущихся автомобилей максимальна?
+                        {
+                            this.state.question !== undefined
+                                ? this.state.question.questionText : ""
+                        }
                     </div>
                     <div className={s.answers_container}>
                         <QuestionItemFragment
                             answerType={'str'}
-                            answerText={'Автомобили движутся навстречу друг другу'}
+                            application={this.application}
                             questionNumber={1}/>
                         <QuestionItemFragment
                             answerType={'str'}
-                            answerText={'Догоняют друг друга'}
+                            application={this.application}
                             questionNumber={2}/>
                         <QuestionItemFragment
                             answerType={'str'}
-                            answerText={'Векторы их скоростей составляют острый угол'}
+                            application={this.application}
                             questionNumber={3}/>
                         <QuestionItemFragment
                             answerType={'str'}
-                            answerText={'Не знаю'}
+                            application={this.application}
                             questionNumber={4}/>
                     </div>
                     <div className={s.control}>

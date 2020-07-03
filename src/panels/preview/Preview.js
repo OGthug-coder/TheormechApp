@@ -8,6 +8,8 @@ class Preview extends React.Component {
     constructor(props) {
         super(props);
 
+        this.application = props.application;
+
         this.state = {
             show_answer_window: false,
         };

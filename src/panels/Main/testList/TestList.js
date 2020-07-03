@@ -33,6 +33,7 @@ class TestList extends React.Component {
                           img={test.img}
                           date={test.date.split(' ')[0]}
                           progress={test.progress}
+                          application={this.application}
                     />)
             } else {
                 unfinished.push(
@@ -41,6 +42,7 @@ class TestList extends React.Component {
                           img={test.img}
                           date={test.date.split(' ')[0]}
                           progress={test.progress}
+                          application={this.application}
                     />
                 )
             }

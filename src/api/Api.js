@@ -128,7 +128,7 @@ class Api {
                 id: 0,
                 title: ""
             },
-            first_name: "Артем",
+            first_name: "Артём",
             last_name: "Бакута",
             photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
             photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
@@ -170,6 +170,24 @@ class Api {
         };
         return new Promise((resolve) => {
             setTimeout(() => resolve(response), 200);
+        });
+    }
+
+    requestQuestion() {
+        const responce = {
+            "id": 5,
+            "questionText": "В каком случае относительная скорость движущихся автомобилей максимальна?",
+            "pathToImage": "None",
+            "answers": [
+                'Автомобили движутся навстречу друг другу',
+                'Догоняют друг друга',
+                'Векторы их скоростей составляют острый угол',
+                'Не знаю'
+            ],
+            "serialNumber": 12
+        };
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(responce), 200);
         });
     }
 
