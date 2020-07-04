@@ -27,7 +27,7 @@ class App extends React.Component {
                     <Route path={'/question'}>
                         <Question/>
                     </Route>
-                    <Route path={'/preview'}>
+                    <Route path={'/preview/:testId'}>
                         <Preview application={this.application} />
                     </Route>
                     <Route path={'/'}>

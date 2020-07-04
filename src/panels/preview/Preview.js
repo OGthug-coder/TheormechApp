@@ -15,7 +15,8 @@ class Preview extends React.Component {
             show_answer_window: false,
         };
 
-        // this.previewService.getTest()
+        // this.previewService.getTest(1).then(test => this.setState({test: test}));
+
 
         this.show_answer_window = () => {
             this.setState({show_answer_window: true})
@@ -28,6 +29,7 @@ class Preview extends React.Component {
 
 
     render() {
+        console.log(this.props);
         return (
             <section className={s.preview_wrapper}>
                 <div className={s.background}>
