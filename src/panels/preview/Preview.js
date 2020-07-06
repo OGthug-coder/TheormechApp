@@ -8,14 +8,13 @@ class Preview extends React.Component {
     constructor(props) {
         super(props);
 
-        this.application = props.application;
-        this.previewService = props.previewService;
+        this.application = props.application
+        this.previewService = this.application.providePreviewService();
+        this.testId = props.match.params.testId;
 
         this.state = {
             show_answer_window: false,
         };
-
-        // this.previewService.getTest(1).then(test => this.setState({test: test}));
 
 
         this.show_answer_window = () => {
@@ -27,18 +26,27 @@ class Preview extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.previewService.getTest(this.testId)
+            .then(testInfo => this.setState({testInfo: testInfo}));
+    }
+
 
     render() {
-        console.log(this.props);
+        const testInfo = this.state.testInfo;
+        console.log(testInfo);
         return (
             <section className={s.preview_wrapper}>
                 <div className={s.background}>
                     <img
-                        src={require("../../img/preview/ic_preview_background.svg")}
+                        src={testInfo !== undefined ? testInfo.pathToImage : ""}
                         alt={"background"}
-                        height={'700'}/>
+                        height={"400"}/>
                 </div>
-                <ModalFragment onClick={this.show_answer_window}/>
+                <ModalFragment
+                    key={testInfo}
+                    onClick={this.show_answer_window}
+                    testInfo={testInfo}/>
                 {this.state.show_answer_window ? <Answer onClick={this.hide_answer_window}/> : ""}
 
             </section>

@@ -13,10 +13,11 @@ class TestList extends React.Component {
             sortBy: props.socket,
             tests: []
         }
+    }
 
+    componentDidMount() {
         this.testListService.getTests()
             .then(tests => this.setState({tests: tests}));
-
     }
 
     prepareList() {

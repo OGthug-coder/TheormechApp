@@ -22,7 +22,7 @@ class Application {
 
     provideTestListService() {
         if (this.#testListService === undefined) {
-            this.#testListService = new TestListService(this.provideApi(), this.provideUser());
+            this.#testListService = new TestListService(this.provideApi(), this.provideUser(), this.provideTestRepo());
         }
 
         return this.#testListService;

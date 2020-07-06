@@ -21,22 +21,21 @@ class App extends React.Component {
 
     render() {
         return (
-
             <Router>
                 <Switch>
                     <Route path={'/question'}>
                         <Question/>
                     </Route>
-                    <Route path={'/preview/:testId'}>
-                        <Preview application={this.application} />
-                    </Route>
-                    <Route path={'/'}>
+                    <Route
+                        path={'/preview/:testId'}
+                        render={({ match }) => <Preview match={match} application={this.application}/>}
+                    />
+                    <Route excect path={'/'}>
                         <div className={s.main_window}>
-                            <Main application={this.application} />
+                            <Main application={this.application}/>
                         </div>
                     </Route>
                 </Switch>
-
             </Router>
 
         )
