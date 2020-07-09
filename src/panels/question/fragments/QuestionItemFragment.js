@@ -6,19 +6,12 @@ class QuestionItemFragment extends React.Component {
     constructor(props) {
         super(props);
 
-        this.application = props.application;
-        this.questionService = this.application.provideQuestionService();
-
         this.state = {
             answerType: props.answerType,
+            answerText: props.answerText,
             questionNumber: props.questionNumber,
         }
 
-    }
-
-    componentDidMount() {
-        this.questionService.getQuestion()
-            .then(question => this.setState({answers: question.answers}));
     }
 
     render() {
@@ -39,13 +32,11 @@ class QuestionItemFragment extends React.Component {
                 {
                     this.state.answerType === 'str' ?
                         (<div className={s.text}>
-                            {
-                                this.state.answers !== undefined
-                                    ? this.state.answers[this.state.questionNumber - 1] : ""
-                            }
+                            {this.state.answerText}
                         </div>) : ''
                 }
             </div>
+
         )
     }
 

@@ -11,13 +11,32 @@ class Question extends React.Component {
         this.questionService = this.application.provideQuestionService();
 
         this.state = {
-            position: 10
+            position: 10,
+            number_of_tests: 20,
         };
     }
 
     componentDidMount() {
         this.questionService.getQuestion()
-            .then(question => this.setState({question: question}));
+            .then(question => {
+                this.setState({question: question});
+            })
+    }
+
+    prepareList() {
+        let list = [];
+
+        for(let i = 0; i < this.state.question.answers.length; i++){
+            list.push(
+                <QuestionItemFragment
+                    answerType={'str'}
+                    answerText={this.state.question.answers[i]}
+                    questionNumber={i + 1}
+                />
+            );
+        }
+
+        return list;
     }
 
     onClick(e) {
@@ -25,7 +44,7 @@ class Question extends React.Component {
     }
 
     onSwipeStart = (event) => {
-        this.state.question !== undefined ? console.log(this.state.question.answers[0]) : console.log('kek');
+        console.log(this.prepareList());
         console.log('Start swiping...', event);
     }
 
@@ -74,7 +93,7 @@ class Question extends React.Component {
                     <div className={s.question_number}>
                         {
                             this.state.question !== undefined
-                                ? this.state.question.serialNumber : ""
+                                ? 'Вопрос ' + this.state.question.serialNumber + '/' + this.state.number_of_tests : ""
                         }
                     </div>
                     <div className={s.timer}>
@@ -91,27 +110,15 @@ class Question extends React.Component {
                                 ? this.state.question.questionText : ""
                         }
                     </div>
-                    <div className={s.answers_container}>
-                        <QuestionItemFragment
-                            answerType={'str'}
-                            application={this.application}
-                            questionNumber={1}/>
-                        <QuestionItemFragment
-                            answerType={'str'}
-                            application={this.application}
-                            questionNumber={2}/>
-                        <QuestionItemFragment
-                            answerType={'str'}
-                            application={this.application}
-                            questionNumber={3}/>
-                        <QuestionItemFragment
-                            answerType={'str'}
-                            application={this.application}
-                            questionNumber={4}/>
-                    </div>
+                    <section className={s.answers_container}>
+                        {
+                            this.state.question !== undefined
+                                ? this.prepareList() : []
+                        }
+                    </section>
                     <div className={s.control}>
                         <div className={s.score_container}>
-                            Счёт: <span className={s.score}>10</span>
+                            Счёт: <span className={s.score}>{this.state.position}</span>
                         </div>
                         <a href="#" className={s.next_question}>
                             Следующий &raquo;

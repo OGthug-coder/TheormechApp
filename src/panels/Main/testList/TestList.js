@@ -29,20 +29,20 @@ class TestList extends React.Component {
             if (test.progress === 3) {
                 finished.push(
                     <Task id={test.id}
-                          title={test.title}
-                          img={test.img}
-                          date={test.date.split(' ')[0]}
-                          progress={test.progress}
-                          application={this.application}
+                        title={test.title}
+                        img={test.img}
+                        date={test.date.split(' ')[0]}
+                        progress={test.progress}
+                        application={this.application}
                     />)
             } else {
                 unfinished.push(
                     <Task id={test.id}
-                          title={test.title}
-                          img={test.img}
-                          date={test.date.split(' ')[0]}
-                          progress={test.progress}
-                          application={this.application}
+                        title={test.title}
+                        img={test.img}
+                        date={test.date.split(' ')[0]}
+                        progress={test.progress}
+                        application={this.application}
                     />
                 )
             }
