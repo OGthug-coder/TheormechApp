@@ -7,7 +7,7 @@ import Preview from "./panels/preview/Preview";
 import Main from "./panels/Main/Main";
 import Question from "./panels/question/Question";
 import Application from "./Application";
-
+import Test_Creation from "./panels/admin/test_creation/test_creation";
 
 class App extends React.Component {
 
@@ -29,6 +29,9 @@ class App extends React.Component {
                     </Route>
                     <Route path={'/preview'}>
                         <Preview/>
+                    </Route>
+                    <Route path={'/admin'}>
+                        <Test_Creation/>
                     </Route>
                     <Route path={'/'}>
                         <div className={s.main_window}>

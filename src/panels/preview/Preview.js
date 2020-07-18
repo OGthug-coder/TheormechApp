@@ -32,7 +32,7 @@ class Preview extends React.Component {
                         src={require("../../img/preview/ic_preview_background.svg")}
                         alt={"background"}
                         height={'700'}/>
-                </div>
+                </div> 
                 <ModalFragment onClick={this.show_answer_window}/>
                 {this.state.show_answer_window ? <Answer onClick={this.hide_answer_window}/> : ""}
 
