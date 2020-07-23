@@ -15,8 +15,15 @@ class Task extends React.Component {
             img: props.img,
             date: props.date,
             progress: props.progress,
+            clickable: props.clickable,
         }
+
+        this.update = this.update.bind(this);
     }
+
+    update = (data) => {
+        this.setState(data)
+    };
 
     render() {
         return (
@@ -39,7 +46,13 @@ class Task extends React.Component {
 
                 </div>
                 <div className={s.start_button}>
-                    <Link to={'/preview'} className={s.link} application={this.application}>
+                    <Link to={
+                            this.state.clickable
+                            ? '/preview' : ''
+                        } 
+                        className={s.link} 
+                        application={this.application}
+                    >
                         <div>Начать тест</div>
                     </Link>
                 </div>

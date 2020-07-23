@@ -34,6 +34,7 @@ class TestList extends React.Component {
                         date={test.date.split(' ')[0]}
                         progress={test.progress}
                         application={this.application}
+                        clickable={true}
                     />)
             } else {
                 unfinished.push(
@@ -43,6 +44,7 @@ class TestList extends React.Component {
                         date={test.date.split(' ')[0]}
                         progress={test.progress}
                         application={this.application}
+                        clickable={true}
                     />
                 )
             }
