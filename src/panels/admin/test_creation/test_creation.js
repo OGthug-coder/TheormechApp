@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./test_creation.module.css";
 import Task from "../../Main/testList/Task";
+import Question_Creation from "./question_creation/question_creation";
 
 class Test_Creation extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class Test_Creation extends React.Component {
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
         this.state = {
-            title : 'Введите название',
+            title : '',
             img : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
             day : today.getDate(),
             month : today.getMonth() + 1,

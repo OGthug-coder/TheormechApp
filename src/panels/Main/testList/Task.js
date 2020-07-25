@@ -48,7 +48,7 @@ class Task extends React.Component {
                 <div className={s.start_button}>
                     <Link to={
                             this.state.clickable
-                            ? '/preview' : ''
+                            ? '/preview' : undefined
                         } 
                         className={s.link} 
                         application={this.application}

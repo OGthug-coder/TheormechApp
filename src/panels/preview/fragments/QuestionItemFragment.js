@@ -16,7 +16,7 @@ class QuestionItemFragment extends React.Component {
             <>
                 <div className={s.question_item} >
                     <img className={s.question_status}
-                         src={require("../../../img/preview/ic_question_status_approve.svg")} >
+                        src={require("../../../img/preview/ic_question_status_approve.svg")} >
                     </img>
                     <div className={s.question_body}>
                         <div className={s.title}>
