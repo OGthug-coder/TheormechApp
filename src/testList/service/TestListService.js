@@ -1,3 +1,5 @@
+import NoHistoryFoundException from "../../exceptions/NoHistoryFoundException";
+
 class TestListService {
     constructor(api, user) {
         this.api = api;
@@ -11,9 +13,9 @@ class TestListService {
                 testsDto.forEach(t => tests.push({
                     id: t.id,
                     title: t.title,
-                    img: t.pathToImage,
-                    date: t.creationDate,
-                    progress: this.getProgress(t.questions.length, t.id, user)
+                    img: t.img,
+                    date: t.date,
+                    progress: this.getProgress(t.questions.length, t.id, user.id)
                 }));
                 return tests;
             });
@@ -24,28 +26,39 @@ class TestListService {
         return list.sort(this.compare);
     }
 
-    getProgress(length, id, user) {
-        let userTests = user.usersTests;
-        let activeQuestion = 0;
-        if (userTests.length !== 0) {
-            // Check if user has started this test
-            // if so, get the number of the question he stopped
-            let test = userTests.filter(test => test.test.id === id);
-            activeQuestion =
-                test.length === 1
-                    ? test[0].lastQuestion.serialNumber + 1
-                    : 0;
+    getProgress(length, testId, userId) {
+        // TODO: process correct response
+        try {
+            this.api.requestHistory(userId, testId)
+                .then(data => console.log(data))
+        } catch (e) {
+            if (typeof e === NoHistoryFoundException) {
+                return 0;
+            }
         }
-        const percent = activeQuestion / length;
-        if (percent === 0) {
-            return 0;
-        } else if (percent === 1) {
-            return 3;
-        } else if (percent > 0.6) {
-            return 2;
-        } else if (percent > 0) {
-            return 1;
-        }
+
+
+        // let userTests = user.usersTests;
+        // let activeQuestion = 0;
+        // if (userTests.length !== 0) {
+        //     // Check if user has started this test
+        //     // if so, get the number of the question he stopped
+        //     let test = userTests.filter(test => test.test.id === id);
+        //     activeQuestion =
+        //         test.length === 1
+        //             ? test[0].lastQuestion.serialNumber + 1
+        //             : 0;
+        // }
+        // const percent = activeQuestion / length;
+        // if (percent === 0) {
+        //     return 0;
+        // } else if (percent === 1) {
+        //     return 3;
+        // } else if (percent > 0.6) {
+        //     return 2;
+        // } else if (percent > 0) {
+        //     return 1;
+        // }
     }
 
     compare(o1, o2) {

@@ -38,10 +38,18 @@ class Application {
     provideUser() {
         if (this.#user === undefined) {
             this.#user = this.provideApi().getVkProfile()
-                .then(vk_profile => vk_profile.id)
-                .then(id => {
-                    let user = this.provideApi().requestUserById(id);
-                    return user;
+                .then(vkProfile => vkProfile)
+                .then(vkProfile => {
+                    try {
+                        let user = this.provideApi().requestUserById(vkProfile.id);
+                        //TODO: merge users
+                        return user;
+                    } catch (e) {
+                        if (typeof e === NoUserFoundException) {
+                        //    TODO: add user
+                        }
+                    }
+
                 });
         }
 
