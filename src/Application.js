@@ -1,13 +1,15 @@
 import TestListService from "./testList/service/TestListService";
-import Api from "./api/Api";
+import Api from "./common/api/Api";
 import ProfileService from "./profile/service/ProfileService";
 import QuestionService from "./question/service/QuestionService";
-import NoUserFoundException from "./exceptions/NoUserFoundException";
+import NoUserFoundException from "./common/exceptions/NoUserFoundException";
+import UserService from "./common/services/UserService";
 
 class Application {
     #testListService;
     #profileService;
     #questionService;
+    #userService;
     #user;
     #api;
 
@@ -37,23 +39,18 @@ class Application {
 
     provideUser() {
         if (this.#user === undefined) {
-            this.#user = this.provideApi().getVkProfile()
-                .then(vkProfile => vkProfile)
-                .then(vkProfile => {
-                    try {
-                        let user = this.provideApi().requestUserById(vkProfile.id);
-                        //TODO: merge users
-                        return user;
-                    } catch (e) {
-                        if (typeof e === NoUserFoundException) {
-                        //    TODO: add user
-                        }
-                    }
-
-                });
+            this.#user = this.#userService.getUser();
         }
 
         return this.#user;
+    }
+
+    provideUserService() {
+        if (this.#userService === undefined) {
+            this.#userService = new UserService(this.provideApi());
+        }
+
+        return this.#userService;
     }
 
     provideQuestionService() {

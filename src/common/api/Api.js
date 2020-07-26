@@ -81,6 +81,11 @@ class Api {
 
     }
 
+    addUser(user) {
+        const url = this.URL + "users/" + user.id;
+
+    }
+
     requestQuestion() {
         const responce = {
             "id": 5,

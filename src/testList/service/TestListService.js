@@ -1,4 +1,4 @@
-import NoHistoryFoundException from "../../exceptions/NoHistoryFoundException";
+import NoHistoryFoundException from "../../common/exceptions/NoHistoryFoundException";
 
 class TestListService {
     constructor(api, user) {
