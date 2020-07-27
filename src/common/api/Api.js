@@ -98,7 +98,7 @@ class Api {
     }
 
     requestQuestion() {
-        const responce = {
+        const response = {
             "id": 5,
             "questionText": "В каком случае относительная скорость движущихся автомобилей максимальна?",
             "pathToImage": "None",
@@ -111,7 +111,7 @@ class Api {
             "serialNumber": 12
         };
         return new Promise((resolve) => {
-            setTimeout(() => resolve(responce), 200);
+            setTimeout(() => resolve(response), 200);
         });
     }
 
