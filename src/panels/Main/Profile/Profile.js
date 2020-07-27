@@ -15,8 +15,8 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        let user = this.application.provideUser();
-        user.then((user) => this.setState({user: user}));
+        this.application.provideUser()
+            .then(user => this.setState({user: user}));
     }
 
 
@@ -40,11 +40,11 @@ class Profile extends React.Component {
                             Студент теормеха
                         </div>
                         <div className={s.city}>
-                            {
-                                user !== undefined && user.city.title !== ""
-                                    ? user.city.title
-                                    : "Планета Земля"
-                            }
+                            {/*{*/}
+                            {/*    user !== undefined && user.city.title !== ""*/}
+                            {/*        ? user.city.title*/}
+                            {/*        : "Планета Земля"*/}
+                            {/*}*/}
                         </div>
                     </div>
                 </div>

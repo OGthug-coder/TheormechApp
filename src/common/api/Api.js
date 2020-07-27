@@ -1,10 +1,11 @@
 import NoHistoryFoundException from "../exceptions/NoHistoryFoundException";
 import NoUserFoundException from "../exceptions/NoUserFoundException";
+import HttpStatus from "./HttpStatus.js";
 
 class Api {
     constructor() {
         this.URL = "http://25.41.84.109:8080/v1/";
-        this.URL = "http://localhost:8080/v1/";
+        // this.URL = "http://localhost:8080/v1/";
     }
 
     requestTests() {
@@ -64,7 +65,8 @@ class Api {
     }
 
     requestUserById(id) {
-        const url = this.URL + "users/" + "id";
+
+        const url = this.URL + "users/" + id;
         return fetch(url, {
             method: "GET",
             headers: {
@@ -72,17 +74,26 @@ class Api {
             }
         })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(e => {
-                if (e.status === HttpStatus.NOT_FOUND) {
-                    throw NoUserFoundException();
+            .then(data => {
+                if (data.status === HttpStatus.NOT_FOUND) {
+                    return Promise.reject(new NoUserFoundException("Couldn't get user from " + url));
+                } else {
+                    return data;
                 }
-            })
+            });
 
     }
 
     addUser(user) {
         const url = this.URL + "users/" + user.id;
+
+        fetch(url, {
+            method: "PUT",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
 
     }
 

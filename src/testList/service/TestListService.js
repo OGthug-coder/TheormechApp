@@ -32,7 +32,7 @@ class TestListService {
             this.api.requestHistory(userId, testId)
                 .then(data => console.log(data))
         } catch (e) {
-            if (typeof e === NoHistoryFoundException) {
+            if (e instanceof NoHistoryFoundException) {
                 return 0;
             }
         }

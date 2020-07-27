@@ -39,7 +39,7 @@ class Application {
 
     provideUser() {
         if (this.#user === undefined) {
-            this.#user = this.#userService.getUser();
+            this.#user = this.provideUserService().getUser();
         }
 
         return this.#user;
