@@ -40,7 +40,7 @@ class ModalFragment extends React.Component {
                         <div>
                             Мой прогресс
                         </div>
-                        <ProgressFragment/>
+                        <ProgressFragment maxScore={testInfo !== undefined ? testInfo.maxScore : 0} currentScore={1} time={testInfo !== undefined ? testInfo.timeToComplete : null} />
                     </div>
                     <ul className={s.question_list}>
                         <li className={s.question_item}>

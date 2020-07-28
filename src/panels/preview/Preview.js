@@ -39,7 +39,7 @@ class Preview extends React.Component {
             <section className={s.preview_wrapper}>
                 <div className={s.background}>
                     <img
-                        src={testInfo !== undefined ? testInfo.pathToImage : ""}
+                        src={testInfo !== undefined ? testInfo.img : ""}
                         alt={"background"}
                         height={"400"}/>
                 </div>

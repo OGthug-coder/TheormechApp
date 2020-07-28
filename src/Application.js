@@ -3,7 +3,7 @@ import ProfileService from "./profile/service/ProfileService";
 import QuestionService from "./question/service/QuestionService";
 import UserService from "./common/services/UserService";
 import PreviewService from "./preview/service/PreviewService";
-import TestRepo from "./testrepo/TestRepo";
+import TestRepo from "./common/testrepo/TestRepo";
 import Api from "./common/api/Api";
 
 class Application {

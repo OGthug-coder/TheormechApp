@@ -20,6 +20,17 @@ class Api {
             .then(response => response.json());
     }
 
+    requestTest(id) {
+        const url = this.URL + "tests/" + id;
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json());
+    }
+
     requestHistory(userId, testId) {
         const url = this.URL + "users/" + userId + "/get_history/" + testId;
         return fetch(url, {
