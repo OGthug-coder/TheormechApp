@@ -1,7 +1,9 @@
 class QuestionStatus {
-    static ACCEPTED = 0;
-    static DECLINED = 1;
+    static PASSED = 0;
+    static FAILED = 1;
     static UNTOUCHED = 2;
+    static STARTED = 3;
+    static SKIPPED = 4;
 }
 
 export default QuestionStatus;

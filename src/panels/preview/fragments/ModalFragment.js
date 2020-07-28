@@ -35,7 +35,6 @@ class ModalFragment extends React.Component {
     renderQuestions() {
         if (this.state.testInfo !== undefined && this.state.lastQuestion !== undefined) {
             let uniq = []
-
             let questions = this.state.testInfo.questions.filter(question => question.status !== QuestionStatus.UNTOUCHED);
             this.state.testInfo.questions.map(question => {
                 if (question.serialNumber > this.state.lastQuestion && !uniq.includes(question.serialNumber)) {

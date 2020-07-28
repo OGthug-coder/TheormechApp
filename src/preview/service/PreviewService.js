@@ -1,5 +1,6 @@
-import PreviewUtil from "./TestStatus";
+import TestStatus from "./TestStatus";
 import QuestionStatus from "./QuestionStatus";
+import EventCodeDto from "./EventCodeDto";
 
 class PreviewService {
     constructor(api, repo) {
@@ -26,23 +27,23 @@ class PreviewService {
             return -1;
         } else {
             return history
-                .reduce((prev, current) => current.serialNumber > prev.serialNumber ? current : prev)
-                .serialNumber;
+                .reduce((prev, current) => current.question.serialNumber > prev.question.serialNumber ? current : prev)
+                .question.serialNumber;
         }
     }
 
     getStatus(lastQuestion, maxScore) {
         if (lastQuestion !== undefined && maxScore !== undefined) {
             if (lastQuestion < 0) {
-                return PreviewUtil.UNTOUCHED;
+                return TestStatus.UNTOUCHED;
             } else if (lastQuestion >= 0
                 && lastQuestion < maxScore) {
-                return PreviewUtil.NOT_FINISHED;
+                return TestStatus.NOT_FINISHED;
             } else {
-                return PreviewUtil.FINISHED;
+                return TestStatus.FINISHED;
             }
         } else {
-            return PreviewUtil.UNTOUCHED;
+            return TestStatus.UNTOUCHED;
         }
 
     }
@@ -51,15 +52,56 @@ class PreviewService {
         if (questions !== undefined && history !== undefined) {
             if (history.length === 0) {
                 return questions.map(question => {
-                    question.status = QuestionStatus.UNTOUCHED
+                    question.status = QuestionStatus.UNTOUCHED;
                     return question;
                 });
             } else {
-                //    TODO: implement me
+                return questions.map(question => {
+                    let historyEvents = history.filter(historyEvent => historyEvent.question.id === question.id);
+
+                    if (historyEvents.length > 0) {
+                        historyEvents.sort((e1, e2) => this.compare(e1.date, e2.date));
+
+                        let status;
+                        switch (historyEvents[0].eventCode) {
+                            case EventCodeDto.STARTED:
+                                status = QuestionStatus.STARTED;
+                                break;
+                            case EventCodeDto.FAILED:
+                                status = QuestionStatus.FAILED;
+                                break;
+                            case EventCodeDto.PASSED:
+                                status = QuestionStatus.PASSED;
+                                break;
+                            case EventCodeDto.SKIPPED:
+                                status = QuestionStatus.SKIPPED;
+                                break;
+                        }
+                        question.status = status;
+                        return question;
+                    } else {
+                        question.status = QuestionStatus.UNTOUCHED;
+                        return question;
+                    }
+                })
             }
         }
     }
 
+    compare = (o1, o2) => {
+        debugger
+        let date = o2.split(" ");
+        let [day, month, year] = date[0].split("-");
+        let [hour, minute, second] = date[1].split(":");
+        const dateTime2 = new Date(year, month - 1, day, hour, minute, second);
+
+        date = o1.split(" ");
+        [day, month, year] = date[0].split("-");
+        [hour, minute, second] = date[1].split(":");
+        const dateTime1 = new Date(year, month - 1, day, hour, minute, second);
+
+        return dateTime2 - dateTime1;
+    };
 }
 
 export default PreviewService;

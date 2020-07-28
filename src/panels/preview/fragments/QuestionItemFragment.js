@@ -15,12 +15,12 @@ class QuestionItemFragment extends React.Component {
         this.loadStatusPic = () => {
             if (this.state.status !== undefined) {
                 switch (this.state.status) {
-                    case QuestionStatus.UNTOUCHED:
-                        return require("../../../img/preview/ic_question_status_untouched.svg");
-                    case QuestionStatus.ACCEPTED:
+                    case QuestionStatus.PASSED:
                         return require("../../../img/preview/ic_question_status_approve.svg");
-                    case QuestionStatus.DECLINED:
-                        return require("../../../img/preview/ic_question_status_decline.svg")
+                    case QuestionStatus.FAILED:
+                        return require("../../../img/preview/ic_question_status_decline.svg");
+                    default:
+                        return require("../../../img/preview/ic_question_status_untouched.svg");
                 }
             } else {
                 return require("../../../img/preview/ic_question_status_untouched.svg");
