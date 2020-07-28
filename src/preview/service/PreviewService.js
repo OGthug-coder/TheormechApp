@@ -89,7 +89,6 @@ class PreviewService {
     }
 
     compare = (o1, o2) => {
-        debugger
         let date = o2.split(" ");
         let [day, month, year] = date[0].split("-");
         let [hour, minute, second] = date[1].split(":");
