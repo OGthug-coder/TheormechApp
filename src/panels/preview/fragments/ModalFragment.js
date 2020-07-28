@@ -3,7 +3,8 @@ import s from './ModalFragment.module.css';
 import ProgressFragment from "./ProgressFragment";
 import QuestionItemFragment from "./QuestionItemFragment";
 import {Link} from "react-router-dom";
-import TestStatus from "../../../preview/service/TestStatus";
+import PreviewUtil from "../../../preview/service/TestStatus";
+import QuestionStatus from "../../../preview/service/QuestionStatus";
 
 class ModalFragment extends React.Component {
     constructor(props) {
@@ -22,15 +23,42 @@ class ModalFragment extends React.Component {
 
     getStatusView(testStatus) {
         switch (testStatus) {
-            case TestStatus.UNTOUCHED:
+            case PreviewUtil.UNTOUCHED:
                 return "Не начато";
-            case TestStatus.NOT_FINISHED:
+            case PreviewUtil.NOT_FINISHED:
                 return "На закончено";
-            case TestStatus.FINISHED:
+            case PreviewUtil.FINISHED:
                 return "Завершено";
         }
     }
 
+    renderQuestions() {
+        if (this.state.testInfo !== undefined && this.state.lastQuestion !== undefined) {
+            let uniq = []
+
+            let questions = this.state.testInfo.questions.filter(question => question.status !== QuestionStatus.UNTOUCHED);
+            this.state.testInfo.questions.map(question => {
+                if (question.serialNumber > this.state.lastQuestion && !uniq.includes(question.serialNumber)) {
+                    questions.push(question);
+                    uniq.push(question.serialNumber);
+                }
+            })
+
+            questions.sort((o1, o2) => {
+                return o1.serialNumber - o2.serialNumber;
+            });
+            return questions.map(question => {
+                return (
+                    <li className={s.question_item}>
+                        <QuestionItemFragment
+                            serialNumber={question.serialNumber}
+                            status={question.status}
+                            onClick={this.state.onClick}/>
+                    </li>
+                )
+            })
+        }
+    }
 
 
     render() {
@@ -58,21 +86,7 @@ class ModalFragment extends React.Component {
                                           time={testInfo !== undefined ? testInfo.timeToComplete : null}/>
                     </div>
                     <ul className={s.question_list}>
-                        <li className={s.question_item}>
-                            <QuestionItemFragment onClick={this.state.onClick}/>
-                        </li>
-                        <li className={s.question_item}>
-                            <QuestionItemFragment onClick={this.state.onClick}/>
-                        </li>
-                        <li className={s.question_item}>
-                            <QuestionItemFragment onClick={this.state.onClick}/>
-                        </li>
-                        <li className={s.question_item}>
-                            <QuestionItemFragment onClick={this.state.onClick}/>
-                        </li>
-                        <li className={s.question_item}>
-                            <QuestionItemFragment onClick={this.state.onClick}/>
-                        </li>
+                        {this.renderQuestions()}
                     </ul>
 
                 </div>

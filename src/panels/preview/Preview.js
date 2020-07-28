@@ -27,22 +27,24 @@ class Preview extends React.Component {
     }
 
     componentDidMount() {
-        this.previewService.getTest(this.testId)
-            .then(testInfo => this.setState({testInfo: testInfo}));
-
         this.previewService.getHistory(this.testId, this.application.provideUser())
             .then(history => {
+                this.previewService.getTest(this.testId)
+                    .then(testInfo => {
+                        testInfo.questions = this.previewService.prepareQuestions(testInfo.questions, this.state.history);
+                        this.setState({testInfo: testInfo})
+                    });
+
                 this.setState({history: history});
                 this.setState({lastQuestion: this.previewService.getLastQuestion(history)});
             });
+
     }
 
-
-
-
     render() {
+        //Need to insert question status
         const testInfo = this.state.testInfo;
-        console.log(testInfo);
+
         return (
             <section className={s.preview_wrapper}>
                 <div className={s.background}>
@@ -52,13 +54,13 @@ class Preview extends React.Component {
                         height={"400"}/>
                 </div>
                 <ModalFragment
-                    key={testInfo}
+                    key={[testInfo, this.state.lastQuestion]}
                     onClick={this.show_answer_window}
                     testInfo={testInfo}
                     lastQuestion={this.state.lastQuestion}
                     history={this.state.history}
                     testStatus={this.previewService.getStatus(this.state.lastQuestion,
-                        this.state.testInfo !== undefined ? this.state.testInfo.maxScore : undefined)}/>
+                        testInfo !== undefined ? testInfo.maxScore : undefined)}/>
                 {this.state.show_answer_window ? <Answer onClick={this.hide_answer_window}/> : ""}
 
             </section>

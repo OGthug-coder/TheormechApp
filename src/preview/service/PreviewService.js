@@ -1,4 +1,5 @@
-import TestStatus from "./TestStatus";
+import PreviewUtil from "./TestStatus";
+import QuestionStatus from "./QuestionStatus";
 
 class PreviewService {
     constructor(api, repo) {
@@ -24,24 +25,39 @@ class PreviewService {
         if (history.length === 0) {
             return -1;
         } else {
-        //    TODO: implement me
+            return history
+                .reduce((prev, current) => current.serialNumber > prev.serialNumber ? current : prev)
+                .serialNumber;
         }
     }
 
     getStatus(lastQuestion, maxScore) {
         if (lastQuestion !== undefined && maxScore !== undefined) {
             if (lastQuestion < 0) {
-                return TestStatus.UNTOUCHED;
+                return PreviewUtil.UNTOUCHED;
             } else if (lastQuestion >= 0
                 && lastQuestion < maxScore) {
-                return TestStatus.NOT_FINISHED;
+                return PreviewUtil.NOT_FINISHED;
             } else {
-                return TestStatus.FINISHED;
+                return PreviewUtil.FINISHED;
             }
         } else {
-            return TestStatus.UNTOUCHED;
+            return PreviewUtil.UNTOUCHED;
         }
 
+    }
+
+    prepareQuestions(questions, history) {
+        if (questions !== undefined && history !== undefined) {
+            if (history.length === 0) {
+                return questions.map(question => {
+                    question.status = QuestionStatus.UNTOUCHED
+                    return question;
+                });
+            } else {
+                //    TODO: implement me
+            }
+        }
     }
 
 }
