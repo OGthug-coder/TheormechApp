@@ -6,7 +6,8 @@
     grid-template-columns: 1fr;
     font-family: "Titillium Web", sans-serif;
     align-items: center;
-    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 
 }
 /*no scrollbar*/

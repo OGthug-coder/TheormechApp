@@ -1,13 +1,14 @@
 import NoHistoryFoundException from "../../common/exceptions/NoHistoryFoundException";
 
 class TestListService {
-    constructor(api, user) {
+    constructor(api, user, testRepo) {
         this.api = api;
         this.user = user;
+        this.testRepo = testRepo;
     }
 
     getTests() {
-        return this.api.requestTests().then(testsDto => {
+        const tests = this.api.requestTests().then(testsDto => {
             return this.user.then(user => {
                 let tests = [];
                 testsDto.forEach(t => tests.push({
@@ -20,6 +21,9 @@ class TestListService {
                 return tests;
             });
         });
+        // Adding tests to the repo
+        tests.then(tests => tests.map(test => this.testRepo.push(test)))
+        return tests;
     }
 
     sort(list) {

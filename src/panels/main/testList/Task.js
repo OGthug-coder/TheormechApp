@@ -39,7 +39,7 @@ class Task extends React.Component {
 
                 </div>
                 <div className={s.start_button}>
-                    <Link to={'/preview'} className={s.link} application={this.application}>
+                    <Link to={`/preview/${this.state.id}`} className={s.link}>
                         <div>Начать тест</div>
                     </Link>
                 </div>

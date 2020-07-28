@@ -13,7 +13,6 @@ class TestList extends React.Component {
             sortBy: props.socket,
             tests: []
         }
-
     }
 
     componentDidMount() {

@@ -9,13 +9,18 @@ class ModalFragment extends React.Component {
         super(props);
 
         this.state = {
+            testInfo: props.testInfo,
             onClick: props.onClick,
             className: props.className
         };
 
     }
 
+    renderQuestions() {
+    }
+
     render() {
+        const testInfo = this.state.testInfo;
         return (
             <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
                 <div className={s.slider_wrapper}>
@@ -23,14 +28,13 @@ class ModalFragment extends React.Component {
                 </div>
                 <div className={s.content_wrapper}>
                     <div className={s.title}>
-                        Как приручить интеграл Римана?
+                        {testInfo !== undefined ? testInfo.title : ""}
                     </div>
                     <div className={s.status}>
                         Состояние: Не завершено
                     </div>
                     <div className={s.description}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing pariatur. Excepteurproident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        {testInfo !== undefined ? testInfo.description: ""}
                     </div>
                     <div className={s.progress}>
                         <div>
