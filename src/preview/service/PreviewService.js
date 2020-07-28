@@ -1,3 +1,5 @@
+import TestStatus from "./TestStatus";
+
 class PreviewService {
     constructor(api, repo) {
         this.api = api;
@@ -12,6 +14,34 @@ class PreviewService {
         }
 
         return test;
+    }
+
+    getHistory(testId, userPromise) {
+        return userPromise.then(user => this.api.requestHistory(user.id, testId))
+    }
+
+    getLastQuestion(history) {
+        if (history.length === 0) {
+            return -1;
+        } else {
+        //    TODO: implement me
+        }
+    }
+
+    getStatus(lastQuestion, maxScore) {
+        if (lastQuestion !== undefined && maxScore !== undefined) {
+            if (lastQuestion < 0) {
+                return TestStatus.UNTOUCHED;
+            } else if (lastQuestion >= 0
+                && lastQuestion < maxScore) {
+                return TestStatus.NOT_FINISHED;
+            } else {
+                return TestStatus.FINISHED;
+            }
+        } else {
+            return TestStatus.UNTOUCHED;
+        }
+
     }
 
 }
