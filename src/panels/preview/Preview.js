@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import QuestionStatus from "../../preview/service/QuestionStatus";
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import PreviewUtil from "../../preview/service/TestStatus";
+import TestStatus from "../../preview/service/TestStatus";
 import isUndefined from "../../common/IsUndefined";
 
 class Preview extends React.Component {
@@ -40,14 +41,18 @@ class Preview extends React.Component {
                     .then(testInfo => {
                         testInfo.questions = this.previewService.prepareQuestions(testInfo.questions, this.state.history);
                         this.setState({testInfo: testInfo})
+
+                        const lastQuestion = this.previewService.getLastQuestion(history);
+                        this.setState({lastQuestion: lastQuestion});
+
+                        const testStatus = this.previewService.getStatus(lastQuestion, testInfo.maxScore);
+                        this.setState({testStatus: testStatus});
+
                     });
                 this.setState({history: history});
 
                 const currentScore = this.previewService.getCurrentScore(history);
                 this.setState({currentScore: currentScore});
-
-                const lastQuestion = this.previewService.getLastQuestion(history);
-                this.setState({lastQuestion: lastQuestion});
             });
 
     }
@@ -82,10 +87,8 @@ class Preview extends React.Component {
     };
 
     getStatusView = () => {
-        if (!isUndefined(this.state.lastQuestion) && !isUndefined(this.state.testInfo)) {
-            const testStatus = this.previewService.getStatus(this.state.lastQuestion, this.state.testInfo.maxScore);
-
-            switch (testStatus) {
+        if (!isUndefined(this.state.testStatus)) {
+            switch (this.state.testStatus) {
                 case PreviewUtil.UNTOUCHED:
                     return "Не начато";
                 case PreviewUtil.NOT_FINISHED:
@@ -96,8 +99,20 @@ class Preview extends React.Component {
         } else {
             return "Не начато";
         }
-
     };
+
+    getButtonText = () => {
+        if (!isUndefined(this.state.testStatus)) {
+            switch (this.state.testStatus) {
+                case TestStatus.NOT_FINISHED:
+                    return "Продолжить";
+                default:
+                    return "Начать";
+            }
+        } else {
+            return "Начать";
+        }
+    }
 
     render() {
         //Need to insert question status
@@ -140,12 +155,17 @@ class Preview extends React.Component {
 
                     </div>
                     <div className={s.button}>
-                        <Link to={'/question'} className={s.link}>
-                            <div> Пройти тест</div>
+                        <Link to={'/question'}
+                              className={`${s.link} ${
+                                  !isUndefined(this.state.testStatus)
+                                  || this.state.testStatus === TestStatus.UNTOUCHED
+                                      ? s.link_active : s.link_inactive}`}>
+                            <div>{this.getButtonText()}</div>
                         </Link>
                     </div>
                 </section>
-                {!isUndefined(this.state.answerWindow) ? <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
+                {!isUndefined(this.state.answerWindow) ?
+                    <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
 
             </section>
         )

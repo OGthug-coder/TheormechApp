@@ -1,6 +1,7 @@
 import TestStatus from "./TestStatus";
 import QuestionStatus from "./QuestionStatus";
 import EventCodeDto from "./EventCodeDto";
+import isUndefined from "../../common/IsUndefined";
 
 class PreviewService {
     constructor(api, repo) {
@@ -90,7 +91,12 @@ class PreviewService {
 
     getCurrentScore(history) {
         const sortedHistory = history.sort((e1, e2) => this.compare(e1.date, e2.date));
-        return sortedHistory[0].score;
+        if (sortedHistory.length > 0) {
+            return sortedHistory[0].score;
+        } else {
+            return 0;
+        }
+
     }
 
     compare = (o1, o2) => {
