@@ -7,10 +7,8 @@ import Preview from "./panels/preview/Preview";
 import Main from "./panels/main/Main";
 import Question from "./panels/question/Question";
 import Application from "./Application";
-import Test_Creation from "./panels/admin/test_creation/test_creation";
 
 class App extends React.Component {
-
     constructor(props) {
         super(props);
 
