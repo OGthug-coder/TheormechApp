@@ -115,6 +115,23 @@ class Preview extends React.Component {
         }
     }
 
+    getQuestionLink = () => {
+        if (!isUndefined(this.state.testInfo)
+            && !isUndefined(this.state.testStatus)
+            && !isUndefined(this.state.lastQuestion)) {
+
+            if (this.state.testStatus === TestStatus.FINISHED) {
+                return "#";
+            } else {
+                const currentQuestion = this.state.lastQuestion++;
+                const questionList = this.state.testInfo.questions.filter(q => q.serialNumber === currentQuestion);
+                const question = questionList[Math.floor(Math.random() * questionList.length)];
+
+                return `/question/${question.id}`
+            }
+        }
+    }
+
     render() {
         //Need to insert question status
         const testInfo = this.state.testInfo;
@@ -131,7 +148,7 @@ class Preview extends React.Component {
 
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton />
+                        <BackButton/>
                     </div>
                 </div>
                 <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
@@ -163,7 +180,7 @@ class Preview extends React.Component {
                         </ul>
                     </div>
                     <div className={s.button}>
-                        <Link to={'/question'}
+                        <Link to={this.getQuestionLink()}
                               className={`${s.link} ${
                                   !isUndefined(this.state.testStatus)
                                   || this.state.testStatus === TestStatus.UNTOUCHED

@@ -1,3 +1,17 @@
+.sticky_container {
+    height: 100px;
+    position: absolute;
+}
+
+.back_button {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+    margin-left: 20px;
+
+
+}
+
 .question_window {
     height: 100%;
     background: linear-gradient(179.79deg, #699AFF 0.1%, #3171F7 21.78%);
@@ -6,7 +20,6 @@
     font-weight: normal;
     text-align: center;
     color: #FFFFFF;
-
 }
 
 .question_number {

@@ -2,6 +2,7 @@ import React from 'react';
 import Swipe from 'react-easy-swipe';
 import s from './Question.module.css';
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
+import BackButton from "../../common/components/BackButton/BackButton";
 
 class Question extends React.Component {
     constructor(props) {
@@ -9,6 +10,8 @@ class Question extends React.Component {
 
         this.application = props.application;
         this.questionService = this.application.provideQuestionService();
+        this.questionId = props.match.params.questionId;
+        console.log("question id = " + this.questionId);
 
         this.state = {
             position: 10,
@@ -43,18 +46,13 @@ class Question extends React.Component {
         console.log('pushed');
     }
 
-    onSwipeStart = (event) => {
-        console.log(this.prepareList());
-        console.log('Start swiping...', event);
-    }
+    onSwipeStart = (event) => {}
 
     onSwipeMove = (position, event) => {
-
         this.setState({position: position.y});
     }
 
     onSwipeEnd = (event) => {
-        console.log('End swiping...', event);
         const start = this.state.position;
         const id = setInterval(start < 0 ? backAnimationDown : backAnimationUp, 1, this);
         let speed = Math.abs(start) / 83.82916675;
@@ -63,12 +61,10 @@ class Question extends React.Component {
         function backAnimationDown(context) {
             let pos = context.state.position;
             time += 0.01;
-            console.log(time);
             if (Math.abs(pos) <= 10) {
                 clearInterval(id);
             } else {
                 let move = nextMove(time) * speed;
-                console.log(move);
                 context.setState({position: pos + move});
             }
         }
@@ -89,6 +85,11 @@ class Question extends React.Component {
     render() {
         return (
             <section className={s.question_window}>
+                <div className={s.sticky_container}>
+                    <div className={s.back_button}>
+                        <BackButton />
+                    </div>
+                </div>
                 <div className={s.about}>
                     <div className={s.question_number}>
                         {
@@ -118,18 +119,20 @@ class Question extends React.Component {
                     </section>
                     <div className={s.control}>
                         <div className={s.score_container}>
-                            Счёт: <span className={s.score}>{this.state.position}</span>
+                            Счёт: <span className={s.score}>2</span>
                         </div>
                         <a href="#" className={s.next_question}>
                             Следующий &raquo;
                         </a>
                     </div>
-                    <Swipe
-                        onSwipeStart={this.onSwipeStart}
-                        onSwipeMove={this.onSwipeMove}
-                        onSwipeEnd={this.onSwipeEnd}>
-                        <button className={s.slider}/>
-                    </Swipe>
+
+                    {/*TODO: implement swipes*/}
+                    {/*<Swipe*/}
+                    {/*    onSwipeStart={this.onSwipeStart}*/}
+                    {/*    onSwipeMove={this.onSwipeMove}*/}
+                    {/*    onSwipeEnd={this.onSwipeEnd}>*/}
+                    {/*    <button className={s.slider}/>*/}
+                    {/*</Swipe>*/}
 
                     <div className={s.wave_card}>
                         <div className={s.wave_one}/>

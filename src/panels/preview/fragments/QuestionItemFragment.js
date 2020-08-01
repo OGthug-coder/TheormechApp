@@ -55,7 +55,7 @@ class QuestionItemFragment extends React.Component {
                     </img>
                     <div className={s.question_body}>
                         <div className={s.title}>
-                            Вопрос # {serialNumber !== undefined ? serialNumber : ".."}
+                            Вопрос # {serialNumber !== undefined ? serialNumber + 1 : ".."}
                         </div>
                     </div>
                     <button id={!isUndefined(this.state.questionId) ? this.state.questionId : 0}
