@@ -13,22 +13,34 @@ class QuestionItemFragment extends React.Component {
             status: props.status,
             onClick: props.onClick,
         }
+    }
 
-        this.loadStatusPic = () => {
-            if (this.state.status !== undefined) {
-                switch (this.state.status) {
-                    case QuestionStatus.PASSED:
-                        return require("../../../img/preview/ic_question_status_approve.svg");
-                    case QuestionStatus.FAILED:
-                        return require("../../../img/preview/ic_question_status_decline.svg");
-                    default:
-                        return require("../../../img/preview/ic_question_status_untouched.svg");
-                }
-            } else {
-                return require("../../../img/preview/ic_question_status_untouched.svg");
+    loadStatusPic = () => {
+        if (this.state.status !== undefined) {
+            switch (this.state.status) {
+                case QuestionStatus.PASSED:
+                    return require("../../../img/preview/ic_question_status_approve.svg");
+                case QuestionStatus.FAILED:
+                    return require("../../../img/preview/ic_question_status_decline.svg");
+                default:
+                    return require("../../../img/preview/ic_question_status_untouched.svg");
+            }
+        } else {
+            return require("../../../img/preview/ic_question_status_untouched.svg");
+        }
+    };
+
+    isActive = () => {
+        if (!isUndefined(this.state.status)) {
+            if (this.state.status === QuestionStatus.STARTED
+                || this.state.status === QuestionStatus.UNTOUCHED
+                || this.state.status === QuestionStatus.SKIPPED) {
+                return true;
             }
         }
-    }
+
+        return false;
+    };
 
 
 
@@ -46,7 +58,10 @@ class QuestionItemFragment extends React.Component {
                             Вопрос # {serialNumber !== undefined ? serialNumber : ".."}
                         </div>
                     </div>
-                    <button id={!isUndefined(this.state.questionId) ? this.state.questionId : 0} className={s.answer} onClick={this.state.onClick}/>
+                    <button id={!isUndefined(this.state.questionId) ? this.state.questionId : 0}
+                            className={s.answer}
+                            onClick={this.state.onClick}
+                            disabled={this.isActive()}/>
                 </div>
                 <div className={s.separator} />
             </>

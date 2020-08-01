@@ -9,6 +9,7 @@ import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import PreviewUtil from "../../preview/service/TestStatus";
 import TestStatus from "../../preview/service/TestStatus";
 import isUndefined from "../../common/IsUndefined";
+import BackButton from "../../common/components/BackButton/BackButton";
 
 class Preview extends React.Component {
     constructor(props) {
@@ -120,13 +121,21 @@ class Preview extends React.Component {
 
         return (
             <section className={s.preview_wrapper}>
+
                 <div className={s.background}>
                     <img
                         src={!isUndefined(testInfo) ? testInfo.img : ""}
                         alt={"background"}
                         height={"400"}/>
                 </div>
+
+                <div className={s.sticky_container}>
+                    <div className={s.back_button}>
+                        <BackButton />
+                    </div>
+                </div>
                 <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
+
                     <div className={s.slider_wrapper}>
                         <div className={s.slider}/>
                     </div>
@@ -152,7 +161,6 @@ class Preview extends React.Component {
                         <ul className={s.question_list}>
                             {this.renderQuestions()}
                         </ul>
-
                     </div>
                     <div className={s.button}>
                         <Link to={'/question'}

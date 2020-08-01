@@ -1,0 +1,13 @@
+.button {
+    height: 35px;
+    width: 35px;
+    border-radius: 35px;
+    border: none;
+    background-image: url("../../../img/preview/ic_preview_back_button.svg");
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-color: white;
+    background-position: center;
+    margin-bottom: 5px;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+}
