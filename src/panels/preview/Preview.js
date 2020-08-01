@@ -22,12 +22,14 @@ class Preview extends React.Component {
         };
 
 
-        this.show_answer_window = () => {
-            this.setState({show_answer_window: true})
+        this.showAnswerWindow = (e) => {
+            const id = parseInt(e.currentTarget.attributes.id.nodeValue);
+            const question = this.state.testInfo.questions.find(q => q.id === id);
+            this.setState({answerWindow: question});
         };
 
-        this.hide_answer_window = () => {
-            this.setState({show_answer_window: false})
+        this.hideAnswerWindow = () => {
+            this.setState({answerWindow: undefined})
         };
     }
 
@@ -69,9 +71,10 @@ class Preview extends React.Component {
                 return (
                     <li className={s.question_item}>
                         <QuestionItemFragment
+                            questionId={question.id}
                             serialNumber={question.serialNumber}
                             status={question.status}
-                            onClick={this.state.onClick}/>
+                            onClick={this.showAnswerWindow}/>
                     </li>
                 )
             })
@@ -142,7 +145,7 @@ class Preview extends React.Component {
                         </Link>
                     </div>
                 </section>
-                {this.state.show_answer_window ? <Answer onClick={this.hide_answer_window}/> : ""}
+                {!isUndefined(this.state.answerWindow) ? <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
 
             </section>
         )

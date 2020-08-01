@@ -2,11 +2,13 @@ import React from 'react';
 
 import s from './QuestionItemFragment.module.css';
 import QuestionStatus from "../../../preview/service/QuestionStatus";
+import isUndefined from "../../../common/IsUndefined";
 
 class QuestionItemFragment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            questionId: props.questionId,
             serialNumber: props.serialNumber,
             status: props.status,
             onClick: props.onClick,
@@ -44,7 +46,7 @@ class QuestionItemFragment extends React.Component {
                             Вопрос # {serialNumber !== undefined ? serialNumber : ".."}
                         </div>
                     </div>
-                    <button className={s.answer} onClick={this.state.onClick}/>
+                    <button id={!isUndefined(this.state.questionId) ? this.state.questionId : 0} className={s.answer} onClick={this.state.onClick}/>
                 </div>
                 <div className={s.separator} />
             </>
