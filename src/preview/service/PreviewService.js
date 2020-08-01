@@ -88,6 +88,11 @@ class PreviewService {
         }
     }
 
+    getCurrentScore(history) {
+        const sortedHistory = history.sort((e1, e2) => this.compare(e1.date, e2.date));
+        return sortedHistory[0].score;
+    }
+
     compare = (o1, o2) => {
         let date = o2.split(" ");
         let [day, month, year] = date[0].split("-");

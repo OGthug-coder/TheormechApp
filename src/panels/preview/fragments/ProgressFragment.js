@@ -5,7 +5,6 @@ import s from './ProgressFragment.module.css';
 class ProgressFragment extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             maxScore: props.maxScore,
             currentScore: props.currentScore,
