@@ -76,7 +76,6 @@ class Api {
     }
 
     requestUserById(id) {
-
         const url = this.URL + "users/" + id;
         return fetch(url, {
             method: "GET",
@@ -108,23 +107,31 @@ class Api {
 
     }
 
-    requestQuestion() {
-        const response = {
-            "id": 5,
-            "questionText": "В каком случае относительная скорость движущихся автомобилей максимальна?",
-            "pathToImage": "None",
-            "answers": [
-                'Автомобили движутся навстречу друг другу',
-                'Догоняют друг друга',
-                'Векторы их скоростей составляют острый угол',
-                'Не знаю'
-            ],
-            "serialNumber": 12
-        };
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(response), 200);
+    requestQuestion(testId) {
+        const url = this.URL + "tests/" + testId;
+
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json());
+    }
+
+    sendHistoryEvent(questionId, userId, eventCode) {
+        const url = this.URL + "users/" + userId + "/send_event/" + questionId;
+
+        fetch(url, {
+            method: "POST",
+            body: eventCode,
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
     }
+
+
 
 }
 

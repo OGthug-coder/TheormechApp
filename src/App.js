@@ -22,7 +22,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route
-                        path={'/question/:questionId'}
+                        path={'/question/:testId/:questionId'}
                         render={({match}) => <Question match={match} application={this.application}/>}
                     />
                     <Route

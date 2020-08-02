@@ -45,7 +45,6 @@ class Preview extends React.Component {
 
                         const lastQuestion = this.previewService.getLastQuestion(history);
                         this.setState({lastQuestion: lastQuestion});
-
                         const testStatus = this.previewService.getStatus(lastQuestion, testInfo.maxScore);
                         this.setState({testStatus: testStatus});
 
@@ -115,6 +114,8 @@ class Preview extends React.Component {
         }
     }
 
+
+
     getQuestionLink = () => {
         if (!isUndefined(this.state.testInfo)
             && !isUndefined(this.state.testStatus)
@@ -123,11 +124,17 @@ class Preview extends React.Component {
             if (this.state.testStatus === TestStatus.FINISHED) {
                 return "#";
             } else {
-                const currentQuestion = this.state.lastQuestion++;
-                const questionList = this.state.testInfo.questions.filter(q => q.serialNumber === currentQuestion);
-                const question = questionList[Math.floor(Math.random() * questionList.length)];
+                const currentQuestion = this.state.lastQuestion + 1;
+                const questions = this.state.testInfo.questions;
+                const questionList = questions.filter(q => q.serialNumber === currentQuestion);
 
-                return `/question/${question.id}`
+                if (questionList.length > 0) {
+                    const question = questionList[Math.floor(Math.random() * questionList.length)];
+                    return "/question/" + this.state.testInfo.id + "/" + question.id;
+                } else {
+                    return "#";
+                }
+
             }
         }
     }

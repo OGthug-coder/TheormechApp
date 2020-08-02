@@ -1,7 +1,6 @@
 import TestStatus from "./TestStatus";
 import QuestionStatus from "./QuestionStatus";
 import EventCodeDto from "./EventCodeDto";
-import isUndefined from "../../common/IsUndefined";
 
 class PreviewService {
     constructor(api, repo) {
@@ -27,9 +26,12 @@ class PreviewService {
         if (history.length === 0) {
             return -1;
         } else {
-            return history
+            const sortedHistory = history.sort(e => e.eventCode !== EventCodeDto.STARTED);
+
+            return sortedHistory
                 .reduce((prev, current) => current.question.serialNumber > prev.question.serialNumber ? current : prev)
-                .question.serialNumber;
+                .question
+                .serialNumber;
         }
     }
 

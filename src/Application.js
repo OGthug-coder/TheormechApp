@@ -5,6 +5,7 @@ import UserService from "./common/services/UserService";
 import PreviewService from "./preview/service/PreviewService";
 import TestRepo from "./common/testrepo/TestRepo";
 import Api from "./common/api/Api";
+import isUndefined from "./common/IsUndefined";
 
 class Application {
     #testListService;
@@ -17,7 +18,7 @@ class Application {
     #testRepo;
 
     provideTestRepo() {
-        if (this.#testRepo === undefined) {
+        if (isUndefined(this.#testRepo)) {
             this.#testRepo = new TestRepo();
         }
 
@@ -25,7 +26,7 @@ class Application {
     }
 
     provideTestListService() {
-        if (this.#testListService === undefined) {
+        if (isUndefined(this.#testListService)) {
             this.#testListService = new TestListService(this.provideApi(), this.provideUser(), this.provideTestRepo());
         }
 
@@ -33,7 +34,7 @@ class Application {
     }
 
     provideApi() {
-        if (this.#api === undefined) {
+        if (isUndefined(this.#api)) {
             this.#api = new Api();
         }
 
@@ -41,7 +42,7 @@ class Application {
     }
 
     provideProfileService() {
-        if (this.#profileService === undefined) {
+        if (isUndefined(this.#profileService)) {
             this.#profileService = new ProfileService(this.provideApi());
         }
 
@@ -49,7 +50,7 @@ class Application {
     }
 
     providePreviewService() {
-        if (this.#previewService === undefined) {
+        if (isUndefined(this.#previewService)) {
             this.#previewService = new PreviewService(this.provideApi(), this.provideTestRepo());
         }
 
@@ -58,7 +59,7 @@ class Application {
 
 
     provideUser() {
-        if (this.#user === undefined) {
+        if (isUndefined(this.#user)) {
             this.#user = this.provideUserService().getUser();
         }
 
@@ -66,7 +67,7 @@ class Application {
     }
 
     provideUserService() {
-        if (this.#userService === undefined) {
+        if (isUndefined(this.#userService)) {
             this.#userService = new UserService(this.provideApi());
         }
 
@@ -74,8 +75,8 @@ class Application {
     }
 
     provideQuestionService() {
-        if (this.#questionService == null) {
-            this.#questionService = new QuestionService(this.provideApi());
+        if (isUndefined(this.#questionService)) {
+            this.#questionService = new QuestionService(this.provideApi(), this.provideTestRepo(), this.provideUser());
         }
 
         return this.#questionService;

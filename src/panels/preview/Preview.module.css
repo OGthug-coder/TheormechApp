@@ -37,7 +37,7 @@
 }
 
 .modal_window {
-    /*position: absolute;*/
+    /*_position: absolute;*/
     scroll-behavior: smooth;
     overflow: scroll;
     width: 100%;

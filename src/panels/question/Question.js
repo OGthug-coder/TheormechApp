@@ -1,8 +1,10 @@
 import React from 'react';
-import Swipe from 'react-easy-swipe';
 import s from './Question.module.css';
+import Swipe from 'react-easy-swipe';
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import BackButton from "../../common/components/BackButton/BackButton";
+import isUndefined from "../../common/IsUndefined";
+import RightAnswerCode from "../../preview/service/RightAnswerCode";
 
 class Question extends React.Component {
     constructor(props) {
@@ -10,118 +12,149 @@ class Question extends React.Component {
 
         this.application = props.application;
         this.questionService = this.application.provideQuestionService();
-        this.questionId = props.match.params.questionId;
-        console.log("question id = " + this.questionId);
+        this.questionId = parseInt(props.match.params.questionId);
+        this.testId = parseInt(props.match.params.testId);
 
         this.state = {
-            position: 10,
-            number_of_tests: 20,
+            _position: 10,
         };
     }
 
     componentDidMount() {
-        this.questionService.getQuestion()
-            .then(question => {
+        // this.questionService.getQuestion(this.questionId)
+        //     .then(question => this.setState({question: question}));
+        this.questionService.getTest(this.testId)
+            .then(test => {
+                const question = test.questions.find(q => q.id === this.questionId);
+                this.questionService.startQuestion(question.id);
                 this.setState({question: question});
-            })
+                this.setState({test: test});
+
+                let uniqQuestions = [];
+                let uniqNumbers = [];
+                const allQuestions = test.questions;
+
+                allQuestions.map(q => {
+                    if (!uniqNumbers.includes(q.serialNumber)) {
+                        uniqNumbers.push(q.serialNumber);
+                        uniqQuestions.push(q);
+                    }
+                });
+                this.setState({questionsLength: uniqQuestions.length});
+            });
     }
 
-    prepareList() {
-        let list = [];
+    prepareList = () => {
+        if (!isUndefined(this.state.question)) {
+            let list = [];
 
-        for(let i = 0; i < this.state.question.answers.length; i++){
-            list.push(
-                <QuestionItemFragment
-                    answerType={'str'}
-                    answerText={this.state.question.answers[i]}
-                    questionNumber={i + 1}
-                />
-            );
+            this.state.question.answers.map(answer => {
+                list.push(
+                    <QuestionItemFragment
+                        answerType={'str'}
+                        answerText={answer.answer}
+                        onRightAnswer={this.onRightAnswer}
+                        onWrongAnswer={this.onWrongAnswer}
+                        isRightAnswer={answer.isRight === RightAnswerCode.RIGHT_ANSWER}
+                    />
+                );
+            });
+            return list;
         }
+    }
 
-        return list;
+    onRightAnswer = () => {
+        console.log("right");
+        this.questionService.passQuestion(this.questionId);
+    }
+
+    onWrongAnswer = () => {
+        console.log("wrong");
+        debugger
+        this.questionService.failQuestion(this.questionId);
+    }
+
+    onSkip = () => {
+        this.questionService.skipQuestion(this.questionId);
     }
 
     onClick(e) {
         console.log('pushed');
     }
 
-    onSwipeStart = (event) => {}
+    onSwipeStart = (event) => {
+    }
 
     onSwipeMove = (position, event) => {
         this.setState({position: position.y});
     }
 
     onSwipeEnd = (event) => {
-        const start = this.state.position;
+        const start = this.state._position;
         const id = setInterval(start < 0 ? backAnimationDown : backAnimationUp, 1, this);
         let speed = Math.abs(start) / 83.82916675;
         let time = 0;
 
         function backAnimationDown(context) {
-            let pos = context.state.position;
+            let pos = context.state._position;
             time += 0.01;
             if (Math.abs(pos) <= 10) {
                 clearInterval(id);
             } else {
                 let move = nextMove(time) * speed;
-                context.setState({position: pos + move});
+                context.setState({_on: pos + move});
             }
         }
 
         function backAnimationUp(context) {
-            let pos = context.state.position;
+            let pos = context.state._position;
             if (pos < 0) {
                 clearInterval(id);
             } else {
-                context.setState({position: pos - speed});
+                context.setState({_position: pos - speed});
             }
         }
 
-        const nextMove = (t) => 1 - t*t*t*t*t;
+        const nextMove = (t) => 1 - t * t * t * t * t;
     }
 
 
     render() {
+        const question = this.state.question;
         return (
             <section className={s.question_window}>
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton />
+                        <BackButton/>
                     </div>
                 </div>
                 <div className={s.about}>
                     <div className={s.question_number}>
                         {
-                            this.state.question !== undefined
-                                ? 'Вопрос ' + this.state.question.serialNumber + '/' + this.state.number_of_tests : ""
+                            !isUndefined(question)
+                                ? 'Вопрос ' + (question.serialNumber + 1) + '/' + this.state.questionsLength : ""
                         }
                     </div>
                     <div className={s.timer}>
-                        Оставшееся время: <span>14:52</span>
+                        {/*Оставшееся время: <span>14:52</span>*/}
                     </div>
                 </div>
                 <div className={`${s.question_card} `}
-                    style={{
-                        top: `${this.state.position}px`
-                    }}>
+                     style={{
+                         top: `${this.state._position}px`
+                     }}>
                     <div className={s.question_text}>
-                        {
-                            this.state.question !== undefined
-                                ? this.state.question.questionText : ""
-                        }
+                        {!isUndefined(question) ? question.questionText : ""}
                     </div>
                     <section className={s.answers_container}>
-                        {
-                            this.state.question !== undefined
-                                ? this.prepareList() : []
-                        }
+                        {!isUndefined(question) ? this.prepareList() : []}
                     </section>
                     <div className={s.control}>
                         <div className={s.score_container}>
-                            Счёт: <span className={s.score}>2</span>
+                            Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
                         </div>
                         <a href="#" className={s.next_question}>
+                            {/*TODO change to icon*/}
                             Следующий &raquo;
                         </a>
                     </div>
