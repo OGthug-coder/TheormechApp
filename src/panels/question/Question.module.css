@@ -1,15 +1,13 @@
 .sticky_container {
-    height: 100px;
+    height: 130px;
     position: absolute;
 }
 
 .back_button {
     position: -webkit-sticky;
     position: sticky;
-    top: 20px;
-    margin-left: 20px;
-
-
+    top: 25px;
+    margin-left: 25px;
 }
 
 .question_window {

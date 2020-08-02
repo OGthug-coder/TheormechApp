@@ -11,7 +11,7 @@ class TestListService {
         const tests = this.api.requestTests().then(testsDto => {
             return this.user.then(user => {
                 let tests = [];
-                testsDto.forEach(t => tests.push({
+                testsDto.map(t => tests.push({
                     id: t.id,
                     title: t.title,
                     img: t.img,

@@ -6,6 +6,7 @@ class Api {
     constructor() {
         this.URL = "http://25.41.84.109:8080/v1/";
         // this.URL = "http://localhost:8080/v1/";
+        this.URL = "https://cb5eeba06887.ngrok.io/v1/";
     }
 
     requestTests() {
@@ -16,8 +17,9 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json());
+        }).then(response => response.json())
+            .catch(e => console.log(e));
+
     }
 
     requestTest(id) {
@@ -130,7 +132,6 @@ class Api {
             }
         });
     }
-
 
 
 }
