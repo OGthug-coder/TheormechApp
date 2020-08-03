@@ -124,7 +124,7 @@ class Preview extends React.Component {
 
 
 
-    getQuestionLink = () => {
+    getNextQuestionLink = () => {
         if (!isUndefined(this.state.testInfo)
             && !isUndefined(this.state.testStatus)
             && !isUndefined(this.state.lastQuestion)) {
@@ -204,7 +204,7 @@ class Preview extends React.Component {
                     </div>
                     <div className={!isUndefined(this.state.testStatus)
                     && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
-                        <Link to={this.getQuestionLink()}
+                        <Link to={this.getNextQuestionLink()}
                               className={s.link}>
                             <div>{this.getButtonText()}</div>
                         </Link>

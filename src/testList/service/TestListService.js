@@ -42,6 +42,10 @@ class TestListService {
                 .then(data => {
                     if (data.length > 0) {
                         const filtered = data.filter(e => e.eventCode !== EventCodeDto.STARTED);
+                        if (filtered.length === 0) {
+                            return 0;
+                        }
+
                         const activeQuestion = filtered.reduce((prev, curr) => prev.question.serialNumber > curr.question.serialNumber ? prev : curr)
                             .question.serialNumber + 1;
                         const max = questions.reduce((prev, curr) => prev.serialNumber > curr.serialNumber ? prev : curr)

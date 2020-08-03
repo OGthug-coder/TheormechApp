@@ -5,6 +5,7 @@ import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import BackButton from "../../common/components/BackButton/BackButton";
 import isUndefined from "../../common/IsUndefined";
 import RightAnswerCode from "../../preview/service/RightAnswerCode";
+import {Link} from "react-router-dom";
 
 class Question extends React.Component {
     constructor(props) {
@@ -152,10 +153,10 @@ class Question extends React.Component {
                         <div className={s.score_container}>
                             Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
                         </div>
-                        <a href="#" className={s.next_question}>
+                        <Link className={s.next_question}>
                             {/*TODO change to icon*/}
                             Следующий &raquo;
-                        </a>
+                        </Link>
                     </div>
 
                     {/*TODO: implement swipes*/}
