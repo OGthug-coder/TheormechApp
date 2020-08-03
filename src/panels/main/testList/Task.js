@@ -9,13 +9,14 @@ class Task extends React.Component {
         super(props);
 
         this.application = props.application;
+
         this.state = {
             id: props.id,
             title: props.title,
             img: props.img,
             date: props.date,
-            progress: props.progress,
         }
+        props.progress.then(progress => this.setState({progress: progress}));
     }
 
     render() {

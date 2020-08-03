@@ -203,7 +203,7 @@ class Preview extends React.Component {
                         </ul>
                     </div>
                     <div className={!isUndefined(this.state.testStatus)
-                    && this.state.testStatus === TestStatus.UNTOUCHED ? s.button : s.hidden}>
+                    && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
                         <Link to={this.getQuestionLink()}
                               className={s.link}>
                             <div>{this.getButtonText()}</div>

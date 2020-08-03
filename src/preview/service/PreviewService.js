@@ -40,7 +40,7 @@ class PreviewService {
 
     getStatus(lastQuestion, questions) {
         if (lastQuestion !== undefined && questions !== undefined && questions.length > 0) {
-            const max = questions.reduce((prev, current) => prev.serialNumber > current.serialNumber ? prev : current);
+            const max = questions.reduce((prev, current) => prev.serialNumber > current.serialNumber ? prev : current).serialNumber;
 
             if (lastQuestion < 0) {
                 return TestStatus.UNTOUCHED;
