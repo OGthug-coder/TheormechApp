@@ -27,19 +27,25 @@ class PreviewService {
             return -1;
         } else {
             const sortedHistory = history.filter(e => e.eventCode !== EventCodeDto.STARTED);
-            return sortedHistory
-                .reduce((prev, current) => current.question.serialNumber > prev.question.serialNumber ? current : prev)
-                .question
-                .serialNumber;
+            if (sortedHistory.length > 0) {
+                return sortedHistory
+                    .reduce((prev, current) => current.question.serialNumber > prev.question.serialNumber ? current : prev)
+                    .question
+                    .serialNumber;
+            } else {
+                return -1;
+            }
         }
     }
 
-    getStatus(lastQuestion, maxScore) {
-        if (lastQuestion !== undefined && maxScore !== undefined) {
+    getStatus(lastQuestion, questions) {
+        if (lastQuestion !== undefined && questions !== undefined && questions.length > 0) {
+            const max = questions.reduce((prev, current) => prev.serialNumber > current.serialNumber ? prev : current);
+
             if (lastQuestion < 0) {
                 return TestStatus.UNTOUCHED;
             } else if (lastQuestion >= 0
-                && lastQuestion < maxScore) {
+                && lastQuestion < max) {
                 return TestStatus.NOT_FINISHED;
             } else {
                 return TestStatus.FINISHED;

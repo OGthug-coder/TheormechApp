@@ -70,7 +70,6 @@ class Question extends React.Component {
 
     onWrongAnswer = () => {
         console.log("wrong");
-        debugger
         this.questionService.failQuestion(this.questionId);
     }
 

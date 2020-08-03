@@ -45,7 +45,7 @@ class Preview extends React.Component {
 
                         const lastQuestion = this.previewService.getLastQuestion(history);
                         this.setState({lastQuestion: lastQuestion});
-                        const testStatus = this.previewService.getStatus(lastQuestion, testInfo.maxScore);
+                        const testStatus = this.previewService.getStatus(lastQuestion, testInfo.questions);
                         this.setState({testStatus: testStatus});
 
                     });
@@ -61,7 +61,14 @@ class Preview extends React.Component {
     renderQuestions = () => {
         if (!isUndefined(this.state.testInfo) && !isUndefined(this.state.lastQuestion)) {
             let uniq = []
-            let questions = this.state.testInfo.questions.filter(question => question.status !== QuestionStatus.UNTOUCHED);
+            let questions = this.state.testInfo.questions.filter(question => {
+                if (question.status !== QuestionStatus.UNTOUCHED) {
+                    uniq.push(question.serialNumber);
+                    return true;
+                } else {
+                    return false;
+                }
+            });
             this.state.testInfo.questions.map(question => {
                 if (question.serialNumber > this.state.lastQuestion && !uniq.includes(question.serialNumber)) {
                     questions.push(question);
@@ -72,6 +79,7 @@ class Preview extends React.Component {
             questions.sort((o1, o2) => {
                 return o1.serialNumber - o2.serialNumber;
             });
+
             return questions.map(question => {
                 return (
                     <li className={s.question_item}>
@@ -129,8 +137,14 @@ class Preview extends React.Component {
                 const questionList = questions.filter(q => q.serialNumber === currentQuestion);
 
                 if (questionList.length > 0) {
-                    const question = questionList[Math.floor(Math.random() * questionList.length)];
-                    return "/question/" + this.state.testInfo.id + "/" + question.id;
+                    const started = questionList.filter(q => q.status === QuestionStatus.STARTED);
+
+                    if (started.length === 1) {
+                        return "/question/" + this.state.testInfo.id + "/" + questionList[0].id;
+                    } else {
+                        const question = questionList[Math.floor(Math.random() * questionList.length)];
+                        return "/question/" + this.state.testInfo.id + "/" + question.id;
+                    }
                 } else {
                     return "#";
                 }
@@ -188,12 +202,10 @@ class Preview extends React.Component {
                             {this.renderQuestions()}
                         </ul>
                     </div>
-                    <div className={s.button}>
+                    <div className={!isUndefined(this.state.testStatus)
+                    && this.state.testStatus === TestStatus.UNTOUCHED ? s.button : s.hidden}>
                         <Link to={this.getQuestionLink()}
-                              className={`${s.link} ${
-                                  !isUndefined(this.state.testStatus)
-                                  || this.state.testStatus === TestStatus.UNTOUCHED
-                                      ? s.link_active : s.link_inactive}`}>
+                              className={s.link}>
                             <div>{this.getButtonText()}</div>
                         </Link>
                     </div>

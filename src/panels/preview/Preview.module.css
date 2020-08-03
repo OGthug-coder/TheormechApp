@@ -135,7 +135,7 @@
     color: #F3FDFF;
     font-style: normal;
     font-weight: normal;
-    text-shadow: 0px 4px 6px #34ABB5;
+    /*text-shadow: 0px 4px 6px #34ABB5;*/
     display: grid;
     justify-items: center;
     margin-left: auto;
@@ -149,16 +149,13 @@
     font-family: "Titillium Web", sans-serif;
     font-size: 18px;
     outline: none;
-}
-
-.link_active {
     background: #588EFF;
-}
-
-.link_inactive {
-    background: #BEBEBE;
 }
 
 .link div {
     margin-top: 7px;
+}
+
+.hidden {
+    display: none;
 }
