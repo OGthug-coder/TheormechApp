@@ -137,6 +137,8 @@ class Preview extends React.Component {
 
             }
         }
+
+        return "#";
     }
 
     render() {

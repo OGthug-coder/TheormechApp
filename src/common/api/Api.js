@@ -6,7 +6,6 @@ class Api {
     constructor() {
         this.URL = "http://25.41.84.109:8080/v1/";
         // this.URL = "http://localhost:8080/v1/";
-        this.URL = "https://cb5eeba06887.ngrok.io/v1/";
     }
 
     requestTests() {

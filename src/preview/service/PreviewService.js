@@ -26,8 +26,7 @@ class PreviewService {
         if (history.length === 0) {
             return -1;
         } else {
-            const sortedHistory = history.sort(e => e.eventCode !== EventCodeDto.STARTED);
-
+            const sortedHistory = history.filter(e => e.eventCode !== EventCodeDto.STARTED);
             return sortedHistory
                 .reduce((prev, current) => current.question.serialNumber > prev.question.serialNumber ? current : prev)
                 .question
