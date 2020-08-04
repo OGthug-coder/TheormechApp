@@ -36,7 +36,6 @@ class TestListService {
     }
 
     getProgress(questions, testId, userId) {
-        // TODO: process correct response
         try {
             return this.api.requestHistory(userId, testId)
                 .then(data => {

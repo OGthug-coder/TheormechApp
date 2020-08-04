@@ -1,11 +1,12 @@
 import React from 'react';
+import {Link, withRouter} from 'react-router-dom';
 import s from './Question.module.css';
-import Swipe from 'react-easy-swipe';
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import BackButton from "../../common/components/BackButton/BackButton";
 import isUndefined from "../../common/IsUndefined";
 import RightAnswerCode from "../../preview/service/RightAnswerCode";
-import {Link} from "react-router-dom";
+import getNextQuestionUrl from "../../common/getNextQuestionUrl";
+import QuestionStatus from "../../preview/service/QuestionStatus";
 
 class Question extends React.Component {
     constructor(props) {
@@ -13,20 +14,24 @@ class Question extends React.Component {
 
         this.application = props.application;
         this.questionService = this.application.provideQuestionService();
-        this.questionId = parseInt(props.match.params.questionId);
-        this.testId = parseInt(props.match.params.testId);
 
         this.state = {
+            questionId: parseInt(props.match.params.questionId),
+            testId: parseInt(props.match.params.testId),
             _position: 10,
         };
     }
 
     componentDidMount() {
-        // this.questionService.getQuestion(this.questionId)
+        // this.questionService.getQuestion(this.state.questionId)
         //     .then(question => this.setState({question: question}));
-        this.questionService.getTest(this.testId)
+        this.downloadData();
+    }
+
+    downloadData = () => {
+        this.questionService.getTest(this.state.testId)
             .then(test => {
-                const question = test.questions.find(q => q.id === this.questionId);
+                const question = test.questions.find(q => q.id === this.state.questionId);
                 this.questionService.startQuestion(question.id);
                 this.setState({question: question});
                 this.setState({test: test});
@@ -43,7 +48,7 @@ class Question extends React.Component {
                 });
                 this.setState({questionsLength: uniqQuestions.length});
             });
-    }
+    };
 
     prepareList = () => {
         if (!isUndefined(this.state.question)) {
@@ -52,6 +57,7 @@ class Question extends React.Component {
             this.state.question.answers.map(answer => {
                 list.push(
                     <QuestionItemFragment
+                        key={answer.id}
                         answerType={'str'}
                         answerText={answer.answer}
                         onRightAnswer={this.onRightAnswer}
@@ -66,28 +72,53 @@ class Question extends React.Component {
 
     onRightAnswer = () => {
         console.log("right");
-        this.questionService.passQuestion(this.questionId);
-    }
+        this.questionService.passQuestion(this.state.questionId);
+        this.startNextQuestion(QuestionStatus.PASSED);
+    };
 
     onWrongAnswer = () => {
         console.log("wrong");
-        this.questionService.failQuestion(this.questionId);
-    }
+        this.questionService.failQuestion(this.state.questionId);
+        this.startNextQuestion(QuestionStatus.FAILED);
+    };
+
+    startNextQuestion = (status) => {
+        if (!isUndefined(this.state.test)
+            && !isUndefined(this.state.question)) {
+            const test = this.state.test;
+            test.questions.map(q => {
+                if (q.id === this.state.questionId){
+                    q.status = status;
+                }
+                return q;
+            });
+
+            const url = getNextQuestionUrl(this.state.test, this.state.question.serialNumber);
+            if (!isUndefined(url)) {
+                const qId = parseInt(url.split("/")[3]);
+                this.props.history.replace(url);
+                this.setState({questionId: qId});
+                this.downloadData();
+            } else {
+                this.props.history.goBack();
+            }
+        }
+    };
 
     onSkip = () => {
-        this.questionService.skipQuestion(this.questionId);
-    }
+        this.questionService.skipQuestion(this.state.questionId);
+    };
 
     onClick(e) {
         console.log('pushed');
     }
 
     onSwipeStart = (event) => {
-    }
+    };
 
     onSwipeMove = (position, event) => {
         this.setState({position: position.y});
-    }
+    };
 
     onSwipeEnd = (event) => {
         const start = this.state._position;
@@ -116,7 +147,7 @@ class Question extends React.Component {
         }
 
         const nextMove = (t) => 1 - t * t * t * t * t;
-    }
+    };
 
 
     render() {
@@ -181,4 +212,4 @@ class Question extends React.Component {
     }
 }
 
-export default Question;
+export default withRouter(Question);

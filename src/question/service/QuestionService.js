@@ -31,7 +31,6 @@ class QuestionService {
 
     skipQuestion(questionId) {
         this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.SKIPPED));
-
     }
 
 }

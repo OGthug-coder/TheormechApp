@@ -22,11 +22,11 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route
-                        path={'/question/:testId/:questionId'}
+                        excect path={'/question/:testId/:questionId'}
                         render={({match}) => <Question match={match} application={this.application}/>}
                     />
                     <Route
-                        path={'/preview/:testId'}
+                        excect path={'/preview/:testId'}
                         render={({match}) => <Preview match={match} application={this.application}/>}
                     />
                     <Route excect path={'/'}>

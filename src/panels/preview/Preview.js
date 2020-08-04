@@ -10,6 +10,7 @@ import PreviewUtil from "../../preview/service/TestStatus";
 import TestStatus from "../../preview/service/TestStatus";
 import isUndefined from "../../common/IsUndefined";
 import BackButton from "../../common/components/BackButton/BackButton";
+import getNextQuestionUrl from "../../common/getNextQuestionUrl";
 
 class Preview extends React.Component {
     constructor(props) {
@@ -84,6 +85,7 @@ class Preview extends React.Component {
                 return (
                     <li className={s.question_item}>
                         <QuestionItemFragment
+                            key={question.id}
                             questionId={question.id}
                             serialNumber={question.serialNumber}
                             status={question.status}
@@ -123,32 +125,16 @@ class Preview extends React.Component {
     }
 
 
-
     getNextQuestionLink = () => {
-        if (!isUndefined(this.state.testInfo)
-            && !isUndefined(this.state.testStatus)
+        if (!isUndefined(this.state.testStatus)
+            && !isUndefined(this.state.testInfo)
             && !isUndefined(this.state.lastQuestion)) {
 
             if (this.state.testStatus === TestStatus.FINISHED) {
                 return "#";
             } else {
-                const currentQuestion = this.state.lastQuestion + 1;
-                const questions = this.state.testInfo.questions;
-                const questionList = questions.filter(q => q.serialNumber === currentQuestion);
-
-                if (questionList.length > 0) {
-                    const started = questionList.filter(q => q.status === QuestionStatus.STARTED);
-
-                    if (started.length === 1) {
-                        return "/question/" + this.state.testInfo.id + "/" + questionList[0].id;
-                    } else {
-                        const question = questionList[Math.floor(Math.random() * questionList.length)];
-                        return "/question/" + this.state.testInfo.id + "/" + question.id;
-                    }
-                } else {
-                    return "#";
-                }
-
+                const url = getNextQuestionUrl(this.state.testInfo, this.state.lastQuestion);
+                return isUndefined(url) ? "#" : url;
             }
         }
 
