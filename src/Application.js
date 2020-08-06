@@ -1,26 +1,40 @@
 import TestListService from "./testList/service/TestListService";
-import Api from "./api/Api";
 import ProfileService from "./profile/service/ProfileService";
 import QuestionService from "./question/service/QuestionService";
-import NoUserFoundException from "./exceptions/NoUserFoundException";
+import UserService from "./common/services/UserService";
+import PreviewService from "./preview/service/PreviewService";
+import TestRepo from "./common/testrepo/TestRepo";
+import Api from "./common/api/Api";
+import isUndefined from "./common/IsUndefined";
 
 class Application {
     #testListService;
     #profileService;
     #questionService;
+    #userService;
     #user;
     #api;
+    #previewService;
+    #testRepo;
+
+    provideTestRepo() {
+        if (isUndefined(this.#testRepo)) {
+            this.#testRepo = new TestRepo();
+        }
+
+        return this.#testRepo;
+    }
 
     provideTestListService() {
-        if (this.#testListService == null) {
-            this.#testListService = new TestListService(this.provideApi(), this.provideUser());
+        if (isUndefined(this.#testListService)) {
+            this.#testListService = new TestListService(this.provideApi(), this.provideUser(), this.provideTestRepo());
         }
 
         return this.#testListService;
     }
 
     provideApi() {
-        if (this.#api == null) {
+        if (isUndefined(this.#api)) {
             this.#api = new Api();
         }
 
@@ -28,29 +42,41 @@ class Application {
     }
 
     provideProfileService() {
-        if (this.#profileService == null) {
+        if (isUndefined(this.#profileService)) {
             this.#profileService = new ProfileService(this.provideApi());
         }
 
         return this.#profileService;
     }
 
+    providePreviewService() {
+        if (isUndefined(this.#previewService)) {
+            this.#previewService = new PreviewService(this.provideApi(), this.provideTestRepo());
+        }
+
+        return this.#previewService;
+    }
+
+
     provideUser() {
-        if (this.#user === undefined) {
-            this.#user = this.provideApi().getVkProfile()
-                .then(vk_profile => vk_profile.id)
-                .then(id => {
-                    let user = this.provideApi().requestUserById(id);
-                    return user;
-                });
+        if (isUndefined(this.#user)) {
+            this.#user = this.provideUserService().getUser();
         }
 
         return this.#user;
     }
 
+    provideUserService() {
+        if (isUndefined(this.#userService)) {
+            this.#userService = new UserService(this.provideApi());
+        }
+
+        return this.#userService;
+    }
+
     provideQuestionService() {
-        if (this.#questionService == null) {
-            this.#questionService = new QuestionService(this.provideApi());
+        if (isUndefined(this.#questionService)) {
+            this.#questionService = new QuestionService(this.provideApi(), this.provideTestRepo(), this.provideUser());
         }
 
         return this.#questionService;

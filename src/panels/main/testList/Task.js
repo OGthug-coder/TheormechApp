@@ -9,13 +9,14 @@ class Task extends React.Component {
         super(props);
 
         this.application = props.application;
+
         this.state = {
             id: props.id,
             title: props.title,
             img: props.img,
             date: props.date,
-            progress: props.progress,
         }
+        props.progress.then(progress => this.setState({progress: progress}));
     }
 
     render() {
@@ -39,7 +40,7 @@ class Task extends React.Component {
 
                 </div>
                 <div className={s.start_button}>
-                    <Link to={'/preview'} className={s.link} application={this.application}>
+                    <Link to={`/preview/${this.state.id}`} className={s.link}>
                         <div>Начать тест</div>
                     </Link>
                 </div>

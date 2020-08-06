@@ -4,13 +4,11 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import s from './App.module.css';
 import Preview from "./panels/preview/Preview";
-import Main from "./panels/Main/Main";
+import Main from "./panels/main/Main";
 import Question from "./panels/question/Question";
 import Application from "./Application";
 
-
 class App extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -21,22 +19,22 @@ class App extends React.Component {
 
     render() {
         return (
-
             <Router>
                 <Switch>
-                    <Route path={'/question'}>
-                        <Question application={this.application}/>
-                    </Route>
-                    <Route path={'/preview'}>
-                        <Preview/>
-                    </Route>
-                    <Route path={'/'}>
+                    <Route
+                        excect path={'/question/:testId/:questionId'}
+                        render={({match}) => <Question match={match} application={this.application}/>}
+                    />
+                    <Route
+                        excect path={'/preview/:testId'}
+                        render={({match}) => <Preview match={match} application={this.application}/>}
+                    />
+                    <Route excect path={'/'}>
                         <div className={s.main_window}>
-                            <Main application={this.application} />
+                            <Main application={this.application}/>
                         </div>
                     </Route>
                 </Switch>
-
             </Router>
 
         )
