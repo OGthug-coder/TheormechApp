@@ -4,9 +4,10 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import s from './App.module.css';
 import Preview from "./panels/preview/Preview";
-import Main from "./panels/main/Main";
+
 import Question from "./panels/question/Question";
 import Application from "./Application";
+import Main from "./panels/main/Main";
 
 class App extends React.Component {
     constructor(props) {
