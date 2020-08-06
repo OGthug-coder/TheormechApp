@@ -184,7 +184,9 @@ class Question extends React.Component {
                     </section>
                     <div className={s.control}>
                         <div className={s.score_container}>
-                            Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
+                            <div>
+                                Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
+                            </div>
                         </div>
                         <div className={s.next_question}
                              onClick={this.onSkip}>
