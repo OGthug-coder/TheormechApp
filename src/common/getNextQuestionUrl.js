@@ -1,6 +1,7 @@
 import QuestionStatus from "../preview/service/QuestionStatus";
 
 const getNextQuestionUrl = (test, lastQuestion) => {
+
     const currentQuestion = lastQuestion + 1;
     const questions = test.questions;
     const questionList = questions.filter(q => q.serialNumber === currentQuestion);

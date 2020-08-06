@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import s from './Question.module.css';
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import BackButton from "../../common/components/BackButton/BackButton";
@@ -87,7 +87,7 @@ class Question extends React.Component {
             && !isUndefined(this.state.question)) {
             const test = this.state.test;
             test.questions.map(q => {
-                if (q.id === this.state.questionId){
+                if (q.id === this.state.questionId) {
                     q.status = status;
                 }
                 return q;
@@ -106,7 +106,9 @@ class Question extends React.Component {
     };
 
     onSkip = () => {
+        console.log("right");
         this.questionService.skipQuestion(this.state.questionId);
+        this.startNextQuestion(QuestionStatus.SKIPPED)
     };
 
     onClick(e) {
@@ -184,10 +186,11 @@ class Question extends React.Component {
                         <div className={s.score_container}>
                             Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
                         </div>
-                        <Link className={s.next_question}>
-                            {/*TODO change to icon*/}
-                            Следующий &raquo;
-                        </Link>
+                        <div className={s.next_question}
+                             onClick={this.onSkip}>
+                            <div>Следующий</div>
+                            <div className={s.chevron}/>
+                        </div>
                     </div>
 
                     {/*TODO: implement swipes*/}
