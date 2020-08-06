@@ -42,12 +42,11 @@
     font-size: 16px;
 }
 
-.name + div {
-    margin-top: 5px;
-}
-
-.city {
+.score {
     margin-top: 10px;
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    grid-gap: 5px;
 }
 
 .level_fragment {
