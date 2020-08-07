@@ -1,4 +1,4 @@
-import QuestionStatus from "../preview/service/QuestionStatus";
+import QuestionStatus from "../preview/util/QuestionStatus";
 
 const getNextQuestionUrl = (test, lastQuestion) => {
 

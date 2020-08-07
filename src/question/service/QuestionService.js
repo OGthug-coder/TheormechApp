@@ -1,4 +1,4 @@
-import EventCodeDto from "../../preview/service/EventCodeDto";
+import EventCodeDto from "../../preview/util/EventCodeDto";
 
 class QuestionService {
     constructor(api, repo, user) {

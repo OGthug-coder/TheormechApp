@@ -1,6 +1,6 @@
-import TestStatus from "./TestStatus";
-import QuestionStatus from "./QuestionStatus";
-import EventCodeDto from "./EventCodeDto";
+import TestStatus from "../util/TestStatus";
+import QuestionStatus from "../util/QuestionStatus";
+import EventCodeDto from "../util/EventCodeDto";
 
 class PreviewService {
     constructor(api, repo) {
@@ -83,6 +83,9 @@ class PreviewService {
                                 break;
                             case EventCodeDto.SKIPPED:
                                 status = QuestionStatus.SKIPPED;
+                                break;
+                            default:
+                                status = undefined;
                                 break;
                         }
                         question.status = status;

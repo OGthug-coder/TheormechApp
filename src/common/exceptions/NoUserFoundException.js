@@ -1,7 +1,3 @@
-class NoUserFoundException extends Error {
-    constructor(message) {
-        super(message);
-    }
-}
+class NoUserFoundException extends Error {}
 
 export default NoUserFoundException;

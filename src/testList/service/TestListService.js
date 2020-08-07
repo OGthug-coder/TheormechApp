@@ -1,5 +1,5 @@
 import NoHistoryFoundException from "../../common/exceptions/NoHistoryFoundException";
-import EventCodeDto from "../../preview/service/EventCodeDto";
+import EventCodeDto from "../../preview/util/EventCodeDto";
 
 class TestListService {
     constructor(api, user, testRepo) {
@@ -14,7 +14,6 @@ class TestListService {
                 let tests = [];
 
                 testsDto.map(t => {
-
                     tests.push({
                         id: t.id,
                         title: t.title,
@@ -22,6 +21,7 @@ class TestListService {
                         date: t.date,
                         progress: this.getProgress(t.questions, t.id, user.id)
                     })
+                    return t;
                 });
                 return tests;
             });

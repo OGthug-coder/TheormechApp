@@ -23,7 +23,9 @@ class Task extends React.Component {
         return (
             <div className={s.field}>
                 <div className={s.card}>
-                    <img className={s.pic} src={this.state.img}/>
+                    <img className={s.pic}
+                         src={this.state.img}
+                         alt={"test"}/>
                     <div className={s.name}>
                         {this.state.title}
                     </div>

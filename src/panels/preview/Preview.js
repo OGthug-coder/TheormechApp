@@ -4,10 +4,10 @@ import Answer from "./fragments/Answer";
 import s from "./Preview.module.css";
 import ProgressFragment from "./fragments/ProgressFragment";
 import {Link} from "react-router-dom";
-import QuestionStatus from "../../preview/service/QuestionStatus";
+import QuestionStatus from "../../preview/util/QuestionStatus";
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
-import PreviewUtil from "../../preview/service/TestStatus";
-import TestStatus from "../../preview/service/TestStatus";
+import PreviewUtil from "../../preview/util/TestStatus";
+import TestStatus from "../../preview/util/TestStatus";
 import isUndefined from "../../common/IsUndefined";
 import BackButton from "../../common/components/BackButton/BackButton";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
@@ -75,6 +75,7 @@ class Preview extends React.Component {
                     questions.push(question);
                     uniq.push(question.serialNumber);
                 }
+                return question;
             })
 
             questions.sort((o1, o2) => {
@@ -83,9 +84,9 @@ class Preview extends React.Component {
 
             return questions.map(question => {
                 return (
-                    <li className={s.question_item}>
+                    <li key={question.id}
+                        className={s.question_item}>
                         <QuestionItemFragment
-                            key={question.id}
                             questionId={question.id}
                             serialNumber={question.serialNumber}
                             status={question.status}
@@ -105,6 +106,8 @@ class Preview extends React.Component {
                     return "На закончено";
                 case PreviewUtil.FINISHED:
                     return "Завершено";
+                default:
+                    return "Не начато";
             }
         } else {
             return "Не начато";

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import s from './QuestionItemFragment.module.css';
-import QuestionStatus from "../../../preview/service/QuestionStatus";
+import QuestionStatus from "../../../preview/util/QuestionStatus";
 import isUndefined from "../../../common/IsUndefined";
 
 class QuestionItemFragment extends React.Component {
@@ -51,7 +51,8 @@ class QuestionItemFragment extends React.Component {
             <>
                 <div className={s.question_item} >
                     <img className={s.question_status}
-                         src={this.loadStatusPic()} >
+                         src={this.loadStatusPic()}
+                         alt={"question status"}>
                     </img>
                     <div className={s.question_body}>
                         <div className={s.title}>
