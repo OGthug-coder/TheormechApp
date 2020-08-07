@@ -1,0 +1,114 @@
+.answer_block {
+    position: fixed;
+    z-index: 100;
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr 0.75fr 0.5fr 1fr;
+    grid-template-areas: "head" "question" "ans_title" "ans" "explanation_title" "explanation";
+
+    width: 80%;
+    height: 60%;
+
+    left: 10%;
+    top: 20%;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.head {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-template-areas: "question_label" "exit";
+}
+
+.question_label {
+    margin-left: 55%;
+    margin-top: 20px;
+}
+
+.exit {
+    background: url("../../../img/answer/exit.svg") no-repeat;
+    margin: 25px auto auto;
+    height: 20px;
+    width: 20px;
+    outline: none;
+    border: none;
+    text-decoration: none;
+
+}
+
+.exit:hover {
+    color: #E8E8E8;
+}
+
+
+.question {
+    margin-bottom: 12px;
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    text-align: center;
+    letter-spacing: -0.05em;
+
+    color: #000000;
+}
+
+.ans_title {
+    margin-top: 10px;
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    text-align: center;
+    letter-spacing: -0.04em;
+
+    color: #000000;
+}
+
+.ans {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+
+    color: #3B4251;
+
+}
+
+.explanation_title {
+    margin-top: 10px;
+
+    font-family: Titillium Web, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: -0.04em;
+
+    color: #000000;
+
+}
+
+.explanation {
+    margin: 10px;
+
+    font-family: Titillium Web, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+
+    color: #3B4251;
+}

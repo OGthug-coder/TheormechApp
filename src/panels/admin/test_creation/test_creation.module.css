@@ -1,0 +1,140 @@
+.page {
+    overflow: scroll;
+}
+    
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.back{
+    text-align: left;
+    margin: 10px;
+}
+
+.close {
+    text-align: right;
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    padding: 5%;
+    
+}
+
+.title {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    color: #262626;
+}
+
+.form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1.5fr 2fr 1fr;
+}
+
+.text_input {
+    width: 80%;
+    height: 40px;
+    border: 1px solid #4B71FF;
+    box-shadow: inset 0px 4px 11px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    outline: none;
+}
+
+.field {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #181818;
+    margin: 10px;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #4B71FF;
+    box-sizing: border-box;
+    box-shadow: inset 0px 4px 11px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    vertical-align:middle;
+    margin: 5px;
+}
+
+label {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+
+    color: #181818;
+}
+
+select {
+    height: 40px;
+    width: 45px;
+    border: 1px solid #E1E1E1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.select_date {
+    height: 40px;
+    width: 80%;
+    margin-top: 10px;
+    padding: 5px;
+    font-family: Titillium Web, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #707070;
+    border: 1px solid #E1E1E1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.select_date input {
+    outline: none;
+    border: 0;
+}
+
+.day_picker {
+    width: 30px;
+}
+
+.month_picker {
+    width: 140px;
+}
+
+.time_picker {
+    width: 100px;
+}
+
+.next {
+    margin-top: 20px;
+    text-align: right;
+    
+}
+
+.next a {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: #181818;
+}
+    

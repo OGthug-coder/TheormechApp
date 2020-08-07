@@ -1,0 +1,13 @@
+.button {
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    border: none;
+    background-image: url("../../../img/preview/ic_chevron.svg");
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-color: white;
+    background-position: center;
+    margin-bottom: 5px;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+}

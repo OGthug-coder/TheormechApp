@@ -1,0 +1,79 @@
+.level_wrapper {
+    display: grid;
+    grid-template-rows: 40px min-content min-content;
+    grid-template-areas: "dignity" "quote" "sticker";
+    grid-gap: 5px;
+
+}
+
+.dignity {
+    grid-area: dignity;
+    font-size: 16px;
+    display: grid;
+    margin: auto;
+    grid-template-columns: 40px 1fr;
+    grid-template-areas:"brain text";
+}
+
+.dignity img {
+    grid-area: brain;
+    height: 34px;
+    width: 34px;
+}
+
+.dignity div {
+    margin-top: 7px;
+    grid-area: text;
+    font-weight: bold;
+}
+
+.quote {
+    font-weight: bold;
+    grid-area: quote;
+    margin-right: 20px;
+    margin-left: 20px;
+    border-radius: 25px;
+    background-color: #F2F2F2;
+    color: black;
+    font-size: 11px;
+    text-align: center;
+    padding: 10px;
+}
+
+.sticker_wrapper {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: repeat(3, 20px) ;
+    grid-template-areas:
+            "sticker cloud_1"
+            "sticker cloud_2"
+            "sricker cloud_3";
+    grid-row-gap: 7px;
+}
+
+.sticker_wrapper div:nth-child(1) {
+    grid-area: cloud_1;
+    width: 50px;
+    margin-left: 5px;
+}
+
+.sticker_wrapper div:nth-child(2) {
+    grid-area: cloud_2;
+    margin-left: 25px;
+    width: 35px;
+}
+
+.sticker_wrapper div:nth-child(3) {
+    grid-area: cloud_3;
+    width: 25px;
+}
+.cloud {
+    float: left;
+    height: 20px;
+    background-color: #F2F2F2;
+    border-radius: 25px;
+}
+
+.sticker {
+    grid-area: sticker;
+}

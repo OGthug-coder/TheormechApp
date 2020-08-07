@@ -1,13 +1,23 @@
-.question_window {
+.sticky_container {
+    height: 130px;
+    position: absolute;
+}
 
-        height: 100%;
-        background: linear-gradient(179.79deg, #699AFF 0.1%, #3171F7 21.78%);
-        font-family: Titillium Web, sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        text-align: center;
-        color: #FFFFFF;
-        
+.back_button {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 25px;
+    margin-left: 25px;
+}
+
+.question_window {
+    height: 100%;
+    background: linear-gradient(179.79deg, #699AFF 0.1%, #3171F7 21.78%);
+    font-family: Titillium Web, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 .question_number {
@@ -28,7 +38,7 @@
 
     display: grid;
     grid-template-rows: 1fr 4fr 1fr 0.25fr;
-    grid-template-areas: "question_text" "answer_container" "control" "slider";  
+    grid-template-areas: "question_text" "answer_container" "control" "slider";
 
     width: 90%;
     height: 80%;
@@ -40,7 +50,7 @@
     animation: slide_up 1.4s ease;
 }
 
-.question_text{
+.question_text {
     width: 80%;
     margin: auto;
     padding-top: 42px;
@@ -59,15 +69,10 @@
     border-bottom-right-radius: 25px;
 }
 
-.answer_container {
-    
-}
-
 .score_container {
     width: 100px;
     height: 36px;
-    margin: auto;
-    margin-bottom: 10px;
+    margin: auto auto 10px;
     padding: 18px;
 
     background: #FFFFFF;
@@ -75,7 +80,7 @@
     box-sizing: border-box;
     border-radius: 25px;
 
-    
+
     font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -89,27 +94,43 @@
     color: #000000;
 }
 
+.score_container div:first-child{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .score {
+    margin-left: 5px;
     font-weight: bold;
     font-size: 14px;
 }
 
 .next_question {
-    margin: auto;
-    
-    text-decoration: none;
-    display: inline-block;
+    display: grid;
+    grid-template-columns: 100px 9px;
+    align-content: center;
+    grid-gap: 5px;
     padding: 8px 16px;
-    pointer-events: none;
 
-    
+    text-decoration: none;
     font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
     line-height: 18px;
 
-    color: #000000;
+    color: black;
+}
+
+.chevron {
+    margin-bottom: 1px;
+    background-image: url("../../img/preview/ic_chevron.svg");
+    background-repeat: no-repeat;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .slider {
@@ -122,11 +143,10 @@
     width: 150px;
     height: 5px;
     border: none;
-    outline:none;
+    outline: none;
     background: #E8E8E8;
     border-radius: 25px;
 }
-
 
 
 .wave {
@@ -180,10 +200,21 @@
 }
 
 @keyframes slide_up {
-    0%{
+    0% {
         transform: translateY(250px);
     }
-    100%{
+    100% {
         transform: translateY(0);
     }
 }
+
+@keyframes slide_down {
+    0% {
+        transform: translateY(-250px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+

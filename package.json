@@ -16,6 +16,7 @@
     "cross-env": "^5.2.0",
     "gh-pages": "^2.2.0",
     "react-hot-loader": "^4.9.0",
+    "react-router": "^5.2.0",
     "react-scripts": "^3.4.1"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-easy-swipe": "0.0.18",
     "react-router-dom": "^5.2.0"
   },
   "browserslist": {
