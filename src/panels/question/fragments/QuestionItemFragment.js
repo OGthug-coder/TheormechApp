@@ -1,7 +1,6 @@
 import React from 'react';
 
 import s from './QuestionItemFragment.module.css';
-import isUndefined from "../../../common/IsUndefined";
 
 class QuestionItemFragment extends React.Component {
     constructor(props) {

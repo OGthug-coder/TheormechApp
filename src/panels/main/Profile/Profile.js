@@ -3,6 +3,7 @@ import React from 'react';
 import s from './Profile.module.css';
 import LevelFragment from "./LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
+import isUndefined from "../../../common/IsUndefined";
 
 
 class Profile extends React.Component {
@@ -34,17 +35,13 @@ class Profile extends React.Component {
                                     ? user.first_name + " " + user.last_name
                                     : ""
                             }
-
                         </div>
                         <div>
                             Студент теормеха
                         </div>
-                        <div className={s.city}>
-                            {/*{*/}
-                            {/*    user !== undefined && user.city.title !== ""*/}
-                            {/*        ? user.city.title*/}
-                            {/*        : "Планета Земля"*/}
-                            {/*}*/}
+                        <div className={s.score}>
+                            <img src={require("../../../img/profile/ic_score.svg")} alt={"score"}/>
+                            <div>{!isUndefined(user) ? user.score : 0}</div>
                         </div>
                     </div>
                 </div>

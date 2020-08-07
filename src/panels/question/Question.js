@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import s from './Question.module.css';
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import BackButton from "../../common/components/BackButton/BackButton";
 import isUndefined from "../../common/IsUndefined";
-import RightAnswerCode from "../../preview/service/RightAnswerCode";
+import RightAnswerCode from "../../preview/util/RightAnswerCode";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
-import QuestionStatus from "../../preview/service/QuestionStatus";
+import QuestionStatus from "../../preview/util/QuestionStatus";
 
 class Question extends React.Component {
     constructor(props) {
@@ -45,6 +45,7 @@ class Question extends React.Component {
                         uniqNumbers.push(q.serialNumber);
                         uniqQuestions.push(q);
                     }
+                    return q;
                 });
                 this.setState({questionsLength: uniqQuestions.length});
             });
@@ -65,6 +66,7 @@ class Question extends React.Component {
                         isRightAnswer={answer.isRight === RightAnswerCode.RIGHT_ANSWER}
                     />
                 );
+                return answer;
             });
             return list;
         }
@@ -82,12 +84,22 @@ class Question extends React.Component {
         this.startNextQuestion(QuestionStatus.FAILED);
     };
 
-    startNextQuestion = (status) => {
+    onSkip = () => {
+        console.log("skip");
+        this.questionService.skipQuestion(this.state.questionId);
+        this.startNextQuestion(QuestionStatus.SKIPPED);
+    };
+
+    wait(ms) {
+        new Promise(r => setTimeout(r, ms));
+    }
+
+    startNextQuestion(status) {
         if (!isUndefined(this.state.test)
             && !isUndefined(this.state.question)) {
             const test = this.state.test;
             test.questions.map(q => {
-                if (q.id === this.state.questionId){
+                if (q.id === this.state.questionId) {
                     q.status = status;
                 }
                 return q;
@@ -105,13 +117,9 @@ class Question extends React.Component {
         }
     };
 
-    onSkip = () => {
-        this.questionService.skipQuestion(this.state.questionId);
-    };
-
-    onClick(e) {
-        console.log('pushed');
-    }
+    // onClick(e) {
+    //     console.log('pushed');
+    // }
 
     onSwipeStart = (event) => {
     };
@@ -182,12 +190,16 @@ class Question extends React.Component {
                     </section>
                     <div className={s.control}>
                         <div className={s.score_container}>
-                            Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
+                            <div>
+                                Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
+                            </div>
                         </div>
-                        <Link className={s.next_question}>
-                            {/*TODO change to icon*/}
-                            Следующий &raquo;
-                        </Link>
+                        <div className={s.next_question}
+                             onClick={this.onSkip}>
+                            <div>Следующий</div>
+                            <div className={s.chevron}/>
+                        </div>
+
                     </div>
 
                     {/*TODO: implement swipes*/}

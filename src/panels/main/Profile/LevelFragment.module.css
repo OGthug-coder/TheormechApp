@@ -33,7 +33,7 @@
     margin-right: 20px;
     margin-left: 20px;
     border-radius: 25px;
-    background-color: white;
+    background-color: #F2F2F2;
     color: black;
     font-size: 11px;
     text-align: center;
@@ -70,7 +70,7 @@
 .cloud {
     float: left;
     height: 20px;
-    background-color: white;
+    background-color: #F2F2F2;
     border-radius: 25px;
 }
 
