@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import s from './Question.module.css';
-import QuestionItemFragment from "./fragments/QuestionItemFragment";
+import AnswerItemFragment from "./fragments/AnswerItemFragment";
 import BackButton from "../../common/components/BackButton/BackButton";
 import isUndefined from "../../common/IsUndefined";
 import RightAnswerCode from "../../preview/util/RightAnswerCode";
@@ -57,7 +57,7 @@ class Question extends React.Component {
 
             this.state.question.answers.map(answer => {
                 list.push(
-                    <QuestionItemFragment
+                    <AnswerItemFragment
                         key={answer.id}
                         answerType={'str'}
                         answerText={answer.answer}
@@ -191,7 +191,7 @@ class Question extends React.Component {
                     <div className={s.control}>
                         <div className={s.score_container}>
                             <div>
-                                Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
+                                Очки: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
                             </div>
                         </div>
                         <div className={s.next_question}
@@ -199,7 +199,6 @@ class Question extends React.Component {
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>
-
                     </div>
 
                     {/*TODO: implement swipes*/}

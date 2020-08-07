@@ -1,8 +1,8 @@
 import React from 'react';
 
-import s from './QuestionItemFragment.module.css';
+import s from './AnswerItemFragment.module.css';
 
-class QuestionItemFragment extends React.Component {
+class AnswerItemFragment extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,7 +13,6 @@ class QuestionItemFragment extends React.Component {
             onWrongAnswer: props.onWrongAnswer,
             isRightAnswer: props.isRightAnswer
         }
-
     }
 
     render() {
@@ -31,4 +30,4 @@ class QuestionItemFragment extends React.Component {
     }
 
 }
-export default QuestionItemFragment;
+export default AnswerItemFragment;
