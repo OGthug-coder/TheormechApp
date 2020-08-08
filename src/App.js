@@ -8,6 +8,7 @@ import Preview from "./panels/preview/Preview";
 import Question from "./panels/question/Question";
 import Application from "./Application";
 import Main from "./panels/main/Main";
+import StickerShop from "./panels/stickershop/StickerShop";
 
 class App extends React.Component {
     constructor(props) {
@@ -32,7 +33,8 @@ class App extends React.Component {
                     />
                     <Route excect path={'/'}>
                         <div className={s.main_window}>
-                            <Main application={this.application}/>
+                            <StickerShop />
+                            {/*<Main application={this.application}/>*/}
                         </div>
                     </Route>
                 </Switch>
