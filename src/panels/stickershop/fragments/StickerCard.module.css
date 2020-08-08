@@ -1,11 +1,43 @@
 .card {
+    font-family: 'Roboto', sans-serif;
     scroll-snap-align: center;
     display: inline-block;
     height: 90%;
     width: 80vw;
     background: #FFFFFF;
+    -webkit-box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
     box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
     margin: 10px;
 }
 
+.content_container {
+    display: -ms-grid;
+    display: grid;
+    height: 100%;
+    -ms-grid-rows: 25px 1fr 25px 1fr;
+    grid-template-rows: 25px 1fr 25px 1fr;
+    padding: 15px;
+    justify-items: center;
+}
+
+.content_container > img:first-child {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.content_container > img:last-child {
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.description {
+    margin-right: 0;
+    white-space: pre-wrap;
+    width: 65vw;
+    height: 19vh;
+}

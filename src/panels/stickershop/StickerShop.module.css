@@ -1,16 +1,25 @@
 .container {
     font-family: 'Roboto', sans-serif;
-    height: 100%;
+    height: 70%;
     width: 100%;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-rows: 55px 10vh 1fr 10vh;
     grid-template-rows: 55px 10vh 1fr 10vh;
     justify-items: center;
 }
 
 .headline {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -23,7 +32,11 @@
 }
 
 .headline div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -34,20 +47,21 @@
 }
 
 .sticker_container {
+    -ms-scroll-snap-type: x mandatory;
     scroll-snap-type: x mandatory;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     width: 100%;
-    height: 65vh;
-    padding-top: 1vh;
+    height: 70vh;
 }
 
-.sticker_container div:last-child {
+
+.sticker_container > div:last-child {
     margin-right: 10vw;
 }
 
-.sticker_container div:first-child {
+.sticker_container > div:first-child {
     margin-left: 10vw;
 }
 
@@ -61,5 +75,4 @@
     border: none;
     border-radius: 25px;
     background-color: #5D80FF;
-
 }
