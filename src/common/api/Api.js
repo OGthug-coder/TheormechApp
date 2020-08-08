@@ -123,7 +123,7 @@ class Api {
     sendHistoryEvent(questionId, userId, eventCode) {
         const url = this.URL + "users/" + userId + "/send_event/" + questionId;
 
-        fetch(url, {
+        return fetch(url, {
             method: "POST",
             body: eventCode,
             headers: {

@@ -1,12 +1,13 @@
 import React from 'react';
 
-import s from './QuestionItemFragment.module.css';
+import s from './AnswerItemFragment.module.css';
 
-class QuestionItemFragment extends React.Component {
+class AnswerItemFragment extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            disabled: props.disabled,
             answerType: props.answerType,
             answerText: props.answerText,
             onRightAnswer: props.onRightAnswer,
@@ -15,10 +16,17 @@ class QuestionItemFragment extends React.Component {
         }
 
     }
+    getOnClick = () => {
+        if (!this.state.disabled) {
+            return this.state.isRightAnswer ? this.state.onRightAnswer : this.state.onWrongAnswer;
+        } else {
+            return "";
+        }
+    };
 
     render() {
         return (
-            <div className={s.answer_item} onClick={this.state.isRightAnswer ? this.state.onRightAnswer : this.state.onWrongAnswer}>
+            <div className={s.answer_item} onClick={this.getOnClick()}>
                 {
                     this.state.answerType === 'str' ?
                         (<div className={s.text} >
@@ -31,4 +39,4 @@ class QuestionItemFragment extends React.Component {
     }
 
 }
-export default QuestionItemFragment;
+export default AnswerItemFragment;
