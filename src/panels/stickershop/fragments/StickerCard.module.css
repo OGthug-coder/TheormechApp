@@ -1,0 +1,11 @@
+.card {
+    scroll-snap-align: center;
+    display: inline-block;
+    height: 90%;
+    width: 80vw;
+    background: #FFFFFF;
+    box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    margin: 10px;
+}
+
