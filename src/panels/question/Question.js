@@ -86,6 +86,7 @@ class Question extends React.Component {
         console.log("right");
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
+                this.setState({status: Status.IN_PROGRESS});
                 this.startNextQuestion(QuestionStatus.PASSED);
             } else {
                 //    TODO
@@ -98,6 +99,7 @@ class Question extends React.Component {
         console.log("wrong");
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
+                this.setState({status: Status.IN_PROGRESS});
                 this.startNextQuestion(QuestionStatus.FAILED);
             } else {
                 //    TODO
@@ -110,6 +112,7 @@ class Question extends React.Component {
         console.log("skip");
         this.questionService.skipQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
+                this.setState({status: Status.IN_PROGRESS});
                 this.startNextQuestion(QuestionStatus.SKIPPED);
             } else {
             //    TODO
