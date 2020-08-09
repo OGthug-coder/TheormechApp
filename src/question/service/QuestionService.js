@@ -18,19 +18,19 @@ class QuestionService {
     }
 
     startQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.STARTED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.STARTED));
     }
 
     failQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.FAILED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.FAILED));
     }
 
     passQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.PASSED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.PASSED));
     }
 
     skipQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.SKIPPED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.SKIPPED));
     }
 
 }
