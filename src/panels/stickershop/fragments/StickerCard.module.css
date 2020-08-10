@@ -1,22 +1,19 @@
 .card {
+    display: inline-block;
     font-family: 'Roboto', sans-serif;
     scroll-snap-align: center;
-    display: inline-block;
-    height: 90%;
+    height: min-content;
     width: 80vw;
     background: #FFFFFF;
-    -webkit-box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
     box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
     margin: 10px;
 }
 
 .content_container {
-    display: -ms-grid;
-    display: grid;
+    display: flex;
     height: 100%;
-    -ms-grid-rows: 25px 1fr 25px 1fr;
-    grid-template-rows: 25px 1fr 25px 1fr;
+    flex-direction: column;
     padding: 15px;
     justify-items: center;
 }
@@ -26,18 +23,36 @@
     margin-right: 0;
 }
 
-.content_container > img:last-child {
+.content_container > img:nth-child(2) {
+    margin-bottom: 10px;
 }
 
 .name {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.description {
+.quote {
+    font-size: 1.1em;
+    font-style: italic;
     margin-right: 0;
     white-space: pre-wrap;
     width: 65vw;
-    height: 19vh;
+    margin-bottom: 15px;
 }
+
+@media screen and (max-height: 670px) {
+    .description {
+        display: none;
+    }
+}
+
+@media screen and (min-height: 670px) {
+    .description > div {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+

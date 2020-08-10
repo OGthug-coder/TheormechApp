@@ -12,8 +12,12 @@ class StickerCard extends React.Component{
                         <div className={s.name}>
                             Девид Гилберт
                         </div>
-                        <div className={s.description} >
-                            Он стал поэтом — для математика у него не хватало фантазии.
+                        <div className={s.quote} >
+                            {'«' + 'Он стал поэтом — для математика у него не хватало фантазии' + '»'}
+                        </div>
+                        <div className={s.description}>
+                            <div>Подробнее</div>
+                            Немецкий математик, внёс значительный вклад в развитие многих областей математики. Лауреат премии имени Н. И. Лобачевского
                         </div>
                     </div>
                 </div>

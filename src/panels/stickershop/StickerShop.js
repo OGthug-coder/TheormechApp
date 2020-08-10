@@ -21,7 +21,6 @@ class StickerShop extends React.Component {
                     <StickerCard/>
                     <StickerCard/>
                 </div>
-                <button className={s.button}/>
             </div>
         );
     }
