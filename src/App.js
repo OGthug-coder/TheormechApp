@@ -30,12 +30,12 @@ class App extends React.Component {
                         excect path={'/preview/:testId'}
                         render={({match}) => <Preview match={match} application={this.application}/>}
                     />
-                    {/*<Route excect path={'/'}>*/}
-                    {/*    <div className={s.main_window}>*/}
-                    {/*        <Main application={this.application}/>*/}
-                    {/*    </div>*/}
-                    {/*</Route>*/}
-                    <Route exact path={'/'}
+                    <Route excect path={'/'}>
+                        <div className={s.main_window}>
+                            <Main application={this.application}/>
+                        </div>
+                    </Route>
+                    <Route exact path={'/stickerShop'}
                            render={({match}) => <StickerShop match={match} application={this.application}/>}/>
                 </Switch>
             </Router>

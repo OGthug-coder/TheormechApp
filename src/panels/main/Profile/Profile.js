@@ -4,6 +4,7 @@ import s from './Profile.module.css';
 import LevelFragment from "./LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
+import Score from "../../../common/components/score/Score";
 
 
 class Profile extends React.Component {
@@ -27,11 +28,11 @@ class Profile extends React.Component {
             <div className={s.profile_card}>
                 <div className={s.slider}/>
                 <div className={s.about}>
-                    <Avatar src={this.state.user !== undefined ? this.state.user.photo_200 : ""} size={100}/>
+                    <Avatar src={!isUndefined(user) ? this.state.user.photo_200 : ""} size={100}/>
                     <div className={s.bio}>
                         <div className={s.name}>
                             {
-                                user !== undefined
+                                !isUndefined(user)
                                     ? user.first_name + " " + user.last_name
                                     : ""
                             }
@@ -40,8 +41,7 @@ class Profile extends React.Component {
                             Студент теормеха
                         </div>
                         <div className={s.score}>
-                            <img src={require("../../../img/profile/ic_score.svg")} alt={"score"}/>
-                            <div>{!isUndefined(user) ? user.score : 0}</div>
+                            <Score score={!isUndefined(user) ? user.score : 0}/>
                         </div>
                     </div>
                 </div>

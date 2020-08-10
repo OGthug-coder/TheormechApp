@@ -70,10 +70,11 @@
         font-size: 20px;
         font-weight: 600;
         margin-bottom: 10px;
+        display: none;
     }
 
     .description {
-        margin-bottom: 1vh;
+        margin-bottom: 2vh;
     }
 }
 
