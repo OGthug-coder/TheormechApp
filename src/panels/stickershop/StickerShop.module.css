@@ -3,11 +3,12 @@
     display: -ms-grid;
 
     display: grid;
-    -ms-grid-rows: 55px 10vh 1fr;
-    grid-template-rows: 55px 10vh 1fr;
+    grid-template-rows: 58px 12vh 1fr;
     justify-items: center;
     align-items: center;
+    align-content: center;
 }
+
 
 .headline {
     width: 100%;
@@ -47,37 +48,21 @@
 
 .sticker_container {
     width: 100vw;
-    height: 75vh;
+    height: 80vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    align-items: center;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
     overflow: scroll;
-    align-items: center;
-    -ms-scroll-snap-type: x mandatory;
     scroll-snap-type: x mandatory;
 }
 
 
-.sticker_container > div:last-child {
-    margin-right: 14vw;
-}
-
-.sticker_container > div:first-child {
-    margin-left: 14vw;
-}
-
 .sticker_container::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
+    display: none; /* Safari and Chrome */
 }
 
-.button {
-    height: 7vh;
-    width: 60vw;
-    border: none;
-    border-radius: 25px;
-    background-color: #5D80FF;
-}
