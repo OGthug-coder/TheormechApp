@@ -3,7 +3,7 @@
     display: -ms-grid;
 
     display: grid;
-    grid-template-rows: 58px 12vh 1fr;
+    grid-template-rows: 57px 12vh 1fr;
     justify-items: center;
     align-items: center;
     align-content: center;
