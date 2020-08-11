@@ -5,28 +5,44 @@ import StickerControl from "./StickerControl";
 import StickerStatus from "../util/StickerStatus";
 
 class StickerCard extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            img: props.img,
+            name: props.name,
+            quote: props.quote,
+            description: props.description,
+            cost: props.cost,
+            status: props.status
+        };
+    }
+
+
     render() {
         return (
             <div className={s.wrapper}>
                 <div className={s.card}>
-                    <img src={require("../../../img/profile/hilbert.svg")} alt="sticker"/>
+                    <img className={s.img}
+                        src={this.state.img}
+                        alt="sticker"
+                        />
                     <div className={s.content}>
                         <div className={s.name}>
-                            Девид Гилберт
+                            {this.state.name}
                         </div>
                         <div className={s.quote}>
-                            {'«' + 'Он стал поэтом — для математика у него не хватало фантазии' + '»'}
+                            {'«' + this.state.quote + '»'}
                         </div>
                         <div className={s.description}>
                             <div>Подробнее</div>
-                            Немецкий математик, внёс значительный вклад в развитие многих областей математики. Лауреат
-                            премии имени Н. И. Лобачевского
+                            {this.state.description}
                         </div>
                     </div>
                     <div className={s.control}>
-                        <Score score={175}/>
+                        <Score score={this.state.cost}/>
                         <div className={s.status}>
-                            <StickerControl status={StickerStatus.LOCKED} />
+                            <StickerControl status={this.state.status} />
                         </div>
                     </div>
                 </div>

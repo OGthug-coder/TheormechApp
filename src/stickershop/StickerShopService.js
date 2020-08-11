@@ -3,8 +3,8 @@ class StickerShopService {
         this.api = api;
     }
 
-    getUserStickers(userId) {
-
+    getAllStickers() {
+        return this.api.requestStickers();
     }
 
 }

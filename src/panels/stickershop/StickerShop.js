@@ -4,6 +4,8 @@ import StickerCard from "./fragments/StickerCard";
 
 import s from "./StickerShop.module.css";
 import Score from "../../common/components/score/Score";
+import StickerStatus from "./util/StickerStatus";
+import isUndefined from "../../common/IsUndefined";
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -15,8 +17,42 @@ class StickerShop extends React.Component {
     }
 
     componentDidMount() {
-        this.stickerShopService
+        this.stickerShopService.getAllStickers().then(stickers => {
+            this.application.provideUser().then(user => {
+                stickers.map(sticker => {
+                    if (sticker.id === user.activeSticker.id) {
+                        sticker.status = StickerStatus.ACTIVE;
+                    } else if (user.stickers.includes(sticker)) {
+                        sticker.status = StickerStatus.AVAILABLE;
+                    } else {
+                        sticker.status = StickerStatus.LOCKED;
+                    }
+
+                    return sticker;
+                });
+                this.setState({stickers: stickers});
+            });
+        });
     }
+
+    renderStickers = () => {
+        const stickers = this.state.stickers;
+        let stickerComponents = [];
+        if (!isUndefined(stickers)) {
+            stickers.map(sticker => {
+                stickerComponents.push(<StickerCard
+                    key={sticker.id}
+                    img={sticker.img}
+                    name={sticker.name}
+                    quote={sticker.quote}
+                    description={sticker.description}
+                    cost={sticker.cost}
+                    status={sticker.status}/>);
+                return sticker;
+            })
+            return stickerComponents;
+        }
+    };
 
     render() {
         return (
@@ -27,9 +63,7 @@ class StickerShop extends React.Component {
                     <Score score={500}/>
                 </div>
                 <div className={s.sticker_container}>
-                    <StickerCard/>
-                    <StickerCard/>
-                    <StickerCard className={"last"}/>
+                    {this.renderStickers()}
                 </div>
             </div>
         );

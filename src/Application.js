@@ -52,7 +52,7 @@ class Application {
     }
 
     provideStickerShopService() {
-        if (!isUndefined(this.#stickerShopService)) {
+        if (isUndefined(this.#stickerShopService)) {
             this.#stickerShopService = new StickerShopService(this.provideApi());
         }
 
