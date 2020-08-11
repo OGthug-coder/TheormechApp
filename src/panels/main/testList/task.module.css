@@ -1,5 +1,6 @@
 .field {
-    height: 320px;
+    margin-top: 20px;
+    height: 310px;
     display: grid;
     grid-template-rows: 240px 100px;
     grid-template-areas: "card" "start_button";

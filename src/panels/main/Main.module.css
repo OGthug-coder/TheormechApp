@@ -10,7 +10,6 @@
 .profile {
     scroll-snap-align: start;
     width: 95vw;
-    height: 100%;
     grid-area: profile;
     display: grid;
     align-content: center;

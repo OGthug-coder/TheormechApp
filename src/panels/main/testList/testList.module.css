@@ -1,5 +1,6 @@
 
 .news_container {
+    margin-top: 1%;
     overflow: scroll;
     height: 100%;
     display: grid;
