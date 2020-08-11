@@ -5,6 +5,7 @@ import LevelFragment from "./LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
+import {withRouter} from "react-router";
 
 
 class Profile extends React.Component {
@@ -20,6 +21,10 @@ class Profile extends React.Component {
         this.application.provideUser()
             .then(user => this.setState({user: user}));
     }
+
+    onStickerClick = () => {
+        this.props.history.push('/stickerShop');
+    };
 
 
     render() {
@@ -45,7 +50,8 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
-                <LevelFragment className={"level_fragment"}/>
+                <LevelFragment className={"level_fragment"}
+                               onClick={this.onStickerClick}/>
                 <div className={s.logo}>
                     <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
                     <div>
@@ -58,4 +64,4 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default withRouter(Profile);

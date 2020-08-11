@@ -6,6 +6,18 @@ import s from "./StickerShop.module.css";
 import Score from "../../common/components/score/Score";
 
 class StickerShop extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.application = this.props.application;
+        this.stickerShopService = this.application.provideStickerShopService();
+        this.state = {};
+    }
+
+    componentDidMount() {
+        this.stickerShopService
+    }
+
     render() {
         return (
             <div className={s.container}>

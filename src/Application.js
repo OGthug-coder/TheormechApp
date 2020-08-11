@@ -6,10 +6,12 @@ import PreviewService from "./preview/service/PreviewService";
 import TestRepo from "./common/testrepo/TestRepo";
 import Api from "./common/api/Api";
 import isUndefined from "./common/IsUndefined";
+import StickerShopService from "./stickershop/StickerShopService";
 
 class Application {
     #testListService;
     #profileService;
+    #stickerShopService;
     #questionService;
     #userService;
     #user;
@@ -47,6 +49,14 @@ class Application {
         }
 
         return this.#profileService;
+    }
+
+    provideStickerShopService() {
+        if (!isUndefined(this.#stickerShopService)) {
+            this.#stickerShopService = new StickerShopService(this.provideApi());
+        }
+
+        return this.#stickerShopService;
     }
 
     providePreviewService() {
