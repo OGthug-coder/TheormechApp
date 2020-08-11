@@ -66,10 +66,11 @@
 
 
 .p {
+    scroll-snap-align: center;
     display: flex;
     height: 200px;
     flex-shrink: 0;
-    width: 14vw;
+    width: 10vw;
 }
 
 

@@ -26,7 +26,7 @@ class StickerCard extends React.Component {
     render() {
         const id = this.state.id.toString();
         return (
-            <div className={"sticker_card_wrapper"}>
+            <div className={s.wrapper}>
                 <div className={s.card}>
                     <img className={s.img}
                         // src={this.state.img}

@@ -46,7 +46,8 @@ class Profile extends React.Component {
                             Студент теормеха
                         </div>
                         <div className={s.score}>
-                            <Score score={!isUndefined(user) ? user.score : 0}/>
+                            <Score key={user}
+                                   score={!isUndefined(user) ? user.score : 0}/>
                         </div>
                     </div>
                 </div>

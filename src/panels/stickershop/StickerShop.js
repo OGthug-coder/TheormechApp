@@ -77,7 +77,8 @@ class StickerShop extends React.Component {
                 <div className={s.headline}>
                     <span>Choose your fighter!</span>
 
-                    <Score score={500}/>
+                    <Score key={this.state.user}
+                           score={!isUndefined(this.state.user) ? this.state.user.score : 0}/>
                 </div>
                 <div className={s.sticker_container}>
                     <div className={s.p}/>
