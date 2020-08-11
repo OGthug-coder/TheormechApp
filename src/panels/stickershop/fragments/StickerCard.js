@@ -26,7 +26,7 @@ class StickerCard extends React.Component {
     render() {
         const id = this.state.id.toString();
         return (
-            <div className={s.wrapper}>
+            <div className={"sticker_card_wrapper"}>
                 <div className={s.card}>
                     <img className={s.img}
                         // src={this.state.img}
@@ -54,14 +54,13 @@ class StickerCard extends React.Component {
                         </div>
                     </div>
                 </div>
+                <button className={`${s.button} ${this.state.status !== StickerStatus.LOCKED ? s.hidden : ""}`}
+                        id={id}
+                        onClick={this.state.onBuyClick}>
+                    Купить
+                </button>
                 {
-                    this.state.status === StickerStatus.LOCKED
-                        ? <button className={s.button}
-                                  id={id}
-                                  onClick={this.state.onBuyClick}>
-                            Купить
-                        </button>
-                        : ""
+
                 }
 
             </div>

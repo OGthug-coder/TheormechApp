@@ -76,6 +76,7 @@ class StickerShop extends React.Component {
                 <BackHeader/>
                 <div className={s.headline}>
                     <span>Choose your fighter!</span>
+
                     <Score score={500}/>
                 </div>
                 <div className={s.sticker_container}>

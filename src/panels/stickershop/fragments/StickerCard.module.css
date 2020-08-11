@@ -1,4 +1,4 @@
-.wrapper {
+.sticker_card_wrapper {
     font-family: 'Roboto', sans-serif;
     scroll-snap-align: center;
     width: 80vw;
@@ -21,9 +21,7 @@
     box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
     margin: 10px;
-
     display: flex;
-    height: min-content;
     flex-direction: column;
     padding: 15px;
     justify-items: center;
@@ -55,12 +53,21 @@
 }
 
 .control {
+    margin-top: auto;
     margin-bottom: 1vh;
     display: flex;
     flex-direction: row;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 @media screen and (max-height: 670px) {
+    .card {
+        height: 360px;
+    }
+
     .name {
         margin-top: 2vh;
     }
@@ -71,6 +78,10 @@
 }
 
 @media screen and (min-height: 670px) {
+    .card {
+        height: 460px;
+    }
+
     .description > div {
         font-size: 20px;
         font-weight: 600;
