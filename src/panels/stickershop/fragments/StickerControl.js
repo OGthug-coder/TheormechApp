@@ -6,6 +6,7 @@ class StickerControl extends React.Component {
         super(props);
 
         this.state = {
+            id: props.id,
             status: props.status
         };
     }
@@ -25,7 +26,9 @@ class StickerControl extends React.Component {
         }
 
         return (
-            <img src={path} alt={"obtain mark"}/>
+            <img id={this.state.id}
+                 src={path}
+                 alt={"obtain mark"}/>
         )
     }
 }

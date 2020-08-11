@@ -53,12 +53,25 @@
     display: -ms-flexbox;
     display: flex;
     align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    /*justify-content: center;*/
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
     overflow: scroll;
     scroll-snap-type: x mandatory;
+}
+
+
+
+
+.p {
+    display: flex;
+    height: 200px;
+    flex-shrink: 0;
+    width: 14vw;
 }
 
 

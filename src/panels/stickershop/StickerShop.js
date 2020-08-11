@@ -31,9 +31,22 @@ class StickerShop extends React.Component {
                     return sticker;
                 });
                 this.setState({stickers: stickers});
+                this.setState({user: user});
             });
         });
     }
+
+    onStatusClick = (event) => {
+        if (!isUndefined(this.state.user)) {
+            this.stickerShopService.setActiveSticker(this.state.user, event.target.id);
+        }
+    };
+
+    onBuyClick = (event) => {
+        if (!isUndefined(this.state.user)) {
+            this.stickerShopService.buySticker(this.state.user, event.target.id);
+        }
+    };
 
     renderStickers = () => {
         const stickers = this.state.stickers;
@@ -42,12 +55,15 @@ class StickerShop extends React.Component {
             stickers.map(sticker => {
                 stickerComponents.push(<StickerCard
                     key={sticker.id}
+                    id={sticker.id}
                     img={sticker.img}
                     name={sticker.name}
                     quote={sticker.quote}
                     description={sticker.description}
                     cost={sticker.cost}
-                    status={sticker.status}/>);
+                    status={sticker.status}
+                    onStatusClick={this.onStatusClick}
+                    onBuyClick={this.onBuyClick}/>);
                 return sticker;
             })
             return stickerComponents;
@@ -63,7 +79,9 @@ class StickerShop extends React.Component {
                     <Score score={500}/>
                 </div>
                 <div className={s.sticker_container}>
+                    <div className={s.p}/>
                     {this.renderStickers()}
+                    <div className={s.p}/>
                 </div>
             </div>
         );

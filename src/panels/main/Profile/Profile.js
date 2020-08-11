@@ -50,7 +50,8 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
-                <LevelFragment className={"level_fragment"}
+                <LevelFragment key={user}
+                               sticker={!isUndefined(user) ? user.activeSticker : undefined}
                                onClick={this.onStickerClick}/>
                 <div className={s.logo}>
                     <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>

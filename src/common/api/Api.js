@@ -28,8 +28,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json());
+        }).then(response => response.json());
     }
 
     requestHistory(userId, testId) {
@@ -39,8 +38,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .catch(e => {
                 if (e.status === HttpStatus.NOT_FOUND) {
                     throw NoHistoryFoundException();
@@ -83,8 +81,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
                 if (data.status === HttpStatus.NOT_FOUND) {
                     return Promise.reject(new NoUserFoundException("Couldn't get user from " + url));
@@ -116,8 +113,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json());
+        }).then(response => response.json());
     }
 
     sendHistoryEvent(questionId, userId, eventCode) {
@@ -140,8 +136,29 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
+    }
+
+    setActiveSticker(userId, stickerId) {
+        const url = this.URL + "users/" + userId + "/set_active_sticker/" + stickerId;
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
+    buySticker(userId, stickerId) {
+        const url = this.URL + "users/" + userId + "/buy_sticker/" + stickerId;
+
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
     }
 
 
