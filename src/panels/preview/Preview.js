@@ -12,6 +12,7 @@ import isUndefined from "../../common/IsUndefined";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
 import BackButton from "../../common/components/backbutton/BackButton";
 
+
 class Preview extends React.Component {
     constructor(props) {
         super(props);
@@ -55,7 +56,6 @@ class Preview extends React.Component {
                 const currentScore = this.previewService.getCurrentScore(history);
                 this.setState({currentScore: currentScore});
             });
-
     }
 
 

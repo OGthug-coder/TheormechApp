@@ -11,3 +11,7 @@
     margin-bottom: 5px;
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+.button:focus {
+    outline: 0;
+}

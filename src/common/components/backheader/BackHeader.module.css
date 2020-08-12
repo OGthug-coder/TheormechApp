@@ -1,19 +1,41 @@
 .exit_button {
-    height: 20px;
+    height: 25px;
     width: 10px;
     border: none;
     background-color: #5E80FF;
     background-image: url("../../../img/chevron/ic_left_chevron_white.svg");
     background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 17px;
+    position: relative;
+    background-size: contain;
     left: 20px;
+    top: 60px;
+}
+
+.exit_button:focus {
+    outline: 0;
 }
 
 .header {
     border-radius: 0 0 25px 25px;
-    height: 60px;
+    height: 100px;
     width: 100%;
     background-color: #5E80FF;
+}
+
+@supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+    .header {
+        height: 100px;
+    }
+
+    .exit_button {
+        top: 55px;
+
+        /*height: 25px;*/
+        /*!*width: 10px;*!*/
+        /*position: relative;*/
+        /*background-size: contain;*/
+        /*top: 50px;*/
+        /*left: 20px;*/
+    }
 }

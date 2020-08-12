@@ -1,11 +1,12 @@
 import NoHistoryFoundException from "../exceptions/NoHistoryFoundException";
 import NoUserFoundException from "../exceptions/NoUserFoundException";
 import HttpStatus from "./HttpStatus.js";
+import bridge from '@vkontakte/vk-bridge';
 
 class Api {
     constructor() {
         this.URL = "http://25.41.84.109:8080/v1/";
-        // this.URL = "http://localhost:8080/v1/";
+        this.URL = "https://93b738863767.ngrok.io/v1/";
     }
 
     requestTests() {
@@ -19,6 +20,11 @@ class Api {
         }).then(response => response.json())
             .catch(e => console.log(e));
 
+    }
+
+    //dark or light
+    setStatusBarStyle(style) {
+        bridge.send("VKWebAppSetViewSettings", {"status_bar_style": style, "action_bar_color": "none"});
     }
 
     requestTest(id) {
