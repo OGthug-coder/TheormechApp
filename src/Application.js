@@ -76,6 +76,10 @@ class Application {
         return this.#user;
     }
 
+    deleteUser() {
+        this.#user = undefined;
+    }
+
     provideUserService() {
         if (isUndefined(this.#userService)) {
             this.#userService = new UserService(this.provideApi());

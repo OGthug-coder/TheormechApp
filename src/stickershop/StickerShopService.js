@@ -8,7 +8,7 @@ class StickerShopService {
     }
 
     setActiveSticker(userId, stickerId) {
-        this.api.setActiveSticker(userId, stickerId);
+        return this.api.setActiveSticker(userId, stickerId);
     }
 
     buySticker(userId, stickerId) {

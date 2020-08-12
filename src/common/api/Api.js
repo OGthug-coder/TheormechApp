@@ -142,19 +142,19 @@ class Api {
     setActiveSticker(userId, stickerId) {
         const url = this.URL + "users/" + userId + "/set_active_sticker/" + stickerId;
 
-        fetch(url, {
-            method: "POST",
+        return fetch(url, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             }
-        });
+        }).then(response => response.json());
     }
 
     buySticker(userId, stickerId) {
         const url = this.URL + "users/" + userId + "/buy_sticker/" + stickerId;
 
         return fetch(url, {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             }

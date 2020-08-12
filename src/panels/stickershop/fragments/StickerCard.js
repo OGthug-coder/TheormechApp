@@ -54,7 +54,7 @@ class StickerCard extends React.Component {
                         </div>
                     </div>
                 </div>
-                <button className={`${s.button} ${this.state.status !== StickerStatus.LOCKED ? s.hidden : ""}`}
+                <button className={`${s.button} ${this.state.status === StickerStatus.LOCKED ? "" : s.hidden}`}
                         id={id}
                         onClick={this.state.onBuyClick}>
                     Купить
