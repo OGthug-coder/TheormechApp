@@ -45,9 +45,14 @@ class StickerCard extends React.Component {
                         </div>
                     </div>
                     <div className={s.control}>
-                        <Score score={this.state.cost}/>
+                        {
+                            this.state.status === StickerStatus.LOCKED
+                                ?  <Score score={this.state.cost}/>
+                                : ""
+                        }
+
                         <div className={s.status}
-                             onClick={this.state.onStatusClick}>
+                             onClick={this.state.status === StickerStatus.AVAILABLE ? this.state.onStatusClick : () => {}}>
                             <StickerControl id={id}
                                             status={this.state.status}/>
                         </div>
@@ -58,10 +63,6 @@ class StickerCard extends React.Component {
                         onClick={this.state.onBuyClick}>
                     Купить
                 </button>
-                {
-
-                }
-
             </div>
 
         );
