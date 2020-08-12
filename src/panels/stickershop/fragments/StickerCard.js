@@ -29,8 +29,7 @@ class StickerCard extends React.Component {
             <div className={s.wrapper}>
                 <div className={s.card}>
                     <img className={s.img}
-                        // src={this.state.img}
-                         src={"https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png"}
+                         src={this.state.img}
                          alt="sticker"
                     />
                     <div className={s.content}>

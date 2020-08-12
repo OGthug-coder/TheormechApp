@@ -43,7 +43,7 @@
 .sticker_wrapper {
     display: grid;
     grid-template-columns: 200px 1fr;
-    grid-template-rows: repeat(3, 20px) ;
+    grid-template-rows: repeat(3, 20px);
     grid-template-areas:
             "sticker cloud_1"
             "sticker cloud_2"
@@ -67,6 +67,7 @@
     grid-area: cloud_3;
     width: 25px;
 }
+
 .cloud {
     float: left;
     height: 20px;
@@ -75,5 +76,8 @@
 }
 
 .sticker {
+    margin: 5px;
+    max-height: 200px;
+    max-width: 200px;
     grid-area: sticker;
 }
