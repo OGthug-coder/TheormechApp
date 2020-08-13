@@ -29,7 +29,7 @@
     flex-direction: column;
 }
 
-.result_bubble::after{
+.result_bubble::after {
     content: '';
     width: 87.2vw;
     height: 87.2vw;
@@ -60,4 +60,73 @@
 .result_bubble > div:last-child {
     font-size: 1.5em;
     font-weight: 300;
+}
+
+.tip {
+    width: 82vw;
+    margin-top: 12vh;
+    display: flex;
+    flex-direction: row;
+    line-height: 150%;
+
+}
+
+.tip > div {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1.25em;
+}
+
+.controls {
+    width: 82vw;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.first_button {
+    display: block;
+    width: 72vw;
+    height: 50px;
+    border-radius: 25px;
+
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #F3FDFF;
+    font-style: normal;
+    font-weight: normal;
+    background: #588EFF;
+
+    margin-bottom: 1vh;
+}
+
+.first_button div {
+    margin-top: 15px;
+}
+
+.second_button {
+    display: block;
+    width: 72vw;
+    height: 50px;
+    border-radius: 25px;
+
+    font-size: 1.5em;
+    text-decoration: none;
+    color: black;
+    font-style: normal;
+    font-weight: normal;
+    border: 1px solid #588EFF;
+}
+
+.second_button div {
+    margin-top: 15px;
+}
+
+@media screen and (min-height: 780px ) {
+    .tip {
+        margin-top: 25vh;
+    }
 }

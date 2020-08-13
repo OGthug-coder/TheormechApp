@@ -16,13 +16,18 @@ class Result extends React.Component {
                 <div className={s.tip}>
                     <img alt={"tip"}
                     src={require("../../img/result/ic_bulb.svg")}/>
+                    <div>
+                        Ты можешь тратить заработанные  баллы на покупку новых стикеров
+                    </div>
                 </div>
                 <div className={s.controls}>
-                    <Link to={"#"}>
-                        Хочу узнать больше!
+                    <Link to={"#"}
+                          className={s.first_button} >
+                        <div>Хочу узнать больше!</div>
                     </Link>
-                    <Link to={"#"}>
-                        Следующий тест
+                    <Link to={"#"}
+                          className={s.second_button}>
+                        <div>Следующий тест</div>
                     </Link>
                 </div>
 
