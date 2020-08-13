@@ -1,0 +1,63 @@
+.result_window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url("../../img/result/background.svg") no-repeat;
+    background-size: contain;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result_bubble {
+    margin-top: 11.4vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    /*margin: 23vh auto 0;*/
+    white-space: nowrap;
+
+    width: 72vw;
+    height: 72vw;
+    background: url("../../img/result/ic_circle.svg") no-repeat;
+    background-size: contain;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.result_bubble::after{
+    content: '';
+    width: 87.2vw;
+    height: 87.2vw;
+    border-radius: 49vh;
+
+    position: absolute;
+    z-index: -1;
+    top: 7.5vh;
+    left: 6.4vw;
+
+    background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
+    opacity: 0.3;
+}
+
+
+.result_bubble > div:first-child {
+    font-size: 2em;
+    margin-top: 10vh;
+    margin-bottom: 2vh;
+}
+
+.percent {
+    font-weight: bold;
+    font-size: 6em;
+    margin-bottom: 1vh;
+}
+
+.result_bubble > div:last-child {
+    font-size: 1.5em;
+    font-weight: 300;
+}
