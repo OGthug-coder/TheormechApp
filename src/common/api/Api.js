@@ -6,7 +6,6 @@ import bridge from '@vkontakte/vk-bridge';
 class Api {
     constructor() {
         this.URL = "http://25.41.84.109:8080/v1/";
-        this.URL = "https://93b738863767.ngrok.io/v1/";
     }
 
     requestTests() {
