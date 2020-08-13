@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 .result_bubble {
@@ -42,6 +43,90 @@
 
     background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
     opacity: 0.3;
+
+    animation: pulse 3s ease infinite;
+}
+
+.planet_1::before {
+    content: '';
+    position: absolute;
+    top: calc(72vw / 2 + 11.4vh);
+    left: calc(50% - 15px);
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(46, 106, 231, 0.75) 0%, rgba(101, 151, 254, 0.75) 95.56%);
+
+    animation: orbit 15s linear infinite;
+}
+
+.planet_2::before {
+    content: '';
+    position: absolute;
+    top: calc(72vw / 2 + 11.4vh);
+    left: calc(50% - 15px);
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
+    opacity: 0.3;
+    animation: orbit_inverse 10s linear infinite;
+}
+
+.planet_3 {
+    content: '';
+    position: absolute;
+    top: calc(72vw / 2 + 11.4vh);
+    left: calc(50% - 15px);
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
+    animation: orbit_inverse_45 8s linear infinite;
+}
+
+@keyframes orbit_inverse_45 {
+    from {
+        transform: rotate(360deg) translateX(45vw) rotate(-360deg);
+
+    }
+    to {
+        transform: rotate(0deg) translateX(45vw) rotate(0deg);
+    }
+}
+
+@keyframes orbit_inverse {
+    from {
+        transform: rotate(360deg) translateX(60vw) rotate(-360deg);
+
+    }
+    to {
+        transform: rotate(0deg) translateX(60vw) rotate(0deg);
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(70vw) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(70vw) rotate(-360deg);
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
 }
 
 
@@ -116,6 +201,7 @@
     font-size: 1.5em;
     text-decoration: none;
     color: black;
+    background-color: white;
     font-style: normal;
     font-weight: normal;
     border: 1px solid #588EFF;
