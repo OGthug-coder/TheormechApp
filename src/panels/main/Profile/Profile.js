@@ -4,6 +4,8 @@ import s from './Profile.module.css';
 import LevelFragment from "./LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
+import Score from "../../../common/components/score/Score";
+import {withRouter} from "react-router";
 
 
 class Profile extends React.Component {
@@ -20,6 +22,10 @@ class Profile extends React.Component {
             .then(user => this.setState({user: user}));
     }
 
+    onStickerClick = () => {
+        this.props.history.push('/stickerShop');
+    };
+
 
     render() {
         let user = this.state.user;
@@ -27,11 +33,11 @@ class Profile extends React.Component {
             <div className={s.profile_card}>
                 <div className={s.slider}/>
                 <div className={s.about}>
-                    <Avatar src={this.state.user !== undefined ? this.state.user.photo_200 : ""} size={100}/>
+                    <Avatar src={!isUndefined(user) ? this.state.user.photo_200 : ""} size={100}/>
                     <div className={s.bio}>
                         <div className={s.name}>
                             {
-                                user !== undefined
+                                !isUndefined(user)
                                     ? user.first_name + " " + user.last_name
                                     : ""
                             }
@@ -40,12 +46,14 @@ class Profile extends React.Component {
                             Студент теормеха
                         </div>
                         <div className={s.score}>
-                            <img src={require("../../../img/profile/ic_score.svg")} alt={"score"}/>
-                            <div>{!isUndefined(user) ? user.score : 0}</div>
+                            <Score key={user}
+                                   score={!isUndefined(user) ? user.score : 0}/>
                         </div>
                     </div>
                 </div>
-                <LevelFragment className={"level_fragment"}/>
+                <LevelFragment key={user}
+                               sticker={!isUndefined(user) ? user.activeSticker : undefined}
+                               onClick={this.onStickerClick}/>
                 <div className={s.logo}>
                     <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
                     <div>
@@ -58,4 +66,4 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default withRouter(Profile);

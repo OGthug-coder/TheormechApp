@@ -124,7 +124,7 @@
 
 .chevron {
     margin-bottom: 1px;
-    background-image: url("../../img/preview/ic_chevron.svg");
+    background-image: url("../../img/chevron/ic_left_chevron_black.svg");
     background-repeat: no-repeat;
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);

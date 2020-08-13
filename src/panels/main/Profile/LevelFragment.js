@@ -1,28 +1,39 @@
 import React from 'react';
 
 import s from './LevelFragment.module.css';
+import isUndefined from "../../../common/IsUndefined";
 
 class LevelFragment extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            sticker: props.sticker,
+            onClick: props.onClick
+        };
+    }
 
     render() {
+        const sticker = this.state.sticker;
         return (
-            <div className={s.level_wrapper}>
+            <div className={s.level_wrapper}
+                 onClick={this.state.onClick}>
                 <div className={s.dignity}>
                     <img src={require("../../../img/profile/brain_outline_28.svg")} alt={"brain_icon"}/>
                     <div>
-                        Да ты Дэвид Гилберт!
+                        Да ты {!isUndefined(sticker) ? sticker.name : ""}
                     </div>
                 </div>
                 <div className={s.quote}>
-                    Он стал поэтом — для математика у него не хватало фантазии.
+                    {!isUndefined(sticker) ? sticker.quote : ""}
                 </div>
                 <div className={s.sticker_wrapper}>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
                     <img className={s.sticker}
-                         src={require("../../../img/profile/hilbert.svg")}
-                        alt={"sticker"}
+                         src={!isUndefined(sticker) ? sticker.img : ""}
+                         alt={"sticker"}
                     />
                 </div>
             </div>
