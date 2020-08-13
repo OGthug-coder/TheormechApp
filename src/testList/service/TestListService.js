@@ -8,6 +8,10 @@ class TestListService {
         this.testRepo = testRepo;
     }
 
+    setLightStatusBarStyle() {
+        this.api.setStatusBarStyle("light");
+    }
+
     getTests() {
         const tests = this.api.requestTests().then(testsDto => {
             return this.user.then(user => {

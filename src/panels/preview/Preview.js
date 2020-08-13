@@ -9,8 +9,9 @@ import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import PreviewUtil from "../../preview/util/TestStatus";
 import TestStatus from "../../preview/util/TestStatus";
 import isUndefined from "../../common/IsUndefined";
-import BackButton from "../../common/components/BackButton/BackButton";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
+import BackButton from "../../common/components/backbutton/BackButton";
+
 
 class Preview extends React.Component {
     constructor(props) {
@@ -55,7 +56,6 @@ class Preview extends React.Component {
                 const currentScore = this.previewService.getCurrentScore(history);
                 this.setState({currentScore: currentScore});
             });
-
     }
 
 

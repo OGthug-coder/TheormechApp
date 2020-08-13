@@ -1,11 +1,12 @@
 import NoHistoryFoundException from "../exceptions/NoHistoryFoundException";
 import NoUserFoundException from "../exceptions/NoUserFoundException";
 import HttpStatus from "./HttpStatus.js";
+import bridge from '@vkontakte/vk-bridge';
 
 class Api {
     constructor() {
         this.URL = "http://25.41.84.109:8080/v1/";
-        // this.URL = "http://localhost:8080/v1/";
+        this.URL = "https://93b738863767.ngrok.io/v1/";
     }
 
     requestTests() {
@@ -21,6 +22,11 @@ class Api {
 
     }
 
+    //dark or light
+    setStatusBarStyle(style) {
+        bridge.send("VKWebAppSetViewSettings", {"status_bar_style": style, "action_bar_color": "none"});
+    }
+
     requestTest(id) {
         const url = this.URL + "tests/" + id;
         return fetch(url, {
@@ -28,8 +34,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json());
+        }).then(response => response.json());
     }
 
     requestHistory(userId, testId) {
@@ -39,8 +44,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .catch(e => {
                 if (e.status === HttpStatus.NOT_FOUND) {
                     throw NoHistoryFoundException();
@@ -83,8 +87,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
                 if (data.status === HttpStatus.NOT_FOUND) {
                     return Promise.reject(new NoUserFoundException("Couldn't get user from " + url));
@@ -116,8 +119,7 @@ class Api {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
-            .then(response => response.json());
+        }).then(response => response.json());
     }
 
     sendHistoryEvent(questionId, userId, eventCode) {
@@ -130,6 +132,39 @@ class Api {
                 "Content-Type": "application/json"
             }
         });
+    }
+
+    requestStickers() {
+        const url = this.URL + "stickers";
+
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json())
+    }
+
+    setActiveSticker(userId, stickerId) {
+        const url = this.URL + "users/" + userId + "/set_active_sticker/" + stickerId;
+
+        return fetch(url, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
+    }
+
+    buySticker(userId, stickerId) {
+        const url = this.URL + "users/" + userId + "/buy_sticker/" + stickerId;
+
+        return fetch(url, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
     }
 
 
