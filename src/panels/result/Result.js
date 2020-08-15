@@ -30,6 +30,9 @@ class Result extends React.Component {
                         <div>Следующий тест</div>
                     </Link>
                 </div>
+                <div className={s.planet_1} />
+                <div className={s.planet_2} />
+                <div className={s.planet_3} />
 
             </div>
         )
