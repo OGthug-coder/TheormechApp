@@ -17,7 +17,7 @@ class Preview extends React.Component {
     constructor(props) {
         super(props);
 
-        this.application = props.application
+        this.application = props.application;
         this.previewService = this.application.providePreviewService();
         this.testId = props.match.params.testId;
 
@@ -160,7 +160,7 @@ class Preview extends React.Component {
 
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton/>
+                        <BackButton path={'/'}/>
                     </div>
                 </div>
                 <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>

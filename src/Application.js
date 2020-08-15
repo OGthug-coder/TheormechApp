@@ -7,6 +7,7 @@ import TestRepo from "./common/testrepo/TestRepo";
 import Api from "./common/api/Api";
 import isUndefined from "./common/IsUndefined";
 import StickerShopService from "./stickershop/StickerShopService";
+import ResultService from "./result/ResultService";
 
 class Application {
     #testListService;
@@ -14,6 +15,7 @@ class Application {
     #stickerShopService;
     #questionService;
     #userService;
+    #resultService;
     #user;
     #api;
     #previewService;
@@ -96,6 +98,13 @@ class Application {
         return this.#questionService;
     }
 
+    provideResultService() {
+        if (isUndefined(this.#resultService)) {
+            this.#resultService = new ResultService(this.provideApi(), this.provideUser());
+        }
+
+        return this.#resultService;
+    }
 
 }
 
