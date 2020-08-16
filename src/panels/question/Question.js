@@ -28,6 +28,7 @@ class Question extends React.Component {
             questionId: parseInt(props.match.params.questionId),
             testId: parseInt(props.match.params.testId),
             _position: 10,
+            animation: undefined,
         };
     }
 
@@ -86,10 +87,17 @@ class Question extends React.Component {
         console.log("right");
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                this.setState({status: Status.IN_PROGRESS});
-                this.startNextQuestion(QuestionStatus.PASSED);
+                setTimeout(function(){
+                    this.setState({status: Status.IN_PROGRESS});
+                    this.startNextQuestion(QuestionStatus.PASSED);
+                }, 50);
             } else {
-                //    TODO
+                this.setState({animation: 
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" height="70">
+        	            <circle className={s.path_circle} fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+        	            <polyline className={s.path_check} fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+	                </svg>
+                });
             }
         });
         this.setState({status: Status.PASSED});
@@ -99,10 +107,18 @@ class Question extends React.Component {
         console.log("wrong");
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                this.setState({status: Status.IN_PROGRESS});
-                this.startNextQuestion(QuestionStatus.FAILED);
+                setTimeout(function(){
+                    this.setState({status: Status.IN_PROGRESS});
+                    this.startNextQuestion(QuestionStatus.PASSED);
+                }, 50);
             } else {
-                //    TODO
+                this.setState({animation:
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" height="70">
+		                <circle className={s.path_circle} fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+		                <line className={s.path_line} fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3"/>
+		                <line className={s.path_line} fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2"/>
+	                </svg>
+                })
             }
         });
         this.setState({status: Status.FAILED});
@@ -208,11 +224,14 @@ class Question extends React.Component {
                     </div>
                 </div>
                 <div className={`${s.question_card} `}
-                     style={{
-                         top: `${this.state._position}px`
-                     }}>
+                    style={{
+                        top: `${this.state._position}px`
+                    }}>
                     <div className={s.question_text}>
                         {!isUndefined(question) ? question.questionText : ""}
+                    </div>
+                    <div className={s.animation}>
+                        {this.state.animation !== undefined ? this.state.animation : ""}
                     </div>
                     <section className={s.answers_container}>
                         {!isUndefined(question) ? this.prepareList() : []}
@@ -224,7 +243,7 @@ class Question extends React.Component {
                             </div>
                         </div>
                         <div className={s.next_question}
-                             onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : ""}>
+                            onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : ""}>
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>
