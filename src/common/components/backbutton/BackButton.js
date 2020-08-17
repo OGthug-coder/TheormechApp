@@ -13,15 +13,11 @@ class BackButton extends React.Component {
         };
     }
 
-    onClick = () => {
-        this.props.history.push(this.state.path);
-    };
-
     render() {
         return (
             <button
                 className={s.button}
-                onClick={!this.state.disabled ? this.onClick : () => ""}/>
+                onClick={!this.state.disabled ? this.props.history.goBack : () => ""}/>
         );
     }
 }

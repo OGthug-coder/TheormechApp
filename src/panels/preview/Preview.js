@@ -160,7 +160,7 @@ class Preview extends React.Component {
 
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton path={'/'}/>
+                        <BackButton />
                     </div>
                 </div>
                 <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
