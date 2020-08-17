@@ -87,7 +87,7 @@ class Question extends React.Component {
         console.log("right");
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                setTimeout(function(){
+                setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
                     this.startNextQuestion(QuestionStatus.PASSED);
                 }, 50);
@@ -107,7 +107,7 @@ class Question extends React.Component {
         console.log("wrong");
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                setTimeout(function(){
+                setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
                     this.startNextQuestion(QuestionStatus.PASSED);
                 }, 50);
