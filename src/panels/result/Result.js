@@ -37,14 +37,14 @@ class Result extends React.Component {
                     </div>
                 </div>
                 <div className={s.controls}>
-                    <Link to={"/preview/" + this.testId}
+                    <button onClick={this.props.history.go(-2)}
                           className={s.first_button}>
                         <div>Хочу узнать больше!</div>
-                    </Link>
-                    <Link to={"/"}
+                    </button>
+                    <button onClick={this.props.history.go(-3)}
                           className={s.second_button}>
                         <div>Следующий тест</div>
-                    </Link>
+                    </button>
                 </div>
                 <div className={s.planet_1}/>
                 <div className={s.planet_2}/>
