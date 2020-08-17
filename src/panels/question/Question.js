@@ -192,8 +192,7 @@ class Question extends React.Component {
             <section className={s.question_window}>
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton path={'/preview/' + this.state.testId}
-                            disabled={this.state.status !== Status.IN_PROGRESS ? true : undefined}/>
+                        <BackButton disabled={this.state.status !== Status.IN_PROGRESS ? true : undefined}/>
                     </div>
                 </div>
                 <div className={s.about}>
