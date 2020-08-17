@@ -5,7 +5,7 @@ import bridge from '@vkontakte/vk-bridge';
 
 class Api {
     constructor() {
-        this.URL = "http://atake.live:80/v1/";
+        this.URL = "https://atake.live:8443/v1/";
     }
 
     requestTests() {
