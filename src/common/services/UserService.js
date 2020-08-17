@@ -7,7 +7,6 @@ class UserService {
 
     getUser() {
         return this.api.getVkProfile()
-            .then(vkProfile => vkProfile)
             .then(vkProfile => {
                 return this.api.requestUserById(vkProfile.id)
                     .then(user => {
@@ -15,8 +14,8 @@ class UserService {
                     })
                     .catch(e => {
                         if (e instanceof NoUserFoundException) {
-                            let user = this.uploadUser(vkProfile);
-                            return this.mergeUsers(vkProfile, user);
+                            return this.uploadUser(vkProfile)
+                                .then(user => this.mergeUsers(vkProfile, user));
                         }
                     })
 
@@ -30,8 +29,7 @@ class UserService {
             bdate: vkUser.bdate !== undefined ? vkUser.bdate : null,
             role: "user"
         };
-        this.api.addUser(user);
-        return user;
+        return this.api.addUser(user);
     }
 
     mergeUsers(vkUser, user) {
