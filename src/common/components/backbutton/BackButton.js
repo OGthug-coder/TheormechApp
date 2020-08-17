@@ -8,7 +8,6 @@ class BackButton extends React.Component {
         super(props);
 
         this.state = {
-            path: props.path,
             disabled: !isUndefined(props.disabled)
         };
     }
