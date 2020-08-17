@@ -1,10 +1,16 @@
 import EventCodeDto from "../../preview/util/EventCodeDto";
+import HistoryUtil from "../../common/services/HistoryUtil";
+import TestStatus from "../../preview/util/TestStatus";
 
 class QuestionService {
     constructor(api, repo, user) {
         this.api = api;
         this.testRepo = repo;
         this.user = user;
+    }
+
+    getHistory(testId) {
+        return this.user.then(user => this.api.requestHistory(user.id, testId));
     }
 
     getTest(id) {
@@ -15,6 +21,11 @@ class QuestionService {
         }
 
         return test;
+    }
+
+    isFinished(history, questions) {
+        const lastQuestion = HistoryUtil.getLastQuestion(history);
+        return HistoryUtil.getStatus(lastQuestion, questions) === TestStatus.FINISHED;
     }
 
     startQuestion(questionId) {

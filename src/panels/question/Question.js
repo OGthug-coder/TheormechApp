@@ -38,25 +38,33 @@ class Question extends React.Component {
     }
 
     downloadData = () => {
-        this.questionService.getTest(this.state.testId)
-            .then(test => {
-                const question = test.questions.find(q => q.id === this.state.questionId);
-                this.questionService.startQuestion(question.id);
-                this.setState({question: question});
-                this.setState({test: test});
+        const historyPromise = this.questionService.getHistory(this.state.testId);
+        const testPromise = this.questionService.getTest(this.state.testId);
 
-                let uniqQuestions = [];
-                let uniqNumbers = [];
-                const allQuestions = test.questions;
+        Promise.all([historyPromise, testPromise])
+            .then(([history, test]) => {
+                if (!this.questionService.isFinished(history, test.questions)) {
+                    const question = test.questions.find(q => q.id === this.state.questionId);
+                    this.questionService.startQuestion(question.id);
+                    this.setState({question: question});
+                    this.setState({test: test});
 
-                allQuestions.map(q => {
-                    if (!uniqNumbers.includes(q.serialNumber)) {
-                        uniqNumbers.push(q.serialNumber);
-                        uniqQuestions.push(q);
-                    }
-                    return q;
-                });
-                this.setState({questionsLength: uniqQuestions.length});
+                    let uniqQuestions = [];
+                    let uniqNumbers = [];
+                    const allQuestions = test.questions;
+
+                    allQuestions.map(q => {
+                        if (!uniqNumbers.includes(q.serialNumber)) {
+                            uniqNumbers.push(q.serialNumber);
+                            uniqQuestions.push(q);
+                        }
+                        return q;
+                    });
+                    this.setState({questionsLength: uniqQuestions.length});
+                } else {
+                    this.props.history.goBack();
+                }
+
             });
     };
 
