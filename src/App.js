@@ -8,6 +8,7 @@ import Application from "./Application";
 import StickerShop from "./panels/stickershop/StickerShop";
 import s from "./App.module.css";
 import Main from "./panels/main/Main";
+import Result from "./panels/result/Result";
 
 class App extends React.Component {
     constructor(props) {
@@ -32,6 +33,8 @@ class App extends React.Component {
                     />
                     <Route exact path={'/stickerShop'}
                            render={({match}) => <StickerShop match={match} application={this.application}/>}/>
+                    <Route exact path={'/result/:testId'}
+                           render={({match}) => <Result match={match} application={this.application}/>}/>
                     <Route excect path={'/'}>
                         <div className={s.main_window}>
                             <Main application={this.application}/>

@@ -11,7 +11,6 @@ class Score extends React.Component {
         };
     }
     render() {
-        console.log("score rendered");
         return (
             <div className={s.container}>
                 <img src={require("../../../img/profile/ic_score.svg")}/>

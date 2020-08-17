@@ -137,11 +137,10 @@ class Question extends React.Component {
             const url = getNextQuestionUrl(this.state.test, this.state.question.serialNumber);
             if (!isUndefined(url)) {
                 const qId = parseInt(url.split("/")[3]);
-                this.props.history.replace(url);
                 this.setState({questionId: qId});
                 this.downloadData();
             } else {
-                this.props.history.goBack();
+                this.props.history.replace("/result/" + this.state.testId);
             }
         }
     };
@@ -193,7 +192,8 @@ class Question extends React.Component {
             <section className={s.question_window}>
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton disabled={this.state.status !== Status.IN_PROGRESS ? true : undefined}/>
+                        <BackButton path={'/preview/' + this.state.testId}
+                            disabled={this.state.status !== Status.IN_PROGRESS ? true : undefined}/>
                     </div>
                 </div>
                 <div className={s.about}>

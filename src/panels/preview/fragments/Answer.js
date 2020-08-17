@@ -18,7 +18,6 @@ class Answer extends React.Component{
         if (!isUndefined(this.state.question)) {
             return this.state.question.answers.find(answer => answer.isRight === RightAnswerCode.RIGHT_ANSWER).answer;
         }
-
     }
 
     render() {
