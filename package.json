@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
+    "start": "cross-env PORT=10888 HTTPS=true SSL_CRT_FILE=/etc/letsencrypt/live/atake.live/cert.pem SSL_KEY_FILE=/etc/letsencrypt/live/atake.live/private.pem react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
