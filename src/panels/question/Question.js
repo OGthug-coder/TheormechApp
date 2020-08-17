@@ -38,32 +38,25 @@ class Question extends React.Component {
     }
 
     downloadData = () => {
-        const historyPromise = this.questionService.getHistory(this.state.testId);
-        const testPromise = this.questionService.getTest(this.state.testId);
+        this.questionService.getTest(this.state.testId)
+            .then(test => {
+                const question = test.questions.find(q => q.id === this.state.questionId);
+                this.questionService.startQuestion(question.id);
+                this.setState({question: question});
+                this.setState({test: test});
 
-        Promise.all([historyPromise, testPromise])
-            .then(([history, test]) => {
-                if (!this.questionService.isFinished(history, test.questions)) {
-                    const question = test.questions.find(q => q.id === this.state.questionId);
-                    this.questionService.startQuestion(question.id);
-                    this.setState({question: question});
-                    this.setState({test: test});
+                let uniqQuestions = [];
+                let uniqNumbers = [];
+                const allQuestions = test.questions;
 
-                    let uniqQuestions = [];
-                    let uniqNumbers = [];
-                    const allQuestions = test.questions;
-
-                    allQuestions.map(q => {
-                        if (!uniqNumbers.includes(q.serialNumber)) {
-                            uniqNumbers.push(q.serialNumber);
-                            uniqQuestions.push(q);
-                        }
-                        return q;
-                    });
-                    this.setState({questionsLength: uniqQuestions.length});
-                } else {
-                    this.props.history.goBack();
-                }
+                allQuestions.map(q => {
+                    if (!uniqNumbers.includes(q.serialNumber)) {
+                        uniqNumbers.push(q.serialNumber);
+                        uniqQuestions.push(q);
+                    }
+                    return q;
+                });
+                this.setState({questionsLength: uniqQuestions.length});
 
             });
     };
@@ -123,7 +116,7 @@ class Question extends React.Component {
                 this.setState({status: Status.IN_PROGRESS});
                 this.startNextQuestion(QuestionStatus.SKIPPED);
             } else {
-            //    TODO
+                //    TODO
             }
         });
         this.setState({status: Status.SKIPPED});

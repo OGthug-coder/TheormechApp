@@ -1,7 +1,7 @@
 import React from 'react';
 
 import s from './Result.module.css';
-import {Link, withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import isUndefined from "../../common/IsUndefined";
 
 class Result extends React.Component {
@@ -18,6 +18,14 @@ class Result extends React.Component {
         this.resultService.getData(this.testId)
             .then(data => this.setState({data: data}));
     }
+
+    toTestList = () => {
+        this.props.history.go(-2);
+    };
+
+    toTestPreview = () => {
+        this.props.history.go(-1)
+    };
 
     render() {
         const data = this.state.data;
@@ -37,19 +45,18 @@ class Result extends React.Component {
                     </div>
                 </div>
                 <div className={s.controls}>
-                    <button onClick={this.props.history.go(-2)}
+                    <div onClick={this.toTestPreview}
                           className={s.first_button}>
                         <div>Хочу узнать больше!</div>
-                    </button>
-                    <button onClick={this.props.history.go(-3)}
+                    </div>
+                    <div onClick={this.toTestList}
                           className={s.second_button}>
                         <div>Следующий тест</div>
-                    </button>
+                    </div>
                 </div>
                 <div className={s.planet_1}/>
                 <div className={s.planet_2}/>
                 <div className={s.planet_3}/>
-
             </div>
         )
     }

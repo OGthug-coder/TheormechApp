@@ -23,11 +23,6 @@ class QuestionService {
         return test;
     }
 
-    isFinished(history, questions) {
-        const lastQuestion = HistoryUtil.getLastQuestion(history);
-        return HistoryUtil.getStatus(lastQuestion, questions) === TestStatus.FINISHED;
-    }
-
     startQuestion(questionId) {
         return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.STARTED));
     }
