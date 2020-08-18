@@ -25,17 +25,18 @@ class TestList extends React.Component {
 
     prepareList() {
         let tests = [];
-
+        
         this.state.tests.map(test => tests.push(
             <Task key={test.id}
-                  id={test.id}
-                  title={test.title}
-                  img={test.img}
-                  date={test.date.split(' ')[0]}
-                  progress={test.progress}
-                  application={this.application}
+                id={test.id}
+                title={test.title}
+                img={test.img}
+                date={test.date.split(' ')[0]}
+                progress={test.progress}
+                application={this.application}
             />));
         tests = this.testListService.sort(tests)
+
         return tests
     }
 

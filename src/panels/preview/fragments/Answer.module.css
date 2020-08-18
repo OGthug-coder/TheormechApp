@@ -45,7 +45,7 @@
 
 .question {
     margin-bottom: 12px;
-
+    padding-left: 5px;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -74,6 +74,8 @@
 }
 
 .ans {
+    padding-left: 10px;
+    padding-right: 10px;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
