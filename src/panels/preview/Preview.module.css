@@ -128,13 +128,12 @@
     color: #F3FDFF;
     font-style: normal;
     font-weight: normal;
-    /*text-shadow: 0px 4px 6px #34ABB5;*/
     display: grid;
     justify-items: center;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
+    margin-bottom: 2vh;
     width: 220px;
     height: 50px;
     border-radius: 15px;
