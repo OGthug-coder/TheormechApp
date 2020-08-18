@@ -87,6 +87,7 @@ class Question extends React.Component {
     }
 
     onRightAnswer = () => {
+        window.navigator.vibrate(200);
         this.setState({animation: 'correct'});
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
@@ -103,6 +104,7 @@ class Question extends React.Component {
     };
 
     onWrongAnswer = () => {
+        window.navigator.vibrate(200);
         this.setState({animation: 'incorrect'})
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
@@ -119,7 +121,7 @@ class Question extends React.Component {
     };
 
     onSkip = () => {
-        console.log("skip");
+        window.navigator.vibrate(200);
         this.questionService.skipQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
                 this.setState({status: Status.IN_PROGRESS});
