@@ -16,7 +16,7 @@ class StickerCard extends React.Component {
             description: props.description,
             cost: props.cost,
             status: props.status,
-            onStatusClick: props.onStatusClick,
+            onBuyClick: props.onBuyClick,
             onSelect: props.onSelect
         };
 
@@ -27,8 +27,10 @@ class StickerCard extends React.Component {
         const id = this.state.id.toString();
         return (
             <div className={s.wrapper}>
-                <div className={s.card}
-                     onClick={this.state.status === StickerStatus.AVAILABLE ? this.state.onStatusClick : () => {}}>
+                <div id={this.state.id}
+                     className={s.card}
+                     onClick={this.state.status === StickerStatus.AVAILABLE ? this.state.onSelect : () => {}}>
+
                     <img className={s.img}
                          src={this.state.img}
                          alt="sticker"
@@ -48,13 +50,12 @@ class StickerCard extends React.Component {
                     <div className={s.control}>
                         {
                             this.state.status === StickerStatus.LOCKED
-                                ?  <Score score={this.state.cost}/>
+                                ? <Score score={this.state.cost}/>
                                 : ""
                         }
 
                         <div className={s.status}>
-                            <StickerControl id={id}
-                                            status={this.state.status}/>
+                            <StickerControl status={this.state.status}/>
                         </div>
                     </div>
                 </div>

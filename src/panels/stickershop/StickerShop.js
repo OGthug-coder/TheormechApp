@@ -45,7 +45,7 @@ class StickerShop extends React.Component {
 
     onSelect = (event) => {
         if (!isUndefined(this.state.user)) {
-            this.stickerShopService.setActiveSticker(this.state.user.id, event.target.id)
+            this.stickerShopService.setActiveSticker(this.state.user.id, event.currentTarget.id)
                 .then(user => {
                     this.application.deleteUser();
 
