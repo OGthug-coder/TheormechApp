@@ -86,11 +86,9 @@ class Question extends React.Component {
     }
 
     onRightAnswer = () => {
-        console.log("right");
+        this.setState({animation: 'correct'});
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                this.setState({animation: 'correct'});
-                console.log('kek');
                 setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
                     this.startNextQuestion(QuestionStatus.PASSED);
@@ -104,11 +102,9 @@ class Question extends React.Component {
     };
 
     onWrongAnswer = () => {
-        console.log("wrong");
+        this.setState({animation: 'incorrect'})
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                this.setState({animation: 'incorrect'})
-                console.log('kek');
                 setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
                     this.startNextQuestion(QuestionStatus.PASSED);

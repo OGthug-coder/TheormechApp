@@ -7,7 +7,6 @@
 
     display: grid;
     grid-template-columns: 1fr;
-
     background: #FFFF;
     border: 1px solid #588EFF;
     box-sizing: border-box;

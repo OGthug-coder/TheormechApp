@@ -201,7 +201,7 @@ class Preview extends React.Component {
                 </section>
                 {!isUndefined(this.state.answerWindow) ?
                     <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
-
+                <canvas id={"canvas"}/>
             </section>
         )
     }
