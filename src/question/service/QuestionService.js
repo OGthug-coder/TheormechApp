@@ -23,6 +23,10 @@ class QuestionService {
         return test;
     }
 
+    vibrate(type) {
+        this.api.vibrate(type);
+    }
+
     startQuestion(questionId) {
         return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.STARTED));
     }

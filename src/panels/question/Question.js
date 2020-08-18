@@ -10,6 +10,7 @@ import HttpStatus from "../../common/api/HttpStatus";
 import AnswerItemFragment from "./fragments/AnswerItemFragment";
 import CorrectAnimation from "./fragments/CorectAnimation"
 import IncorrectAnimation from "./fragments/IncorrectAnimation"
+import Vibration from "../../question/Vibration";
 
 class Status {
     static IN_PROGRESS = 0;
@@ -87,8 +88,8 @@ class Question extends React.Component {
     }
 
     onRightAnswer = () => {
-        window.navigator.vibrate(200);
         this.setState({animation: 'correct'});
+        this.questionService.vibrate(Vibration.SUCCESS);
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
                 setTimeout(() => {
@@ -104,8 +105,8 @@ class Question extends React.Component {
     };
 
     onWrongAnswer = () => {
-        window.navigator.vibrate(200);
         this.setState({animation: 'incorrect'})
+        this.questionService.vibrate(Vibration.ERROR);
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
                 setTimeout(() => {
@@ -121,7 +122,7 @@ class Question extends React.Component {
     };
 
     onSkip = () => {
-        window.navigator.vibrate(200);
+        this.questionService.vibrate(Vibration.WARNING);
         this.questionService.skipQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
                 this.setState({status: Status.IN_PROGRESS});

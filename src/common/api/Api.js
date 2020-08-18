@@ -79,6 +79,10 @@ class Api {
         // });
     }
 
+    vibrate(type) {
+        bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+    }
+
     requestUserById(id) {
         const url = this.URL + "users/" + id;
         return fetch(url, {
