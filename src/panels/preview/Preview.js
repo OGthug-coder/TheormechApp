@@ -191,17 +191,16 @@ class Preview extends React.Component {
                             {this.renderQuestions()}
                         </ul>
                     </div>
-                    <div className={!isUndefined(this.state.testStatus)
-                    && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
-                        <Link to={this.getNextQuestionLink()}
-                              className={s.link}>
-                            <div>{this.getButtonText()}</div>
-                        </Link>
-                    </div>
                 </section>
                 {!isUndefined(this.state.answerWindow) ?
                     <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
-
+                <div className={!isUndefined(this.state.testStatus)
+                && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
+                    <Link to={this.getNextQuestionLink()}
+                          className={s.link}>
+                        <div>{this.getButtonText()}</div>
+                    </Link>
+                </div>
             </section>
         )
     }
