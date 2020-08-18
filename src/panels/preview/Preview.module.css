@@ -8,9 +8,8 @@
 
 .background {
     z-index: -1;
-    height: 100px;
+    height: 300px;
     position: fixed;
-    left: -300px;
 }
 
 /*no scrollbar*/
@@ -18,12 +17,11 @@
     display: none;  /* Safari and Chrome */
 }
 
-
-
 /**/
 
 .button {
     position: fixed;
+
     bottom: 0;
     width: 100%;
     z-index: 30;

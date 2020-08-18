@@ -150,17 +150,14 @@ class Preview extends React.Component {
 
         return (
             <section className={s.preview_wrapper}>
-
-                <div className={s.background}>
-                    <img
-                        src={!isUndefined(testInfo) ? testInfo.img : ""}
-                        alt={"background"}
-                        height={"400"}/>
-                </div>
+                <img
+                    className={s.background}
+                    src={!isUndefined(testInfo) ? testInfo.img : ""}
+                    alt={"background"}/>
 
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton />
+                        <BackButton/>
                     </div>
                 </div>
                 <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
