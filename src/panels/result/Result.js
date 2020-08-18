@@ -15,6 +15,7 @@ class Result extends React.Component {
     }
 
     componentDidMount() {
+        this.application.deleteUser();
         this.resultService.getData(this.testId)
             .then(data => this.setState({data: data}));
     }
