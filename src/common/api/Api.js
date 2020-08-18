@@ -73,7 +73,7 @@ class Api {
         //     sex: 2,
         //     timezone: 3,
         // };
-
+        //
         // return new Promise((resolve) => {
         //     setTimeout(() => resolve(response), 200);
         // });
@@ -100,13 +100,13 @@ class Api {
     addUser(user) {
         const url = this.URL + "users/" + user.id;
 
-        fetch(url, {
+        return fetch(url, {
             method: "PUT",
             body: JSON.stringify(user),
             headers: {
                 "Content-Type": "application/json"
             }
-        });
+        }).then(response => response.json());
 
     }
 

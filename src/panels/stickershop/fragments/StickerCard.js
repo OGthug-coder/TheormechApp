@@ -17,7 +17,7 @@ class StickerCard extends React.Component {
             cost: props.cost,
             status: props.status,
             onStatusClick: props.onStatusClick,
-            onBuyClick: props.onBuyClick
+            onSelect: props.onSelect
         };
 
     }
@@ -27,7 +27,8 @@ class StickerCard extends React.Component {
         const id = this.state.id.toString();
         return (
             <div className={s.wrapper}>
-                <div className={s.card}>
+                <div className={s.card}
+                     onClick={this.state.status === StickerStatus.AVAILABLE ? this.state.onStatusClick : () => {}}>
                     <img className={s.img}
                          src={this.state.img}
                          alt="sticker"
@@ -51,8 +52,7 @@ class StickerCard extends React.Component {
                                 : ""
                         }
 
-                        <div className={s.status}
-                             onClick={this.state.status === StickerStatus.AVAILABLE ? this.state.onStatusClick : () => {}}>
+                        <div className={s.status}>
                             <StickerControl id={id}
                                             status={this.state.status}/>
                         </div>

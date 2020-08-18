@@ -16,8 +16,7 @@ class LevelFragment extends React.Component {
     render() {
         const sticker = this.state.sticker;
         return (
-            <div className={s.level_wrapper}
-                 onClick={this.state.onClick}>
+            <div className={s.level_wrapper}>
                 <div className={s.dignity}>
                     <img src={require("../../../img/profile/brain_outline_28.svg")} alt={"brain_icon"}/>
                     <div>
@@ -27,7 +26,8 @@ class LevelFragment extends React.Component {
                 <div className={s.quote}>
                     {!isUndefined(sticker) ? sticker.quote : ""}
                 </div>
-                <div className={s.sticker_wrapper}>
+                <div className={s.sticker_wrapper}
+                     onClick={this.state.onClick}>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>

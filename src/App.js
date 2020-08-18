@@ -16,7 +16,6 @@ class App extends React.Component {
 
         this.state = {};
         this.application = new Application();
-
     }
 
     render() {

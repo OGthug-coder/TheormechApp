@@ -43,7 +43,7 @@ class StickerShop extends React.Component {
         return stickers;
     };
 
-    onStatusClick = (event) => {
+    onSelect = (event) => {
         if (!isUndefined(this.state.user)) {
             this.stickerShopService.setActiveSticker(this.state.user.id, event.target.id)
                 .then(user => {
@@ -61,19 +61,23 @@ class StickerShop extends React.Component {
 
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
-            this.stickerShopService.buySticker(this.state.user.id, event.target.id)
-                .then(user => {
-                    this.application.deleteUser();
+            if (this.state.user.score >= this.state.stickers.find(s => s.id === event.target.id).cost) {
+                this.stickerShopService.buySticker(this.state.user.id, event.target.id)
+                    .then(user => {
+                        this.application.deleteUser();
 
-                    user.first_name = this.state.user.first_name;
-                    user.last_name = this.state.user.last_name;
-                    user.photo_200 = this.state.user.photo_200;
+                        user.first_name = this.state.user.first_name;
+                        user.last_name = this.state.user.last_name;
+                        user.photo_200 = this.state.user.photo_200;
 
-                    this.setState({user: user});
+                        this.setState({user: user});
 
-                    const stickers = this.prepareStickers(this.state.stickers, user);
-                    this.setState({stickers: stickers})
-                });
+                        const stickers = this.prepareStickers(this.state.stickers, user);
+                        this.setState({stickers: stickers})
+                    });
+            } else {
+                console.log("not enough money");
+            }
         }
     };
 
@@ -92,7 +96,7 @@ class StickerShop extends React.Component {
                         description={sticker.description}
                         cost={sticker.cost}
                         status={sticker.status}
-                        onStatusClick={this.onStatusClick}
+                        onSelect={this.onSelect}
                         onBuyClick={this.onBuyClick}/>
                 );
                 return sticker;

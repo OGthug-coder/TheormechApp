@@ -150,17 +150,14 @@ class Preview extends React.Component {
 
         return (
             <section className={s.preview_wrapper}>
-
-                <div className={s.background}>
-                    <img
-                        src={!isUndefined(testInfo) ? testInfo.img : ""}
-                        alt={"background"}
-                        height={"400"}/>
-                </div>
+                <img
+                    className={s.background}
+                    src={!isUndefined(testInfo) ? testInfo.img : ""}
+                    alt={"background"}/>
 
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton path={'/'}/>
+                        <BackButton/>
                     </div>
                 </div>
                 <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
@@ -191,17 +188,16 @@ class Preview extends React.Component {
                             {this.renderQuestions()}
                         </ul>
                     </div>
-                    <div className={!isUndefined(this.state.testStatus)
-                    && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
-                        <Link to={this.getNextQuestionLink()}
-                              className={s.link}>
-                            <div>{this.getButtonText()}</div>
-                        </Link>
-                    </div>
                 </section>
                 {!isUndefined(this.state.answerWindow) ?
                     <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
-                <canvas id={"canvas"}/>
+                <div className={!isUndefined(this.state.testStatus)
+                && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
+                    <Link to={this.getNextQuestionLink()}
+                          className={s.link}>
+                        <div>{this.getButtonText()}</div>
+                    </Link>
+                </div>
             </section>
         )
     }

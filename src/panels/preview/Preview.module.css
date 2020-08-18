@@ -8,9 +8,8 @@
 
 .background {
     z-index: -1;
-    height: 100px;
+    height: 300px;
     position: fixed;
-    left: -300px;
 }
 
 /*no scrollbar*/
@@ -18,12 +17,11 @@
     display: none;  /* Safari and Chrome */
 }
 
-
-
 /**/
 
 .button {
     position: fixed;
+
     bottom: 0;
     width: 100%;
     z-index: 30;
@@ -32,12 +30,7 @@
 
 }
 
-.link div {
-    margin-top: 7px;
-}
-
 .modal_window {
-    /*_position: absolute;*/
     scroll-behavior: smooth;
     overflow: scroll;
     width: 100%;
@@ -135,12 +128,12 @@
     color: #F3FDFF;
     font-style: normal;
     font-weight: normal;
-    /*text-shadow: 0px 4px 6px #34ABB5;*/
     display: grid;
     justify-items: center;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     width: 220px;
     height: 50px;
     border-radius: 15px;
@@ -152,8 +145,11 @@
     background: #588EFF;
 }
 
-.link div {
-    margin-top: 7px;
+@supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+    .link {
+        margin-bottom: 15px;
+    }
 }
 
 .hidden {
