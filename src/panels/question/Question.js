@@ -8,6 +8,8 @@ import getNextQuestionUrl from "../../common/getNextQuestionUrl";
 import QuestionStatus from "../../preview/util/QuestionStatus";
 import HttpStatus from "../../common/api/HttpStatus";
 import AnswerItemFragment from "./fragments/AnswerItemFragment";
+import CorrectAnimation from "./fragments/CorectAnimation"
+import IncorrectAnimation from "./fragments/IncorrectAnimation"
 
 class Status {
     static IN_PROGRESS = 0;
@@ -28,6 +30,7 @@ class Question extends React.Component {
             questionId: parseInt(props.match.params.questionId),
             testId: parseInt(props.match.params.testId),
             _position: 10,
+            animation: undefined,
         };
     }
 
@@ -83,26 +86,32 @@ class Question extends React.Component {
     }
 
     onRightAnswer = () => {
-        console.log("right");
+        this.setState({animation: 'correct'});
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                this.setState({status: Status.IN_PROGRESS});
-                this.startNextQuestion(QuestionStatus.PASSED);
+                setTimeout(() => {
+                    this.setState({status: Status.IN_PROGRESS});
+                    this.startNextQuestion(QuestionStatus.PASSED);
+                    this.setState({animation: undefined})
+                }, 1000);
             } else {
-                //    TODO
+                
             }
         });
         this.setState({status: Status.PASSED});
     };
 
     onWrongAnswer = () => {
-        console.log("wrong");
+        this.setState({animation: 'incorrect'})
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
-                this.setState({status: Status.IN_PROGRESS});
-                this.startNextQuestion(QuestionStatus.FAILED);
+                setTimeout(() => {
+                    this.setState({status: Status.IN_PROGRESS});
+                    this.startNextQuestion(QuestionStatus.PASSED);
+                    this.setState({animation: undefined})
+                }, 1000);
             } else {
-                //    TODO
+                
             }
         });
         this.setState({status: Status.FAILED});
@@ -208,12 +217,17 @@ class Question extends React.Component {
                     </div>
                 </div>
                 <div className={`${s.question_card} `}
-                     style={{
-                         top: `${this.state._position}px`
-                     }}>
-                    <div className={s.question_text}>
-                        {!isUndefined(question) ? question.questionText : ""}
-                    </div>
+                    style={{
+                        top: `${this.state._position}px`
+                    }}>
+                    {this.state.animation === undefined ? 
+                        <div className={s.question_text}>
+                            {!isUndefined(question) ? question.questionText : ""}
+                        </div>
+                        : ""
+                    }
+                    {this.state.animation === 'correct' ? <CorrectAnimation/> : ""}
+                    {this.state.animation === 'incorrect' ? <IncorrectAnimation/> : ""}
                     <section className={s.answers_container}>
                         {!isUndefined(question) ? this.prepareList() : []}
                     </section>
@@ -224,7 +238,7 @@ class Question extends React.Component {
                             </div>
                         </div>
                         <div className={s.next_question}
-                             onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : ""}>
+                            onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : ""}>
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>

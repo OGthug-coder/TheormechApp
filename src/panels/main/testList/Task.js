@@ -16,6 +16,7 @@ class Task extends React.Component {
             img: props.img,
             date: props.date,
         }
+
         props.progress.then(progress => this.setState({progress: progress}));
     }
 
@@ -24,8 +25,8 @@ class Task extends React.Component {
             <div className={s.field}>
                 <div className={s.card}>
                     <img className={s.pic}
-                         src={this.state.img}
-                         alt={"test"}/>
+                        src={this.state.img}
+                        alt={"test"}/>
                     <div className={s.name}>
                         {this.state.title}
                     </div>
