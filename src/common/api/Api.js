@@ -21,6 +21,10 @@ class Api {
 
     }
 
+    subscribeToGroup() {
+        bridge.send("VKWebAppJoinGroup", {"group_id": 8812367});
+    }
+
     //dark or light
     setStatusBarStyle(style) {
         bridge.send("VKWebAppSetViewSettings", {"status_bar_style": style, "action_bar_color": "none"});
