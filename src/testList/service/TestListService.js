@@ -6,6 +6,8 @@ class TestListService {
         this.api = api;
         this.user = user;
         this.testRepo = testRepo;
+
+        this.setLightStatusBarStyle();
     }
 
     setLightStatusBarStyle() {
