@@ -3,12 +3,6 @@ import s from './Animation.module.css';
 
 
 class IncorrectAnimation extends React.Component {
-
-    constructor (props) {
-        super(props);
-
-    }
-
     render() {
         return (
 

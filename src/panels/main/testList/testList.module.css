@@ -1,7 +1,7 @@
 .news_container {
     margin-top: 1%;
     overflow: scroll;
-    height: 98%;
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
     font-family: "Titillium Web", sans-serif;
