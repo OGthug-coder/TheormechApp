@@ -26,6 +26,10 @@ class Profile extends React.Component {
         this.props.history.push('/stickerShop');
     };
 
+    onLogoClick = () => {
+        window.location.assign('https://vk.com/theormech');
+    };
+
 
     render() {
         let user = this.state.user;
@@ -54,7 +58,8 @@ class Profile extends React.Component {
                 <LevelFragment key={user}
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}
                                onClick={this.onStickerClick}/>
-                <div className={s.logo}>
+                <div className={s.logo}
+                    onClick={this.onLogoClick}>
                     <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
                     <div>
                         Высшая школа теоретической механики

@@ -2,11 +2,11 @@
     height: 90%;
     margin-top: 30px;
     margin-right: 5vw;
-    padding: 5px;
+    padding: 2vh 2vw 2vh 0;
     display: grid;
     background-color: #FFFFFF;
     border-radius: 25px;
-    grid-template-columns: 20px 1fr;
+    grid-template-columns: 5vw 1fr;
     grid-template-rows: minmax(100px, 150px) minmax(320px, 340px) min-content;
     grid-template-areas: "slider about" "slider level_fragment" "slider logo";
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -61,18 +61,21 @@
 .logo {
     grid-area: logo;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    grid-template-columns: 1fr 1.5fr;
+    grid-gap: 20px;
     margin: auto 5px 20px;
 }
 
 .logo img {
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 0;
 }
 
 .logo div {
-    margin: auto;
+    text-align: left;
     padding-right: 5px;
+    width: 80%;
 }
 
 .background {
@@ -111,9 +114,11 @@
 @media screen and (max-device-height: 600px){
     .profile_card {
         grid-gap: 0;
-        margin-top: 0;
+        margin-top: 20px;
+        padding: 1vh 1vw 1vh 0;
         height: min-content;
         grid-template-rows: 120px 320px 80px;
+
     }
 
 }
