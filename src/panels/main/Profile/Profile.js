@@ -6,6 +6,7 @@ import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
 import {withRouter} from "react-router";
+import bridge from '@vkontakte/vk-bridge';
 
 
 class Profile extends React.Component {
@@ -27,7 +28,7 @@ class Profile extends React.Component {
     };
 
     onLogoClick = () => {
-        window.location.assign('https://vk.com/theormech');
+        bridge.send("VKWebAppJoinGroup", {"group_id": 8812367});
     };
 
 
