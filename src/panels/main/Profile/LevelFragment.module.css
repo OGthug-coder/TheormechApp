@@ -1,9 +1,9 @@
 .level_wrapper {
+    height: min-content;
     display: grid;
-    grid-template-rows: 40px min-content min-content;
+    grid-template-rows: 40px min-content 200px;
     grid-template-areas: "dignity" "quote" "sticker";
     grid-gap: 5px;
-
 }
 
 .dignity {

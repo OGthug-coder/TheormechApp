@@ -11,6 +11,8 @@
     grid-template-areas: "slider about" "slider level_fragment" "slider logo";
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     font-family: "Roboto", sans-serif;
+    align-items: center;
+    justify-items: center;
     color: black;
     grid-gap: 5px;
 }
@@ -21,7 +23,7 @@
     height: 150px;
     background-color: #BFBFBF;
     border-radius: 25px;
-    margin: auto 10px auto 10px;
+    /*margin: auto 10px auto 10px;*/
 }
 
 .about {
