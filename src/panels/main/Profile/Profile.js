@@ -14,7 +14,11 @@ class Profile extends React.Component {
         this.application = props.application;
         this.profileService = this.application.provideProfileService();
 
-        this.state = {};
+        this.state = {
+            isButtonLocked: false,
+            settings_window: props.settings_window,
+            onSettingsClick: props.onSettingsClick,
+        };
     }
 
     componentDidMount() {
@@ -27,8 +31,9 @@ class Profile extends React.Component {
     };
 
     onLogoClick = () => {
-       this.profileService.subscribe();
+        this.profileService.subscribe();
     };
+
 
 
     render() {
@@ -59,14 +64,25 @@ class Profile extends React.Component {
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}
                                onClick={this.onStickerClick}/>
                 <div className={s.logo}
-                    onClick={this.onLogoClick}>
+                     onClick={this.onLogoClick}>
                     <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
-                    <div>
+                    <div className={s.logo_text}>
                         Высшая школа теоретической механики
+                    </div>
+                    <div className={`${s.settings} ${this.state.settings_window === true ? s.active : s.disabled}`}
+                         onClick={this.state.onSettingsClick}>
+                    </div>
+                </div>
+                <div
+                    className={`${s.settings_window} ${this.state.settings_window === true ? s.settings_window : s.hidden}`}>
+                    <div className={s.settings_item}>
+                        Сменить стикер
+                    </div>
+                    <div className={s.settings_item}>
+                        О приложении
                     </div>
                 </div>
             </div>
-
         )
     }
 }
