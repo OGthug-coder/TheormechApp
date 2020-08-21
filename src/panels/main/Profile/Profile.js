@@ -72,17 +72,18 @@ class Profile extends React.Component {
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
                 <div className={s.logo}
                      onClick={this.onLogoClick}>
-                    <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
+                    <img src={require("../../../img/profile/ic_tm_logo.png")} alt={"logo"}/>
                     <div className={s.logo_text}>
                         Высшая школа теоретической механики
                     </div>
-                    <div className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
-                         onClick={this.state.onSettingsClick}>
+                    <div
+                        className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
+                        onClick={this.state.onSettingsClick}>
                     </div>
                 </div>
                 <div className={`${s.settings_window} ${this.provideVisibility()}`}>
                     <div className={s.settings_item}
-                        onClick={this.onStickerClick}>
+                         onClick={this.onStickerClick}>
                         Сменить стикер
                     </div>
                     <div className={s.settings_item}>
