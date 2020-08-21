@@ -59,7 +59,7 @@ class Preview extends React.Component {
 
     onSwipeEnd = (position, event) => {
         if (!isUndefined(this.state.answerWindow)) {
-            setTimeout(this.hideAnswerWindow, 10);
+            setTimeout(this.hideAnswerWindow, 50);
         }
     };
 
