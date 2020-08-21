@@ -117,7 +117,8 @@
     height: 33px;
     margin: auto 5px 0 0;
 
-    background: url("../../../img/profile/ic_gear.svg") no-repeat;
+    background: url("../../../img/profile/ic_gear.png") no-repeat;
+    background-size: contain;
     filter: drop-shadow(0px 4px 45px rgba(0, 0, 0, 0.4));
 
 }
