@@ -30,7 +30,7 @@ class Main extends React.Component {
     render() {
         return (
             <Swipe
-                onSwipeMove={this.onSwipeMove}>
+                onSwipeRight={this.onSwipeMove}>
                 <div className={s.main_window}>
                     <div className={s.news_wrapper}>
                         <TestList application={this.application} sortBy={'date'}/>
