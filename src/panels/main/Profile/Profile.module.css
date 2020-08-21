@@ -1,8 +1,8 @@
 .profile_card {
-    height: 90%;
-    margin-top: 30px;
+    height: 95%;
+    margin-top: 15px;
     margin-right: 5vw;
-    padding: 2vh 2vw 2vh 0;
+    padding: 1vh 1vw 1vh 0;
     display: grid;
     background-color: #FFFFFF;
     border-radius: 25px;
@@ -14,7 +14,7 @@
     align-items: center;
     justify-items: center;
     color: black;
-    grid-gap: 5px;
+    /*grid-gap: 5px;*/
 }
 
 .slider {
@@ -66,7 +66,7 @@
     margin: auto 5px 0;
 }
 
-.logo img {
+.logo > img {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -138,7 +138,7 @@
     flex-direction: column;
     position: absolute;
     top: 76%;
-    left: 10%;
+    left: 15%;
     margin: 20px;
 
     animation: slide_up var(--animation_time) linear;
@@ -146,7 +146,7 @@
 
 .settings_item {
     height: 40px;
-    width: 250px;
+    width: 60vw;
     margin: 2px;
     border-radius: 25px;
     background-color: white;
@@ -187,7 +187,7 @@
 
 @keyframes slide_up {
     from {
-        -webkit-transform: translate(50%, 60%) scale(0.001) skew(15deg, 15deg);
+        -webkit-transform: translate(60%, 60%) scale(0.001) skew(15deg, 15deg);
     }
     to {
         -webkit-transform: translate(0, 0) skew(0) scale(1);
@@ -199,7 +199,7 @@
         -webkit-transform: translate(0, 0) skew(0) scale(1);
     }
     to {
-        -webkit-transform: translate(50%, 60%) scale(0.001) skew(15deg, 15deg);
+        -webkit-transform: translate(60%, 60%) scale(0.001) skew(15deg, 15deg);
     }
 }
 
@@ -207,15 +207,36 @@
 @media screen and (max-device-height: 600px){
     .profile_card {
         grid-gap: 0;
-        margin-top: 20px;
         padding: 1vh 1vw 1vh 0;
         height: min-content;
         grid-template-rows: 120px 320px 80px;
+    }
 
+    .settings_window {
+        top: 73%;
     }
 
     .settings {
         margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-device-height: 700px){
+    .profile_card {
+        padding: 2vh 2vw 1vh 0;
+        grid-gap: 5px;
+    }
+
+    .settings_window {
+        top: 73%;
+    }
+
+    .logo_text {
+        margin-bottom: calc(20px + 2vh);
+    }
+
+    .logo > img {
+        margin-bottom: calc(20px + 2vh);
     }
 
 }

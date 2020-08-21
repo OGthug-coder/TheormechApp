@@ -1,12 +1,14 @@
+
+
 .main_window {
     scroll-snap-type: x mandatory;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     overflow-x: scroll;
     overflow-y: hidden;
     display: grid;
     grid-template-columns: 95vw 1fr;
-    grid-template-areas: "news profile settings";
+    grid-template-areas: "news profile";
     align-content: center;
 }
 /*no scrollbar*/
