@@ -29,8 +29,8 @@ class Main extends React.Component {
 
     render() {
         return (
-            // <Swipe
-            //     onSwipeRight={this.onSwipeMove}>
+            <Swipe
+                onSwipeMove={this.onSwipeMove}>
                 <div className={s.main_window}>
                     <div className={s.news_wrapper}>
                         <TestList application={this.application} sortBy={'date'}/>
@@ -43,7 +43,7 @@ class Main extends React.Component {
                     </div>
                     <div className={s.background}/>
                 </div>
-            // </Swipe>
+            </Swipe>
         )
     }
 }
