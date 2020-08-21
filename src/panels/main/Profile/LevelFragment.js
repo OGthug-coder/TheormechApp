@@ -9,7 +9,6 @@ class LevelFragment extends React.Component {
 
         this.state = {
             sticker: props.sticker,
-            onClick: props.onClick
         };
     }
 
@@ -26,8 +25,7 @@ class LevelFragment extends React.Component {
                 <div className={s.quote}>
                     {!isUndefined(sticker) ? sticker.quote : ""}
                 </div>
-                <div className={s.sticker_wrapper}
-                     onClick={this.state.onClick}>
+                <div className={s.sticker_wrapper}>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
                     <div className={s.cloud}/>
