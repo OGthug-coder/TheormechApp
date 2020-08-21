@@ -27,14 +27,22 @@ class Profile extends React.Component {
     }
 
     onStickerClick = () => {
-        this.props.history.push('/stickerShop');
+        this.state.onSettingsClick();
+        setTimeout(() => this.props.history.push('/stickerShop'), 250);
     };
 
     onLogoClick = () => {
         this.profileService.subscribe();
     };
 
+    provideVisibility = () => {
+        if (isUndefined(this.state.settings_window)) {
+            return s.hidden_no_animation;
+        } else {
+            return this.state.settings_window === true ? s.settings_window : s.hidden;
+        }
 
+    };
 
     render() {
         let user = this.state.user;
@@ -61,21 +69,20 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <LevelFragment key={user}
-                               sticker={!isUndefined(user) ? user.activeSticker : undefined}
-                               onClick={this.onStickerClick}/>
+                               sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
                 <div className={s.logo}
                      onClick={this.onLogoClick}>
                     <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
                     <div className={s.logo_text}>
                         Высшая школа теоретической механики
                     </div>
-                    <div className={`${s.settings} ${this.state.settings_window === true ? s.active : s.disabled}`}
+                    <div className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
                          onClick={this.state.onSettingsClick}>
                     </div>
                 </div>
-                <div
-                    className={`${s.settings_window} ${this.state.settings_window === true ? s.settings_window : s.hidden}`}>
-                    <div className={s.settings_item}>
+                <div className={`${s.settings_window} ${this.provideVisibility()}`}>
+                    <div className={s.settings_item}
+                        onClick={this.onStickerClick}>
                         Сменить стикер
                     </div>
                     <div className={s.settings_item}>

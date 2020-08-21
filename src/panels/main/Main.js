@@ -4,15 +4,14 @@ import Profile from "./Profile/Profile";
 import Swipe from 'react-easy-swipe';
 
 import s from './Main.module.css';
+import isUndefined from "../../common/IsUndefined";
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.application = props.application;
 
-        this.state = {
-            settings_window: false
-        };
+        this.state = {};
     }
 
     onSwipeMove = (position, event) => {
@@ -21,7 +20,11 @@ class Main extends React.Component {
     };
 
     onSettingsClick = () => {
-        this.setState({settings_window: !this.state.settings_window});
+        if (isUndefined(this.state.settings_window)) {
+            this.setState({settings_window: true})
+        } else {
+            this.setState({settings_window: !this.state.settings_window});
+        }
     };
 
     render() {
