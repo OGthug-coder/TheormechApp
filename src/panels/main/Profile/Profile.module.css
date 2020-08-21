@@ -126,11 +126,11 @@
 }
 
 .active {
-    animation: rotate2 var(--animation_time) ease-out;
+    /*animation: rotate2 var(--animation_time) ease-out;*/
 }
 
 .disabled {
-    animation: rotate var(--animation_time) ease-in-out;
+    /*animation: rotate var(--animation_time) ease-in-out;*/
 }
 
 .settings_window {
@@ -144,7 +144,7 @@
     left: 15%;
     margin: 20px;
 
-    animation: slide_up var(--animation_time) linear;
+    /*animation: slide_up var(--animation_time) linear;*/
 }
 
 .settings_item {
@@ -163,7 +163,8 @@
 }
 
 .hidden {
-    animation: slide_down var(--animation_time) linear forwards;
+    /*animation: slide_down var(--animation_time) linear forwards;*/
+    display: none;
 }
 
 .profile_card {
