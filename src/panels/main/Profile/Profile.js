@@ -15,11 +15,21 @@ class Profile extends React.Component {
         this.profileService = this.application.provideProfileService();
 
         this.state = {
-            isButtonLocked: false,
             settings_window: props.settings_window,
             onSettingsClick: props.onSettingsClick,
         };
+
+        window.onpopstate = this.onBackHandler;
+
     }
+
+    onBackHandler = () => {
+        console.log("returned");
+        this.application.provideUser()
+            .then(user => {
+                this.setState({user: user})
+            });
+    };
 
     componentDidMount() {
         this.application.provideUser()

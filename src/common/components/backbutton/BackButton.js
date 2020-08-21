@@ -6,7 +6,7 @@ import isUndefined from "../../IsUndefined";
 class BackButton extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props.disabled)
+
         this.state = {
             disabled: !isUndefined(props.disabled)
         };

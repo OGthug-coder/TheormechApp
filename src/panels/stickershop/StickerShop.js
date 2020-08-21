@@ -14,7 +14,11 @@ class StickerShop extends React.Component {
         this.application = this.props.application;
         this.stickerShopService = this.application.provideStickerShopService();
         this.state = {};
+
+
+
     }
+
 
     componentDidMount() {
         this.stickerShopService.getAllStickers().then(stickers => {
@@ -62,10 +66,9 @@ class StickerShop extends React.Component {
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
             if (this.state.user.score >= this.state.stickers.find(s => s.id === event.target.id).cost) {
+                this.application.deleteUser();
                 this.stickerShopService.buySticker(this.state.user.id, event.target.id)
                     .then(user => {
-                        this.application.deleteUser();
-
                         user.first_name = this.state.user.first_name;
                         user.last_name = this.state.user.last_name;
                         user.photo_200 = this.state.user.photo_200;
