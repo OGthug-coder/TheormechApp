@@ -206,7 +206,7 @@
 }
 
 
-@media screen and (max-device-height: 635px){
+@media screen and (max-device-height: 640px){
     .profile_card {
         grid-gap: 0;
         padding: 1vh 1vw 1vh 0;
