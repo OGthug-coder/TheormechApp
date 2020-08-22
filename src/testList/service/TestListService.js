@@ -7,7 +7,7 @@ class TestListService {
         this.user = user;
         this.testRepo = testRepo;
 
-        this.setLightStatusBarStyle();
+        // this.setLightStatusBarStyle();
     }
 
     setLightStatusBarStyle() {
