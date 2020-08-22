@@ -49,7 +49,7 @@ class StickerShop extends React.Component {
 
     onSelect = (event) => {
         if (!isUndefined(this.state.user)) {
-            this.stickerShopService.vibrate(Vibration.SUCCESS)
+            this.stickerShopService.vibrate()
             this.stickerShopService.setActiveSticker(this.state.user.id, event.currentTarget.id)
                 .then(user => {
                     this.application.deleteUser();
@@ -80,6 +80,7 @@ class StickerShop extends React.Component {
                         this.setState({stickers: stickers})
                     });
             } else {
+                this.stickerShopService.vibrateImpact(Vibration.IMPACT_MEDIUM);
                 console.log("not enough money");
             }
         }

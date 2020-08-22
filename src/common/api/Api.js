@@ -91,6 +91,10 @@ class Api {
         bridge.send("VKWebAppTapticSelectionChanged", {});
     }
 
+    vibrateImpact(type) {
+        bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+    }
+
     requestUserById(id) {
         const url = this.URL + "users/" + id;
         return fetch(url, {
