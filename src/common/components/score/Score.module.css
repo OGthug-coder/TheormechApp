@@ -7,13 +7,18 @@
     align-items: center;
 }
 
+.container > svg {
+    height: 25px;
+    width: 25px;
+    margin: 0;
+}
+
 .score {
     margin-left: 5px;
     font-size: 18px;
 }
 
 .focus {
-
     animation: focus 300ms ease-in-out;
 }
 
