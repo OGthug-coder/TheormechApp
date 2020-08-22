@@ -1,5 +1,5 @@
 .answer_item {
-    margin: 20px auto;
+    margin: 10px auto;
     width: 270px;
     height: 50px;
     z-index: 3;
@@ -46,6 +46,10 @@
     display: flex;
     align-items: center;
     letter-spacing: -0.04em;
+}
 
-    
+@media screen and (min-device-height: 750px) {
+    .answer_item {
+        margin: 20px auto;
+    }
 }

@@ -15,7 +15,7 @@ class StickerShop extends React.Component {
         this.application = this.props.application;
         this.stickerShopService = this.application.provideStickerShopService();
         this.state = {
-            scoreFocus: false
+            scoreFocus: undefined
         };
 
     }
@@ -79,8 +79,8 @@ class StickerShop extends React.Component {
                     });
             } else {
                 this.stickerShopService.vibrateImpact(Vibration.IMPACT_HEAVY);
-                this.setState({scoreFocus: true})
-                setTimeout(() => this.setState({scoreFocus: false}), 300)
+                this.setState({scoreFocus: event.target.id})
+                setTimeout(() => this.setState({scoreFocus: undefined}), 300)
             }
         }
     };
@@ -92,7 +92,7 @@ class StickerShop extends React.Component {
             stickers.map(sticker => {
                 stickerComponents.push(
                     <StickerCard
-                        key={[sticker.id, sticker.status]}
+                        key={[sticker.id, sticker.status, this.state.scoreFocus]}
                         id={sticker.id}
                         img={sticker.img}
                         name={sticker.name}
@@ -101,7 +101,8 @@ class StickerShop extends React.Component {
                         cost={sticker.cost}
                         status={sticker.status}
                         onSelect={this.onSelect}
-                        onBuyClick={this.onBuyClick}/>
+                        onBuyClick={this.onBuyClick}
+                        scoreFocus={this.state.scoreFocus}/>
                 );
                 return sticker;
             })
@@ -116,9 +117,8 @@ class StickerShop extends React.Component {
                 <BackHeader/>
                 <div className={s.headline}>
                     <span>Choose your fighter!</span>
-                    <Score key={[!isUndefined(this.state.user) ? this.state.user.score : "", this.state.scoreFocus]}
-                           score={!isUndefined(this.state.user) ? this.state.user.score : 0}
-                           focus={this.state.scoreFocus}/>
+                    <Score key={!isUndefined(this.state.user) ? this.state.user.score : ""}
+                           score={!isUndefined(this.state.user) ? this.state.user.score : 0}/>
                 </div>
                 <div className={s.sticker_container}>
                     <div className={s.p}/>
