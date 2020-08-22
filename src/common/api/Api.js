@@ -83,8 +83,12 @@ class Api {
         // });
     }
 
-    vibrate(type) {
+    vibrateNotification(type) {
         bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+    }
+
+    vibrateSelectionChanged() {
+        bridge.send("VKWebAppTapticSelectionChanged", {});
     }
 
     requestUserById(id) {

@@ -12,7 +12,7 @@ class StickerShopService {
     }
 
     vibrate(type) {
-        this.api.vibrate(type);
+        this.api.vibrateSelectionChanged();
     }
 
     buySticker(userId, stickerId) {
