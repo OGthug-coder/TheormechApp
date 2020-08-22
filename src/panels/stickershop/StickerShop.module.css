@@ -9,6 +9,7 @@
     justify-items: center;
     align-items: center;
     align-content: center;
+    touch-action: manipulation;
 }
 
 
