@@ -11,3 +11,23 @@
     margin-left: 5px;
     font-size: 18px;
 }
+
+.focus {
+
+    animation: focus 300ms ease-in-out;
+}
+
+@keyframes focus {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

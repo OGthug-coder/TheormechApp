@@ -5,7 +5,7 @@
     display: -ms-grid;
     z-index: 1;
     display: grid;
-    grid-template-rows: 57px 12vh 1fr;
+    grid-template-rows: 100px 12vh 1fr;
     justify-items: center;
     align-items: center;
     align-content: center;
@@ -78,5 +78,12 @@
 
 .sticker_container::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
+}
+
+@media screen and (max-device-height: 600px) {
+    .container {
+        grid-template-rows: 100px 12vh 1fr;
+
+    }
 }
 

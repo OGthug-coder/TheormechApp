@@ -14,7 +14,9 @@ class StickerShop extends React.Component {
 
         this.application = this.props.application;
         this.stickerShopService = this.application.provideStickerShopService();
-        this.state = {};
+        this.state = {
+            scoreFocus: false
+        };
 
     }
 
@@ -27,7 +29,6 @@ class StickerShop extends React.Component {
             });
         });
     }
-
 
 
     prepareStickers = (stickers, user) => {
@@ -62,7 +63,6 @@ class StickerShop extends React.Component {
 
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
-            debugger
             const cost = this.state.stickers.find(s => s.id === parseInt(event.target.id)).cost;
             if (this.state.user.score >= cost) {
                 this.application.deleteUser();
@@ -79,7 +79,8 @@ class StickerShop extends React.Component {
                     });
             } else {
                 this.stickerShopService.vibrateImpact(Vibration.IMPACT_HEAVY);
-                console.log("not enough money");
+                this.setState({scoreFocus: true})
+                setTimeout(() => this.setState({scoreFocus: false}), 300)
             }
         }
     };
@@ -115,8 +116,9 @@ class StickerShop extends React.Component {
                 <BackHeader/>
                 <div className={s.headline}>
                     <span>Choose your fighter!</span>
-                    <Score key={!isUndefined(this.state.user) ? this.state.user.score : ""}
-                           score={!isUndefined(this.state.user) ? this.state.user.score : 0}/>
+                    <Score key={[!isUndefined(this.state.user) ? this.state.user.score : "", this.state.scoreFocus]}
+                           score={!isUndefined(this.state.user) ? this.state.user.score : 0}
+                           focus={this.state.scoreFocus}/>
                 </div>
                 <div className={s.sticker_container}>
                     <div className={s.p}/>
