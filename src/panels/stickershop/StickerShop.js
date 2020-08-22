@@ -78,7 +78,7 @@ class StickerShop extends React.Component {
                         this.setState({stickers: stickers})
                     });
             } else {
-                this.stickerShopService.vibrateImpact(Vibration.IMPACT_MEDIUM);
+                this.stickerShopService.vibrateImpact(Vibration.IMPACT_HEAVY);
                 console.log("not enough money");
             }
         }
