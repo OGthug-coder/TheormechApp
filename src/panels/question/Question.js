@@ -10,7 +10,7 @@ import HttpStatus from "../../common/api/HttpStatus";
 import AnswerItemFragment from "./fragments/AnswerItemFragment";
 import CorrectAnimation from "./fragments/CorectAnimation"
 import IncorrectAnimation from "./fragments/IncorrectAnimation"
-import Vibration from "../../question/Vibration";
+import Vibration from "../../common/Vibration";
 
 class Status {
     static IN_PROGRESS = 0;
@@ -241,7 +241,7 @@ class Question extends React.Component {
                             </div>
                         </div>
                         <div className={s.next_question}
-                            onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : ""}>
+                            onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : () => {}}>
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>

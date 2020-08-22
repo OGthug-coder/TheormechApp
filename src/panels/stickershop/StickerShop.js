@@ -6,6 +6,7 @@ import s from "./StickerShop.module.css";
 import Score from "../../common/components/score/Score";
 import StickerStatus from "./util/StickerStatus";
 import isUndefined from "../../common/IsUndefined";
+import Vibration from "../../common/Vibration";
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -15,10 +16,7 @@ class StickerShop extends React.Component {
         this.stickerShopService = this.application.provideStickerShopService();
         this.state = {};
 
-
-
     }
-
 
     componentDidMount() {
         this.stickerShopService.getAllStickers().then(stickers => {
@@ -29,6 +27,8 @@ class StickerShop extends React.Component {
             });
         });
     }
+
+
 
     prepareStickers = (stickers, user) => {
         const ids = user.stickers.map(s => s.id);
@@ -49,6 +49,7 @@ class StickerShop extends React.Component {
 
     onSelect = (event) => {
         if (!isUndefined(this.state.user)) {
+            this.stickerShopService.vibrate(Vibration.SUCCESS)
             this.stickerShopService.setActiveSticker(this.state.user.id, event.currentTarget.id)
                 .then(user => {
                     this.application.deleteUser();

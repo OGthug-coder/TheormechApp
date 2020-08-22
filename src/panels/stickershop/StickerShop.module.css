@@ -3,7 +3,7 @@
     width: 100%;
     font-family: 'Roboto', sans-serif;
     display: -ms-grid;
-
+    z-index: 1;
     display: grid;
     grid-template-rows: 57px 12vh 1fr;
     justify-items: center;

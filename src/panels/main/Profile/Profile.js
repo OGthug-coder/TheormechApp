@@ -20,21 +20,21 @@ class Profile extends React.Component {
         };
 
         window.onpopstate = this.onBackHandler;
-
     }
 
     onBackHandler = () => {
-        console.log("returned");
-        this.application.provideUser()
-            .then(user => {
-                this.setState({user: user})
-            });
+        this.setState({user: undefined});
+        this.fetchUser();
     };
 
     componentDidMount() {
+        this.fetchUser();
+    }
+
+    fetchUser = () => {
         this.application.provideUser()
             .then(user => this.setState({user: user}));
-    }
+    };
 
     onStickerClick = () => {
         this.state.onSettingsClick();
