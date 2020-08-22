@@ -10,9 +10,9 @@ class TestListService {
         // this.setLightStatusBarStyle();
     }
 
-    setLightStatusBarStyle() {
-        this.api.setStatusBarStyle("light");
-    }
+    // setLightStatusBarStyle() {
+    //     this.api.setStatusBarStyle("light");
+    // }
 
     getTests() {
         const tests = this.api.requestTests().then(testsDto => {
