@@ -226,7 +226,8 @@ class Question extends React.Component {
                     {this.state.animation === undefined
                         ?
                         <div className={s.question_text}>
-                            {!isUndefined(question) ? question.questionText : ""}
+                            {/*{!isUndefined(question) ? question.questionText : ""}*/}
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
                         </div>
                         :
                         <div className={s.animation_container}>
@@ -261,15 +262,9 @@ class Question extends React.Component {
                     {/*    <button className={s.slider}/>*/}
                     {/*</Swipe>*/}
 
-                    <div className={s.wave_card}>
-                        {/*<div className={s.wave_one}/>*/}
-                        {/*<div className={s.wave_two}/>*/}
-                    </div>
+                    <div className={s.wave_card}/>
                 </div>
-                {/*<div className={s.wave}>*/}
-                {/*    <div className={s.wave_one}/>*/}
-                {/*    <div className={s.wave_two}/>*/}
-                {/*</div>*/}
+                <div className={`${s.wave_card} ${s.external_waves}`}/>
             </section>
         )
     }

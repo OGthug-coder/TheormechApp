@@ -1,5 +1,6 @@
 .answer_item {
     margin: 10px auto;
+    padding: 5px;
     width: 270px;
     height: 50px;
     z-index: 3;
@@ -37,7 +38,6 @@
 
 .text {
     margin: auto;
-
     font-family: Titillium Web, sans-serif;
     font-style: normal;
     font-weight: normal;

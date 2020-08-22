@@ -7,7 +7,7 @@ import StickerStatus from "../util/StickerStatus";
 class StickerCard extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             id: props.id,
             img: props.img,

@@ -37,7 +37,7 @@
     margin: 15px auto;
 
     display: grid;
-    grid-template-rows: 35% 4fr 1fr 0.25fr;
+    grid-template-rows: 30% 1fr 40px 10px;
     grid-template-areas: "question_text" "answer_container" "control" "slider";
 
     width: 90%;
@@ -48,6 +48,10 @@
     border-radius: 25px;
 
     animation: slide_up 1.4s ease;
+}
+
+.answers_container {
+    margin-bottom: 2vh;
 }
 
 .question_text {
@@ -70,6 +74,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "score_container" "next_question";
+    margin-bottom: 2vh;
 
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -161,7 +166,7 @@
 .wave_card {
     z-index: 1;
     width: 100%;
-    height: 65%;
+    height: 75%;
     overflow: hidden;
     position: absolute;
     bottom: 0;
@@ -169,27 +174,13 @@
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 
-    background: white;
+    background: url("../../img/question/bg_waves.svg");
     background-size: cover;
-
 }
 
-.wave_one {
-    background: url('../../img/question/wave_top.png') repeat-x;
-    width: 7000px;
-    height: 200px;
-    animation: waves 15s infinite linear;
-    position: absolute;
-    top: 0;
-}
-
-.wave_two {
-    background: url('../../img/question/wave_top_opacity.png') repeat-x;
-    width: 7000px;
-    height: 200px;
-    animation: waves 10s infinite linear;
-    position: absolute;
-    top: 0;
+.external_waves {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 @keyframes waves {
@@ -218,6 +209,18 @@
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+@media screen and (min-device-height: 750px) {
+    .wave_card {
+        height: 70%;
+    }
+}
+
+@media screen and (max-device-height: 600px) {
+    .question_card {
+        height: 85%;
     }
 }
 
