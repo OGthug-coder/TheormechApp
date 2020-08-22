@@ -25,6 +25,8 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    touch-action: manipulation;
+
 }
 
 .headline span:first-child {
@@ -32,6 +34,8 @@
     margin-right: 15px;
     font-size: 22px;
     margin-left: 30px;
+    touch-action: manipulation;
+
 
 }
 
@@ -42,11 +46,15 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    touch-action: manipulation;
+
 }
 
 .score {
     margin-left: 5px;
     font-size: 18px;
+    touch-action: manipulation;
+
 }
 
 .sticker_container {
@@ -65,6 +73,8 @@
     flex-direction: row;
     overflow: scroll;
     scroll-snap-type: x mandatory;
+    touch-action: manipulation;
+
 }
 
 
@@ -74,6 +84,8 @@
     height: 200px;
     flex-shrink: 0;
     width: 10vw;
+    touch-action: manipulation;
+
 }
 
 
@@ -84,7 +96,6 @@
 @media screen and (max-device-height: 600px) {
     .container {
         grid-template-rows: 100px 12vh 1fr;
-
     }
 }
 
