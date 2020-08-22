@@ -54,10 +54,6 @@ class StickerShop extends React.Component {
                 .then(user => {
                     this.application.deleteUser();
 
-                    user.first_name = this.state.user.first_name;
-                    user.last_name = this.state.user.last_name;
-                    user.photo_200 = this.state.user.photo_200;
-
                     const stickers = this.prepareStickers(this.state.stickers, user);
                     this.setState({stickers: stickers})
                 })
@@ -66,7 +62,9 @@ class StickerShop extends React.Component {
 
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
-            if (this.state.user.score >= this.state.stickers.find(s => s.id === event.target.id).cost) {
+            debugger
+            const cost = this.state.stickers.find(s => s.id === parseInt(event.target.id)).cost;
+            if (this.state.user.score >= cost) {
                 this.application.deleteUser();
                 this.stickerShopService.buySticker(this.state.user.id, event.target.id)
                     .then(user => {
