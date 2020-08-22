@@ -8,6 +8,8 @@
     grid-template-columns: 95vw 1fr;
     grid-template-areas: "news profile";
     align-content: center;
+    touch-action: manipulation;
+
 }
 /*no scrollbar*/
 .main_window::-webkit-scrollbar {
@@ -21,6 +23,8 @@
     height: available;
     overflow: hidden;
     grid-area: news;
+    touch-action: manipulation;
+
 }
 
 .profile {
@@ -29,6 +33,8 @@
     grid-area: profile;
     display: grid;
     align-content: center;
+    touch-action: manipulation;
+
 }
 
 .background {
@@ -39,6 +45,7 @@
     background-image: url("../../img/news/bacj.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    touch-action: manipulation;
 }
 
 
