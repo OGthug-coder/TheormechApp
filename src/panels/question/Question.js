@@ -226,8 +226,7 @@ class Question extends React.Component {
                     {this.state.animation === undefined
                         ?
                         <div className={s.question_text}>
-                            {/*{!isUndefined(question) ? question.questionText : ""}*/}
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+                            {!isUndefined(question) ? question.questionText : ""}
                         </div>
                         :
                         <div className={s.animation_container}>
