@@ -8,13 +8,19 @@ class AboutWindow extends React.Component {
         this.state = {
             onExitClick: props.onExitClick
         };
+        this.navigator = navigator;
     }
+
+    onCopyClick = (e) => {
+        const text = e.currentTarget.innerText;
+        this.navigator.clipboard.writeText(text);
+    };
 
     render() {
         return (
-            <div className={s.dev_container}
-                 onClick={this.state.onExitClick}>
-                <div className={s.developers}>
+            <div className={s.dev_container}>
+                <div className={s.developers}
+                     onClick={() => {}}>
                     <div className={s.exit}
                          onClick={this.state.onExitClick}/>
                     <div className={s.title}>
@@ -45,7 +51,7 @@ class AboutWindow extends React.Component {
                                 <path fill="#fff"
                                       d="M11.553,23.717c6.99-3.075,16.035-6.824,17.284-7.343c3.275-1.358,4.28-1.098,3.779,1.91	c-0.36,2.162-1.398,9.319-2.226,13.774c-0.491,2.642-1.593,2.955-3.325,1.812c-0.833-0.55-5.038-3.331-5.951-3.984	c-0.833-0.595-1.982-1.311-0.541-2.721c0.513-0.502,3.874-3.712,6.493-6.21c0.343-0.328-0.088-0.867-0.484-0.604	c-3.53,2.341-8.424,5.59-9.047,6.013c-0.941,0.639-1.845,0.932-3.467,0.466c-1.226-0.352-2.423-0.772-2.889-0.932	C9.384,25.282,9.81,24.484,11.553,23.717z"/>
                             </svg>
-                            <span>Jhoysbou</span>
+                            <span onClick={this.onCopyClick}>Jhoysbou</span>
                         </div>
                     </div>
                     <div className={s.dev_item}>
@@ -73,7 +79,7 @@ class AboutWindow extends React.Component {
                                 <path fill="#fff"
                                       d="M11.553,23.717c6.99-3.075,16.035-6.824,17.284-7.343c3.275-1.358,4.28-1.098,3.779,1.91	c-0.36,2.162-1.398,9.319-2.226,13.774c-0.491,2.642-1.593,2.955-3.325,1.812c-0.833-0.55-5.038-3.331-5.951-3.984	c-0.833-0.595-1.982-1.311-0.541-2.721c0.513-0.502,3.874-3.712,6.493-6.21c0.343-0.328-0.088-0.867-0.484-0.604	c-3.53,2.341-8.424,5.59-9.047,6.013c-0.941,0.639-1.845,0.932-3.467,0.466c-1.226-0.352-2.423-0.772-2.889-0.932	C9.384,25.282,9.81,24.484,11.553,23.717z"/>
                             </svg>
-                            <span>noentryx</span>
+                            <span onClick={this.onCopyClick}>noentryx</span>
                         </div>
                     </div>
                     <div className={s.dev_item}>
@@ -101,7 +107,7 @@ class AboutWindow extends React.Component {
                                 <path fill="#fff"
                                       d="M11.553,23.717c6.99-3.075,16.035-6.824,17.284-7.343c3.275-1.358,4.28-1.098,3.779,1.91	c-0.36,2.162-1.398,9.319-2.226,13.774c-0.491,2.642-1.593,2.955-3.325,1.812c-0.833-0.55-5.038-3.331-5.951-3.984	c-0.833-0.595-1.982-1.311-0.541-2.721c0.513-0.502,3.874-3.712,6.493-6.21c0.343-0.328-0.088-0.867-0.484-0.604	c-3.53,2.341-8.424,5.59-9.047,6.013c-0.941,0.639-1.845,0.932-3.467,0.466c-1.226-0.352-2.423-0.772-2.889-0.932	C9.384,25.282,9.81,24.484,11.553,23.717z"/>
                             </svg>
-                            <span>onf1re</span>
+                            <span onClick={this.onCopyClick}>onf1re</span>
                         </div>
                     </div>
                 </div>
