@@ -1,6 +1,5 @@
 import React from 'react';
 import s from "./Score.module.css";
-import isUndefined from "../../IsUndefined";
 
 class Score extends React.Component {
 
