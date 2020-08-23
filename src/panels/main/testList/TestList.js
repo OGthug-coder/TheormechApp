@@ -16,7 +16,6 @@ class TestList extends React.Component {
     }
 
     componentDidMount() {
-        this.testListService.setLightStatusBarStyle();
         this.testListService.getTests()
             .then(tests => {
                 this.setState({tests: tests})

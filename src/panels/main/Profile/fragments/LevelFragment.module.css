@@ -1,9 +1,9 @@
 .level_wrapper {
+    height: min-content;
     display: grid;
-    grid-template-rows: 40px min-content min-content;
+    grid-template-rows: 40px min-content 200px;
     grid-template-areas: "dignity" "quote" "sticker";
     grid-gap: 5px;
-
 }
 
 .dignity {
@@ -15,7 +15,8 @@
     grid-template-areas:"brain text";
 }
 
-.dignity img {
+.dignity svg {
+    margin: 0;
     grid-area: brain;
     height: 34px;
     width: 34px;
@@ -34,7 +35,7 @@
     margin-left: 20px;
     border-radius: 25px;
     background-color: #F2F2F2;
-    color: black;
+    color: #000000;
     font-size: 11px;
     text-align: center;
     padding: 10px;

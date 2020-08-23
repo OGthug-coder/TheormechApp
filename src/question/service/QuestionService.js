@@ -22,7 +22,7 @@ class QuestionService {
     }
 
     vibrate(type) {
-        this.api.vibrate(type);
+        this.api.vibrateNotification(type);
     }
 
     startQuestion(questionId) {

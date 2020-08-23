@@ -3,12 +3,27 @@
     width: 100%;
     height: 100%;
     overflow: scroll;
+}
 
+.blurred {
+    animation: blurring 150ms linear;
+    filter: blur(2px);
+}
+
+@keyframes blurring {
+    from {
+        filter: blur(0);
+    }
+    to {
+        filter: blur(2px);
+    }
 }
 
 .background {
     z-index: -1;
     height: 300px;
+    width: 100%;
+    object-fit: cover;
     position: fixed;
 }
 
@@ -21,7 +36,7 @@
 
 .button {
     position: fixed;
-
+    pointer-events: inherit;
     bottom: 0;
     width: 100%;
     z-index: 30;
@@ -63,6 +78,7 @@
     position: sticky;
     top: 25px;
     margin-left: 25px;
+    pointer-events: inherit;
 
 }
 
@@ -143,6 +159,20 @@
     font-size: 18px;
     outline: none;
     background: #588EFF;
+}
+
+.screen {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+}
+
+.locked {
+    pointer-events: none;
 }
 
 @supports (-webkit-touch-callout: none) {

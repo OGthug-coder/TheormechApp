@@ -6,6 +6,7 @@ import s from "./StickerShop.module.css";
 import Score from "../../common/components/score/Score";
 import StickerStatus from "./util/StickerStatus";
 import isUndefined from "../../common/IsUndefined";
+import Vibration from "../../common/Vibration";
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -13,7 +14,10 @@ class StickerShop extends React.Component {
 
         this.application = this.props.application;
         this.stickerShopService = this.application.provideStickerShopService();
-        this.state = {};
+        this.state = {
+            scoreFocus: undefined
+        };
+
     }
 
     componentDidMount() {
@@ -25,6 +29,7 @@ class StickerShop extends React.Component {
             });
         });
     }
+
 
     prepareStickers = (stickers, user) => {
         const ids = user.stickers.map(s => s.id);
@@ -45,13 +50,10 @@ class StickerShop extends React.Component {
 
     onSelect = (event) => {
         if (!isUndefined(this.state.user)) {
+            this.stickerShopService.vibrate()
             this.stickerShopService.setActiveSticker(this.state.user.id, event.currentTarget.id)
                 .then(user => {
                     this.application.deleteUser();
-
-                    user.first_name = this.state.user.first_name;
-                    user.last_name = this.state.user.last_name;
-                    user.photo_200 = this.state.user.photo_200;
 
                     const stickers = this.prepareStickers(this.state.stickers, user);
                     this.setState({stickers: stickers})
@@ -61,11 +63,11 @@ class StickerShop extends React.Component {
 
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
-            if (this.state.user.score >= this.state.stickers.find(s => s.id === event.target.id).cost) {
+            const cost = this.state.stickers.find(s => s.id === parseInt(event.target.id)).cost;
+            if (this.state.user.score >= cost) {
+                this.application.deleteUser();
                 this.stickerShopService.buySticker(this.state.user.id, event.target.id)
                     .then(user => {
-                        this.application.deleteUser();
-
                         user.first_name = this.state.user.first_name;
                         user.last_name = this.state.user.last_name;
                         user.photo_200 = this.state.user.photo_200;
@@ -76,7 +78,9 @@ class StickerShop extends React.Component {
                         this.setState({stickers: stickers})
                     });
             } else {
-                console.log("not enough money");
+                this.stickerShopService.vibrateImpact(Vibration.IMPACT_HEAVY);
+                this.setState({scoreFocus: event.target.id})
+                setTimeout(() => this.setState({scoreFocus: undefined}), 300)
             }
         }
     };
@@ -88,7 +92,7 @@ class StickerShop extends React.Component {
             stickers.map(sticker => {
                 stickerComponents.push(
                     <StickerCard
-                        key={[sticker.id, sticker.status]}
+                        key={[sticker.id, sticker.status, this.state.scoreFocus]}
                         id={sticker.id}
                         img={sticker.img}
                         name={sticker.name}
@@ -97,7 +101,8 @@ class StickerShop extends React.Component {
                         cost={sticker.cost}
                         status={sticker.status}
                         onSelect={this.onSelect}
-                        onBuyClick={this.onBuyClick}/>
+                        onBuyClick={this.onBuyClick}
+                        scoreFocus={this.state.scoreFocus}/>
                 );
                 return sticker;
             })

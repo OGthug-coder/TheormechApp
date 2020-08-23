@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    touch-action: manipulation;
+
 }
 
 .button {
@@ -17,6 +19,11 @@
     border-radius: 25px;
     background-color: #5D80FF;
     color: white;
+
+}
+
+.button:focus {
+    outline: none
 }
 
 .card {
@@ -27,6 +34,8 @@
     display: flex;
     flex-direction: column;
     padding: 15px;
+    touch-action: manipulation;
+
 }
 
 .img {
@@ -34,17 +43,23 @@
     max-width: 200px;
     margin-left: auto;
     margin-right: auto;
+    touch-action: manipulation;
+
 }
 
 .status {
     margin-right: 0;
     margin-left: auto;
+    touch-action: manipulation;
+
 }
 
 .name {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
+    touch-action: manipulation;
+
 }
 
 .quote {
@@ -54,6 +69,8 @@
     white-space: pre-wrap;
     width: 65vw;
     margin-bottom: 15px;
+    touch-action: manipulation;
+
 }
 
 .control {
@@ -61,6 +78,8 @@
     margin-bottom: 1vh;
     display: flex;
     flex-direction: row;
+    touch-action: manipulation;
+
 }
 
 .hidden {

@@ -1,20 +1,40 @@
+.main_window {
+    scroll-snap-type: x mandatory;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 95vw 1fr;
+    grid-template-areas: "news profile";
+    align-content: center;
+    touch-action: manipulation;
 
+}
+/*no scrollbar*/
+.main_window::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
 
 .news_wrapper {
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     margin-left: 5px;
     margin-right: 5px;
     height: available;
     overflow: hidden;
     grid-area: news;
+    touch-action: manipulation;
+
 }
 
 .profile {
-    scroll-snap-align: start;
+    scroll-snap-align: end;
     width: 95vw;
     grid-area: profile;
     display: grid;
     align-content: center;
+    touch-action: manipulation;
+
 }
 
 .background {
@@ -25,8 +45,13 @@
     background-image: url("../../img/news/bacj.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    /*background: rgba(229, 229, 229, 0.72);*/
+    touch-action: manipulation;
 }
+
+
+
+
+
 
 
 

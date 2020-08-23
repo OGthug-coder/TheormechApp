@@ -14,8 +14,8 @@ class AnswerItemFragment extends React.Component {
             onWrongAnswer: props.onWrongAnswer,
             isRightAnswer: props.isRightAnswer
         }
-
     }
+  
     getOnClick = () => {
         if (!this.state.disabled) {
             return this.state.isRightAnswer ? this.state.onRightAnswer : this.state.onWrongAnswer;

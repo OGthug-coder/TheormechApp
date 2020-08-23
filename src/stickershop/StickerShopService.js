@@ -11,6 +11,14 @@ class StickerShopService {
         return this.api.setActiveSticker(userId, stickerId);
     }
 
+    vibrate() {
+        this.api.vibrateSelectionChanged();
+    }
+
+    vibrateImpact(type) {
+        this.api.vibrateImpact(type);
+    }
+
     buySticker(userId, stickerId) {
         return this.api.buySticker(userId, stickerId);
     }
