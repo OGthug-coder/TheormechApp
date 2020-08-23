@@ -26,7 +26,7 @@ class Answer extends React.Component{
             <div className={s.answer_block}>
                 <div className={s.head}>
                     <div className={s.question_label}>
-                        <img src={require("../../../img/answer/question.png")}
+                        <img src={require("../../../img/preview/answer/question.png")}
                              width="24"
                              height="24"
                              alt={"question mark"}/>

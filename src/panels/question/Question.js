@@ -10,7 +10,7 @@ import HttpStatus from "../../common/api/HttpStatus";
 import AnswerItemFragment from "./fragments/AnswerItemFragment";
 import CorrectAnimation from "./fragments/CorectAnimation"
 import IncorrectAnimation from "./fragments/IncorrectAnimation"
-import Vibration from "../../question/Vibration";
+import Vibration from "../../common/Vibration";
 
 class Status {
     static IN_PROGRESS = 0;
@@ -98,7 +98,7 @@ class Question extends React.Component {
                     this.setState({animation: undefined})
                 }, 1000);
             } else {
-                
+
             }
         });
         this.setState({status: Status.PASSED});
@@ -115,7 +115,7 @@ class Question extends React.Component {
                     this.setState({animation: undefined})
                 }, 1000);
             } else {
-                
+
             }
         });
         this.setState({status: Status.FAILED});
@@ -220,17 +220,21 @@ class Question extends React.Component {
                     </div>
                 </div>
                 <div className={`${s.question_card} `}
-                    style={{
-                        top: `${this.state._position}px`
-                    }}>
-                    {this.state.animation === undefined ? 
+                     style={{
+                         top: `${this.state._position}px`
+                     }}>
+                    {this.state.animation === undefined
+                        ?
                         <div className={s.question_text}>
                             {!isUndefined(question) ? question.questionText : ""}
                         </div>
-                        : ""
+                        :
+                        <div className={s.animation_container}>
+                            {this.state.animation === 'correct' ? <CorrectAnimation/> : ""}
+                            {this.state.animation === 'incorrect' ? <IncorrectAnimation/> : ""}
+                        </div>
                     }
-                    {this.state.animation === 'correct' ? <CorrectAnimation/> : ""}
-                    {this.state.animation === 'incorrect' ? <IncorrectAnimation/> : ""}
+
                     <section className={s.answers_container}>
                         {!isUndefined(question) ? this.prepareList() : []}
                     </section>
@@ -241,7 +245,8 @@ class Question extends React.Component {
                             </div>
                         </div>
                         <div className={s.next_question}
-                            onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : ""}>
+                             onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : () => {
+                             }}>
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>
@@ -256,15 +261,9 @@ class Question extends React.Component {
                     {/*    <button className={s.slider}/>*/}
                     {/*</Swipe>*/}
 
-                    <div className={s.wave_card}>
-                        <div className={s.wave_one}/>
-                        <div className={s.wave_two}/>
-                    </div>
+                    <div className={s.wave_card}/>
                 </div>
-                <div className={s.wave}>
-                    <div className={s.wave_one}/>
-                    <div className={s.wave_two}/>
-                </div>
+                <div className={`${s.wave_card} ${s.external_waves}`}/>
             </section>
         )
     }

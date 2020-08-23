@@ -37,27 +37,38 @@
     margin: 15px auto;
 
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr 0.25fr;
+    grid-template-rows: 30% 1fr 40px 10px;
     grid-template-areas: "question_text" "answer_container" "control" "slider";
 
     width: 90%;
     height: 82%;
-
+    align-items: end;
     background: linear-gradient(179.79deg, #699AFF 0.1%, #3171F7 21.78%);
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 
     animation: slide_up 1.4s ease;
 }
 
+.answers_container {
+    margin-bottom: 2vh;
+}
+
 .question_text {
+    display: flex;
+    align-self: center;
+    justify-self: center;
     width: 80%;
     margin: auto;
-    padding-top: 42px;
     font-size: 18px;
     text-align: center;
     padding-top: 5px;
 	z-index: 1000;
+}
+
+.animation_container {
+    position: relative;
+    top: -30%;
 }
 
 .control {
@@ -66,6 +77,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "score_container" "next_question";
+    margin-bottom: 2vh;
 
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -74,7 +86,7 @@
 .score_container {
     width: 100px;
     height: 36px;
-    margin: auto auto 10px;
+    margin: auto auto;
     padding: 18px;
 
     background: #FFFFFF;
@@ -94,11 +106,6 @@
     letter-spacing: -0.04em;
 
     color: #000000;
-}
-
-.score_container div:first-child{
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .score {
@@ -162,31 +169,21 @@
 .wave_card {
     z-index: 1;
     width: 100%;
-    height: 200px;
+    height: 75%;
     overflow: hidden;
     position: absolute;
     bottom: 0;
 
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+
+    background: url("../../img/question/bg_waves.svg");
+    background-size: cover;
 }
 
-.wave_one {
-    background: url('../../img/question/wave_top.png') repeat-x;
-    width: 7000px;
-    height: 200px;
-    animation: waves 15s infinite linear;
-    position: absolute;
-    top: 0;
-}
-
-.wave_two {
-    background: url('../../img/question/wave_top_opacity.png') repeat-x;
-    width: 7000px;
-    height: 200px;
-    animation: waves 10s infinite linear;
-    position: absolute;
-    top: 0;
+.external_waves {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 @keyframes waves {
@@ -215,6 +212,18 @@
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+@media screen and (min-device-height: 750px) {
+    .wave_card {
+        height: 70%;
+    }
+}
+
+@media screen and (max-device-height: 600px) {
+    .question_card {
+        height: 85%;
     }
 }
 

@@ -1,11 +1,12 @@
 import React from 'react';
 
 import s from './Profile.module.css';
-import LevelFragment from "./LevelFragment";
+import LevelFragment from "./fragments/LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
 import {withRouter} from "react-router";
+import AboutWindow from "./fragments/AboutWindow";
 
 
 class Profile extends React.Component {
@@ -14,18 +15,50 @@ class Profile extends React.Component {
         this.application = props.application;
         this.profileService = this.application.provideProfileService();
 
-        this.state = {};
+        this.state = {
+            settings_window: props.settings_window,
+            onSettingsClick: props.onSettingsClick,
+            aboutDev: false,
+        };
+
+        window.onpopstate = this.onBackHandler;
     }
 
-    componentDidMount() {
-        this.application.provideUser()
-            .then(user => this.setState({user: user}));
-    }
-
-    onStickerClick = () => {
-        this.props.history.push('/stickerShop');
+    onBackHandler = () => {
+        this.setState({user: undefined});
+        this.fetchUser();
     };
 
+    ondDevButton = () => {
+        this.setState({aboutDev: !this.state.aboutDev});
+    };
+
+    componentDidMount() {
+        this.fetchUser();
+    }
+
+    fetchUser = () => {
+        this.application.provideUser()
+            .then(user => this.setState({user: user}));
+    };
+
+    onStickerClick = () => {
+        this.state.onSettingsClick();
+        setTimeout(() => this.props.history.push('/stickerShop'), 250);
+    };
+
+    onLogoClick = () => {
+        this.profileService.subscribe();
+    };
+
+    provideVisibility = () => {
+        if (isUndefined(this.state.settings_window)) {
+            return s.hidden_no_animation;
+        } else {
+            return this.state.settings_window === true ? s.settings_window : s.hidden;
+        }
+
+    };
 
     render() {
         let user = this.state.user;
@@ -52,16 +85,30 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <LevelFragment key={user}
-                               sticker={!isUndefined(user) ? user.activeSticker : undefined}
-                               onClick={this.onStickerClick}/>
-                <div className={s.logo}>
-                    <img src={require("../../../img/profile/ic_tm_logo.svg")} alt={"logo"}/>
-                    <div>
+                               sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
+                <div className={s.logo}
+                     onClick={this.onLogoClick}>
+                    <img src={require("../../../img/profile/ic_tm_logo.png")} alt={"logo"}/>
+                    <div className={s.logo_text}>
                         Высшая школа теоретической механики
                     </div>
+                    <div
+                        className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
+                        onClick={this.state.onSettingsClick}>
+                    </div>
                 </div>
+                <div className={`${s.settings_window} ${this.provideVisibility()}`}>
+                    <div className={s.settings_item}
+                         onClick={this.onStickerClick}>
+                        Сменить стикер
+                    </div>
+                    <div className={s.settings_item}
+                         onClick={this.ondDevButton}>
+                        О приложении
+                    </div>
+                </div>
+                {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton} /> : ""}
             </div>
-
         )
     }
 }

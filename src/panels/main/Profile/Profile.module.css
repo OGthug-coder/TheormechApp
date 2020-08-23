@@ -1,17 +1,20 @@
 .profile_card {
-    height: 90%;
-    margin-top: 30px;
+    height: 95%;
+    margin-top: 15px;
     margin-right: 5vw;
+    padding: 1vh 1vw 1vh 0;
     display: grid;
     background-color: #FFFFFF;
     border-radius: 25px;
-    grid-template-columns: 20px 1fr;
-    grid-template-rows: minmax(100px, 150px) minmax(320px, 340px) min-content;
+    grid-template-columns: 5vw 1fr;
+    grid-template-rows: minmax(100px, 150px) minmax(320px, 340px) 110px;
     grid-template-areas: "slider about" "slider level_fragment" "slider logo";
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    font-family: "Titillium Web", sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    font-family: "Roboto", sans-serif;
+    align-items: center;
+    justify-items: center;
     color: black;
-    grid-gap: 5px;
+    /*grid-gap: 5px;*/
 }
 
 .slider {
@@ -20,7 +23,7 @@
     height: 150px;
     background-color: #BFBFBF;
     border-radius: 25px;
-    margin: auto 10px auto 10px;
+    /*margin: auto 10px auto 10px;*/
 }
 
 .about {
@@ -46,9 +49,6 @@
 
 .score {
     margin-top: 10px;
-    display: grid;
-    grid-template-columns: 25px 1fr;
-    grid-gap: 5px;
 }
 
 .level_fragment {
@@ -58,18 +58,25 @@
 .logo {
     grid-area: logo;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    margin: auto 5px 20px;
+    align-items: center;
+    grid-template-columns: 1fr 1.5fr 32px;
+    margin: auto 5px 0;
 }
 
-.logo img {
+.logo > img {
+    height: 75px;
+    width: 75px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
+
 }
 
-.logo div {
-    margin: auto;
+.logo_text {
+    text-align: left;
     padding-right: 5px;
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 .background {
@@ -102,6 +109,139 @@
     border-radius: 50%;
     background: radial-gradient(108.07% 112.44% at 95.1% 39.09%, rgba(213, 41, 217, 0.37) 20.75%, #D132B8 66.52%, rgba(126, 83, 133, 0.90212) 99.98%, rgba(22, 174, 64, 0.854667) 99.99%, rgba(83, 133, 103, 0.90212) 99.99%, rgba(173, 21, 140, 0.85) 100%);
     transform: rotate(-110.67deg);
+}
+
+.settings {
+    width: 33px;
+    height: 33px;
+    /*margin: auto 5px 0 0;*/
+    display: flex;
+
+    align-self: end;
+    background: url("../../../img/profile/ic_gear.png") no-repeat;
+    background-size: contain;
+    filter: drop-shadow(0px 4px 45px rgba(0, 0, 0, 0.4));
+
+}
+
+.active {
+    animation: rotate2 var(--animation_time) ease-out;
+}
+
+.disabled {
+    animation: rotate var(--animation_time) ease-in-out;
+}
+
+.settings_window {
+    z-index: 1000;
+    height: min-content;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 76%;
+    left: 15%;
+    margin: 20px;
+
+    animation: slide_up var(--animation_time) linear;
+}
+
+.settings_item {
+    height: 40px;
+    width: 60vw;
+    margin: 2px;
+    border-radius: 25px;
+    background-color: white;
+    text-align: center;
+    line-height: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hidden_no_animation {
+    display: none;
+}
+
+.hidden {
+    animation: slide_down var(--animation_time) linear forwards;
+}
+
+.profile_card {
+    --animation_time: 200ms;
+}
+
+
+@keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes rotate2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(-45deg);
+    }
+}
+
+@keyframes slide_up {
+    from {
+        -webkit-transform: translate(60%, 60%) scale(0.001) skew(15deg, 15deg);
+    }
+    to {
+        -webkit-transform: translate(0, 0) skew(0) scale(1);
+    }
+}
+
+@keyframes slide_down {
+    from {
+        -webkit-transform: translate(0, 0) skew(0) scale(1);
+    }
+    to {
+        -webkit-transform: translate(60%, 60%) scale(0.001) skew(15deg, 15deg);
+    }
+}
+
+
+@media screen and (max-device-height: 640px){
+    .profile_card {
+        grid-gap: 0;
+        padding: 1vh 1vw 1vh 0;
+        height: min-content;
+        grid-template-rows: 120px 320px 80px;
+    }
+
+    .settings_window {
+        top: 73%;
+    }
+
+    .settings {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-device-height: 700px){
+    .profile_card {
+        padding: 2vh 2vw 1vh 0;
+        grid-gap: 5px;
+    }
+
+    .settings_window {
+        top: 73%;
+    }
+
+    .logo_text {
+        margin-bottom: calc(20px + 2vh);
+    }
+
+    .logo > img {
+        margin-bottom: calc(20px + 2vh);
+    }
+
 }
 
 
