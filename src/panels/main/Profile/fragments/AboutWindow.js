@@ -1,12 +1,14 @@
 import React from 'react';
 import s from "./AboutWindow.module.css";
+import isUndefined from "../../../../common/IsUndefined";
 
 class AboutWindow extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            onExitClick: props.onExitClick
+            onExitClick: props.onExitClick,
+            copyWarning: undefined,
         };
         this.navigator = navigator;
     }
@@ -14,13 +16,28 @@ class AboutWindow extends React.Component {
     onCopyClick = (e) => {
         const text = e.currentTarget.innerText;
         this.navigator.clipboard.writeText(text);
+        this.setState({copyWarning: true});
+        setTimeout(() => this.setState({copyWarning: false}), 1250);
+    };
+
+    getCurrentClass = () => {
+        if (isUndefined(this.state.copyWarning)) {
+            return s.hidden;
+        } else {
+            return this.state.copyWarning ? s.show : s.hide;
+        }
     };
 
     render() {
         return (
             <div className={s.dev_container}>
+                <div className={`${s.copy_warning} ${this.getCurrentClass()}`}>
+                    Скопировано!
+                </div>
+
                 <div className={s.developers}
-                     onClick={() => {}}>
+                     onClick={() => {
+                     }}>
                     <div className={s.exit}
                          onClick={this.state.onExitClick}/>
                     <div className={s.title}>
@@ -37,8 +54,8 @@ class AboutWindow extends React.Component {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
                                 <linearGradient id="BiF7D16UlC0RZ_VqXJHnXa" x1="9.858" x2="38.142" y1="9.858"
                                                 y2="38.142" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0" stop-color="#33bef0"/>
-                                    <stop offset="1" stop-color="#0a85d9"/>
+                                    <stop offset="0" stopColor="#33bef0"/>
+                                    <stop offset="1" stopColor="#0a85d9"/>
                                 </linearGradient>
                                 <path fill="url(#BiF7D16UlC0RZ_VqXJHnXa)"
                                       d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"/>
@@ -65,8 +82,8 @@ class AboutWindow extends React.Component {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
                                 <linearGradient id="BiF7D16UlC0RZ_VqXJHnXa" x1="9.858" x2="38.142" y1="9.858"
                                                 y2="38.142" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0" stop-color="#33bef0"/>
-                                    <stop offset="1" stop-color="#0a85d9"/>
+                                    <stop offset="0" stopColor="#33bef0"/>
+                                    <stop offset="1" stopColor="#0a85d9"/>
                                 </linearGradient>
                                 <path fill="url(#BiF7D16UlC0RZ_VqXJHnXa)"
                                       d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"/>
@@ -93,8 +110,8 @@ class AboutWindow extends React.Component {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
                                 <linearGradient id="BiF7D16UlC0RZ_VqXJHnXa" x1="9.858" x2="38.142" y1="9.858"
                                                 y2="38.142" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0" stop-color="#33bef0"/>
-                                    <stop offset="1" stop-color="#0a85d9"/>
+                                    <stop offset="0" stopColor="#33bef0"/>
+                                    <stop offset="1" stopColor="#0a85d9"/>
                                 </linearGradient>
                                 <path fill="url(#BiF7D16UlC0RZ_VqXJHnXa)"
                                       d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"/>

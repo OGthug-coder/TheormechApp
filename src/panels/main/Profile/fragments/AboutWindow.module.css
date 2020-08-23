@@ -7,11 +7,57 @@
     left: 0;
 }
 
+.copy_warning {
+    height: 4vh;
+    width: 69vw;
+    margin: 8vh auto 0;
+    text-align: center;
+    padding-top: 8px;
+    color: white;
+
+    background: #5D80FF;
+    border-radius: 10px;
+}
+
+.show {
+    animation: show 500ms ease-in-out;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.hide {
+    animation: slide 500ms ease-in forwards;
+}
+
+@keyframes show {
+    0% {
+        transform: translateY(-15vh);
+    }
+    60% {
+        transform: translateY(2vh);
+    }
+    100% {
+        transform: translateY(0);
+
+    }
+}
+
+@keyframes slide {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-30vh);
+    }
+}
+
 .developers {
-    margin: 15vh auto 0;
+    margin: 4vh auto 0;
     height: min-content;
     width: 50vw;
-    padding: 30px;
+    padding: 10vw;
 
     border-radius: 25px;
     background-color: white;
