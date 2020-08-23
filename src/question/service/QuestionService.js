@@ -1,6 +1,4 @@
 import EventCodeDto from "../../preview/util/EventCodeDto";
-import HistoryUtil from "../../common/services/HistoryUtil";
-import TestStatus from "../../preview/util/TestStatus";
 
 class QuestionService {
     constructor(api, repo, user) {
