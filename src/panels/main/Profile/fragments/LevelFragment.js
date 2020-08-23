@@ -1,7 +1,7 @@
 import React from 'react';
 
 import s from './LevelFragment.module.css';
-import isUndefined from "../../../common/IsUndefined";
+import isUndefined from "../../../../common/IsUndefined";
 
 class LevelFragment extends React.Component {
     constructor(props) {

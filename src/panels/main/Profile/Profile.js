@@ -1,11 +1,12 @@
 import React from 'react';
 
 import s from './Profile.module.css';
-import LevelFragment from "./LevelFragment";
+import LevelFragment from "./fragments/LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
 import {withRouter} from "react-router";
+import AboutWindow from "./fragments/AboutWindow";
 
 
 class Profile extends React.Component {
@@ -17,6 +18,7 @@ class Profile extends React.Component {
         this.state = {
             settings_window: props.settings_window,
             onSettingsClick: props.onSettingsClick,
+            aboutDev: false,
         };
 
         window.onpopstate = this.onBackHandler;
@@ -25,6 +27,10 @@ class Profile extends React.Component {
     onBackHandler = () => {
         this.setState({user: undefined});
         this.fetchUser();
+    };
+
+    ondDevButton = () => {
+        this.setState({aboutDev: !this.state.aboutDev});
     };
 
     componentDidMount() {
@@ -96,10 +102,12 @@ class Profile extends React.Component {
                          onClick={this.onStickerClick}>
                         Сменить стикер
                     </div>
-                    <div className={s.settings_item}>
+                    <div className={s.settings_item}
+                         onClick={this.ondDevButton}>
                         О приложении
                     </div>
                 </div>
+                {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton} /> : ""}
             </div>
         )
     }

@@ -169,6 +169,7 @@
     --animation_time: 200ms;
 }
 
+
 @keyframes rotate {
     from {
         -webkit-transform: rotate(0deg);
