@@ -241,7 +241,7 @@ class Question extends React.Component {
                     <div className={s.control}>
                         <div className={s.score_container}>
                             <div>
-                                Счёт: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
+                                Очки: <span className={s.score}>{!isUndefined(question) ? question.reward : 0}</span>
                             </div>
                         </div>
                         <div className={s.next_question}
@@ -250,7 +250,6 @@ class Question extends React.Component {
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>
-
                     </div>
 
                     {/*TODO: implement swipes*/}
