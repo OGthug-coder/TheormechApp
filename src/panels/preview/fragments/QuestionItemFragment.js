@@ -35,11 +35,11 @@ class QuestionItemFragment extends React.Component {
             if (this.state.status === QuestionStatus.STARTED
                 || this.state.status === QuestionStatus.UNTOUCHED
                 || this.state.status === QuestionStatus.SKIPPED) {
-                return true;
+                return false;
             }
         }
 
-        return false;
+        return true;
     };
 
 
@@ -62,7 +62,7 @@ class QuestionItemFragment extends React.Component {
                     <button id={!isUndefined(this.state.questionId) ? this.state.questionId : 0}
                             className={s.answer}
                             onClick={this.state.onClick}
-                            disabled={this.isActive()}/>
+                            disabled={!this.isActive()}/>
                 </div>
                 <div className={s.separator} />
             </>

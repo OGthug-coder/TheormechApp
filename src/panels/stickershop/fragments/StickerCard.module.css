@@ -1,0 +1,120 @@
+.wrapper {
+    font-family: 'Roboto', sans-serif;
+    scroll-snap-align: center;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    touch-action: manipulation;
+
+}
+
+.button {
+    height: 6vh;
+    position: relative;
+    top: -4vh;
+    margin: 0 auto;
+    width: 45vw;
+    border: none;
+    border-radius: 25px;
+    background-color: #5D80FF;
+    color: white;
+
+}
+
+.button:focus {
+    outline: none
+}
+
+.card {
+    background: #FFFFFF;
+    box-shadow: 0 6px 17px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    touch-action: manipulation;
+
+}
+
+.img {
+    max-height: 200px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    touch-action: manipulation;
+
+}
+
+.status {
+    margin-right: 0;
+    margin-left: auto;
+    touch-action: manipulation;
+
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    touch-action: manipulation;
+
+}
+
+.quote {
+    font-size: 1.1em;
+    font-style: italic;
+    margin-right: 0;
+    white-space: pre-wrap;
+    width: 65vw;
+    margin-bottom: 15px;
+    touch-action: manipulation;
+
+}
+
+.control {
+    margin-top: auto;
+    margin-bottom: 1vh;
+    display: flex;
+    flex-direction: row;
+    touch-action: manipulation;
+
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+@media screen and (max-height: 670px) {
+    .card {
+        height: 360px;
+    }
+
+    .name {
+        margin-top: 2vh;
+    }
+
+    .description {
+        display: none;
+    }
+}
+
+@media screen and (min-height: 670px) {
+    .card {
+        height: 460px;
+    }
+
+    .description > div {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: none;
+    }
+
+    .description {
+        margin-bottom: 2vh;
+    }
+}
+
+

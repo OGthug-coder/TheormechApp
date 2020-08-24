@@ -3,14 +3,28 @@
     width: 100%;
     height: 100%;
     overflow: scroll;
+}
 
+.blurred {
+    animation: blurring 150ms linear;
+    filter: blur(2px);
+}
+
+@keyframes blurring {
+    from {
+        filter: blur(0);
+    }
+    to {
+        filter: blur(2px);
+    }
 }
 
 .background {
     z-index: -1;
-    height: 100px;
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
     position: fixed;
-    left: -300px;
 }
 
 /*no scrollbar*/
@@ -18,12 +32,11 @@
     display: none;  /* Safari and Chrome */
 }
 
-
-
 /**/
 
 .button {
     position: fixed;
+    pointer-events: inherit;
     bottom: 0;
     width: 100%;
     z-index: 30;
@@ -32,12 +45,7 @@
 
 }
 
-.link div {
-    margin-top: 7px;
-}
-
 .modal_window {
-    /*_position: absolute;*/
     scroll-behavior: smooth;
     overflow: scroll;
     width: 100%;
@@ -70,6 +78,7 @@
     position: sticky;
     top: 25px;
     margin-left: 25px;
+    pointer-events: inherit;
 
 }
 
@@ -135,12 +144,12 @@
     color: #F3FDFF;
     font-style: normal;
     font-weight: normal;
-    /*text-shadow: 0px 4px 6px #34ABB5;*/
     display: grid;
     justify-items: center;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     width: 220px;
     height: 50px;
     border-radius: 15px;
@@ -152,8 +161,25 @@
     background: #588EFF;
 }
 
-.link div {
-    margin-top: 7px;
+.screen {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+}
+
+.locked {
+    pointer-events: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+    .link {
+        margin-bottom: 15px;
+    }
 }
 
 .hidden {

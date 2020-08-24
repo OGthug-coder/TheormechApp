@@ -1,0 +1,215 @@
+.result_window {
+    height: 100%;
+    width: 100%;
+    background: url("../../img/result/background.svg") no-repeat;
+    background-size: contain;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.result_bubble {
+    margin-top: 11.4vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    /*margin: 23vh auto 0;*/
+    white-space: nowrap;
+
+    width: 72vw;
+    height: 72vw;
+    background: url("../../img/result/ic_circle.svg") no-repeat;
+    background-size: contain;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.result_bubble::after {
+    content: '';
+    width: 87.2vw;
+    height: 87.2vw;
+    border-radius: 49vh;
+
+    position: absolute;
+    z-index: -1;
+    top: 7.5vh;
+    left: 6.4vw;
+
+    background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
+    opacity: 0.3;
+
+    animation: pulse 3s ease infinite;
+}
+
+.planet_1::before {
+    content: '';
+    position: absolute;
+    top: calc(72vw / 2 + 11.4vh);
+    left: calc(50% - 15px);
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(46, 106, 231, 0.75) 0%, rgba(101, 151, 254, 0.75) 95.56%);
+
+    animation: orbit 15s linear infinite;
+}
+
+.planet_2::before {
+    content: '';
+    position: absolute;
+    top: calc(72vw / 2 + 11.4vh);
+    left: calc(50% - 15px);
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
+    opacity: 0.3;
+    animation: orbit_inverse 10s linear infinite;
+}
+
+.planet_3 {
+    content: '';
+    position: absolute;
+    top: calc(72vw / 2 + 11.4vh);
+    left: calc(50% - 15px);
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: radial-gradient(50% 50% at 50% 50%, #2E6AE7 0%, #6597FE 95.56%);
+    animation: orbit_inverse_45 8s linear infinite;
+}
+
+@keyframes orbit_inverse_45 {
+    from {
+        transform: rotate(360deg) translateX(45vw) rotate(-360deg);
+
+    }
+    to {
+        transform: rotate(0deg) translateX(45vw) rotate(0deg);
+    }
+}
+
+@keyframes orbit_inverse {
+    from {
+        transform: rotate(360deg) translateX(60vw) rotate(-360deg);
+
+    }
+    to {
+        transform: rotate(0deg) translateX(60vw) rotate(0deg);
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(70vw) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(70vw) rotate(-360deg);
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
+}
+
+
+.result_bubble > div:first-child {
+    font-size: 2em;
+    margin-top: 10vh;
+    margin-bottom: 2vh;
+}
+
+.percent {
+    font-weight: bold;
+    font-size: 6em;
+    margin-bottom: 1vh;
+}
+
+.result_bubble > div:last-child {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.tip {
+    width: 82vw;
+    margin-top: 12vh;
+    display: flex;
+    flex-direction: row;
+    line-height: 150%;
+
+}
+
+.tip > div {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1.25em;
+}
+
+.controls {
+    width: 82vw;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.first_button {
+    display: block;
+    width: 72vw;
+    height: 50px;
+    border-radius: 25px;
+
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #F3FDFF;
+    font-style: normal;
+    font-weight: normal;
+    background: #588EFF;
+
+    margin-bottom: 1vh;
+}
+
+.first_button div {
+    margin-top: 15px;
+}
+
+.second_button {
+    display: block;
+    width: 72vw;
+    height: 50px;
+    border-radius: 25px;
+
+    font-size: 1.5em;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-style: normal;
+    font-weight: normal;
+    border: 1px solid #588EFF;
+}
+
+.second_button div {
+    margin-top: 15px;
+}
+
+@media screen and (min-height: 780px ) {
+    .tip {
+        margin-top: 25vh;
+    }
+}

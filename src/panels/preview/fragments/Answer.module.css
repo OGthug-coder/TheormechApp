@@ -28,7 +28,7 @@
 }
 
 .exit {
-    background: url("../../../img/answer/exit.svg") no-repeat;
+    background: url("../../../img/preview/answer/exit.svg") no-repeat;
     margin: 25px auto auto;
     height: 20px;
     width: 20px;
@@ -45,7 +45,7 @@
 
 .question {
     margin-bottom: 12px;
-
+    padding-left: 5px;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -74,6 +74,8 @@
 }
 
 .ans {
+    padding-left: 10px;
+    padding-right: 10px;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;

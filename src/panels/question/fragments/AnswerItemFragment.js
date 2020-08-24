@@ -7,6 +7,7 @@ class AnswerItemFragment extends React.Component {
         super(props);
 
         this.state = {
+            disabled: props.disabled,
             answerType: props.answerType,
             answerText: props.answerText,
             onRightAnswer: props.onRightAnswer,
@@ -14,10 +15,18 @@ class AnswerItemFragment extends React.Component {
             isRightAnswer: props.isRightAnswer
         }
     }
+  
+    getOnClick = () => {
+        if (!this.state.disabled) {
+            return this.state.isRightAnswer ? this.state.onRightAnswer : this.state.onWrongAnswer;
+        } else {
+            return "";
+        }
+    };
 
     render() {
         return (
-            <div className={s.answer_item} onClick={this.state.isRightAnswer ? this.state.onRightAnswer : this.state.onWrongAnswer}>
+            <div className={s.answer_item} onClick={this.getOnClick()}>
                 {
                     this.state.answerType === 'str' ?
                         (<div className={s.text} >

@@ -1,58 +1,58 @@
-.field {
-    height: 320px;
-    display: grid;
-    grid-template-rows: 240px 100px;
-    grid-template-areas: "card" "start_button";
-}
-
 .card {
-    height: 270px;
+    grid-area: card;
+    height: min-content;
+    width: 82vw;
     display: grid;
-    grid-template-rows: 4fr 1fr 1fr 1fr;
-    grid-template-areas: "pic" "name" "info" "start_button";
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    grid-template-rows: 160px calc(80px + 1em + 15px);
+    grid-template-areas: "pic" "container";
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     transition: 0.3s;
-    background-color: #FFFFFF;
     border-radius: 25px;
     margin-top: 20px;
 }
 
 .pic {
-    width: 100%;
+    width: inherit;
     height: 160px;
+    grid-area: pic;
+    z-index: 0;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+
+    object-fit: cover;
 }
 
+.container {
+    grid-area: container;
+    z-index: 1;
+    background-color: #FFFFFF;
+    border-radius: 0 0 25px 25px;
+    padding-bottom: 25px;
+}
 
 .name {
-    margin: 5px auto 0;
-    font-family: 'Titillium Web', sans-serif;
+    height: 60px;
     font-style: normal;
-    font-weight: bold;
+    margin: 5px 10px 5px;
     font-size: 18px;
     line-height: 27px;
     display: flex;
     align-items: center;
     text-align: center;
     letter-spacing: -0.04em;
-    text-align: center;
 }
 
 .info {
     display: grid;
     grid-template-columns: 3fr 0.6fr 0.2fr;
-
     text-align: center;
 }
 
 .date {
     text-align: left;
     margin-left: 15px;
-
-    font-family: Titillium Web;
+    color: #C4C4C4;
     font-style: normal;
-    font-weight: bold;
     font-size: 12px;
     line-height: 18px;
     display: flex;
@@ -82,29 +82,43 @@
   display: inline-block;
 }
 
-
-
 .start_button {
+    z-index: 100;
     margin: auto;
     height: 40px;
     width: 200px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #588EFF;
     border-radius: 20px;
     border: 0;
     outline: none;
     text-align: center;
-}
-
-.link {
     text-decoration: none;
     color: #F3FDFF;
-    font-family: 'Titillium Web', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    text-shadow: 0px 4px 6px #34ABB5;
+    text-shadow: 0 4px 6px #34ABB5;
+
+    position: relative;
+    top: -20px;
 }
-.link div {
-    margin-top: 7px;
+
+@media screen and (max-device-height: 600px){
+    .card {
+        grid-template-rows: 110px min-content;
+        grid-template-areas: "pic" "container";
+    }
+
+    .pic {
+        height: 110px;
+    }
+
+    .start_button {
+        width: 170px;
+    }
 }
+

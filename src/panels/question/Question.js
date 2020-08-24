@@ -1,12 +1,23 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import s from './Question.module.css';
-import AnswerItemFragment from "./fragments/AnswerItemFragment";
-import BackButton from "../../common/components/BackButton/BackButton";
+import BackButton from "../../common/components/backbutton/BackButton";
 import isUndefined from "../../common/IsUndefined";
 import RightAnswerCode from "../../preview/util/RightAnswerCode";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
 import QuestionStatus from "../../preview/util/QuestionStatus";
+import HttpStatus from "../../common/api/HttpStatus";
+import AnswerItemFragment from "./fragments/AnswerItemFragment";
+import CorrectAnimation from "./fragments/CorectAnimation"
+import IncorrectAnimation from "./fragments/IncorrectAnimation"
+import Vibration from "../../common/Vibration";
+
+class Status {
+    static IN_PROGRESS = 0;
+    static SKIPPED = 1;
+    static FAILED = 2;
+    static PASSED = 3;
+}
 
 class Question extends React.Component {
     constructor(props) {
@@ -16,9 +27,11 @@ class Question extends React.Component {
         this.questionService = this.application.provideQuestionService();
 
         this.state = {
+            status: Status.IN_PROGRESS,
             questionId: parseInt(props.match.params.questionId),
             testId: parseInt(props.match.params.testId),
             _position: 10,
+            animation: undefined,
         };
     }
 
@@ -48,6 +61,7 @@ class Question extends React.Component {
                     return q;
                 });
                 this.setState({questionsLength: uniqQuestions.length});
+
             });
     };
 
@@ -58,6 +72,7 @@ class Question extends React.Component {
             this.state.question.answers.map(answer => {
                 list.push(
                     <AnswerItemFragment
+                        disabled={this.state.status !== Status.IN_PROGRESS}
                         key={answer.id}
                         answerType={'str'}
                         answerText={answer.answer}
@@ -73,26 +88,53 @@ class Question extends React.Component {
     }
 
     onRightAnswer = () => {
-        console.log("right");
-        this.questionService.passQuestion(this.state.questionId);
-        this.startNextQuestion(QuestionStatus.PASSED);
+        this.setState({animation: 'correct'});
+        this.questionService.vibrate(Vibration.SUCCESS);
+        this.questionService.passQuestion(this.state.questionId).then(response => {
+            if (response.status === HttpStatus.OK) {
+                setTimeout(() => {
+                    this.setState({status: Status.IN_PROGRESS});
+                    this.startNextQuestion(QuestionStatus.PASSED);
+                    this.setState({animation: undefined})
+                }, 1000);
+            } else {
+
+            }
+        });
+        this.setState({status: Status.PASSED});
     };
 
     onWrongAnswer = () => {
-        console.log("wrong");
-        this.questionService.failQuestion(this.state.questionId);
-        this.startNextQuestion(QuestionStatus.FAILED);
+        this.setState({animation: 'incorrect'})
+        this.questionService.vibrate(Vibration.ERROR);
+        this.questionService.failQuestion(this.state.questionId).then(response => {
+            if (response.status === HttpStatus.OK) {
+                setTimeout(() => {
+                    this.setState({status: Status.IN_PROGRESS});
+                    this.startNextQuestion(QuestionStatus.PASSED);
+                    this.setState({animation: undefined})
+                }, 1000);
+            } else {
+
+            }
+        });
+        this.setState({status: Status.FAILED});
     };
 
     onSkip = () => {
-        console.log("skip");
-        this.questionService.skipQuestion(this.state.questionId);
-        this.startNextQuestion(QuestionStatus.SKIPPED);
+        this.questionService.vibrate(Vibration.WARNING);
+        this.questionService.skipQuestion(this.state.questionId).then(response => {
+            if (response.status === HttpStatus.OK) {
+                this.setState({status: Status.IN_PROGRESS});
+                this.startNextQuestion(QuestionStatus.SKIPPED);
+            } else {
+                //    TODO
+            }
+        });
+        this.setState({status: Status.SKIPPED});
+
     };
 
-    wait(ms) {
-        new Promise(r => setTimeout(r, ms));
-    }
 
     startNextQuestion(status) {
         if (!isUndefined(this.state.test)
@@ -108,11 +150,10 @@ class Question extends React.Component {
             const url = getNextQuestionUrl(this.state.test, this.state.question.serialNumber);
             if (!isUndefined(url)) {
                 const qId = parseInt(url.split("/")[3]);
-                this.props.history.replace(url);
                 this.setState({questionId: qId});
                 this.downloadData();
             } else {
-                this.props.history.goBack();
+                this.props.history.replace("/result/" + this.state.testId);
             }
         }
     };
@@ -164,7 +205,7 @@ class Question extends React.Component {
             <section className={s.question_window}>
                 <div className={s.sticky_container}>
                     <div className={s.back_button}>
-                        <BackButton/>
+                        <BackButton disabled={this.state.status !== Status.IN_PROGRESS ? true : undefined}/>
                     </div>
                 </div>
                 <div className={s.about}>
@@ -182,9 +223,18 @@ class Question extends React.Component {
                      style={{
                          top: `${this.state._position}px`
                      }}>
-                    <div className={s.question_text}>
-                        {!isUndefined(question) ? question.questionText : ""}
-                    </div>
+                    {this.state.animation === undefined
+                        ?
+                        <div className={s.question_text}>
+                            {!isUndefined(question) ? question.questionText : ""}
+                        </div>
+                        :
+                        <div className={s.animation_container}>
+                            {this.state.animation === 'correct' ? <CorrectAnimation/> : ""}
+                            {this.state.animation === 'incorrect' ? <IncorrectAnimation/> : ""}
+                        </div>
+                    }
+
                     <section className={s.answers_container}>
                         {!isUndefined(question) ? this.prepareList() : []}
                     </section>
@@ -195,7 +245,8 @@ class Question extends React.Component {
                             </div>
                         </div>
                         <div className={s.next_question}
-                             onClick={this.onSkip}>
+                             onClick={this.state.status === Status.IN_PROGRESS ? this.onSkip : () => {
+                             }}>
                             <div>Следующий</div>
                             <div className={s.chevron}/>
                         </div>
@@ -209,15 +260,9 @@ class Question extends React.Component {
                     {/*    <button className={s.slider}/>*/}
                     {/*</Swipe>*/}
 
-                    <div className={s.wave_card}>
-                        <div className={s.wave_one}/>
-                        <div className={s.wave_two}/>
-                    </div>
+                    <div className={s.wave_card}/>
                 </div>
-                <div className={s.wave}>
-                    <div className={s.wave_one}/>
-                    <div className={s.wave_two}/>
-                </div>
+                <div className={`${s.wave_card} ${s.external_waves}`}/>
             </section>
         )
     }

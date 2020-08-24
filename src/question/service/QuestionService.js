@@ -7,6 +7,10 @@ class QuestionService {
         this.user = user;
     }
 
+    getHistory(testId) {
+        return this.user.then(user => this.api.requestHistory(user.id, testId));
+    }
+
     getTest(id) {
         let test = this.testRepo.get(id);
         if (test === undefined) {
@@ -17,20 +21,24 @@ class QuestionService {
         return test;
     }
 
+    vibrate(type) {
+        this.api.vibrateNotification(type);
+    }
+
     startQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.STARTED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.STARTED));
     }
 
     failQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.FAILED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.FAILED));
     }
 
     passQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.PASSED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.PASSED));
     }
 
     skipQuestion(questionId) {
-        this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.SKIPPED));
+        return this.user.then(user => this.api.sendHistoryEvent(questionId, user.id, EventCodeDto.SKIPPED));
     }
 
 }

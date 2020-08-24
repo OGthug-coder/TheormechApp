@@ -1,5 +1,4 @@
 import React from 'react';
-import Answer from "./fragments/Answer";
 
 import s from "./Preview.module.css";
 import ProgressFragment from "./fragments/ProgressFragment";
@@ -9,31 +8,22 @@ import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import PreviewUtil from "../../preview/util/TestStatus";
 import TestStatus from "../../preview/util/TestStatus";
 import isUndefined from "../../common/IsUndefined";
-import BackButton from "../../common/components/BackButton/BackButton";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
+import BackButton from "../../common/components/backbutton/BackButton";
+import Answer from "./fragments/Answer";
+import Swipe from "react-easy-swipe";
+
 
 class Preview extends React.Component {
     constructor(props) {
         super(props);
 
-        this.application = props.application
+        this.application = props.application;
         this.previewService = this.application.providePreviewService();
         this.testId = props.match.params.testId;
 
-        this.state = {
-            show_answer_window: false,
-        };
+        this.state = {};
 
-
-        this.showAnswerWindow = (e) => {
-            const id = parseInt(e.currentTarget.attributes.id.nodeValue);
-            const question = this.state.testInfo.questions.find(q => q.id === id);
-            this.setState({answerWindow: question});
-        };
-
-        this.hideAnswerWindow = () => {
-            this.setState({answerWindow: undefined})
-        };
     }
 
     componentDidMount() {
@@ -55,8 +45,23 @@ class Preview extends React.Component {
                 const currentScore = this.previewService.getCurrentScore(history);
                 this.setState({currentScore: currentScore});
             });
-
     }
+
+    showAnswerWindow = (e) => {
+        const id = parseInt(e.currentTarget.attributes.id.nodeValue);
+        const question = this.state.testInfo.questions.find(q => q.id === id);
+        this.setState({answerWindow: question});
+    };
+
+    hideAnswerWindow = () => {
+        this.setState({answerWindow: undefined})
+    };
+
+    onSwipeEnd = (position, event) => {
+        if (!isUndefined(this.state.answerWindow)) {
+            setTimeout(this.hideAnswerWindow, 50);
+        }
+    };
 
 
     renderQuestions = () => {
@@ -149,48 +154,47 @@ class Preview extends React.Component {
         const testInfo = this.state.testInfo;
 
         return (
-            <section className={s.preview_wrapper}>
-
-                <div className={s.background}>
+            <>
+                <section className={`${s.preview_wrapper} ${!isUndefined(this.state.answerWindow) ? s.blurred : ""}`}>
                     <img
+                        className={s.background}
                         src={!isUndefined(testInfo) ? testInfo.img : ""}
-                        alt={"background"}
-                        height={"400"}/>
-                </div>
+                        alt={"background"}/>
 
-                <div className={s.sticky_container}>
-                    <div className={s.back_button}>
-                        <BackButton/>
+                    <div className={s.sticky_container}>
+                        <div className={`${s.back_button}`}>
+                            <BackButton/>
+                        </div>
                     </div>
-                </div>
-                <section className={`${s.modal_window} ${this.state.className ? s.blur : ""}`}>
+                    <section className={s.modal_window}>
 
-                    <div className={s.slider_wrapper}>
-                        <div className={s.slider}/>
-                    </div>
-                    <div className={s.content_wrapper}>
-                        <div className={s.title}>
-                            {!isUndefined(testInfo) ? testInfo.title : ""}
+                        <div className={s.slider_wrapper}>
+                            <div className={s.slider}/>
                         </div>
-                        <div className={s.status}>
-                            Состояние: {this.getStatusView()}
-                        </div>
-                        <div className={s.description}>
-                            {!isUndefined(testInfo) ? testInfo.description : ""}
-                        </div>
-                        <div className={s.progress}>
-                            <div className={s.progress_title}>
-                                Мой прогресс
+                        <div className={s.content_wrapper}>
+                            <div className={s.title}>
+                                {!isUndefined(testInfo) ? testInfo.title : ""}
                             </div>
-                            <ProgressFragment key={[this.state.currentScore, this.state.testInfo]}
-                                              maxScore={!isUndefined(testInfo) ? testInfo.maxScore : 0}
-                                              currentScore={!isUndefined(this.state.currentScore) ? this.state.currentScore : 0}
-                                              time={!isUndefined(testInfo) ? testInfo.timeToComplete : null}/>
+                            <div className={s.status}>
+                                Состояние: {this.getStatusView()}
+                            </div>
+                            <div className={s.description}>
+                                {!isUndefined(testInfo) ? testInfo.description : ""}
+                            </div>
+                            <div className={s.progress}>
+                                <div className={s.progress_title}>
+                                    Мой прогресс
+                                </div>
+                                <ProgressFragment key={[this.state.currentScore, this.state.testInfo]}
+                                                  maxScore={!isUndefined(testInfo) ? testInfo.maxScore : 0}
+                                                  currentScore={!isUndefined(this.state.currentScore) ? this.state.currentScore : 0}
+                                                  time={!isUndefined(testInfo) ? testInfo.timeToComplete : null}/>
+                            </div>
+                            <ul className={s.question_list}>
+                                {this.renderQuestions()}
+                            </ul>
                         </div>
-                        <ul className={s.question_list}>
-                            {this.renderQuestions()}
-                        </ul>
-                    </div>
+                    </section>
                     <div className={!isUndefined(this.state.testStatus)
                     && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
                         <Link to={this.getNextQuestionLink()}
@@ -198,11 +202,19 @@ class Preview extends React.Component {
                             <div>{this.getButtonText()}</div>
                         </Link>
                     </div>
+
                 </section>
                 {!isUndefined(this.state.answerWindow) ?
                     <Answer question={this.state.answerWindow} onClick={this.hideAnswerWindow}/> : ""}
+                {
+                    !isUndefined(this.state.answerWindow) ?
+                        <Swipe onSwipeEnd={this.onSwipeEnd}>
+                            <div className={s.screen}/>
+                        </Swipe>
+                        : ""
+                }
 
-            </section>
+            </>
         )
     }
 }

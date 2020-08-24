@@ -6,12 +6,16 @@ import PreviewService from "./preview/service/PreviewService";
 import TestRepo from "./common/testrepo/TestRepo";
 import Api from "./common/api/Api";
 import isUndefined from "./common/IsUndefined";
+import StickerShopService from "./stickershop/StickerShopService";
+import ResultService from "./result/ResultService";
 
 class Application {
     #testListService;
     #profileService;
+    #stickerShopService;
     #questionService;
     #userService;
+    #resultService;
     #user;
     #api;
     #previewService;
@@ -49,6 +53,14 @@ class Application {
         return this.#profileService;
     }
 
+    provideStickerShopService() {
+        if (isUndefined(this.#stickerShopService)) {
+            this.#stickerShopService = new StickerShopService(this.provideApi());
+        }
+
+        return this.#stickerShopService;
+    }
+
     providePreviewService() {
         if (isUndefined(this.#previewService)) {
             this.#previewService = new PreviewService(this.provideApi(), this.provideTestRepo());
@@ -64,6 +76,10 @@ class Application {
         }
 
         return this.#user;
+    }
+
+    deleteUser() {
+        this.#user = undefined;
     }
 
     provideUserService() {
@@ -82,6 +98,13 @@ class Application {
         return this.#questionService;
     }
 
+    provideResultService() {
+        if (isUndefined(this.#resultService)) {
+            this.#resultService = new ResultService(this.provideApi(), this.provideUser());
+        }
+
+        return this.#resultService;
+    }
 
 }
 

@@ -3,11 +3,15 @@
     width: 40px;
     border-radius: 40px;
     border: none;
-    background-image: url("../../../img/preview/ic_chevron.svg");
+    background-image: url("../../../img/chevron/ic_left_chevron_black.svg");
     background-repeat: no-repeat;
     background-origin: content-box;
     background-color: white;
     background-position: center;
     margin-bottom: 5px;
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.button:focus {
+    outline: 0;
 }

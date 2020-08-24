@@ -1,5 +1,5 @@
-
 .news_container {
+    margin-top: 1%;
     overflow: scroll;
     height: 100%;
     display: grid;
@@ -8,16 +8,22 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-
 }
+
+.news_container > div:first-child {
+    margin-top: 20px;
+}
+
+
 /*no scrollbar*/
 .news_container::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
+    display: none; /* Safari and Chrome */
 }
 
-.task {
-    grid-area: task;
-}
+
+/*.task {*/
+/*    grid-area: task;*/
+/*}*/
 
 
 

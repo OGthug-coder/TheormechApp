@@ -7,12 +7,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "score time";
     justify-items: center;
+    align-items: center;
     font-weight: bold;
-    padding-top: 14px;
 }
-
-
-
 
 .score {
     grid-area: score;
