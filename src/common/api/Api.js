@@ -5,8 +5,7 @@ import bridge from '@vkontakte/vk-bridge';
 
 class Api {
     constructor() {
-        // this.URL = "https://atake.live:8443/v1/";
-        this.URL = "https://38311aaac67f.ngrok.io/v1/";
+        this.URL = "https://atake.live:8443/v1/";
         this.PARAMS = window.location.search;
     }
 
