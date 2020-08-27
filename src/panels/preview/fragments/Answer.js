@@ -33,11 +33,17 @@ class Answer extends React.Component{
                     </div>
                     <button className={s.exit} onClick={this.state.onClick} />
                 </div>
-                <div className={s.question}>{!isUndefined(question) ? question.questionText : ""}</div>
+                <div className={s.question}>
+                    {!isUndefined(question) ? question.questionText : ""}
+                </div>
                 <div className={s.ans_title}>Правильный ответ:</div>
-                <div className={s.ans}>{this.getRightAnswer()}</div>
+                <div className={s.ans}>
+                    {this.getRightAnswer()}
+                </div>
                 <div className={s.explanation_title}>Почему?</div>
-                <div className={s.explanation}>{!isUndefined(question) ? question.explain : ""}</div>
+                <div className={s.explanation}>
+                    {!isUndefined(question) ? question.explain : ""}
+                </div>
             </div>
         )
     }

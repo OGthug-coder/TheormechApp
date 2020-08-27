@@ -5,7 +5,9 @@ import bridge from '@vkontakte/vk-bridge';
 
 class Api {
     constructor() {
-        this.URL = "https://atake.live:8443/v1/";
+        // this.URL = "https://atake.live:8443/v1/";
+        this.URL = "https://38311aaac67f.ngrok.io/v1/";
+        this.PARAMS = window.location.search;
     }
 
     requestTests() {
@@ -45,7 +47,8 @@ class Api {
         return fetch(url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json())
             .catch(e => {
@@ -56,31 +59,31 @@ class Api {
     }
 
     getVkProfile() {
-        return bridge.send('VKWebAppGetUserInfo')
-            .catch(e => console.log(e));
-        // const response = {
-        //     bdate: "1.10",
-        //     city: {
-        //         id: 0,
-        //         title: "Санкт-Петербург"
-        //     },
-        //     country: {
-        //         id: 0,
-        //         title: ""
-        //     },
-        //     first_name: "Артем",
-        //     id: 137239419,
-        //     last_name: "Бакута",
-        //     photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
-        //     photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
-        //     photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
-        //     sex: 2,
-        //     timezone: 3,
-        // };
-        //
-        // return new Promise((resolve) => {
-        //     setTimeout(() => resolve(response), 200);
-        // });
+        // return bridge.send('VKWebAppGetUserInfo')
+        //     .catch(e => console.log(e));
+        const response = {
+            bdate: "1.10",
+            city: {
+                id: 0,
+                title: "Санкт-Петербург"
+            },
+            country: {
+                id: 0,
+                title: ""
+            },
+            first_name: "Артем",
+            id: 137239419,
+            last_name: "Бакута",
+            photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
+            photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
+            photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
+            sex: 2,
+            timezone: 3,
+        };
+
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(response), 200);
+        });
     }
 
     vibrateNotification(type) {
@@ -100,7 +103,8 @@ class Api {
         return fetch(url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json())
             .then(data => {
@@ -120,12 +124,14 @@ class Api {
             method: "PUT",
             body: JSON.stringify(user),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json());
 
     }
 
+    //TODO: rename
     requestQuestion(testId) {
         const url = this.URL + "tests/" + testId;
 
@@ -144,7 +150,8 @@ class Api {
             method: "POST",
             body: eventCode,
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         });
     }
@@ -166,7 +173,8 @@ class Api {
         return fetch(url, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json());
     }
@@ -177,11 +185,11 @@ class Api {
         return fetch(url, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json());
     }
-
 
 }
 
