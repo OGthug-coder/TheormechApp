@@ -86,9 +86,8 @@ class Profile extends React.Component {
                 </div>
                 <LevelFragment key={user}
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
-                <div className={s.logo}
-                     onClick={this.onLogoClick}>
-                    <img src={require("../../../img/profile/ic_tm_logo.png")} alt={"logo"}/>
+                <div className={s.logo}>
+                    <img onClick={this.onLogoClick} src={require("../../../img/profile/ic_tm_logo.png")} alt={"logo"}/>
                     <div className={s.logo_text}>
                         Высшая школа теоретической механики
                     </div>
