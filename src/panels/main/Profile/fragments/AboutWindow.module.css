@@ -65,13 +65,17 @@
 }
 
 .exit {
-    height: 15px;
-    width: 15px;
+    height: 25px;
+    width: 25px;
     position: relative;
-
+    border-radius: 25px;
     left: 50vw;
     top: -4vw;
     background: url("../../../../img/preview/answer/exit.svg") no-repeat center;
+}
+
+.exit:active {
+    background-color: #BFBFBF;
 }
 
 .title {

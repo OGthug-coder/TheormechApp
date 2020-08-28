@@ -161,6 +161,10 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
+.settings_item:active {
+    background-color: #F2F2F2;
+}
+
 .hidden_no_animation {
     display: none;
 }
@@ -247,5 +251,3 @@
     }
 
 }
-
-

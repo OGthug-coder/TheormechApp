@@ -107,6 +107,11 @@
     top: -20px;
 }
 
+.start_button:active {
+    background-size: 150px 150px;
+    background: #3256E0 url("../../../img/testlist/button_pressed.svg") no-repeat center;
+}
+
 @media screen and (max-device-height: 600px){
     .card {
         grid-template-rows: 110px min-content;
