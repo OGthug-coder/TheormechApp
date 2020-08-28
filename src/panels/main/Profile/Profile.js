@@ -47,10 +47,6 @@ class Profile extends React.Component {
         setTimeout(() => this.props.history.push('/stickerShop'), 250);
     };
 
-    onLogoClick = () => {
-        this.profileService.subscribe();
-    };
-
     provideVisibility = () => {
         if (isUndefined(this.state.settings_window)) {
             return s.hidden_no_animation;
@@ -87,10 +83,14 @@ class Profile extends React.Component {
                 <LevelFragment key={user}
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
                 <div className={s.logo}>
-                    <img onClick={this.onLogoClick} src={require("../../../img/profile/ic_tm_logo.png")} alt={"logo"}/>
+                    <a href={"https://vk.com/theormech"} target="_blank">
+                        <img src={require("../../../img/profile/ic_tm_logo.png")}
+                             alt={"logo"}/>
+                    </a>
                     <div className={s.logo_text}>
                         Высшая школа теоретической механики
                     </div>
+
                     <div
                         className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
                         onClick={this.state.onSettingsClick}>
@@ -106,7 +106,7 @@ class Profile extends React.Component {
                         О приложении
                     </div>
                 </div>
-                {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton} /> : ""}
+                {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton}/> : ""}
             </div>
         )
     }

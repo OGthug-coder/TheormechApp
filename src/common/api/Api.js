@@ -22,10 +22,6 @@ class Api {
 
     }
 
-    subscribeToGroup() {
-        bridge.send("VKWebAppJoinGroup", {"group_id": 8812367});
-    }
-
     requestTest(id) {
         const url = this.URL + "tests/" + id;
         return fetch(url, {

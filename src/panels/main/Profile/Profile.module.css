@@ -63,7 +63,10 @@
     margin: auto 5px 0;
 }
 
-.logo > img {
+.logo > a > img {
+    display: flex;
+    align-self: center;
+    justify-self: center;
     height: 75px;
     width: 75px;
     margin-left: auto;
@@ -73,6 +76,7 @@
 }
 
 .logo_text {
+    text-decoration: none;
     text-align: left;
     padding-right: 5px;
     width: 80%;
