@@ -12,6 +12,22 @@ class Result extends React.Component {
         this.testId = parseInt(props.match.params.testId);
         this.resultService = this.application.provideResultService();
         this.state = {};
+
+        this.tips = [
+            "Ты можешь тратить заработанные баллы на покупку новых стикеров",
+            "Купить новые стикеры можно в профиле",
+            "За неправильный ответ вы потеряете очки, но пропуская вопрос, вы ничего не теряете",
+            "Баллы за тест начисляется только по его завершению",
+            "Пройти тест ещё раз нельзя",
+            "Посмотреть правильный ответ и его объяснение можно на вкладке с информацией о тесте",
+            "У пропущенных вопросов нельзя посмотреть решение",
+            "Старайтесь не ошибаться, чтобы получить большее количество баллов за тест",
+            "Если не знаете ответа, то лучше пропустить вопрос. Но всегда можно пойти на риск",
+            "Если вы пропустите все вопросы, то пройти тест заново все равно будет нельзя"
+        ]
+
+        
+
     }
 
     componentDidMount() {
@@ -28,6 +44,10 @@ class Result extends React.Component {
         this.props.history.go(-1)
     };
 
+    getTip = () => {
+        return this.tips[Math.floor(Math.random() * this.tips.length)]
+    };
+
     render() {
         const data = this.state.data;
         return (
@@ -41,7 +61,7 @@ class Result extends React.Component {
                     <img alt={"tip"}
                          src={require("../../img/result/ic_bulb.svg")}/>
                     <div>
-                        Ты можешь тратить заработанные баллы на покупку новых стикеров
+                        {this.getTip()}
                     </div>
                 </div>
                 <div className={s.controls}>
