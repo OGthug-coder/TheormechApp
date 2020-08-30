@@ -181,6 +181,7 @@
     font-style: normal;
     font-weight: normal;
     background-color: #588EFF;
+    border: 1px solid #588EFF;
 
     margin-bottom: 1vh;
 }
@@ -188,7 +189,6 @@
 .first_button:active {
     background-color: white;
     color: black;
-    border: 1px solid #588EFF;
 }
 
 .first_button div {
