@@ -211,6 +211,7 @@
 }
 
 .second_button:active {
+    border: none;
     background-color: #588EFF;
     color: #F3FDFF;
 }
