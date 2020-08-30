@@ -180,9 +180,13 @@
     color: #F3FDFF;
     font-style: normal;
     font-weight: normal;
-    background: #588EFF;
+    background-color: #588EFF;
 
     margin-bottom: 1vh;
+}
+
+.first_button:active {
+    background-color: white;
 }
 
 .first_button div {
@@ -202,6 +206,10 @@
     font-style: normal;
     font-weight: normal;
     border: 1px solid #588EFF;
+}
+
+.second_button:active {
+    background-color: #588EFF;
 }
 
 .second_button div {
