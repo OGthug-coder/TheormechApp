@@ -5,7 +5,7 @@ import LevelFragment from "./fragments/LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
-import {withRouter} from "react-router";
+import {withRouter} from "react-router-dom";
 import AboutWindow from "./fragments/AboutWindow";
 
 
@@ -14,20 +14,18 @@ class Profile extends React.Component {
         super(props);
         this.application = props.application;
         this.profileService = this.application.provideProfileService();
-
         this.state = {
             settings_window: props.settings_window,
             onSettingsClick: props.onSettingsClick,
             aboutDev: false,
         };
 
-        window.onpopstate = this.onBackHandler;
     }
-
-    onBackHandler = () => {
-        this.setState({user: undefined});
-        this.fetchUser();
-    };
+    //
+    // onBackHandler = () => {
+    //     this.setState({user: undefined});
+    //     this.fetchUser();
+    // };
 
     ondDevButton = () => {
         this.setState({aboutDev: !this.state.aboutDev});

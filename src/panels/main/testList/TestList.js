@@ -2,6 +2,7 @@ import React from 'react';
 
 import s from './testList.module.css';
 import Task from "./Task";
+import {withRouter} from "react-router-dom";
 
 class TestList extends React.Component {
     constructor(props) {
@@ -16,23 +17,27 @@ class TestList extends React.Component {
     }
 
     componentDidMount() {
+        this.fetchTests();
+    }
+
+    fetchTests = () => {
         this.testListService.getTests()
             .then(tests => {
                 this.setState({tests: tests})
             });
-    }
+    };
 
     prepareList() {
         let tests = [];
-        
+
         this.state.tests.map(test => tests.push(
-            <Task key={[test.id, test.progress]}
-                id={test.id}
-                title={test.title}
-                img={test.img}
-                date={test.date.split(' ')[0]}
-                progress={test.progress}
-                application={this.application}
+            <Task key={[test.id]}
+                  id={test.id}
+                  title={test.title}
+                  img={test.img}
+                  date={test.date.split(' ')[0]}
+                  progress={test.progress}
+                  application={this.application}
             />));
         tests = this.testListService.sort(tests)
 
@@ -49,4 +54,4 @@ class TestList extends React.Component {
     }
 }
 
-export default TestList;
+export default withRouter(TestList);
