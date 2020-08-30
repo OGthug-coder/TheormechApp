@@ -32,7 +32,6 @@ class Result extends React.Component {
         const data = this.state.data;
         return (
             <div className={s.result_window}>
-
                 <div className={s.result_bubble}>
                     <div>Твой результат</div>
                     <div className={s.percent}>{!isUndefined(data) ? data.percent : 0}%</div>

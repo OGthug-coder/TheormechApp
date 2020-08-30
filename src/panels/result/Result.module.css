@@ -44,7 +44,7 @@
     animation: pulse 3s ease infinite;
 }
 
-.planet_1::before {
+.planet_1 {
     content: '';
     position: absolute;
     top: calc(72vw / 2 + 11.4vh);
@@ -57,7 +57,7 @@
     animation: orbit 15s linear infinite;
 }
 
-.planet_2::before {
+.planet_2 {
     content: '';
     position: absolute;
     top: calc(72vw / 2 + 11.4vh);
