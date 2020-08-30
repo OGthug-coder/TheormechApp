@@ -21,11 +21,6 @@ class Profile extends React.Component {
         };
 
     }
-    //
-    // onBackHandler = () => {
-    //     this.setState({user: undefined});
-    //     this.fetchUser();
-    // };
 
     ondDevButton = () => {
         this.setState({aboutDev: !this.state.aboutDev});
@@ -82,8 +77,9 @@ class Profile extends React.Component {
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
                 <div className={s.logo}>
                     <a href={"https://vk.com/theormech"} target="_blank" rel="noopener noreferrer">
-                        <img src={require("../../../img/profile/ic_tm_logo.png")}
-                             alt={"logo"}/>
+                        {/*<img src={require("../../../img/profile/ic_tm_logo.png")}*/}
+                        {/*     alt={"logo"}/>*/}
+
                     </a>
                     <div className={s.logo_text}>
                         Высшая школа теоретической механики
