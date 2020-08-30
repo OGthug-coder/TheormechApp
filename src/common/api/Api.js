@@ -2,6 +2,7 @@ import NoHistoryFoundException from "../exceptions/NoHistoryFoundException";
 import NoUserFoundException from "../exceptions/NoUserFoundException";
 import HttpStatus from "./HttpStatus.js";
 import bridge from '@vkontakte/vk-bridge';
+import Vibration from "../Vibration";
 
 class Api {
     constructor() {
@@ -23,6 +24,7 @@ class Api {
     }
 
     requestTest(id) {
+
         const url = this.URL + "tests/" + id;
         return fetch(url, {
             method: "GET",
@@ -77,15 +79,39 @@ class Api {
     }
 
     vibrateNotification(type) {
-        bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+        if (navigator.userAgent.indexOf("Safari") !== -1) {
+            bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+        } else {
+            switch (type) {
+                case Vibration.SUCCESS:
+                    window.navigator.vibrate([200, 100])
+                    break;
+                case Vibration.ERROR:
+                    window.navigator.vibrate([200, 200])
+                    break;
+                case Vibration.WARNING:
+                    window.navigator.vibrate(200)
+                    break;
+            }
+        }
+
     }
 
     vibrateSelectionChanged() {
-        bridge.send("VKWebAppTapticSelectionChanged", {});
+        if (navigator.userAgent.indexOf("Safari") !== -1) {
+            bridge.send("VKWebAppTapticSelectionChanged", {});
+        } else {
+            window.navigator.vibrate(100)
+        }
     }
 
     vibrateImpact(type) {
-        bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+        if (navigator.userAgent.indexOf("Safari") !== -1) {
+            bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+        } else {
+            window.navigator.vibrate(400)
+
+        }
     }
 
     requestUserById(id) {
@@ -120,7 +146,6 @@ class Api {
         }).then(response => response.json());
 
     }
-
 
 
     sendHistoryEvent(questionId, userId, eventCode) {

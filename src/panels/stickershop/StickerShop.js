@@ -21,7 +21,6 @@ class StickerShop extends React.Component {
     }
 
     componentDidMount() {
-        window.navigator.vibrate(200);
         this.stickerShopService.getAllStickers().then(stickers => {
             this.application.provideUser().then(user => {
                 stickers = this.prepareStickers(stickers, user);
