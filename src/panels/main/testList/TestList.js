@@ -26,7 +26,7 @@ class TestList extends React.Component {
         let tests = [];
         
         this.state.tests.map(test => tests.push(
-            <Task key={test.id}
+            <Task key={[test.id, test.progress]}
                 id={test.id}
                 title={test.title}
                 img={test.img}
