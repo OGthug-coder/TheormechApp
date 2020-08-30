@@ -90,12 +90,13 @@ class Question extends React.Component {
     onRightAnswer = () => {
         this.setState({animation: 'correct'});
         this.questionService.vibrate(Vibration.SUCCESS);
+
         this.questionService.passQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
                 setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
-                    this.startNextQuestion(QuestionStatus.PASSED);
                     this.setState({animation: undefined})
+                    this.startNextQuestion(QuestionStatus.PASSED);
                 }, 1000);
             } else {
 
@@ -107,12 +108,13 @@ class Question extends React.Component {
     onWrongAnswer = () => {
         this.setState({animation: 'incorrect'})
         this.questionService.vibrate(Vibration.ERROR);
+
         this.questionService.failQuestion(this.state.questionId).then(response => {
             if (response.status === HttpStatus.OK) {
                 setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
-                    this.startNextQuestion(QuestionStatus.PASSED);
                     this.setState({animation: undefined})
+                    this.startNextQuestion(QuestionStatus.PASSED);
                 }, 1000);
             } else {
 
