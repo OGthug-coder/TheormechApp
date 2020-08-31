@@ -14,8 +14,4 @@ if (process.env.NODE_ENV === "development") {
 
 // Init VK  Mini App
 bridge.send("VKWebAppInit")
-bridge.send("VKWebAppSetViewSettings", {
-    "status_bar_style": "light",
-    "action_bar_color": "none",
-    "navigation_bar_color": "none"
-}).catch(e => console.log(e));
+
