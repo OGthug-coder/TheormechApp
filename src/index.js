@@ -7,9 +7,9 @@ import App from "./App";
 
 
 ReactDOM.render(<App/>, document.getElementById("root"));
-// if (process.env.NODE_ENV === "development") {
-//   import("./eruda").then(({ default: eruda }) => {}); //runtime download
-// }
+if (process.env.NODE_ENV === "development") {
+  import("./eruda").then(({ default: eruda }) => {}); //runtime download
+}
 
 
 // Init VK  Mini App
@@ -18,4 +18,4 @@ bridge.send("VKWebAppSetViewSettings", {
     "status_bar_style": "light",
     "action_bar_color": "none",
     "navigation_bar_color": "none"
-}).catch(e => alert(e));
+}).catch(e => console.log(e));
