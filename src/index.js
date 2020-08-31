@@ -11,7 +11,6 @@ if (process.env.NODE_ENV === "development") {
   import("./eruda").then(({ default: eruda }) => {}); //runtime download
 }
 
-console.log(navigator.userAgent)
 
 // Init VK  Mini App
 bridge.send("VKWebAppInit")

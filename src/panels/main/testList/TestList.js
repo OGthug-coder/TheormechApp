@@ -14,6 +14,8 @@ class TestList extends React.Component {
             sortBy: props.socket,
             tests: []
         }
+
+        console.log(navigator.userAgent)
     }
 
     componentDidMount() {
