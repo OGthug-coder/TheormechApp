@@ -16,5 +16,6 @@ ReactDOM.render(<App/>, document.getElementById("root"));
 bridge.send("VKWebAppInit")
 bridge.send("VKWebAppSetViewSettings", {
     "status_bar_style": "light",
+    "action_bar_color": "none",
     "navigation_bar_color": "none"
-});
+}).catch(e => alert(e));
