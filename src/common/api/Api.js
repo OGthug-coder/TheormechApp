@@ -79,7 +79,7 @@ class Api {
     }
 
     vibrateNotification(type) {
-        if (navigator.userAgent.indexOf("Safari") !== -1) {
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
             bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
         } else {
             switch (type) {
@@ -98,7 +98,7 @@ class Api {
     }
 
     vibrateSelectionChanged() {
-        if (navigator.userAgent.indexOf("Safari") !== -1) {
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
             bridge.send("VKWebAppTapticSelectionChanged", {});
         } else {
             window.navigator.vibrate(100)
@@ -106,7 +106,7 @@ class Api {
     }
 
     vibrateImpact(type) {
-        if (navigator.userAgent.indexOf("Safari") !== -1) {
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
             bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
         } else {
             window.navigator.vibrate(400)
