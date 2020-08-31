@@ -5,7 +5,7 @@ import LevelFragment from "./fragments/LevelFragment";
 import {Avatar} from "@vkontakte/vkui";
 import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
-import {withRouter} from "react-router";
+import {withRouter} from "react-router-dom";
 import AboutWindow from "./fragments/AboutWindow";
 
 
@@ -14,20 +14,13 @@ class Profile extends React.Component {
         super(props);
         this.application = props.application;
         this.profileService = this.application.provideProfileService();
-
         this.state = {
             settings_window: props.settings_window,
             onSettingsClick: props.onSettingsClick,
             aboutDev: false,
         };
 
-        window.onpopstate = this.onBackHandler;
     }
-
-    onBackHandler = () => {
-        this.setState({user: undefined});
-        this.fetchUser();
-    };
 
     ondDevButton = () => {
         this.setState({aboutDev: !this.state.aboutDev});
@@ -45,10 +38,6 @@ class Profile extends React.Component {
     onStickerClick = () => {
         this.state.onSettingsClick();
         setTimeout(() => this.props.history.push('/stickerShop'), 250);
-    };
-
-    onLogoClick = () => {
-        this.profileService.subscribe();
     };
 
     provideVisibility = () => {
@@ -86,12 +75,16 @@ class Profile extends React.Component {
                 </div>
                 <LevelFragment key={user}
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
-                <div className={s.logo}
-                     onClick={this.onLogoClick}>
-                    <img src={require("../../../img/profile/ic_tm_logo.png")} alt={"logo"}/>
+                <div className={s.logo}>
+                    <a href={"https://vk.com/theormech"} target="_blank" rel="noopener noreferrer">
+                        <img src={require("../../../img/profile/ic_tm_logo.png")}
+                             alt={"logo"}/>
+
+                    </a>
                     <div className={s.logo_text}>
                         Высшая школа теоретической механики
                     </div>
+
                     <div
                         className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
                         onClick={this.state.onSettingsClick}>
@@ -107,7 +100,7 @@ class Profile extends React.Component {
                         О приложении
                     </div>
                 </div>
-                {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton} /> : ""}
+                {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton}/> : ""}
             </div>
         )
     }

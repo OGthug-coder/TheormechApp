@@ -86,7 +86,7 @@
     margin: 10px auto 10px;
     height: 4px;
     width: 150px;
-    background-color: #ECECEC;
+    background-color: #BFBFBF;
     border-radius: 25px;
 
 }
@@ -150,15 +150,20 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    width: 220px;
+    width: 240px;
     height: 50px;
-    border-radius: 15px;
+    border-radius: 25px;
     border-style: none;
     text-align: center;
     font-family: "Titillium Web", sans-serif;
     font-size: 18px;
     outline: none;
     background: #588EFF;
+}
+
+.link:active {
+    background-size: 150px 150px;
+    background: #3256E0 url("../../img/testlist/button_pressed.svg") no-repeat center;
 }
 
 .screen {

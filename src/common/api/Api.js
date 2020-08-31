@@ -2,11 +2,13 @@ import NoHistoryFoundException from "../exceptions/NoHistoryFoundException";
 import NoUserFoundException from "../exceptions/NoUserFoundException";
 import HttpStatus from "./HttpStatus.js";
 import bridge from '@vkontakte/vk-bridge';
+import Vibration from "../Vibration";
 
 class Api {
     constructor() {
         this.URL = "https://atake.live:8443/v1/";
         this.PARAMS = window.location.search;
+        this.ALLOW_VIBRATION = true;
     }
 
     requestTests() {
@@ -22,11 +24,8 @@ class Api {
 
     }
 
-    subscribeToGroup() {
-        bridge.send("VKWebAppJoinGroup", {"group_id": 8812367});
-    }
-
     requestTest(id) {
+
         const url = this.URL + "tests/" + id;
         return fetch(url, {
             method: "GET",
@@ -81,15 +80,39 @@ class Api {
     }
 
     vibrateNotification(type) {
-        bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
+            bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+        } else if (this.ALLOW_VIBRATION) {
+            switch (type) {
+                case Vibration.SUCCESS:
+                    window.navigator.vibrate([200, 50,  100])
+                    break;
+                case Vibration.ERROR:
+                    window.navigator.vibrate([200, 50, 200])
+                    break;
+                default:
+                    window.navigator.vibrate(200)
+                    break;
+            }
+        }
+
     }
 
     vibrateSelectionChanged() {
-        bridge.send("VKWebAppTapticSelectionChanged", {});
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
+            bridge.send("VKWebAppTapticSelectionChanged", {});
+        } else if (this.ALLOW_VIBRATION) {
+            window.navigator.vibrate(100)
+        }
     }
 
     vibrateImpact(type) {
-        bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
+            bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+        } else if (this.ALLOW_VIBRATION) {
+            window.navigator.vibrate(400)
+
+        }
     }
 
     requestUserById(id) {
@@ -124,7 +147,6 @@ class Api {
         }).then(response => response.json());
 
     }
-
 
 
     sendHistoryEvent(questionId, userId, eventCode) {

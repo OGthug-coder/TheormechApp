@@ -11,8 +11,13 @@ class Main extends React.Component {
         super(props);
         this.application = props.application;
 
-        this.state = {};
+        this.state = {
+            rerender: false
+        };
+
+        window.onpopstate = () => this.setState({rerender: !this.state.rerender});
     }
+
 
     onSwipeMove = (position, event) => {
         if (this.state.settings_window)
@@ -33,10 +38,13 @@ class Main extends React.Component {
                 onSwipeMove={this.onSwipeMove}>
                 <div className={s.main_window}>
                     <div className={s.news_wrapper}>
-                        <TestList application={this.application} sortBy={'date'}/>
+                        <TestList key={this.state.rerender}
+                                  application={this.application}
+                                  sortBy={'date'}/>
                     </div>
                     <div className={s.profile}>
-                        <Profile key={this.state.settings_window}
+                        <Profile key={[this.state.settings_window, this.state.rerender]}
+                                 rerender={this.state.rerender}
                                  application={this.application}
                                  settings_window={this.state.settings_window}
                                  onSettingsClick={this.onSettingsClick}/>
