@@ -90,7 +90,7 @@ class Api {
                 case Vibration.ERROR:
                     window.navigator.vibrate([200, 50, 200])
                     break;
-                case Vibration.WARNING:
+                default:
                     window.navigator.vibrate(200)
                     break;
             }
