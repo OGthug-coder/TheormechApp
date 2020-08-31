@@ -8,6 +8,7 @@ class Api {
     constructor() {
         this.URL = "https://atake.live:8443/v1/";
         this.PARAMS = window.location.search;
+        this.ALLOW_VIBRATION = true;
     }
 
     requestTests() {
@@ -81,7 +82,7 @@ class Api {
     vibrateNotification(type) {
         if (navigator.userAgent.indexOf("iPhone") !== -1) {
             bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
-        } else {
+        } else if (this.ALLOW_VIBRATION) {
             switch (type) {
                 case Vibration.SUCCESS:
                     window.navigator.vibrate([200, 50,  100])
@@ -100,7 +101,7 @@ class Api {
     vibrateSelectionChanged() {
         if (navigator.userAgent.indexOf("iPhone") !== -1) {
             bridge.send("VKWebAppTapticSelectionChanged", {});
-        } else {
+        } else if (this.ALLOW_VIBRATION) {
             window.navigator.vibrate(100)
         }
     }
@@ -108,7 +109,7 @@ class Api {
     vibrateImpact(type) {
         if (navigator.userAgent.indexOf("iPhone") !== -1) {
             bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
-        } else {
+        } else if (this.ALLOW_VIBRATION) {
             window.navigator.vibrate(400)
 
         }
