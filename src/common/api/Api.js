@@ -84,10 +84,10 @@ class Api {
         } else {
             switch (type) {
                 case Vibration.SUCCESS:
-                    window.navigator.vibrate([200, 100])
+                    window.navigator.vibrate([200, 50,  100])
                     break;
                 case Vibration.ERROR:
-                    window.navigator.vibrate([200, 200])
+                    window.navigator.vibrate([200, 50, 200])
                     break;
                 case Vibration.WARNING:
                     window.navigator.vibrate(200)
