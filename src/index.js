@@ -16,14 +16,11 @@ if (navigator.userAgent.indexOf("iPhone") !== -1) {
     bridge.send("VKWebAppSetViewSettings", {
         "status_bar_style": "dark",
         "action_bar_color": "none",
-        "navigation_bar_color": "#00ffff"
-    }).catch(e => alert(e.error.stringify()));
+    });
 }
-
 
 ReactDOM.render(<App/>, document.getElementById("root"));
 if (process.env.NODE_ENV === "development") {
     import("./eruda").then(({default: eruda}) => {
     }); //runtime download
 }
-
