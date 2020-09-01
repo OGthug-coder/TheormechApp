@@ -7,7 +7,6 @@ import Score from "../../common/components/score/Score";
 import StickerStatus from "./util/StickerStatus";
 import isUndefined from "../../common/IsUndefined";
 import Vibration from "../../common/Vibration";
-import bridge from "@vkontakte/vk-bridge";
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -22,12 +21,8 @@ class StickerShop extends React.Component {
     }
 
     componentDidMount() {
-        bridge.send("VKWebAppSetViewSettings", {
-            "status_bar_style": "light",
-            "action_bar_color": "none",
-            "navigation_bar_color": "none"
-        }).catch(e => console.log(e));
-        
+
+
         this.stickerShopService.getAllStickers().then(stickers => {
             this.application.provideUser().then(user => {
                 stickers = this.prepareStickers(stickers, user);

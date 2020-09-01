@@ -5,13 +5,25 @@ import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
 import App from "./App";
 
+// Init VK  Mini App
+bridge.send("VKWebAppInit")
 
-ReactDOM.render(<App/>, document.getElementById("root"));
-if (process.env.NODE_ENV === "development") {
-  import("./eruda").then(({ default: eruda }) => {}); //runtime download
+if (navigator.userAgent.indexOf("iPhone") !== -1) {
+    bridge.send("VKWebAppSetViewSettings", {
+        "status_bar_style": "light",
+    });
+} else {
+    bridge.send("VKWebAppSetViewSettings", {
+        "status_bar_style": "light",
+        "action_bar_color": "#5E80FF"
+    });
 }
 
 
-// Init VK  Mini App
-bridge.send("VKWebAppInit")
+ReactDOM.render(<App/>, document.getElementById("root"));
+if (process.env.NODE_ENV === "development") {
+    import("./eruda").then(({default: eruda}) => {
+    }); //runtime download
+}
+
 
