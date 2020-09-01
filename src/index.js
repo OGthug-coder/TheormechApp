@@ -17,7 +17,7 @@ if (navigator.userAgent.indexOf("iPhone") !== -1) {
         "status_bar_style": "dark",
         "action_bar_color": "none",
         "navigation_bar_color": "#00ffff"
-    }).catch(e => alert(e.toString()));
+    }).catch(e => alert(e.stringify()));
 }
 
 
