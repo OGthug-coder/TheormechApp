@@ -17,7 +17,7 @@ if (navigator.userAgent.indexOf("iPhone") !== -1) {
         "status_bar_style": "dark",
         "action_bar_color": "none",
         "navigation_bar_color": "#00ffff"
-    }).catch(e => alert(e.stringify()));
+    }).catch(e => alert(e.error.stringify()));
 }
 
 
@@ -26,5 +26,4 @@ if (process.env.NODE_ENV === "development") {
     import("./eruda").then(({default: eruda}) => {
     }); //runtime download
 }
-
 
