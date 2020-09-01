@@ -14,8 +14,8 @@ if (navigator.userAgent.indexOf("iPhone") !== -1) {
     });
 } else {
     bridge.send("VKWebAppSetViewSettings", {
-        "status_bar_style": "light",
-        "action_bar_color": "#5E80FF"
+        "status_bar_style": "dark",
+        "action_bar_color": "#FFFFFF"
     });
 }
 
