@@ -10,11 +10,6 @@ class Api {
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
 
-        bridge.send("VKWebAppSetViewSettings", {
-            "status_bar_style": "light",
-            "action_bar_color": "none",
-            "navigation_bar_color": "none"
-        }).catch(e => console.log(e));
     }
 
     requestTests() {
