@@ -44,7 +44,7 @@
     animation: pulse 3s ease infinite;
 }
 
-.planet_1::before {
+.planet_1 {
     content: '';
     position: absolute;
     top: calc(72vw / 2 + 11.4vh);
@@ -57,7 +57,7 @@
     animation: orbit 15s linear infinite;
 }
 
-.planet_2::before {
+.planet_2 {
     content: '';
     position: absolute;
     top: calc(72vw / 2 + 11.4vh);
@@ -180,9 +180,15 @@
     color: #F3FDFF;
     font-style: normal;
     font-weight: normal;
-    background: #588EFF;
+    background-color: #588EFF;
+    border: 1px solid #588EFF;
 
     margin-bottom: 1vh;
+}
+
+.first_button:active {
+    background-color: white;
+    color: black;
 }
 
 .first_button div {
@@ -202,6 +208,12 @@
     font-style: normal;
     font-weight: normal;
     border: 1px solid #588EFF;
+}
+
+.second_button:active {
+    border: none;
+    background-color: #588EFF;
+    color: #F3FDFF;
 }
 
 .second_button div {

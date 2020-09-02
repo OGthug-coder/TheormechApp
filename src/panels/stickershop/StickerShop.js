@@ -21,6 +21,8 @@ class StickerShop extends React.Component {
     }
 
     componentDidMount() {
+
+
         this.stickerShopService.getAllStickers().then(stickers => {
             this.application.provideUser().then(user => {
                 stickers = this.prepareStickers(stickers, user);

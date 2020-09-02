@@ -2,10 +2,14 @@ import NoHistoryFoundException from "../exceptions/NoHistoryFoundException";
 import NoUserFoundException from "../exceptions/NoUserFoundException";
 import HttpStatus from "./HttpStatus.js";
 import bridge from '@vkontakte/vk-bridge';
+import Vibration from "../Vibration";
 
 class Api {
     constructor() {
         this.URL = "https://atake.live:8443/v1/";
+        this.PARAMS = window.location.search;
+        this.ALLOW_VIBRATION = true;
+
     }
 
     requestTests() {
@@ -21,16 +25,8 @@ class Api {
 
     }
 
-    subscribeToGroup() {
-        bridge.send("VKWebAppJoinGroup", {"group_id": 8812367});
-    }
-
-    // //dark or light
-    // setStatusBarStyle(style) {
-    //     bridge.send("VKWebAppSetViewSettings", {"status_bar_style": style, "action_bar_color": "none"});
-    // }
-
     requestTest(id) {
+
         const url = this.URL + "tests/" + id;
         return fetch(url, {
             method: "GET",
@@ -45,7 +41,8 @@ class Api {
         return fetch(url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json())
             .catch(e => {
@@ -56,43 +53,67 @@ class Api {
     }
 
     getVkProfile() {
-        // return bridge.send('VKWebAppGetUserInfo')
-        //     .catch(e => console.log(e));
-        const response = {
-            bdate: "1.10",
-            city: {
-                id: 0,
-                title: "Санкт-Петербург"
-            },
-            country: {
-                id: 0,
-                title: ""
-            },
-            first_name: "Артем",
-            id: 137239419,
-            last_name: "Бакута",
-            photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
-            photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
-            photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
-            sex: 2,
-            timezone: 3,
-        };
-
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(response), 200);
-        });
+        return bridge.send('VKWebAppGetUserInfo')
+            .catch(e => console.log(e));
+        // const response = {
+        //     bdate: "1.10",
+        //     city: {
+        //         id: 0,
+        //         title: "Санкт-Петербург"
+        //     },
+        //     country: {
+        //         id: 0,
+        //         title: ""
+        //     },
+        //     first_name: "Артем",
+        //     id: 137239419,
+        //     last_name: "Бакута",
+        //     photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
+        //     photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
+        //     photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
+        //     sex: 2,
+        //     timezone: 3,
+        // };
+        //
+        // return new Promise((resolve) => {
+        //     setTimeout(() => resolve(response), 200);
+        // });
     }
 
     vibrateNotification(type) {
-        bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
+            bridge.send("VKWebAppTapticNotificationOccurred", {"type": type});
+        } else if (this.ALLOW_VIBRATION) {
+            switch (type) {
+                case Vibration.SUCCESS:
+                    window.navigator.vibrate([200, 50,  100])
+                    break;
+                case Vibration.ERROR:
+                    window.navigator.vibrate([200, 50, 200])
+                    break;
+                default:
+                    window.navigator.vibrate(200)
+                    break;
+            }
+        }
+
     }
 
     vibrateSelectionChanged() {
-        bridge.send("VKWebAppTapticSelectionChanged", {});
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
+            bridge.send("VKWebAppTapticSelectionChanged", {});
+        } else if (this.ALLOW_VIBRATION) {
+            window.navigator.vibrate(100)
+        }
     }
 
     vibrateImpact(type) {
-        bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+        if (navigator.userAgent.indexOf("iPhone") !== -1) {
+            bridge.send("VKWebAppTapticImpactOccurred", {"style": type});
+        } else if (this.ALLOW_VIBRATION) {
+            window.navigator.vibrate(400)
+
+        }
     }
 
     requestUserById(id) {
@@ -100,7 +121,8 @@ class Api {
         return fetch(url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json())
             .then(data => {
@@ -120,22 +142,13 @@ class Api {
             method: "PUT",
             body: JSON.stringify(user),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json());
 
     }
 
-    requestQuestion(testId) {
-        const url = this.URL + "tests/" + testId;
-
-        return fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(response => response.json());
-    }
 
     sendHistoryEvent(questionId, userId, eventCode) {
         const url = this.URL + "users/" + userId + "/send_event/" + questionId;
@@ -144,7 +157,8 @@ class Api {
             method: "POST",
             body: eventCode,
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         });
     }
@@ -166,7 +180,8 @@ class Api {
         return fetch(url, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json());
     }
@@ -177,11 +192,11 @@ class Api {
         return fetch(url, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "params": this.PARAMS
             }
         }).then(response => response.json());
     }
-
 
 }
 

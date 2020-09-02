@@ -118,9 +118,10 @@
     display: grid;
     grid-template-columns: 100px 9px;
     align-content: center;
+    width: 120px;
     grid-gap: 5px;
     padding: 8px 16px;
-
+    border-radius: 25px;
     text-decoration: none;
     font-family: Titillium Web, sans-serif;
     font-style: normal;
@@ -129,6 +130,11 @@
     line-height: 18px;
 
     color: black;
+}
+
+.next_question:active {
+    background-color: #BFBFBF;
+
 }
 
 .chevron {

@@ -22,6 +22,11 @@
 
 }
 
+.button:active {
+    background-size: 125px 125px;
+    background: #3256E0 url("../../../img/testlist/button_pressed.svg") no-repeat center;
+}
+
 .button:focus {
     outline: none
 }

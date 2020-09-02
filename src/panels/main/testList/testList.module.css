@@ -1,5 +1,4 @@
 .news_container {
-    margin-top: 1%;
     overflow: scroll;
     height: 100%;
     display: grid;
@@ -20,10 +19,6 @@
     display: none; /* Safari and Chrome */
 }
 
-
-/*.task {*/
-/*    grid-area: task;*/
-/*}*/
 
 
 

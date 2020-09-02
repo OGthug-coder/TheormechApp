@@ -63,7 +63,10 @@
     margin: auto 5px 0;
 }
 
-.logo > img {
+.logo > a > img {
+    display: flex;
+    align-self: center;
+    justify-self: center;
     height: 75px;
     width: 75px;
     margin-left: auto;
@@ -73,6 +76,7 @@
 }
 
 .logo_text {
+    text-decoration: none;
     text-align: left;
     padding-right: 5px;
     width: 80%;
@@ -155,6 +159,10 @@
     text-align: center;
     line-height: 40px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+.settings_item:active {
+    background-color: #F2F2F2;
 }
 
 .hidden_no_animation {
@@ -243,5 +251,3 @@
     }
 
 }
-
-

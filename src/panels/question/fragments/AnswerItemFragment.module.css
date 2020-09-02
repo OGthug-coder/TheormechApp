@@ -18,7 +18,7 @@
     color: #000000;
 }
 
-.answer_item:hover {
+.answer_item:active {
     background: #5F92FD;
     color: #FFFF;
 }
