@@ -96,6 +96,10 @@
     .sticker_container {
         align-items: start;
     }
+
+    .container {
+        grid-template-rows: 8vh 1fr;
+    }
 }
 
 
