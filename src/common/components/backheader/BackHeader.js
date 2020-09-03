@@ -18,7 +18,6 @@ class BackHeader extends React.Component {
                 <button
                     className={s.exit_button}
                     onClick={!this.state.disabled ? this.props.history.goBack : () => {}}/>
-
             </div>
         );
     }

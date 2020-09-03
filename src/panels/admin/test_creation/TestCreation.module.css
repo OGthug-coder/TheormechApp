@@ -1,11 +1,21 @@
 .page {
+    height: 100%;
+    width: 100%;
     background-color: white;
+    display: flex;
+    flex-direction: column;
 }
-
 
 .test_card {
     width: min-content;
     height: min-content;
     margin-left: auto;
     margin-right: auto;
+}
+
+.inputs {
+    height: min-content;
+    width: 82vw;
+    margin-right: auto;
+    margin-left: auto;
 }

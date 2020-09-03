@@ -1,0 +1,13 @@
+.input {
+    box-sizing:border-box;
+    padding: 8px;
+    resize: none;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #4B71FF;
+    border-radius: 8px;
+}
+
+.input:hover {
+    outline: none;
+}

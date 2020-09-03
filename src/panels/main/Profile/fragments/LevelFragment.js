@@ -26,6 +26,7 @@ class LevelFragment extends React.Component {
                 </div>
                 <div className={s.quote}>
                     {!isUndefined(sticker) ? sticker.quote : ""}
+
                 </div>
                 <div className={s.sticker_wrapper}>
                     <div className={s.cloud}/>
