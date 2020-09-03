@@ -4,6 +4,8 @@
     background-color: white;
     display: flex;
     flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    overflow: scroll;
 }
 
 .test_card {
@@ -13,7 +15,7 @@
     margin-right: auto;
 }
 
-.inputs {
+form {
     height: min-content;
     width: 82vw;
     margin-right: auto;
@@ -21,5 +23,10 @@
 }
 
 .input_title {
-    
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.input {
+    margin-bottom: 20px;
 }

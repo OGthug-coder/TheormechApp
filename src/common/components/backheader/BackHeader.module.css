@@ -1,6 +1,6 @@
 .header {
     border-radius: 0 0 25px 25px;
-    height: 100px;
+    height: 80px;
     width: 100%;
     background-color: #5E80FF;
 }
@@ -15,7 +15,7 @@
     position: relative;
     background-size: contain;
     left: 20px;
-    top: 50%;
+    top: 40%;
 }
 
 .exit_button:focus {

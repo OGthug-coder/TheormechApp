@@ -115,19 +115,21 @@ class StickerShop extends React.Component {
 
     render() {
         return (
-            <div className={s.container}>
+            <>
                 <BackHeader/>
-                <div className={s.headline}>
-                    <span>Choose your fighter!</span>
-                    <Score key={!isUndefined(this.state.user) ? this.state.user.score : ""}
-                           score={!isUndefined(this.state.user) ? this.state.user.score : 0}/>
+                <div className={s.container}>
+                    <div className={s.headline}>
+                        <span>Choose your fighter!</span>
+                        <Score key={!isUndefined(this.state.user) ? this.state.user.score : ""}
+                               score={!isUndefined(this.state.user) ? this.state.user.score : 0}/>
+                    </div>
+                    <div className={s.sticker_container}>
+                        <div className={s.p}/>
+                        {this.renderStickers()}
+                        <div className={s.p}/>
+                    </div>
                 </div>
-                <div className={s.sticker_container}>
-                    <div className={s.p}/>
-                    {this.renderStickers()}
-                    <div className={s.p}/>
-                </div>
-            </div>
+            </>
         );
     }
 }

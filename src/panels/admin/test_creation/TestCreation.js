@@ -30,25 +30,36 @@ class TestCreation extends React.Component {
 
     render() {
         return (
-            <section className={s.page}>
+            <>
                 <BackHeader/>
-                <div className={s.test_card}>
-                    <Task key={[this.state.title, this.state.img]}
-                          disableButton
-                          id={Math.random()}
-                          title={this.state.title}
-                          img={this.state.img}
-                          date={this.state.date}
-                          progress={new Promise(() => 0)}/>
-                </div>
-                <form className={s.inputs}>
-                    <div className={s.input_title}>
-                        Название
+                <section className={s.page}>
+                    <div className={s.test_card}>
+                        <Task key={[this.state.title, this.state.img]}
+                              disableButton
+                              id={Math.random()}
+                              title={this.state.title}
+                              img={this.state.img}
+                              date={this.state.date}
+                              progress={new Promise(() => 0)}/>
                     </div>
-                    <Input placeholder={this.state.title}
-                           onChange={this.onTitleChange}/>
-                </form>
-            </section>
+                    <form>
+                        <div className={s.input_title}>
+                            Название
+                        </div>
+                        <div className={s.input}>
+                            <Input placeholder={this.state.title}
+                                   maxLength={70}
+                                   onChange={this.onTitleChange}/>
+                        </div>
+                        <div className={s.input_title}>
+                            Описание
+                        </div>
+                        <div className={s.input}>
+                            <Input autoResize placeholder={"Введите описание"}/>
+                        </div>
+                    </form>
+                </section>
+            </>
         )
     }
 }
