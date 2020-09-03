@@ -5,7 +5,7 @@
     display: -ms-grid;
     z-index: 1;
     display: grid;
-    grid-template-rows: 100px 12vh 1fr;
+    grid-template-rows: min-content 12vh 1fr;
     justify-items: center;
     align-items: center;
     align-content: center;

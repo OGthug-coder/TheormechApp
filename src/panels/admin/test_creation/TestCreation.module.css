@@ -1,0 +1,11 @@
+.page {
+    background-color: white;
+}
+
+
+.test_card {
+    width: min-content;
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+}

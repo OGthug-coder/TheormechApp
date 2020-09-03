@@ -8,6 +8,7 @@ import Application from "./Application";
 import StickerShop from "./panels/stickershop/StickerShop";
 import Main from "./panels/main/Main";
 import Result from "./panels/result/Result";
+import TestCreation from "./panels/admin/test_creation/TestCreation";
 
 class App extends React.Component {
     constructor(props) {
@@ -35,6 +36,9 @@ class App extends React.Component {
                 <Route excect path={'/'}
                        render={({match}) => <Main match={match} application={this.application}/>}
                 />
+                {/*<Route excect path={'/'}*/}
+                {/*       render={({match}) => <TestCreation match={match} application={this.application}/>}*/}
+                {/*/>*/}
             </Router>
         )
     }
