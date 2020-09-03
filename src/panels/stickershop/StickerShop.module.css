@@ -5,7 +5,7 @@
     display: -ms-grid;
     z-index: 1;
     display: grid;
-    grid-template-rows: 8vh 1fr;
+    grid-template-rows: 12vh 1fr;
     justify-items: center;
     align-items: center;
     align-content: center;
@@ -66,7 +66,6 @@
     align-items: center;
     flex-grow: 1;
     flex-shrink: 0;
-    /*justify-content: center;*/
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
