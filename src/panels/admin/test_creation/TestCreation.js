@@ -44,6 +44,10 @@ class TestCreation extends React.Component {
                     </div>
                     <form>
                         <div className={s.input_title}>
+                            Загрузить фото
+                            <img src={}>
+                        </div>
+                        <div className={s.input_title}>
                             Название
                         </div>
                         <div className={s.input}>
@@ -57,7 +61,14 @@ class TestCreation extends React.Component {
                         <div className={s.input}>
                             <Input autoResize placeholder={"Введите описание"}/>
                         </div>
+                        <div className={s.input_title}>
+                            Описание
+                        </div>
                     </form>
+                    <div className={s.next}>
+                        <div>Заполнить вопросы</div>
+                        <div className={s.chevron}/>
+                    </div>
                 </section>
             </>
         )

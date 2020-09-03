@@ -23,7 +23,7 @@ class Input extends React.Component {
 
         if (!isUndefined(this.props.autoResize)) {
             this.textAreaRef.current.style.height = "";
-            this.textAreaRef.current.style.height = Math.min(200, this.textAreaRef.current.scrollHeight) + "px";
+            this.textAreaRef.current.style.height = Math.min(120, this.textAreaRef.current.scrollHeight) + "px";
         }
 
         if (!isUndefined(this.props.onChange)) {

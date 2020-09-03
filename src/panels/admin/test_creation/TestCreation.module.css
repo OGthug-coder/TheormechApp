@@ -1,11 +1,15 @@
 .page {
-    height: 100%;
+    height: calc(100% - 80px);
     width: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
     font-family: "Roboto", sans-serif;
     overflow: scroll;
+}
+
+.page::-webkit-scrollbar {
+    display: none;
 }
 
 .test_card {
@@ -29,4 +33,39 @@ form {
 
 .input {
     margin-bottom: 20px;
+}
+
+.next {
+    margin: 2vh 9vw 2vh auto;
+    display: grid;
+    grid-template-columns: min-content 9px;
+    align-content: center;
+    padding: 8px;
+    grid-gap: 5px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+
+    white-space: nowrap;
+    color: black;
+}
+
+.next:active {
+    background-color: #BFBFBF;
+
+}
+
+.chevron {
+    margin-bottom: 1px;
+    background-image: url("../../../img/chevron/ic_left_chevron_black.svg");
+    background-repeat: no-repeat;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
