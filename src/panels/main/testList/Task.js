@@ -2,6 +2,7 @@ import React from 'react';
 
 import s from './task.module.css';
 import {Link} from "react-router-dom";
+import isUndefined from "../../../common/IsUndefined";
 
 
 class Task extends React.Component {
@@ -44,11 +45,20 @@ class Task extends React.Component {
 
 
                 </div>
+                {
+                    isUndefined(this.props.disableButton)
+                        ?
+                        <Link to={`/preview/${this.state.id}`}
+                              className={s.start_button}>
+                            Начать тест
+                        </Link>
+                        :
+                        <Link to={`#`}
+                              className={`${s.start_button} ${s.disabled}`}>
+                            Начать тест
+                        </Link>
+                }
 
-                <Link to={`/preview/${this.state.id}`}
-                      className={s.start_button}>
-                    Начать тест
-                </Link>
 
             </div>
         )

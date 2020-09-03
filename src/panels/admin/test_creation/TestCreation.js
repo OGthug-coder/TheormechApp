@@ -34,6 +34,7 @@ class TestCreation extends React.Component {
                 <BackHeader/>
                 <div className={s.test_card}>
                     <Task key={[this.state.title, this.state.img]}
+                          disableButton
                           id={Math.random()}
                           title={this.state.title}
                           img={this.state.img}
@@ -41,7 +42,10 @@ class TestCreation extends React.Component {
                           progress={new Promise(() => 0)}/>
                 </div>
                 <form className={s.inputs}>
-                    <Input value={this.state.title}
+                    <div className={s.input_title}>
+                        Название
+                    </div>
+                    <Input placeholder={this.state.title}
                            onChange={this.onTitleChange}/>
                 </form>
             </section>

@@ -6,7 +6,8 @@ class Input extends React.Component {
         super(props);
 
         this.state = {
-            value: props.value,
+            value: "",
+            placeholder: props.placeholder,
             onChange: props.onChange,
         };
     }
@@ -24,6 +25,7 @@ class Input extends React.Component {
                 ref={this.props.ref}
                 className={s.input}
                 value={this.state.value}
+                placeholder={this.state.placeholder}
                 onChange={this.onChange}/>
         )
     }
