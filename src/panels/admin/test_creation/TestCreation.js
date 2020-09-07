@@ -107,8 +107,8 @@ class TestCreation extends React.Component {
                                 {
                                     this.state.limited
                                         ?
-                                        <div>
-                                            <select name="time" onChange={this.onTestTimeChange} id="time_to_complete">
+                                        <div className={s.select}>
+                                            <select name="time" onChange={this.onTestTimeChange} >
                                                 <option value="15">15</option>
                                                 <option value="30">30</option>
                                                 <option value="45">45</option>
