@@ -11,3 +11,11 @@
 .input:hover {
     outline: none;
 }
+
+.counter {
+    position: relative;
+    top: -25px;
+    left: 82%;
+    color: #C4C4C4;
+    font-size: 14px;
+}

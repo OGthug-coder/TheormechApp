@@ -35,6 +35,47 @@ form {
     margin-bottom: 20px;
 }
 
+input[type="file"] {
+    display: none;
+}
+.custom_file_upload {
+    border: 1px solid #4986CC;
+    display: flex;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+    align-items: center;
+
+    margin: 10px 0 20px;
+}
+
+.custom_file_upload:active {
+    background-color: #4986CC;
+    color: white;
+}
+
+.custom_file_upload > div {
+    width: min-content;
+    height: min-content;
+    white-space: nowrap;
+    margin: auto;
+}
+
+.time_limit {
+    display: flex;
+    flex-direction: column;
+}
+
+.time_limit_item {
+    margin-bottom: 10px;
+}
+
+.time_limit_item > input {
+    height: 25px;
+    width: 25px;
+    border-radius: 8px;
+}
+
 .next {
     margin: 2vh 9vw 2vh auto;
     display: grid;

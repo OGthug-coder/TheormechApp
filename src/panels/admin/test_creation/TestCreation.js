@@ -9,7 +9,6 @@ class TestCreation extends React.Component {
         super(props);
 
         let today = new Date();
-        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
         this.state = {
             title: 'Введите название',
@@ -26,6 +25,11 @@ class TestCreation extends React.Component {
         this.setState({
             title: value,
         });
+    };
+
+    onUploadImage = (e) => {
+        const imgFile = URL.createObjectURL(e.target.files[0]);
+        this.setState({img: imgFile});
     };
 
     render() {
@@ -45,7 +49,7 @@ class TestCreation extends React.Component {
                     <form>
                         <div className={s.input_title}>
                             Загрузить фото
-                            <img src={}>
+                            {/*<img src={}>*/}
                         </div>
                         <div className={s.input_title}>
                             Название
@@ -61,8 +65,32 @@ class TestCreation extends React.Component {
                         <div className={s.input}>
                             <Input autoResize placeholder={"Введите описание"}/>
                         </div>
+
+                        <label className={s.custom_file_upload}>
+                            <input type="file" onChange={this.onUploadImage}/>
+                            <div>
+                                Загрузить фото
+                            </div>
+                        </label>
+
                         <div className={s.input_title}>
-                            Описание
+                            Время выполнения теста
+                        </div>
+                        <div className={s.time_limit}>
+                            <div className={s.time_limit_item}>
+                                <input type={"radio"}
+                                       name={"time_limit"}
+                                       id={"no_limit"}
+                                       value={"no_limit"}/>
+                                <label htmlFor={"no_limit"}>Без ограничений</label>
+                            </div>
+                            <div className={s.time_limit_item}>
+                                <input type={"radio"}
+                                       name={"time_limit"}
+                                       id={"limited"}
+                                       value={"limited"}/>
+                                <label htmlFor={"limited"}>С ограничением</label>
+                            </div>
                         </div>
                     </form>
                     <div className={s.next}>

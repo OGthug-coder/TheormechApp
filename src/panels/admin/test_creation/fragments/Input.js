@@ -34,13 +34,24 @@ class Input extends React.Component {
 
     render() {
         return (
-            <textarea
-                maxLength={this.state.maxLength}
-                ref={this.textAreaRef}
-                className={s.input}
-                value={this.state.value}
-                placeholder={this.state.placeholder}
-                onChange={this.onChange}/>
+            <>
+                <textarea
+                    maxLength={this.state.maxLength}
+                    ref={this.textAreaRef}
+                    className={s.input}
+                    value={this.state.value}
+                    placeholder={this.state.placeholder}
+                    onChange={this.onChange}/>
+                {
+                    !isUndefined(this.state.maxLength)
+                    ?
+                    <div className={s.counter}>
+                        {`${this.state.value.length} / ${this.state.maxLength}`}
+                    </div>
+                    : ""
+                }
+
+            </>
         )
     }
 }
