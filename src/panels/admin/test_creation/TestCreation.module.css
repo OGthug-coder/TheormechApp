@@ -67,14 +67,27 @@ input[type="file"] {
 }
 
 .time_limit_item {
+    display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
 }
+
 
 .time_limit_item > input {
     height: 25px;
     width: 25px;
     border-radius: 8px;
 }
+
+.time_limit_item > label {
+    margin: 0 10px 0;
+    align-self: center;
+}
+
+.time_limit_item > div > select {
+    margin-right: 10px;
+}
+
 
 .next {
     margin: 2vh 9vw 2vh auto;

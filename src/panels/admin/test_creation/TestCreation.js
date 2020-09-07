@@ -11,6 +11,7 @@ class TestCreation extends React.Component {
         let today = new Date();
 
         this.state = {
+            limited: false,
             title: 'Введите название',
             img: require('../../../img/admin/test_placeholder.svg'),
             date: today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear(),
@@ -30,6 +31,14 @@ class TestCreation extends React.Component {
     onUploadImage = (e) => {
         const imgFile = URL.createObjectURL(e.target.files[0]);
         this.setState({img: imgFile});
+    };
+
+    onTestTimeChange = (e) => {
+        console.log(e.target.value);
+    };
+
+    onTimeModeChange = () => {
+        this.setState({limited: !this.state.limited});
     };
 
     render() {
@@ -67,7 +76,9 @@ class TestCreation extends React.Component {
                         </div>
 
                         <label className={s.custom_file_upload}>
-                            <input type="file" onChange={this.onUploadImage}/>
+                            <input type="file"
+                                   accept="image/*"
+                                   onChange={this.onUploadImage}/>
                             <div>
                                 Загрузить фото
                             </div>
@@ -79,6 +90,8 @@ class TestCreation extends React.Component {
                         <div className={s.time_limit}>
                             <div className={s.time_limit_item}>
                                 <input type={"radio"}
+                                       defaultChecked
+                                       onChange={this.onTimeModeChange}
                                        name={"time_limit"}
                                        id={"no_limit"}
                                        value={"no_limit"}/>
@@ -86,10 +99,26 @@ class TestCreation extends React.Component {
                             </div>
                             <div className={s.time_limit_item}>
                                 <input type={"radio"}
+                                       onChange={this.onTimeModeChange}
                                        name={"time_limit"}
                                        id={"limited"}
                                        value={"limited"}/>
                                 <label htmlFor={"limited"}>С ограничением</label>
+                                {
+                                    this.state.limited
+                                        ?
+                                        <div>
+                                            <select name="time" onChange={this.onTestTimeChange} id="time_to_complete">
+                                                <option value="15">15</option>
+                                                <option value="30">30</option>
+                                                <option value="45">45</option>
+                                                <option value="60">60</option>
+                                            </select>
+                                            минут
+                                        </div>
+                                        : ""
+                                }
+
                             </div>
                         </div>
                     </form>
