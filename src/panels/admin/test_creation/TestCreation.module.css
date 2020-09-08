@@ -71,6 +71,11 @@ input[type="file"] {
     display: flex;
     flex-direction: row;
     font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.time_limit_item:last-child {
+    margin-bottom: 15px;
 }
 
 
@@ -171,6 +176,7 @@ input[type="file"] {
 @media screen and (max-device-width: 366px) {
     .time_limit_item {
         flex-direction: column;
+        height: min-content;
     }
 
     .select {

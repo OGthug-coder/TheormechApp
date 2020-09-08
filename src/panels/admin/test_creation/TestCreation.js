@@ -12,6 +12,7 @@ class TestCreation extends React.Component {
 
         this.state = {
             limited: false,
+            delayed: false,
             title: 'Введите название',
             img: require('../../../img/admin/test_placeholder.svg'),
             date: today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear(),
@@ -41,6 +42,14 @@ class TestCreation extends React.Component {
         this.setState({limited: !this.state.limited});
     };
 
+    onPublishDelay = () => {
+        this.setState({delayed: !this.state.delayed});
+    };
+
+    onPublishDateTimeChange = (e) => {
+      console.log(e.target.value);
+    };
+
     render() {
         return (
             <>
@@ -56,10 +65,6 @@ class TestCreation extends React.Component {
                               progress={new Promise(() => 0)}/>
                     </div>
                     <form>
-                        <div className={s.input_title}>
-                            Загрузить фото
-                            {/*<img src={}>*/}
-                        </div>
                         <div className={s.input_title}>
                             Название
                         </div>
@@ -108,7 +113,7 @@ class TestCreation extends React.Component {
                                     this.state.limited
                                         ?
                                         <div className={s.select}>
-                                            <select name="time" onChange={this.onTestTimeChange} >
+                                            <select name="time" onChange={this.onTestTimeChange}>
                                                 <option value="15">15</option>
                                                 <option value="30">30</option>
                                                 <option value="45">45</option>
@@ -121,6 +126,36 @@ class TestCreation extends React.Component {
 
                             </div>
                         </div>
+                        <div className={s.input_title}>
+                            Публикация
+                        </div>
+                        <div className={s.time_limit}>
+                            <div className={s.time_limit_item}>
+                                <input type={"radio"}
+                                       defaultChecked
+                                       onChange={this.onPublishDelay}
+                                       name={"delayed"}
+                                       id={"no_delay"}
+                                       value={"no_delay"}/>
+                                <label htmlFor={"no_delay"}>Мгновенная </label>
+                            </div>
+                            <div className={`${s.time_limit_item} ${s.publish_delay_item}`}>
+                                <input type={"radio"}
+                                       onChange={this.onPublishDelay}
+                                       name={"delayed"}
+                                       id={"delayed"}
+                                       value={"delayed"}/>
+                                <label htmlFor={"delayed"}>Запланированная </label>
+                            </div>
+                        </div>
+                        {
+                            this.state.delayed
+                                ?
+                                <input type={"datetime-local"}
+                                       onChange={this.onPublishDateTimeChange}
+                                       min={new Date().toISOString().substring(0, 19)}/>
+                                : ""
+                        }
                     </form>
                     <div className={s.next}>
                         <div>Заполнить вопросы</div>
