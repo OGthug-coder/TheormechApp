@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Input.module.css";
-import isUndefined from "../../../../common/IsUndefined";
+import isUndefined from "../../IsUndefined";
 
 
 class Input extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./TestCreation.module.css";
 import Task from "../../main/testList/Task";
 import BackHeader from "../../../common/components/backheader/BackHeader";
-import Input from "./fragments/Input";
+import Input from "../../../common/components/input/Input";
 
 class TestCreation extends React.Component {
     constructor(props) {
