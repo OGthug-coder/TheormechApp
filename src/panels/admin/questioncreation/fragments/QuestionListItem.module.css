@@ -1,0 +1,55 @@
+.question_item {
+    width: 90%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.question_item > button {
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    outline: none;
+    border: none;
+}
+
+.question_item > div {
+    width: calc(100% - 2*(28px + 15px));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.question_item > div > span:first-child {
+    font-size: 14px;
+}
+
+.question_item > div > span:last-child {
+    height: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #838383;
+}
+
+.question_item > button:first-child {
+    background: white url("../../../../img/admin/ic_minus_circle.png") no-repeat;
+    background-size: contain;
+}
+
+.question_item > button:last-child {
+    background: white url("../../../../img/admin/ic_pencil.png") no-repeat center;
+    background-size: 20px 20px;
+}
+
+.question_item > button:focus {
+    outline: none;
+}
+
+.question_item > button:active {
+    background-color: #C4C4C4;
+}
+

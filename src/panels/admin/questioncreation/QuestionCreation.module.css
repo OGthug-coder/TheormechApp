@@ -1,0 +1,71 @@
+.container {
+    width: 82%;
+    height: calc(100% - 80px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
+.header > button {
+    height: 24px;
+    width: 24px;
+
+    margin-left: 10px;
+
+    border-radius: 24px;
+    border: none;
+    background: white url("../../../img/admin/ic_plus_circle_button.png") no-repeat;
+    background-size: 24px 24px;
+}
+
+.header > button:active {
+    background-color: #C4C4C4;
+}
+
+.header > button:hover, .header > button:focus  {
+    outline: none;
+}
+
+.question_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.control {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.control > button {
+    height: 24px;
+    width: 24px;
+    margin-left: auto;
+    margin-right: 0;
+    border: none;
+
+    background: white url("../../../img/admin/ic_settings.png");
+    background-size: contain;
+}
+
+.control > button:focus {
+    outline: none;
+}
+
+.question_item {
+    margin-bottom: 10px;
+}
+
+.question_item:last-child {
+    margin-bottom: 0;
+}
