@@ -9,11 +9,23 @@ class QuestionCreation extends React.Component {
     }
 
     onAddQuestionClick = () => {
-        console.log("onAddQuestionClick")
+        console.log("onAddQuestionClick");
     };
 
     onEditQuestionClick = () => {
-        console.log("onEditQuestionClick")
+        console.log("onEditQuestionClick");
+    };
+
+    onDeleteQuestionItem = () => {
+        console.log("onDeleteQuestionItem");
+    };
+
+    onEditQuestionItem = () => {
+        console.log("onEditQuestionItem");
+    };
+
+    onSaveClick = () => {
+        console.log("onSaveClick");
     };
 
     render() {
@@ -29,16 +41,23 @@ class QuestionCreation extends React.Component {
                         <div className={s.control}>
                             <span>Вопрос №1</span>
                             <button id={1} onClick={this.onEditQuestionClick}/>
+                            <div>
+
+                            </div>
                         </div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
                         </div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                     </div>
                     <div className={s.question_container}>
                         <div className={s.control}>
@@ -46,14 +65,17 @@ class QuestionCreation extends React.Component {
                             <button id={1} onClick={this.onEditQuestionClick}/>
                         </div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                     </div>
                     <div className={s.question_container}>
                         <div className={s.control}>
@@ -61,16 +83,20 @@ class QuestionCreation extends React.Component {
                             <button id={1} onClick={this.onEditQuestionClick}/>
                         </div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                         <div className={s.question_item}>
-                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
-                        </div>
+                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                              onEdit={this.onEditQuestionItem}
+                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
                     </div>
-                    <button className={s.save_button}>
+                    <button className={s.save_button}
+                            onClick={this.onSaveClick}>
                         Сохранить
                     </button>
                 </div>

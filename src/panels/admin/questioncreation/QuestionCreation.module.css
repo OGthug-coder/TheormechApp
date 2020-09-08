@@ -48,8 +48,7 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .question_container:last-of-type {
@@ -90,5 +89,20 @@
     height: 50px;
     width: 80%;
     flex-shrink: 0;
-    margin: auto 10% 10px;
+    margin: auto 10% 30px;
+
+    border-radius: 25px;
+    border: 1px solid #4986CC;
+
+    background-color: white;
 }
+
+.save_button:active {
+    background-color: #2D5BB9;
+    color: white;
+}
+
+.save_button:hover, .save_button:focus {
+    outline: none;
+}
+
