@@ -3,11 +3,20 @@
     height: calc(100% - 80px);
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 .header {
     display: flex;
     flex-direction: row;
+    flex-shrink: 0;
 
     margin-top: 15px;
     margin-bottom: 15px;
@@ -38,6 +47,13 @@
 .question_container {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+
+    margin-top: 20px;
+}
+
+.question_container:last-of-type {
+    margin-bottom: 80px;
 }
 
 .control {
@@ -68,4 +84,11 @@
 
 .question_item:last-child {
     margin-bottom: 0;
+}
+
+.save_button {
+    height: 50px;
+    width: 80%;
+    flex-shrink: 0;
+    margin: auto 10% 10px;
 }

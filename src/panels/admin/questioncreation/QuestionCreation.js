@@ -39,8 +39,40 @@ class QuestionCreation extends React.Component {
                         <div className={s.question_item}>
                             <QuestionListItem question={{text: "Автомобили движутс..."}}/>
                         </div>
-
                     </div>
+                    <div className={s.question_container}>
+                        <div className={s.control}>
+                            <span>Вопрос №1</span>
+                            <button id={1} onClick={this.onEditQuestionClick}/>
+                        </div>
+                        <div className={s.question_item}>
+                            <QuestionListItem question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
+                        </div>
+                        <div className={s.question_item}>
+                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
+                        </div>
+                        <div className={s.question_item}>
+                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
+                        </div>
+                    </div>
+                    <div className={s.question_container}>
+                        <div className={s.control}>
+                            <span>Вопрос №1</span>
+                            <button id={1} onClick={this.onEditQuestionClick}/>
+                        </div>
+                        <div className={s.question_item}>
+                            <QuestionListItem question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
+                        </div>
+                        <div className={s.question_item}>
+                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
+                        </div>
+                        <div className={s.question_item}>
+                            <QuestionListItem question={{text: "Автомобили движутс..."}}/>
+                        </div>
+                    </div>
+                    <button className={s.save_button}>
+                        Сохранить
+                    </button>
                 </div>
             </>
         );
