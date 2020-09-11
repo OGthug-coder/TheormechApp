@@ -69,7 +69,7 @@
     margin-right: 0;
     border: none;
 
-    background: white url("../../../img/admin/ic_settings.png");
+    background: white url("../../../img/admin/ic_settings.png") no-repeat;
     background-size: contain;
 }
 
