@@ -14,9 +14,10 @@
 
 .counter {
     position: relative;
-    width: 45px;
+    width: min-content;
+    white-space: nowrap;
     top: -25px;
-    left: 82%;
+    left: 75%;
     color: #C4C4C4;
     font-size: 14px;
 }

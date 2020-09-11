@@ -6,3 +6,19 @@
     flex-direction: column;
     align-items: end;
 }
+
+.content {
+    width: calc(100% - 18vw);
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input_title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.input {
+    margin-bottom: 20px;
+}
