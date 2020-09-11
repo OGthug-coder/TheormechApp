@@ -7,10 +7,11 @@
 
 .slider_wrapper {
     width: 100%;
-    height: 20px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .slider {
@@ -19,6 +20,5 @@
     width: 150px;
     background-color: #BFBFBF;
     border-radius: 25px;
-
 }
 
