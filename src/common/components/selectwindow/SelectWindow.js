@@ -16,7 +16,9 @@ class SelectWindow extends React.Component {
                 {
                     this.state.data.map(item => {
                         return (
-                            <div className={s.settings_item}
+                            <div key={item.id}
+                                 id={item.id}
+                                 className={s.settings_item}
                                  onClick={item.onClick}>
                                 {item.value}
                             </div>

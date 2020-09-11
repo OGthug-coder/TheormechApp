@@ -2,13 +2,15 @@ import React from 'react';
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import s from "./QuestionCreation.module.css";
 import QuestionListItem from "./fragments/QuestionListItem";
+import SelectWindow from "../../../common/components/selectwindow/SelectWindow";
+import isUndefined from "../../../common/IsUndefined";
 
 class QuestionCreation extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            editClickData: undefined,
+            editWindowData: undefined,
         };
     }
 
@@ -18,14 +20,25 @@ class QuestionCreation extends React.Component {
     };
 
     onEditQuestionClick = (e) => {
-        debugger
-        const clickData = {
-            questionId: e.currentTarget.id,
-            top: e.currentTarget.offsetTop,
-            left: e.currentTarget.offsetLeft
-        };
-        this.setState({editClickData: clickData})
+        if (isUndefined(this.state.editWindowData)) {
+            const bounds = e.currentTarget.getBoundingClientRect();
+            const clickData = {
+                questionId: e.currentTarget.id,
+                top: bounds.top,
+                left: bounds.left
+            };
+            setTimeout(() => this.setState({editWindowData: clickData}), 100);
+        }
+
         console.log("onEditQuestionClick");
+    };
+
+    onDeleteQuestionClick = (e) => {
+        console.log("onDeleteQuestionClick");
+    };
+
+    onAddQuestionItemClick = (e) => {
+        console.log("onAddQuestionItemClick");
     };
 
     onDeleteQuestionItem = () => {
@@ -38,6 +51,39 @@ class QuestionCreation extends React.Component {
 
     onSaveClick = () => {
         console.log("onSaveClick");
+    };
+
+    renderEditWindow = () => {
+        if (!isUndefined(this.state.editWindowData)) {
+            return (
+                <div className={s.edit_window_container}
+                     onClick={this.onCloseEditWindowClick}>
+                    <div className={s.edit_window} style={{
+                        top: this.state.editWindowData.top - 70,
+                        left: this.state.editWindowData.left - window.screen.width * 0.65
+                    }}>
+                        <SelectWindow data={[
+                            {
+                                id: 0,
+                                value: "Добавить вариант",
+                                onClick: this.onAddQuestionItemClick,
+                            },
+                            {
+                                id: 1,
+                                value: "Удалить вопрос",
+                                onClick: this.onDeleteQuestionClick,
+                            }
+                        ]}/>
+                    </div>
+                </div>
+            )
+        }
+        return "";
+    };
+
+    onCloseEditWindowClick = () => {
+        this.setState({editWindowData: undefined});
+        console.log("onCloseEditWindowClick");
     };
 
     render() {
@@ -112,11 +158,7 @@ class QuestionCreation extends React.Component {
                         Сохранить
                     </button>
                 </div>
-                <div className={s.edit_window_container}>
-                    <div className={s.edit_window}>
-
-                    </div>
-                </div>
+                {this.renderEditWindow()}
             </>
         );
     }
