@@ -4,6 +4,7 @@ import s from "./QuestionCreation.module.css";
 import QuestionListItem from "./fragments/QuestionListItem";
 import SelectWindow from "../../../common/components/selectwindow/SelectWindow";
 import isUndefined from "../../../common/IsUndefined";
+import ModalAnswersCreation from "./fragments/ModalAnswersCreation";
 
 class QuestionCreation extends React.Component {
     constructor(props) {
@@ -159,6 +160,10 @@ class QuestionCreation extends React.Component {
                     </button>
                 </div>
                 {this.renderEditWindow()}
+                <div className={s.answers_window}>
+                    <ModalAnswersCreation />
+                </div>
+
             </>
         );
     }

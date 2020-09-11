@@ -124,3 +124,12 @@
     height: min-content;
 }
 
+.answers_window {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: min-content;
+    height: min-content;
+}
+
