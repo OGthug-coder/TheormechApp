@@ -106,3 +106,18 @@
     outline: none;
 }
 
+.edit_window_container {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.edit_window {
+    width: 200px;
+    height: 100px;
+    background-color: black;
+}
+

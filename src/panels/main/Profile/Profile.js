@@ -7,6 +7,7 @@ import isUndefined from "../../../common/IsUndefined";
 import Score from "../../../common/components/score/Score";
 import {withRouter} from "react-router-dom";
 import AboutWindow from "./fragments/AboutWindow";
+import SelectWindow from "../../../common/components/selectwindow/SelectWindow";
 
 
 class Profile extends React.Component {
@@ -44,7 +45,7 @@ class Profile extends React.Component {
         if (isUndefined(this.state.settings_window)) {
             return s.hidden_no_animation;
         } else {
-            return this.state.settings_window === true ? s.settings_window : s.hidden;
+            return this.state.settings_window === true ? s.settings_window_anim : s.hidden;
         }
 
     };
@@ -91,14 +92,7 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className={`${s.settings_window} ${this.provideVisibility()}`}>
-                    <div className={s.settings_item}
-                         onClick={this.onStickerClick}>
-                        Сменить стикер
-                    </div>
-                    <div className={s.settings_item}
-                         onClick={this.ondDevButton}>
-                        О приложении
-                    </div>
+                    <SelectWindow/>
                 </div>
                 {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton}/> : ""}
             </div>

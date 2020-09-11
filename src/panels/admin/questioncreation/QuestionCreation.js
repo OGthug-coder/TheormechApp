@@ -6,13 +6,25 @@ import QuestionListItem from "./fragments/QuestionListItem";
 class QuestionCreation extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            editClickData: undefined,
+        };
     }
+
 
     onAddQuestionClick = () => {
         console.log("onAddQuestionClick");
     };
 
-    onEditQuestionClick = () => {
+    onEditQuestionClick = (e) => {
+        debugger
+        const clickData = {
+            questionId: e.currentTarget.id,
+            top: e.currentTarget.offsetTop,
+            left: e.currentTarget.offsetLeft
+        };
+        this.setState({editClickData: clickData})
         console.log("onEditQuestionClick");
     };
 
@@ -62,7 +74,7 @@ class QuestionCreation extends React.Component {
                     <div className={s.question_container}>
                         <div className={s.control}>
                             <span>Вопрос №1</span>
-                            <button id={1} onClick={this.onEditQuestionClick}/>
+                            <button id={2} onClick={this.onEditQuestionClick}/>
                         </div>
                         <div className={s.question_item}>
                             <QuestionListItem onDelete={this.onDeleteQuestionItem}
@@ -80,7 +92,7 @@ class QuestionCreation extends React.Component {
                     <div className={s.question_container}>
                         <div className={s.control}>
                             <span>Вопрос №1</span>
-                            <button id={1} onClick={this.onEditQuestionClick}/>
+                            <button id={3} onClick={this.onEditQuestionClick}/>
                         </div>
                         <div className={s.question_item}>
                             <QuestionListItem onDelete={this.onDeleteQuestionItem}
@@ -99,6 +111,11 @@ class QuestionCreation extends React.Component {
                             onClick={this.onSaveClick}>
                         Сохранить
                     </button>
+                </div>
+                <div className={s.edit_window_container}>
+                    <div className={s.edit_window}>
+
+                    </div>
                 </div>
             </>
         );

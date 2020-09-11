@@ -34,12 +34,12 @@ class App extends React.Component {
                 <Route exact path={'/stickerShop'}
                        render={({match}) => <StickerShop match={match} application={this.application}/>}
                 />
-                {/*<Route excect path={'/'}*/}
-                {/*       render={({match}) => <Main match={match} application={this.application}/>}*/}
-                {/*/>*/}
                 <Route excect path={'/'}
-                   render={({match}) => <QuestionCreation match={match} application={this.application}/>}
+                       render={({match}) => <Main match={match} application={this.application}/>}
                 />
+                {/*<Route excect path={'/'}*/}
+                {/*   render={({match}) => <QuestionCreation match={match} application={this.application}/>}*/}
+                {/*/>*/}
             </Router>
         )
     }

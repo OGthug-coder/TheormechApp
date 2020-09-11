@@ -1,0 +1,22 @@
+.settings_window {
+    height: min-content;
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.settings_item {
+    height: 40px;
+    width: 60vw;
+    margin: 2px;
+    border-radius: 25px;
+    background-color: white;
+    text-align: center;
+    line-height: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+.settings_item:active {
+    background-color: #F2F2F2;
+}
