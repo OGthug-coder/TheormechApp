@@ -92,7 +92,16 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className={`${s.settings_window} ${this.provideVisibility()}`}>
-                    <SelectWindow/>
+                    <SelectWindow data={[
+                        {
+                            value: "Сменить стикер",
+                            onClick: this.onStickerClick,
+                        },
+                        {
+                            value: "О приложении",
+                            onClick: this.ondDevButton,
+                        }
+                    ]}/>
                 </div>
                 {this.state.aboutDev ? <AboutWindow onExitClick={this.ondDevButton}/> : ""}
             </div>
