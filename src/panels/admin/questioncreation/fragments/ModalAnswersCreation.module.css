@@ -1,10 +1,26 @@
 .container {
     width: 100vw;
-    height: calc(100vh - 50px);
+    height: 100vh;
     overflow: scroll;
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.sticky_container {
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.back_button {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 25px;
+    margin-left: 25px;
+    pointer-events: inherit;
 }
 
 .content {

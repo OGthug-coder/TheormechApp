@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./ModalAnswersCreation.module.css";
 import ModalWindow from "../../../../common/components/modalwindow/ModalWindow";
 import Input from "../../../../common/components/input/Input";
+import BackButton from "../../../../common/components/backbutton/BackButton";
 
 
 class ModalAnswersCreation extends React.Component {
@@ -23,9 +24,18 @@ class ModalAnswersCreation extends React.Component {
 
     };
 
+    onSaveClick = () => {
+
+    };
+
     render() {
         return (
             <div className={s.container}>
+                <div className={s.sticky_container}>
+                    <div className={`${s.back_button}`}>
+                        <BackButton/>
+                    </div>
+                </div>
                 <ModalWindow>
                     <div className={s.content}>
                         <div className={s.input_title}>
@@ -91,7 +101,6 @@ class ModalAnswersCreation extends React.Component {
                                 onClick={this.onSaveClick}>
                             Сохранить
                         </button>
-
                     </div>
                 </ModalWindow>
             </div>
