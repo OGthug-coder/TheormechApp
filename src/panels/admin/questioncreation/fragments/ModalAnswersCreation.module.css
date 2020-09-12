@@ -12,7 +12,6 @@
     height: min-content;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
 }
 
 .input_title {
@@ -28,6 +27,14 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+    margin-bottom: 15px;
+}
+
+.right_answer_choice > div {
+    font-size: 20px;
+    height: min-content;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 .select > select {
@@ -37,6 +44,27 @@
     border-radius: 8px;
     background-color: white;
     color: #707070;
+}
+
+.save_button {
+    height: 50px;
+    width: 80%;
+    flex-shrink: 0;
+    margin: auto 10% 30px;
+
+    border-radius: 25px;
+    border: 1px solid #4986CC;
+
+    background-color: white;
+}
+
+.save_button:active {
+    background-color: #2D5BB9;
+    color: white;
+}
+
+.save_button:hover, .save_button:focus {
+    outline: none;
 }
 
 .select > select:hover {

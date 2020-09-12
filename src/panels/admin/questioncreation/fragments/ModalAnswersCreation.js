@@ -19,6 +19,10 @@ class ModalAnswersCreation extends React.Component {
 
     };
 
+    onExplainTextChange = (value) => {
+
+    };
+
     render() {
         return (
             <div className={s.container}>
@@ -65,18 +69,28 @@ class ModalAnswersCreation extends React.Component {
                         </div>
 
                         <div className={s.right_answer_choice}>
-                            <div className={s.input_title}>
+                            <div>
                                 Верный ответ
                             </div>
                             <div className={s.select}>
                                 <select name="time" onChange={this.onTestTimeChange}>
-                                    <option value="15">15</option>
-                                    <option value="30">30</option>
-                                    <option value="45">45</option>
-                                    <option value="60">60</option>
+                                    <option value="0">1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
                                 </select>
                             </div>
                         </div>
+                        <div className={s.input_title}>
+                            Варианты ответов
+                        </div>
+                        <Input placeholder={this.state.title}
+                               maxLength={285}
+                               onChange={this.onExplainTextChange}/>
+                        <button className={s.save_button}
+                                onClick={this.onSaveClick}>
+                            Сохранить
+                        </button>
 
                     </div>
                 </ModalWindow>
