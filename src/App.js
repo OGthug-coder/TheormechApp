@@ -9,7 +9,6 @@ import StickerShop from "./panels/stickershop/StickerShop";
 import Main from "./panels/main/Main";
 import Result from "./panels/result/Result";
 import TestCreation from "./panels/admin/testcreation/TestCreation";
-import QuestionCreation from "./panels/admin/questioncreation/QuestionCreation";
 
 class App extends React.Component {
     constructor(props) {
@@ -22,14 +21,17 @@ class App extends React.Component {
     render() {
         return (
             <Router>
+                <Route excect path={'/createNewTest'}
+                       render={({match}) => <TestCreation match={match} application={this.application}/>}
+                />
                 <Route exact path={'/result/:testId'}
                        render={({match}) => <Result match={match} application={this.application}/>}
                 />
                 <Route excect path={'/question/:testId/:questionId'}
-                    render={({match}) => <Question match={match} application={this.application}/>}
+                       render={({match}) => <Question match={match} application={this.application}/>}
                 />
                 <Route excect path={'/preview/:testId'}
-                    render={({match}) => <Preview match={match} application={this.application}/>}
+                       render={({match}) => <Preview match={match} application={this.application}/>}
                 />
                 <Route exact path={'/stickerShop'}
                        render={({match}) => <StickerShop match={match} application={this.application}/>}
@@ -37,9 +39,6 @@ class App extends React.Component {
                 <Route excect path={'/'}
                        render={({match}) => <Main match={match} application={this.application}/>}
                 />
-                {/*<Route excect path={'/'}*/}
-                {/*   render={({match}) => <QuestionCreation match={match} application={this.application}/>}*/}
-                {/*/>*/}
             </Router>
         )
     }

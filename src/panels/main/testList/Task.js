@@ -27,7 +27,13 @@ class Task extends React.Component {
 
     renderButton = () => {
         if (this.state.editMode) {
-            return "";
+            return (
+                <Link to={`#`}
+                      style={{visibility: "hidden"}}
+                      className={`${s.start_button} ${s.disabled}`}>
+                    Начать тест
+                </Link>
+            );
         } else if (isUndefined(this.props.disableButton)) {
             return (
                 <Link to={`/preview/${this.state.id}`}
@@ -79,10 +85,7 @@ class Task extends React.Component {
                                 ""
                             )
                         }
-
                     </div>
-
-
                 </div>
                 {this.renderButton()}
             </div>

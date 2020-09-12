@@ -2,8 +2,7 @@ import React from 'react';
 
 import s from './testList.module.css';
 import Task from "./Task";
-import {withRouter} from "react-router-dom";
-import isUndefined from "../../../common/IsUndefined";
+import {Link, withRouter} from "react-router-dom";
 
 class TestList extends React.Component {
     constructor(props) {
@@ -15,10 +14,8 @@ class TestList extends React.Component {
             sortBy: props.socket,
             tests: [],
             isTouchStarted: false,
-            editMode: false
+            editMode: props.editMode,
         }
-
-        console.log(navigator.userAgent)
     }
 
     componentDidMount() {
@@ -29,12 +26,11 @@ class TestList extends React.Component {
         if (!this.state.isTouchStarted) {
             this.setState({isTouchStarted: true});
             this.longPressTimer = setTimeout(this.onLongTouch, 500);
-            setTimeout(() => this.setState({ isTouchStarted: false}), 1000);
+            setTimeout(() => this.setState({isTouchStarted: false}), 1000);
         }
     };
 
     onLongTouch = () => {
-        console.log("onLongTouch");
         this.setState({editMode: !this.state.editMode});
     };
 
@@ -43,11 +39,19 @@ class TestList extends React.Component {
         clearTimeout(this.longPressTimer);
     };
 
+    onDeleteClick = (e) => {
+        console.log("onDeleteClick \n id=" + e.currentTarget.id);
+    };
+
     fetchTests = () => {
         this.testListService.getTests()
             .then(tests => {
                 this.setState({tests: tests})
             });
+    };
+    
+    onAddClick = () => {
+      this.setState({editMode: !this.state.editMode});
     };
 
     prepareList() {
@@ -64,6 +68,7 @@ class TestList extends React.Component {
                   onTouchStart={this.onTouchStart}
                   onTouchEnd={this.onTouchEnd}
                   editMode={this.state.editMode}
+                  onDeleteClick={this.onDeleteClick}
             />));
         tests = this.testListService.sort(tests)
 
@@ -75,6 +80,13 @@ class TestList extends React.Component {
         return (
             <section className={s.news_container}>
                 {this.prepareList()}
+                {
+                    this.state.editMode ? (
+                        <Link to={"/createNewTest/"}
+                              className={s.add_button}
+                              onClick={this.onAddClick}/>
+                    ) : ""
+                }
             </section>
         )
     }
