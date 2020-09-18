@@ -229,6 +229,22 @@ class Api {
         }).then(response => response.json());
     }
 
+    uploadImage(img) {
+        const formData = new FormData();
+        formData.append("img", img);
+
+        const url = this.URL + "media/";
+
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "params": this.PARAMS
+            }
+        }).then(response => response.json());
+
+    }
+
 }
 
 export default Api;

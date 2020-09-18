@@ -56,9 +56,10 @@ class TestList extends React.Component {
                 this.setState({tests: tests})
             });
     };
-    
+
     onAddClick = () => {
-      this.setState({editMode: !this.state.editMode});
+        this.application.createTestEditHelper({});
+        this.setState({editMode: !this.state.editMode});
     };
 
     prepareList() {

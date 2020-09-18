@@ -4,38 +4,48 @@ import Task from "../../main/testList/Task";
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import Input from "../../../common/components/input/Input";
 
+
 class TestCreation extends React.Component {
     constructor(props) {
         super(props);
 
-        let today = new Date();
+        this.application = props.application;
+        this.testCreationService = this.application.provideTestCreationService();
+        this.testEditHelper = this.application.provideTestEditHelper();
 
         this.state = {
             limited: false,
             delayed: false,
-            title: 'Введите название',
+            title: "Введите название",
+            description: "",
             img: require('../../../img/admin/test_placeholder.svg'),
-            date: today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear(),
+            date: new Date().toISOString().substring(0, 19),
         }
     }
 
     componentDidMount() {
-
     }
 
     componentWillUnmount() {
         console.log("componentWillUnmount")
+        this.testEditHelper.sendChanges();
     }
 
     onTitleChange = (value) => {
-        this.setState({
-            title: value,
-        });
+        this.setState({title: value});
+        this.testEditHelper.updateValue("title", value)
+    };
+
+    onDescriptionChange = (value) => {
+        this.setState({description: value})
+        this.testEditHelper.updateValue("description", value)
+
     };
 
     onUploadImage = (e) => {
         const imgFile = URL.createObjectURL(e.target.files[0]);
         this.setState({img: imgFile});
+        this.testEditHelper.updateValue('img', imgFile);
     };
 
     onTimeModeChange = () => {
@@ -43,7 +53,9 @@ class TestCreation extends React.Component {
     };
 
     onTestTimeChange = (e) => {
-        console.log(e.target.value);
+        this.setState({timeToComplete: e.target.value})
+        this.testEditHelper.updateValue('timeToComplete', e.target.value);
+
     };
 
     onPublishDelay = () => {
@@ -51,13 +63,14 @@ class TestCreation extends React.Component {
     };
 
     onPublishDateTimeChange = (e) => {
-      console.log(e.target.value);
+        this.setState({date: e.target.value})
+        this.testEditHelper.updateValue('date', e.target.value);
     };
 
     render() {
         return (
             <>
-                <BackHeader/>
+                <BackHeader />
                 <section className={s.page}>
                     <div className={s.test_card}>
                         <Task key={[this.state.title, this.state.img]}
@@ -73,7 +86,7 @@ class TestCreation extends React.Component {
                             Название
                         </div>
                         <div className={s.input}>
-                            <Input placeholder={this.state.title}
+                            <Input placeholder={'Введите название'}
                                    maxLength={70}
                                    onChange={this.onTitleChange}/>
                         </div>
@@ -81,7 +94,9 @@ class TestCreation extends React.Component {
                             Описание
                         </div>
                         <div className={s.input}>
-                            <Input autoResize placeholder={"Введите описание"}/>
+                            <Input autoResize
+                                   onChange={this.onDescriptionChange}
+                                   placeholder={"Введите описание"}/>
                         </div>
 
                         <label className={s.custom_file_upload}>
@@ -157,6 +172,7 @@ class TestCreation extends React.Component {
                                 ?
                                 <input type={"datetime-local"}
                                        onChange={this.onPublishDateTimeChange}
+                                       value={this.state.date}
                                        min={new Date().toISOString().substring(0, 19)}/>
                                 : ""
                         }

@@ -8,7 +8,8 @@ import Api from "./common/api/Api";
 import isUndefined from "./common/IsUndefined";
 import StickerShopService from "./stickershop/StickerShopService";
 import ResultService from "./result/ResultService";
-import TestService from "./common/services/TestService";
+import TestCreationService from "./testcreation/TestCreationService";
+import TestEditHelper from "./common/services/TestEditHelper";
 
 class Application {
     #testListService;
@@ -21,7 +22,8 @@ class Application {
     #api;
     #previewService;
     #testRepo;
-    #testService;
+    #testCreationService;
+    #testEditHelper;
 
     provideTestRepo() {
         if (isUndefined(this.#testRepo)) {
@@ -76,7 +78,6 @@ class Application {
         if (isUndefined(this.#user)) {
             this.#user = this.provideUserService().getUser();
         }
-
         return this.#user;
     }
 
@@ -108,12 +109,24 @@ class Application {
         return this.#resultService;
     }
 
-    provideTestService() {
-        if (isUndefined(this.#testService)) {
-            this.#testService = new TestService(this.provideApi());
+    provideTestCreationService() {
+        if (isUndefined(this.#testCreationService)) {
+            this.#testCreationService = new TestCreationService(this.provideApi());
         }
 
-        return this.#testService;
+        return this.#testCreationService;
+    }
+
+    createTestEditHelper(test) {
+        this.#testEditHelper = new TestEditHelper(this.provideApi(), test);
+    }
+
+    provideTestEditHelper() {
+        return this.#testEditHelper;
+    }
+
+    deleteTestEditHelper() {
+        this.#testEditHelper = undefined;
     }
 }
 
