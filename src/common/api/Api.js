@@ -26,10 +26,41 @@ class Api {
     }
 
     requestTest(id) {
-
         const url = this.URL + "tests/" + id;
         return fetch(url, {
             method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
+    }
+
+    saveTest(test) {
+        const url = this.URL + "tests/";
+        return fetch(url, {
+            method: "POST",
+            body: JSON.stringify(test),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
+    updateTest(test) {
+        const url = this.URL + "tests/";
+        return fetch(url, {
+            method: "PATCH",
+            body: JSON.stringify(test),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
+    deleteTest(id) {
+        const url = this.URL + "tests/" + id;
+        return fetch(url, {
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }

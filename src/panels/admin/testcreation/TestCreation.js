@@ -20,7 +20,11 @@ class TestCreation extends React.Component {
     }
 
     componentDidMount() {
-        // this.state.lastChanged;
+
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount")
     }
 
     onTitleChange = (value) => {
@@ -34,12 +38,12 @@ class TestCreation extends React.Component {
         this.setState({img: imgFile});
     };
 
-    onTestTimeChange = (e) => {
-        console.log(e.target.value);
-    };
-
     onTimeModeChange = () => {
         this.setState({limited: !this.state.limited});
+    };
+
+    onTestTimeChange = (e) => {
+        console.log(e.target.value);
     };
 
     onPublishDelay = () => {

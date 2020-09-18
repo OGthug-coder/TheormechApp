@@ -3,6 +3,8 @@ import React from 'react';
 import s from './testList.module.css';
 import Task from "./Task";
 import {Link, withRouter} from "react-router-dom";
+import isUndefined from "../../../common/IsUndefined";
+import UserRoles from "../../../common/UserRoles";
 
 class TestList extends React.Component {
     constructor(props) {
@@ -19,6 +21,9 @@ class TestList extends React.Component {
     }
 
     componentDidMount() {
+        this.application.provideUser()
+            .then(user => this.setState({user: user}))
+
         this.fetchTests();
     }
 
@@ -31,7 +36,9 @@ class TestList extends React.Component {
     };
 
     onLongTouch = () => {
-        this.setState({editMode: !this.state.editMode});
+        if (!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN) {
+            this.setState({editMode: !this.state.editMode});
+        }
     };
 
     onTouchEnd = () => {

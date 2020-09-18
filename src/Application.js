@@ -8,6 +8,7 @@ import Api from "./common/api/Api";
 import isUndefined from "./common/IsUndefined";
 import StickerShopService from "./stickershop/StickerShopService";
 import ResultService from "./result/ResultService";
+import TestService from "./common/services/TestService";
 
 class Application {
     #testListService;
@@ -20,6 +21,7 @@ class Application {
     #api;
     #previewService;
     #testRepo;
+    #testService;
 
     provideTestRepo() {
         if (isUndefined(this.#testRepo)) {
@@ -106,6 +108,13 @@ class Application {
         return this.#resultService;
     }
 
+    provideTestService() {
+        if (isUndefined(this.#testService)) {
+            this.#testService = new TestService(this.provideApi());
+        }
+
+        return this.#testService;
+    }
 }
 
 export default Application;
