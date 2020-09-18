@@ -35,25 +35,31 @@ class Api {
         }).then(response => response.json());
     }
 
-    saveTest(test) {
-        const url = this.URL + "tests/";
-        return fetch(url, {
-            method: "POST",
-            body: JSON.stringify(test),
-            headers: {
-                "Content-Type": "application/json"
-            }
+    saveTest(testPromise) {
+        testPromise.then(test => {
+            const url = this.URL + "tests/";
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify(test),
+                headers: {
+                    "params": this.PARAMS,
+                    "Content-Type": "application/json"
+                }
+            });
         });
     }
 
-    updateTest(test) {
-        const url = this.URL + "tests/";
-        return fetch(url, {
-            method: "PATCH",
-            body: JSON.stringify(test),
-            headers: {
-                "Content-Type": "application/json"
-            }
+    updateTest(testPromise) {
+        testPromise.then(test => {
+            const url = this.URL + "tests/";
+            fetch(url, {
+                method: "PATCH",
+                body: JSON.stringify(test),
+                headers: {
+                    "params": this.PARAMS,
+                    "Content-Type": "application/json"
+                }
+            });
         });
     }
 
@@ -117,7 +123,7 @@ class Api {
         } else if (this.ALLOW_VIBRATION) {
             switch (type) {
                 case Vibration.SUCCESS:
-                    window.navigator.vibrate([200, 50,  100])
+                    window.navigator.vibrate([200, 50, 100])
                     break;
                 case Vibration.ERROR:
                     window.navigator.vibrate([200, 50, 200])
