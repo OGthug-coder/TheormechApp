@@ -47,7 +47,8 @@ class TestList extends React.Component {
     };
 
     onDeleteClick = (e) => {
-        console.log("onDeleteClick \n id=" + e.currentTarget.id);
+        this.testListService.deleteTest(e.currentTarget.id)
+            .then(tests => this.setState({tests: tests}));
     };
 
     fetchTests = () => {

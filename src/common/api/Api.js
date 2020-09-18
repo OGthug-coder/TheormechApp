@@ -68,6 +68,7 @@ class Api {
         return fetch(url, {
             method: "DELETE",
             headers: {
+                "params": this.PARAMS,
                 "Content-Type": "application/json"
             }
         }).then(response => response.json());

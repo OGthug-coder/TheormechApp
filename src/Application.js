@@ -1,4 +1,4 @@
-import TestListService from "./testList/service/TestListService";
+import TestListService from "./testList/TestListService";
 import ProfileService from "./profile/service/ProfileService";
 import QuestionService from "./question/service/QuestionService";
 import UserService from "./common/services/UserService";

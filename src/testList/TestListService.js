@@ -1,5 +1,5 @@
-import NoHistoryFoundException from "../../common/exceptions/NoHistoryFoundException";
-import EventCodeDto from "../../preview/util/EventCodeDto";
+import NoHistoryFoundException from "../common/exceptions/NoHistoryFoundException";
+import EventCodeDto from "../preview/util/EventCodeDto";
 
 class TestListService {
     constructor(api, user, testRepo) {
@@ -35,6 +35,10 @@ class TestListService {
         // Adding tests to the repo
         tests.then(tests => tests.map(test => this.testRepo.push(test)))
         return tests;
+    }
+
+    deleteTest(id) {
+        return this.api.deleteTest(id);
     }
 
     sort(list) {
