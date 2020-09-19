@@ -14,31 +14,35 @@ class TestListService {
     //     this.api.setStatusBarStyle("light");
     // }
 
-    getTests() {
-        const tests = this.api.requestTests().then(testsDto => {
-            return this.user.then(user => {
-                let tests = [];
+    prepareTests = (testsDto) => {
+        return this.user.then(user => {
+            let tests = [];
 
-                testsDto.map(t => {
-                    tests.push({
-                        id: t.id,
-                        title: t.title,
-                        img: t.img,
-                        date: t.date,
-                        progress: this.getProgress(t.questions, t.id, user.id)
-                    })
-                    return t;
-                });
-                return tests;
+            testsDto.map(t => {
+                tests.push({
+                    id: t.id,
+                    title: t.title,
+                    img: t.img,
+                    date: t.date,
+                    progress: this.getProgress(t.questions, t.id, user.id)
+                })
+                return t;
             });
+            return tests;
         });
-        // Adding tests to the repo
-        tests.then(tests => tests.map(test => this.testRepo.push(test)))
-        return tests;
+    };
+
+    getTests() {
+        return this.api.requestTests().then(testsDto => {
+            // Adding tests to the repo
+            testsDto.map(test => this.testRepo.push(test.id, test));
+            return this.prepareTests(testsDto)
+        });
     }
 
     deleteTest(id) {
-        return this.api.deleteTest(id);
+        this.testRepo.remove(id);
+        return this.api.deleteTest(id).then(testsDto => this.prepareTests(testsDto));
     }
 
     sort(list) {
