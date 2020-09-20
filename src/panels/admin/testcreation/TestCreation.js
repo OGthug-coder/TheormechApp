@@ -1,8 +1,9 @@
 import React from 'react';
 import s from "./TestCreation.module.css";
-import Task from "../../main/testList/Task";
+import TestCard from "../../main/testList/TestCard";
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import Input from "../../../common/components/input/Input";
+import {Link} from "react-router-dom";
 
 
 class TestCreation extends React.Component {
@@ -26,8 +27,7 @@ class TestCreation extends React.Component {
     componentDidMount() {}
 
     componentWillUnmount() {
-        console.log("componentWillUnmount")
-        this.testEditHelper.sendChanges();
+        // this.testEditHelper.sendChanges();
     }
 
     onTitleChange = (value) => {
@@ -72,13 +72,13 @@ class TestCreation extends React.Component {
                 <BackHeader />
                 <section className={s.page}>
                     <div className={s.test_card}>
-                        <Task key={[this.state.title, this.state.img]}
-                              disableButton
-                              id={Math.random()}
-                              title={this.state.title}
-                              img={this.state.img}
-                              date={this.state.date}
-                              progress={new Promise(() => 0)}/>
+                        <TestCard key={[this.state.title, this.state.img]}
+                                  disableButton
+                                  id={Math.random()}
+                                  title={this.state.title}
+                                  img={this.state.img}
+                                  date={this.state.date}
+                                  progress={new Promise(() => 0)}/>
                     </div>
                     <form>
                         <div className={s.input_title}>
@@ -176,10 +176,11 @@ class TestCreation extends React.Component {
                                 : ""
                         }
                     </form>
-                    <div className={s.next}>
+                    <Link to={"/createQuestions"}
+                        className={s.next}>
                         <div>Заполнить вопросы</div>
                         <div className={s.chevron}/>
-                    </div>
+                    </Link>
                 </section>
             </>
         )

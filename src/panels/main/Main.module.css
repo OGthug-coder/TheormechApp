@@ -41,8 +41,7 @@
     z-index: -1;
     width: 100vw;
     height: 100vh;
-    background-image: url("../../img/testlist/bacj.svg");
-    background-repeat: no-repeat;
+    background: white url("../../img/testlist/bacj.svg") no-repeat;
     background-size: cover;
     touch-action: none;
 }

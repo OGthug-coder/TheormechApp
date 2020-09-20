@@ -9,6 +9,10 @@ class TestEditHelper {
         this.isNew = isUndefined(test.id);
     }
 
+    getTest() {
+        return this.test;
+    }
+
     updateValue(testAttribute, value) {
         this.changeCounter++;
         this.test[testAttribute] = value;

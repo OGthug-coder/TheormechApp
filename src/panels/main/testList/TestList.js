@@ -1,7 +1,7 @@
 import React from 'react';
 
 import s from './testList.module.css';
-import Task from "./Task";
+import TestCard from "./TestCard";
 import {Link, withRouter} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import UserRoles from "../../../common/UserRoles";
@@ -42,8 +42,12 @@ class TestList extends React.Component {
     };
 
     onTouchEnd = () => {
-        this.setState({touchStarted: false});
+        this.setState({isTouchStarted: false});
         clearTimeout(this.longPressTimer);
+    };
+
+    onEditClick = (id) => {
+        console.log("onEditClick " + id);
     };
 
     onDeleteClick = (e) => {
@@ -59,25 +63,26 @@ class TestList extends React.Component {
     };
 
     onAddClick = () => {
-        this.application.createTestEditHelper({});
         this.setState({editMode: !this.state.editMode});
+        this.application.createTestEditHelper({});
     };
 
     prepareList() {
         let tests = [];
 
         this.state.tests.map(test => tests.push(
-            <Task key={[test.id, this.state.editMode]}
-                  id={test.id}
-                  title={test.title}
-                  img={test.img}
-                  date={test.date.split(' ')[0]}
-                  progress={test.progress}
-                  application={this.application}
-                  onTouchStart={this.onTouchStart}
-                  onTouchEnd={this.onTouchEnd}
-                  editMode={this.state.editMode}
-                  onDeleteClick={this.onDeleteClick}
+            <TestCard key={[test.id, this.state.editMode]}
+                      id={test.id}
+                      title={test.title}
+                      img={test.img}
+                      date={test.date.split(' ')[0]}
+                      progress={test.progress}
+                      application={this.application}
+                      onTouchStart={this.onTouchStart}
+                      onTouchEnd={this.onTouchEnd}
+                      editMode={this.state.editMode}
+                      onDeleteClick={this.onDeleteClick}
+                      onEditClick={this.onEditClick}
             />));
         tests = this.testListService.sort(tests)
 

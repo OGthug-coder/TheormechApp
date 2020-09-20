@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 
 
-class Task extends React.Component {
+class TestCard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,10 @@ class Task extends React.Component {
             onTouchEnd: props.onTouchEnd,
             editMode: props.editMode,
             onDeleteClick: props.onDeleteClick,
+            onEditClick: props.onEditClick,
         }
+
+        this.clickDisabler = true;
 
         props.progress.then(progress => this.setState({progress: progress}));
     }
@@ -51,12 +54,32 @@ class Task extends React.Component {
         }
     };
 
+    onTouchStart = () => {
+        this.clickDisabler = true;
+        this.state.onTouchStart();
+    };
+
+    onTouchEnd = () => {
+        if (this.clickDisabler) {
+            this.clickDisabler = false;
+        }
+        this.state.onTouchEnd();
+    };
+
+    onClick = () => {
+        if (!this.clickDisabler) {
+            this.state.onEditClick(this.state.id);
+        }
+    };
+
     render() {
         return (
             <div>
-                <div className={s.card}
-                     onTouchStart={this.state.onTouchStart}
-                     onTouchEnd={this.state.onTouchEnd}>
+                <div
+                     className={s.card}
+                     onClick={this.state.editMode ? this.onClick : () => {}}
+                     onTouchStart={this.onTouchStart}
+                     onTouchEnd={this.onTouchEnd}>
                     <img className={s.pic}
                          src={this.state.img}
                          alt={"test"}/>
@@ -93,4 +116,4 @@ class Task extends React.Component {
     }
 }
 
-export default Task;
+export default TestCard;
