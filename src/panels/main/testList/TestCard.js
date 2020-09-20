@@ -3,6 +3,7 @@ import React from 'react';
 import s from './task.module.css';
 import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
+import UserRoles from "../../../common/UserRoles";
 
 
 class TestCard extends React.Component {
@@ -16,11 +17,12 @@ class TestCard extends React.Component {
             title: props.title,
             img: props.img,
             date: props.date,
-            onTouchStart: props.onTouchStart,
-            onTouchEnd: props.onTouchEnd,
+            onLongClick: props.onLongClick,
             editMode: props.editMode,
             onDeleteClick: props.onDeleteClick,
             onEditClick: props.onEditClick,
+
+            isTouchStarted: false,
         }
 
         this.clickDisabler = true;
@@ -56,14 +58,23 @@ class TestCard extends React.Component {
 
     onTouchStart = () => {
         this.clickDisabler = true;
-        this.state.onTouchStart();
+        if (!this.state.isTouchStarted) {
+            this.setState({isTouchStarted: true});
+            this.longPressTimer = setTimeout(this.onLongTouch, 500);
+            setTimeout(() => this.setState({isTouchStarted: false}), 1000);
+        }
     };
 
     onTouchEnd = () => {
         if (this.clickDisabler) {
             this.clickDisabler = false;
         }
-        this.state.onTouchEnd();
+        this.setState({isTouchStarted: false});
+        clearTimeout(this.longPressTimer);
+    };
+
+    onLongTouch = () => {
+        this.state.onLongClick();
     };
 
     onClick = () => {

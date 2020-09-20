@@ -15,7 +15,6 @@ class TestList extends React.Component {
         this.state = {
             sortBy: props.socket,
             tests: [],
-            isTouchStarted: false,
             editMode: props.editMode,
         }
     }
@@ -27,27 +26,14 @@ class TestList extends React.Component {
         this.fetchTests();
     }
 
-    onTouchStart = () => {
-        if (!this.state.isTouchStarted) {
-            this.setState({isTouchStarted: true});
-            this.longPressTimer = setTimeout(this.onLongTouch, 500);
-            setTimeout(() => this.setState({isTouchStarted: false}), 1000);
-        }
+    onEditClick = (id) => {
+        console.log("onEditClick " + id);
     };
 
-    onLongTouch = () => {
+    onLongClick = () => {
         if (!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN) {
             this.setState({editMode: !this.state.editMode});
         }
-    };
-
-    onTouchEnd = () => {
-        this.setState({isTouchStarted: false});
-        clearTimeout(this.longPressTimer);
-    };
-
-    onEditClick = (id) => {
-        console.log("onEditClick " + id);
     };
 
     onDeleteClick = (e) => {
@@ -78,8 +64,7 @@ class TestList extends React.Component {
                       date={test.date.split(' ')[0]}
                       progress={test.progress}
                       application={this.application}
-                      onTouchStart={this.onTouchStart}
-                      onTouchEnd={this.onTouchEnd}
+                      onLongClick={this.onLongClick}
                       editMode={this.state.editMode}
                       onDeleteClick={this.onDeleteClick}
                       onEditClick={this.onEditClick}
