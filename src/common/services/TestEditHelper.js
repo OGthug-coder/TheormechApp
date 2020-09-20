@@ -29,21 +29,10 @@ class TestEditHelper {
     }
 
     prepareTest() {
-        const dateFormattingPromise = new Promise((resolve, reject) => {
-            let test = this.test;
-            test.date = !isUndefined(test.date) ? toCustomFormat(test.date) : toCustomFormat(new Date());
-            resolve(test);
-        });
+        let test = this.test;
+        test.date = !isUndefined(test.date) ? toCustomFormat(test.date) : toCustomFormat(new Date());
 
-        if (!isUndefined(this.test.img) ) {
-            const imageUploadPromise = this.api.uploadImage(this.test.img);
-
-            return Promise.all([dateFormattingPromise, imageUploadPromise])
-                .then(([test, img]) => {
-                    return test.img = img;
-                });
-        }
-        return dateFormattingPromise;
+        return test;
     }
 
 }

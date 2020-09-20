@@ -23,8 +23,7 @@ class TestCreation extends React.Component {
         }
     }
 
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     componentWillUnmount() {
         console.log("componentWillUnmount")
@@ -45,7 +44,7 @@ class TestCreation extends React.Component {
     onUploadImage = (e) => {
         const imgFile = URL.createObjectURL(e.target.files[0]);
         this.setState({img: imgFile});
-        this.testEditHelper.updateValue('img', imgFile);
+        this.testEditHelper.updateValue('img', e.target.files[0]);
     };
 
     onTimeModeChange = () => {

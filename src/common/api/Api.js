@@ -6,7 +6,9 @@ import Vibration from "../Vibration";
 
 class Api {
     constructor() {
-        this.URL = "https://atake.live:8443/v1/";
+        // this.URL = "https://atake.live:8443/v1/";
+        this.URL = "http://localhost:80/v1/";
+
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
 
@@ -35,17 +37,21 @@ class Api {
         }).then(response => response.json());
     }
 
-    saveTest(testPromise) {
-        testPromise.then(test => {
-            const url = this.URL + "tests/";
-            fetch(url, {
-                method: "POST",
-                body: JSON.stringify(test),
-                headers: {
-                    "params": this.PARAMS,
-                    "Content-Type": "application/json"
-                }
-            });
+    saveTest(test) {
+        let testFormData = new FormData();
+
+        for (const [key, value] of Object.entries(test)) {
+            testFormData.append(key, value);
+        }
+
+        const url = this.URL + "tests/";
+        fetch(url, {
+            method: "POST",
+            body: testFormData,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "params": this.PARAMS,
+            }
         });
     }
 
@@ -237,18 +243,20 @@ class Api {
     }
 
     uploadImage(img) {
-        const formData = new FormData();
-        formData.append("img", img);
-
-        const url = this.URL + "media/";
-
-        return fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "params": this.PARAMS
-            }
-        }).then(response => response.json());
+        console.log(typeof img);
+        return new Promise((resolve, err) => resolve(img));
+        // const formData = new FormData();
+        // formData.append("img", img);
+        //
+        // const url = this.URL + "media/";
+        //
+        // return fetch(url, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "multipart/form-data",
+        //         "params": this.PARAMS
+        //     }
+        // }).then(response => response.json());
 
     }
 
