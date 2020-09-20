@@ -1,6 +1,6 @@
 // 21-07-2020 00:00:00
 export const toCustomFormat = (date) => {
-    return date.getDay()     + "-"
+    return date.getDate()     + "-"
         + date.getMonth()    + "-"
         + date.getFullYear() + " "
         + date.getHours()    + ":"

@@ -30,7 +30,7 @@ class TestEditHelper {
 
     prepareTest() {
         let test = this.test;
-        test.date = !isUndefined(test.date) ? toCustomFormat(test.date) : toCustomFormat(new Date());
+        test.date = !isUndefined(test.date) ? toCustomFormat(new Date(test.date)) : toCustomFormat(new Date());
 
         return test;
     }
