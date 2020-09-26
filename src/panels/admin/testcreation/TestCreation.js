@@ -4,6 +4,8 @@ import TestCard from "../../main/testList/TestCard";
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import Input from "../../../common/components/input/Input";
 import {Link} from "react-router-dom";
+import isUndefined from "../../../common/IsUndefined";
+import {toDefaultFormat} from "../../../common/convertDate";
 
 
 class TestCreation extends React.Component {
@@ -14,20 +16,23 @@ class TestCreation extends React.Component {
         this.testCreationService = this.application.provideTestCreationService();
         this.testEditHelper = this.application.provideTestEditHelper();
 
+        const test = this.testEditHelper.getTest();
+
         this.state = {
-            limited: false,
-            delayed: false,
-            title: "Введите название",
-            description: "",
-            img: require('../../../img/admin/test_placeholder.svg'),
+            limited: this.testCreationService.getLimitation(test),
+            timeToComplete: test.timeToComplete,
+            delayed: this.testCreationService.getDelay(test),
             date: new Date().toISOString().substring(0, 19),
+            title: !isUndefined(test) && !isUndefined(test.title) ? test.title : "Введите название",
+            description: !isUndefined(test) && !isUndefined(test.description) ? test.description : "",
+            img: !isUndefined(test) && !isUndefined(test.img) ? test.img : require('../../../img/admin/test_placeholder.svg'),
         }
     }
 
     componentDidMount() {}
 
     componentWillUnmount() {
-        // this.testEditHelper.sendChanges();
+        this.testEditHelper.sendChanges();
     }
 
     onTitleChange = (value) => {
@@ -85,7 +90,7 @@ class TestCreation extends React.Component {
                             Название
                         </div>
                         <div className={s.input}>
-                            <Input placeholder={'Введите название'}
+                            <Input placeholder={this.state.title}
                                    maxLength={70}
                                    onChange={this.onTitleChange}/>
                         </div>
@@ -113,8 +118,8 @@ class TestCreation extends React.Component {
                         <div className={s.time_limit}>
                             <div className={s.time_limit_item}>
                                 <input type={"radio"}
-                                       defaultChecked
                                        onChange={this.onTimeModeChange}
+                                       checked={!this.state.limited}
                                        name={"time_limit"}
                                        id={"no_limit"}
                                        value={"no_limit"}/>
@@ -122,6 +127,7 @@ class TestCreation extends React.Component {
                             </div>
                             <div className={s.time_limit_item}>
                                 <input type={"radio"}
+                                       checked={this.state.limited}
                                        onChange={this.onTimeModeChange}
                                        name={"time_limit"}
                                        id={"limited"}
@@ -131,7 +137,9 @@ class TestCreation extends React.Component {
                                     this.state.limited
                                         ?
                                         <div className={s.select}>
-                                            <select name="time" onChange={this.onTestTimeChange}>
+                                            <select name="time"
+                                                    value={this.state.timeToComplete}
+                                                    onChange={this.onTestTimeChange}>
                                                 <option value="15">15</option>
                                                 <option value="30">30</option>
                                                 <option value="45">45</option>
@@ -150,7 +158,7 @@ class TestCreation extends React.Component {
                         <div className={s.time_limit}>
                             <div className={s.time_limit_item}>
                                 <input type={"radio"}
-                                       defaultChecked
+                                       checked={!this.state.delayed}
                                        onChange={this.onPublishDelay}
                                        name={"delayed"}
                                        id={"no_delay"}
@@ -159,6 +167,7 @@ class TestCreation extends React.Component {
                             </div>
                             <div className={`${s.time_limit_item} ${s.publish_delay_item}`}>
                                 <input type={"radio"}
+                                       checked={this.state.delayed}
                                        onChange={this.onPublishDelay}
                                        name={"delayed"}
                                        id={"delayed"}

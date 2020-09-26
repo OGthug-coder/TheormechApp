@@ -55,17 +55,15 @@ class Api {
         });
     }
 
-    updateTest(testPromise) {
-        testPromise.then(test => {
-            const url = this.URL + "tests/";
-            fetch(url, {
-                method: "PATCH",
-                body: JSON.stringify(test),
-                headers: {
-                    "params": this.PARAMS,
-                    "Content-Type": "application/json"
-                }
-            });
+    updateTest(test) {
+        const url = this.URL + "tests/";
+        fetch(url, {
+            method: "PATCH",
+            body: JSON.stringify(test),
+            headers: {
+                "params": this.PARAMS,
+                "Content-Type": "application/json"
+            }
         });
     }
 

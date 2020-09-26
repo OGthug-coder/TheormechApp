@@ -25,7 +25,7 @@ class App extends React.Component {
                 <Route exact path={'/createQuestions'}
                        render={({match}) => <QuestionCreation match={match} application={this.application}/>}
                 />
-                <Route exact path={'/createNewTest'}
+                <Route exact path={'/testEditing'}
                        render={({match}) => <TestCreation match={match} application={this.application}/>}
                 />
                 <Route exact path={'/result/:testId'}

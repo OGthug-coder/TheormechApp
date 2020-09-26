@@ -2,7 +2,7 @@ import React from 'react';
 
 import s from './testList.module.css';
 import TestCard from "./TestCard";
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import UserRoles from "../../../common/UserRoles";
 
@@ -27,7 +27,11 @@ class TestList extends React.Component {
     }
 
     onEditClick = (id) => {
-        console.log("onEditClick " + id);
+        this.setState({editMode: !this.state.editMode});
+        const test = this.testListService.getTestFromRepo(id);
+        this.application.createTestEditHelper(test);
+
+        this.props.history.push("/testEditing");
     };
 
     onLongClick = () => {
@@ -51,6 +55,8 @@ class TestList extends React.Component {
     onAddClick = () => {
         this.setState({editMode: !this.state.editMode});
         this.application.createTestEditHelper({});
+
+        this.props.history.push("/testEditing");
     };
 
     prepareList() {
@@ -81,9 +87,8 @@ class TestList extends React.Component {
                 {this.prepareList()}
                 {
                     this.state.editMode ? (
-                        <Link to={"/createNewTest/"}
-                              className={s.add_button}
-                              onClick={this.onAddClick}/>
+                        <div className={s.add_button}
+                             onClick={this.onAddClick}/>
                     ) : ""
                 }
             </section>

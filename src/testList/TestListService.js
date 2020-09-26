@@ -1,5 +1,6 @@
 import NoHistoryFoundException from "../common/exceptions/NoHistoryFoundException";
 import EventCodeDto from "../preview/util/EventCodeDto";
+import isUndefined from "../common/IsUndefined";
 
 class TestListService {
     constructor(api, user, testRepo) {
@@ -38,6 +39,10 @@ class TestListService {
             testsDto.map(test => this.testRepo.push(test.id, test));
             return this.prepareTests(testsDto)
         });
+    }
+
+    getTestFromRepo(id) {
+        return this.testRepo.get(id);
     }
 
     deleteTest(id) {

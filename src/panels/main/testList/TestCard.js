@@ -107,21 +107,24 @@ class TestCard extends React.Component {
                                 <span className={this.state.progress >= 3 ? s.dot_on : s.dot}/>
                             </div>
                         </div>
-                        {
-                            this.state.editMode ? (
-                                <>
-                                    <div id={this.state.id}
-                                         className={s.delete_button}
-                                         onClick={this.state.onDeleteClick}/>
-                                    <div className={s.status_icon}/>
-                                </>
-                            ) : (
-                                ""
-                            )
-                        }
                     </div>
                 </div>
                 {this.renderButton()}
+                {
+                    this.state.editMode ? (
+                        <>
+                            <div className={s.delete_button}>
+                                <div id={this.state.id}
+                                     onClick={this.state.onDeleteClick}/>
+                            </div>
+                            <div className={s.status_icon}>
+                                <div />
+                            </div>
+                        </>
+                    ) : (
+                        ""
+                    )
+                }
             </div>
         )
     }
