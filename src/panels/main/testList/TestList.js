@@ -5,6 +5,7 @@ import TestCard from "./TestCard";
 import {withRouter} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import UserRoles from "../../../common/UserRoles";
+import ConfirmModal from "../../../common/components/confirmmodal/ConfirmModal";
 
 class TestList extends React.Component {
     constructor(props) {
@@ -43,6 +44,14 @@ class TestList extends React.Component {
     onDeleteClick = (e) => {
         this.testListService.deleteTest(e.currentTarget.id)
             .then(tests => this.setState({tests: tests}));
+    };
+
+    onDeleteApprove = (e) => {
+        console.log('onDeleteApprove');
+    };
+
+    onDeleteCancel = (e) => {
+        console.log('onDeleteCancel');
     };
 
     fetchTests = () => {
@@ -91,6 +100,13 @@ class TestList extends React.Component {
                              onClick={this.onAddClick}/>
                     ) : ""
                 }
+                <div className={s.confirm_modal_container}>
+                    <div className={s.confirm_modal}>
+                        <ConfirmModal text={'Вы уверены, что хотите удалить тест?'}
+                                      onApprove={this.onDeleteApprove}
+                                      onCancel={this.onDeleteCancel}/>
+                    </div>
+                </div>
             </section>
         )
     }
