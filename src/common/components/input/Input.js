@@ -12,9 +12,8 @@ class Input extends React.Component {
         this.state = {
             id: props.rows,
             rows: !isUndefined(props.rows) ? props.rows : 3,
-            value: "",
+            value: props.placeholder,
             maxLength: props.maxLength,
-            placeholder: props.placeholder,
             onChange: props.onChange,
         };
     }
@@ -48,7 +47,6 @@ class Input extends React.Component {
                     ref={this.textAreaRef}
                     className={s.input}
                     value={this.state.value}
-                    placeholder={this.state.placeholder}
                     onChange={this.onChange}/>
                 {
                     !isUndefined(this.state.maxLength)

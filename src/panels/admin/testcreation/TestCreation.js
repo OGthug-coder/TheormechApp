@@ -25,7 +25,9 @@ class TestCreation extends React.Component {
                 ? toDefaultFormat(test.date).toISOString().substring(0, 19)
                 : new Date().toISOString().substring(0, 19),
             title: !isUndefined(test) && !isUndefined(test.title) ? test.title : "Введите название",
-            description: !isUndefined(test) && !isUndefined(test.description) ? test.description : "",
+            description: !isUndefined(test) && !isUndefined(test.description)
+                ? test.description
+                : "Введите описание",
             img: !isUndefined(test) && !isUndefined(test.img)
                 ? test.img
                 : require('../../../img/admin/test_placeholder.svg'),
@@ -118,7 +120,7 @@ class TestCreation extends React.Component {
                         <div className={s.input}>
                             <Input autoResize
                                    onChange={this.onDescriptionChange}
-                                   placeholder={"Введите описание"}/>
+                                   placeholder={this.state.description}/>
                         </div>
 
                         <label className={s.custom_file_upload}>
