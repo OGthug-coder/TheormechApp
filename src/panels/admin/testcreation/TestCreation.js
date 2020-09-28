@@ -3,7 +3,6 @@ import s from "./TestCreation.module.css";
 import TestCard from "../../main/testList/TestCard";
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import Input from "../../../common/components/input/Input";
-import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import {toDefaultFormat} from "../../../common/convertDate";
 
@@ -16,12 +15,14 @@ class TestCreation extends React.Component {
         this.testEditHelper = this.application.provideTestEditHelper();
 
         const test = this.testEditHelper.getTest();
-        
+
         this.state = {
             limited: this.testCreationService.getLimitation(test),
             timeToComplete: test.timeToComplete,
             delayed: this.testCreationService.getDelay(test),
-            date: toDefaultFormat(test.date).toISOString().substring(0, 19),
+            date: !isUndefined(test.date)
+                ? toDefaultFormat(test.date).toISOString().substring(0, 19)
+                : new Date().toISOString().substring(0, 19),
             title: !isUndefined(test) && !isUndefined(test.title) ? test.title : "Введите название",
             description: !isUndefined(test) && !isUndefined(test.description) ? test.description : "",
             img: !isUndefined(test) && !isUndefined(test.img) ? test.img : require('../../../img/admin/test_placeholder.svg'),
@@ -43,7 +44,6 @@ class TestCreation extends React.Component {
     onDescriptionChange = (value) => {
         this.setState({description: value})
         this.testEditHelper.updateValue("description", value)
-
     };
 
     onUploadImage = (e) => {
@@ -78,6 +78,12 @@ class TestCreation extends React.Component {
     onPublishDateTimeChange = (e) => {
         this.setState({date: e.target.value})
         this.testEditHelper.updateValue('date', e.target.value);
+    };
+
+    onQuestionEditClick = () => {
+        if (this.state.title !== "Введите название" && this.state.title !== '') {
+            this.props.history.push("/createQuestions")
+        }
     };
 
     render() {
@@ -194,11 +200,10 @@ class TestCreation extends React.Component {
                                 : ""
                         }
                     </form>
-                    <Link to={"/createQuestions"}
-                          className={s.next}>
+                    <div className={s.next}>
                         <div>Заполнить вопросы</div>
                         <div className={s.chevron}/>
-                    </Link>
+                    </div>
                 </section>
             </>
         )

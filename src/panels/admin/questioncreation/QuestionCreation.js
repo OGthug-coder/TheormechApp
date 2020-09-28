@@ -21,7 +21,6 @@ class QuestionCreation extends React.Component {
         };
     }
 
-
     onAddQuestionClick = () => {
         console.log("onAddQuestionClick");
     };
