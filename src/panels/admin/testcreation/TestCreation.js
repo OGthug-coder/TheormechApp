@@ -5,6 +5,7 @@ import BackHeader from "../../../common/components/backheader/BackHeader";
 import Input from "../../../common/components/input/Input";
 import isUndefined from "../../../common/IsUndefined";
 import {toDefaultFormat} from "../../../common/convertDate";
+import {withRouter} from "react-router-dom";
 
 class TestCreation extends React.Component {
     constructor(props) {
@@ -25,7 +26,9 @@ class TestCreation extends React.Component {
                 : new Date().toISOString().substring(0, 19),
             title: !isUndefined(test) && !isUndefined(test.title) ? test.title : "Введите название",
             description: !isUndefined(test) && !isUndefined(test.description) ? test.description : "",
-            img: !isUndefined(test) && !isUndefined(test.img) ? test.img : require('../../../img/admin/test_placeholder.svg'),
+            img: !isUndefined(test) && !isUndefined(test.img)
+                ? test.img
+                : require('../../../img/admin/test_placeholder.svg'),
         }
     }
 
@@ -200,7 +203,8 @@ class TestCreation extends React.Component {
                                 : ""
                         }
                     </form>
-                    <div className={s.next}>
+                    <div className={s.next}
+                         onClick={this.onQuestionEditClick}>
                         <div>Заполнить вопросы</div>
                         <div className={s.chevron}/>
                     </div>
@@ -210,4 +214,4 @@ class TestCreation extends React.Component {
     }
 }
 
-export default TestCreation;
+export default withRouter(TestCreation);
