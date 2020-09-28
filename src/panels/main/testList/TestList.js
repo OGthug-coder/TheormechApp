@@ -17,6 +17,7 @@ class TestList extends React.Component {
             sortBy: props.socket,
             tests: [],
             editMode: props.editMode,
+            confirmDeletion: false,
         }
     }
 
@@ -42,16 +43,19 @@ class TestList extends React.Component {
     };
 
     onDeleteClick = (e) => {
-        this.testListService.deleteTest(e.currentTarget.id)
-            .then(tests => this.setState({tests: tests}));
+        this.setState({confirmDeletion: e.currentTarget.id})
     };
 
     onDeleteApprove = (e) => {
         console.log('onDeleteApprove');
+        this.testListService.deleteTest(this.state.confirmDeletion)
+            .then(tests => this.setState({tests: tests}));
+        this.setState({confirmDeletion: false});
     };
 
     onDeleteCancel = (e) => {
         console.log('onDeleteCancel');
+        this.setState({confirmDeletion: false})
     };
 
     fetchTests = () => {
@@ -100,13 +104,18 @@ class TestList extends React.Component {
                              onClick={this.onAddClick}/>
                     ) : ""
                 }
-                <div className={s.confirm_modal_container}>
-                    <div className={s.confirm_modal}>
-                        <ConfirmModal text={'Вы уверены, что хотите удалить тест?'}
-                                      onApprove={this.onDeleteApprove}
-                                      onCancel={this.onDeleteCancel}/>
-                    </div>
-                </div>
+                {
+                    this.state.confirmDeletion !== false ? (
+                        <div className={s.confirm_modal_container}>
+                            <div className={s.confirm_modal}>
+                                <ConfirmModal text={'Вы уверены, что хотите удалить тест?'}
+                                              onApprove={this.onDeleteApprove}
+                                              onCancel={this.onDeleteCancel}/>
+                            </div>
+                        </div>
+                    ) : ""
+                }
+
             </section>
         )
     }

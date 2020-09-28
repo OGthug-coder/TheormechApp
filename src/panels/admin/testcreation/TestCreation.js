@@ -7,7 +7,6 @@ import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import {toDefaultFormat} from "../../../common/convertDate";
 
-
 class TestCreation extends React.Component {
     constructor(props) {
         super(props);
@@ -17,19 +16,20 @@ class TestCreation extends React.Component {
         this.testEditHelper = this.application.provideTestEditHelper();
 
         const test = this.testEditHelper.getTest();
-
+        
         this.state = {
             limited: this.testCreationService.getLimitation(test),
             timeToComplete: test.timeToComplete,
             delayed: this.testCreationService.getDelay(test),
-            date: new Date().toISOString().substring(0, 19),
+            date: toDefaultFormat(test.date).toISOString().substring(0, 19),
             title: !isUndefined(test) && !isUndefined(test.title) ? test.title : "Введите название",
             description: !isUndefined(test) && !isUndefined(test.description) ? test.description : "",
             img: !isUndefined(test) && !isUndefined(test.img) ? test.img : require('../../../img/admin/test_placeholder.svg'),
         }
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+    }
 
     componentWillUnmount() {
         this.testEditHelper.sendChanges();
@@ -63,7 +63,16 @@ class TestCreation extends React.Component {
     };
 
     onPublishDelay = () => {
-        this.setState({delayed: !this.state.delayed});
+        if (this.state.delayed === true) {
+            const date = new Date().toISOString().substring(0, 19)
+            this.setState({
+                date: date,
+                delayed: !this.state.delayed
+            })
+            this.testEditHelper.updateValue('date', date);
+        } else {
+            this.setState({delayed: !this.state.delayed});
+        }
     };
 
     onPublishDateTimeChange = (e) => {
@@ -74,7 +83,7 @@ class TestCreation extends React.Component {
     render() {
         return (
             <>
-                <BackHeader />
+                <BackHeader/>
                 <section className={s.page}>
                     <div className={s.test_card}>
                         <TestCard key={[this.state.title, this.state.img]}
@@ -186,7 +195,7 @@ class TestCreation extends React.Component {
                         }
                     </form>
                     <Link to={"/createQuestions"}
-                        className={s.next}>
+                          className={s.next}>
                         <div>Заполнить вопросы</div>
                         <div className={s.chevron}/>
                     </Link>
