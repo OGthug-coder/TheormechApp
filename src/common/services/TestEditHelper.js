@@ -22,11 +22,11 @@ class TestEditHelper {
         if (this.changeCounter > 0) {
             if (this.isNew) {
                 if (!isUndefined(this.test.title)) {
-                    this.api.saveTest(this.prepareTest());
+                    // this.api.saveTest(this.prepareTest());
                     console.log("save");
                 }
             } else {
-                this.api.updateTest(this.prepareTest());
+                // this.api.updateTest(this.prepareTest());
                 console.log("update");
             }
         }

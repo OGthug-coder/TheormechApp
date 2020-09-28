@@ -1,10 +1,10 @@
 import React from 'react';
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import s from "./QuestionCreation.module.css";
-import QuestionListItem from "./fragments/QuestionListItem";
 import SelectWindow from "../../../common/components/selectwindow/SelectWindow";
 import isUndefined from "../../../common/IsUndefined";
 import ModalAnswersCreation from "./fragments/ModalAnswersCreation";
+import QuestionListItem from "./fragments/QuestionListItem";
 
 class QuestionCreation extends React.Component {
     constructor(props) {
@@ -92,73 +92,133 @@ class QuestionCreation extends React.Component {
         console.log("onCloseEditWindowClick");
     };
 
+    renderQuestions = () => {
+        if (!isUndefined(this.state.questions)) {
+            const questions = this.prepareQuestions(this.state.questions);
+            const length = parseInt(
+                Object.keys(questions)
+                    .reduce((accumulator, key) => parseInt(accumulator) > parseInt(key) ? accumulator : key)
+            );
+
+            let reactCode = '';
+
+            debugger
+            for (let i = 0; i < length; i++) {
+                reactCode += `
+                    <div className={s.question_container}>
+                        <div className={s.control}>
+                            <span>Вопрос №1</span>
+                            <button id={1} onClick={this.onEditQuestionClick}/>
+                        </div>
+                        {
+                            questions[i].map(q => (
+                                    <div className={s.question_item}>
+                                        <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                                                          onEdit={this.onEditQuestionItem}
+                                                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
+                                    </div>
+                                )
+                            )
+                        }
+                    </div>
+                `;
+
+            }
+
+            return reactCode;
+        } else {
+            return (
+                <div className={s.question_container}>
+                    <div className={s.control}>
+                        <span>Вопрос №1</span>
+                        <button id={1} onClick={this.onEditQuestionClick}/>
+                    </div>
+                </div>
+            );
+        }
+
+    };
+
+    prepareQuestions = (questions) => {
+        const sortedQuestions = {};
+
+        questions.map(q => {
+            if (isUndefined(sortedQuestions[q.serialNumber])) {
+                sortedQuestions[q.serialNumber] = [];
+                sortedQuestions[q.serialNumber].push(q);
+            } else {
+                sortedQuestions[q.serialNumber].push(q);
+            }
+        });
+        return sortedQuestions;
+    };
+
+
     render() {
         return (
             <>
-                <BackHeader style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}} />
+                <BackHeader style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}/>
                 <div className={`${s.container} ${this.state.modalAnswerCreation ? s.blur : ""}`}>
                     <div className={s.header}>
                         Список вопросов
                         <button onClick={this.onAddQuestionClick}/>
                     </div>
-                    <div className={s.question_container}>
-                        <div className={s.control}>
-                            <span>Вопрос №1</span>
-                            <button id={1} onClick={this.onEditQuestionClick}/>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
-                        </div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                    </div>
-                    <div className={s.question_container}>
-                        <div className={s.control}>
-                            <span>Вопрос №1</span>
-                            <button id={2} onClick={this.onEditQuestionClick}/>
-                        </div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                    </div>
-                    <div className={s.question_container}>
-                        <div className={s.control}>
-                            <span>Вопрос №1</span>
-                            <button id={3} onClick={this.onEditQuestionClick}/>
-                        </div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        <div className={s.question_item}>
-                            <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                              onEdit={this.onEditQuestionItem}
-                                              question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                    </div>
+                    {this.renderQuestions()}
+                    {/*<div className={s.question_container}>*/}
+                    {/*    <div className={s.control}>*/}
+                    {/*        <span>Вопрос №1</span>*/}
+                    {/*        <button id={1} onClick={this.onEditQuestionClick}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*</div>*/}
+                    {/*<div className={s.question_container}>*/}
+                    {/*    <div className={s.control}>*/}
+                    {/*        <span>Вопрос №1</span>*/}
+                    {/*        <button id={2} onClick={this.onEditQuestionClick}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*</div>*/}
+                    {/*<div className={s.question_container}>*/}
+                    {/*    <div className={s.control}>*/}
+                    {/*        <span>Вопрос №1</span>*/}
+                    {/*        <button id={3} onClick={this.onEditQuestionClick}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*    <div className={s.question_item}>*/}
+                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
+                    {/*                          onEdit={this.onEditQuestionItem}*/}
+                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
+                    {/*</div>*/}
                     <button className={s.save_button}
                             onClick={this.onSaveClick}>
                         Сохранить
@@ -174,8 +234,6 @@ class QuestionCreation extends React.Component {
                         )
                         : ""
                 }
-
-
             </>
         );
     }
