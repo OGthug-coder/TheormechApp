@@ -10,6 +10,7 @@ import Main from "./panels/main/Main";
 import Result from "./panels/result/Result";
 import TestCreation from "./panels/admin/testcreation/TestCreation";
 import QuestionCreation from "./panels/admin/questioncreation/QuestionCreation";
+import ModalAnswersCreation from "./panels/admin/questioncreation/fragments/ModalAnswersCreation";
 
 class App extends React.Component {
     constructor(props) {

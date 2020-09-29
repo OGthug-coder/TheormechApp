@@ -8,6 +8,7 @@ class BackButton extends React.Component {
         super(props);
 
         this.state = {
+            onClick: !isUndefined(this.props.onClick) ? this.props.onClick : () => "",
             disabled: !isUndefined(props.disabled)
         };
     }
@@ -16,7 +17,7 @@ class BackButton extends React.Component {
         return (
             <button
                 className={s.button}
-                onClick={!this.state.disabled ? this.props.history.goBack : () => ""}/>
+                onClick={!this.state.disabled ? this.props.history.goBack : this.state.onClick}/>
         );
     }
 }

@@ -9,7 +9,9 @@ class ModalAnswersCreation extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            title: ""
+        };
     }
 
     onQuestionTextChange = (value) => {
@@ -33,7 +35,7 @@ class ModalAnswersCreation extends React.Component {
             <div className={s.container}>
                 <div className={s.sticky_container}>
                     <div className={`${s.back_button}`}>
-                        <BackButton/>
+                        <BackButton disabled onClick={this.props.onBackClick}/>
                     </div>
                 </div>
                 <ModalWindow>

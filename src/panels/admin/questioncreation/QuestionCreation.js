@@ -5,6 +5,9 @@ import SelectWindow from "../../../common/components/selectwindow/SelectWindow";
 import isUndefined from "../../../common/IsUndefined";
 import ModalAnswersCreation from "./fragments/ModalAnswersCreation";
 import QuestionListItem from "./fragments/QuestionListItem";
+import {withRouter} from 'react-router-dom'
+
+const PLACEHOLDER = 'PLACEHOLDER';
 
 class QuestionCreation extends React.Component {
     constructor(props) {
@@ -23,6 +26,18 @@ class QuestionCreation extends React.Component {
 
     onAddQuestionClick = () => {
         console.log("onAddQuestionClick");
+
+        const questions = this.state.questions;
+        questions.push({
+            questionText: PLACEHOLDER,
+            serialNumber: parseInt(
+                this.state.questions
+                    .reduce((accumulator, key) => accumulator.serialNumber > key.serialNumber ? accumulator : key)
+                    .serialNumber
+            ) + 1,
+        });
+
+        this.setState({questions: questions});
     };
 
     onEditQuestionClick = (e) => {
@@ -45,6 +60,7 @@ class QuestionCreation extends React.Component {
 
     onAddQuestionItemClick = (id) => {
         console.log("onAddQuestionItemClick");
+        this.setState({modalAnswerCreation: true});
     };
 
     onDeleteQuestionItem = (id) => {
@@ -66,7 +82,7 @@ class QuestionCreation extends React.Component {
                      onClick={this.onCloseEditWindowClick}>
                     <div className={s.edit_window} style={{
                         top: this.state.editWindowData.top - 70,
-                        left: this.state.editWindowData.left - window.screen.width * 0.65
+                        left: this.state.editWindowData.left - window.innerWidth * 0.65
                     }}>
                         <SelectWindow data={[
                             {
@@ -101,11 +117,12 @@ class QuestionCreation extends React.Component {
                 .map(key => (
                     <div key={key} className={s.question_container}>
                         <div className={s.control}>
-                            <span>Вопрос №{key + 1}</span>
+                            <span>Вопрос №{parseInt(key) + 1}</span>
                             <button id={parseInt(key)} onClick={this.onEditQuestionClick}/>
                         </div>
                         {
                             questions[key].map(q => (
+                                q.questionText !== PLACEHOLDER ? (
                                     <div key={q.id} className={s.question_item}>
                                         <QuestionListItem key={q.id}
                                                           onDelete={this.onDeleteQuestionItem}
@@ -113,9 +130,11 @@ class QuestionCreation extends React.Component {
                                                           id={q.id}
                                                           text={q.questionText}/>
                                     </div>
-                                )
-                            )
+                                ) : ""
+                            ))
                         }
+
+
                     </div>
                 ));
         } else {
@@ -155,62 +174,9 @@ class QuestionCreation extends React.Component {
                         Список вопросов
                         <button onClick={this.onAddQuestionClick}/>
                     </div>
-                    {this.renderQuestions()}
-                    {/*<div className={s.question_container}>*/}
-                    {/*    <div className={s.control}>*/}
-                    {/*        <span>Вопрос №1</span>*/}
-                    {/*        <button id={1} onClick={this.onEditQuestionClick}/>*/}
-                    {/*    </div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>*/}
-                    {/*    </div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*</div>*/}
-                    {/*<div className={s.question_container}>*/}
-                    {/*    <div className={s.control}>*/}
-                    {/*        <span>Вопрос №1</span>*/}
-                    {/*        <button id={2} onClick={this.onEditQuestionClick}/>*/}
-                    {/*    </div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*</div>*/}
-                    {/*<div className={s.question_container}>*/}
-                    {/*    <div className={s.control}>*/}
-                    {/*        <span>Вопрос №1</span>*/}
-                    {/*        <button id={3} onClick={this.onEditQuestionClick}/>*/}
-                    {/*    </div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*    <div className={s.question_item}>*/}
-                    {/*        <QuestionListItem onDelete={this.onDeleteQuestionItem}*/}
-                    {/*                          onEdit={this.onEditQuestionItem}*/}
-                    {/*                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>*/}
-                    {/*</div>*/}
+                    {
+                        this.renderQuestions()
+                    }
                     <button className={s.save_button}
                             onClick={this.onSaveClick}>
                         Сохранить
@@ -221,7 +187,9 @@ class QuestionCreation extends React.Component {
                     this.state.modalAnswerCreation
                         ? (
                             <div className={s.answers_window}>
-                                <ModalAnswersCreation/>
+                                <ModalAnswersCreation key={this.state.modalAnswerCreation}
+                                                      question={this.state.modalAnswerCreation}
+                                                      onBackClick={() => this.setState({modalAnswerCreation: false})}/>
                             </div>
                         )
                         : ""
@@ -231,4 +199,4 @@ class QuestionCreation extends React.Component {
     }
 }
 
-export default QuestionCreation;
+export default withRouter(QuestionCreation);
