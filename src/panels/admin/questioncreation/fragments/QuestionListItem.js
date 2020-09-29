@@ -7,22 +7,30 @@ class QuestionListItem extends React.Component {
         super(props);
 
         this.state = {
-            question: props.question,
+            id: props.id,
+            text: props.text,
             onDelete: props.onDelete,
-            onEdit: props. onEdit,
+            onEdit: props.onEdit,
         };
     }
 
+    onDeleteClick = () => {
+        this.state.onDelete(this.state.id);
+    };
+
+    onEditClick = () => {
+        this.state.onEdit(this.state.id);
+    };
+
     render() {
-        const question = this.state.question;
         return (
             <div className={s.question_item}>
-                <button onClick={this.state.onDelete} />
-                <div onClick={this.state.onEdit}>
+                <button onClick={this.onDeleteClick} />
+                <div onClick={this.onEditClick}>
                     <span>Вариант 1</span>
-                    <span>{question.text}</span>
+                    <span>{this.state.text}</span>
                 </div>
-                <button onClick={this.state.onEdit}/>
+                <button onClick={this.onEditClick}/>
             </div>
         )
     }

@@ -43,16 +43,16 @@ class QuestionCreation extends React.Component {
         console.log("onDeleteQuestionClick");
     };
 
-    onAddQuestionItemClick = (e) => {
+    onAddQuestionItemClick = (id) => {
         console.log("onAddQuestionItemClick");
     };
 
-    onDeleteQuestionItem = () => {
-        console.log("onDeleteQuestionItem");
+    onDeleteQuestionItem = (id) => {
+        console.log("onDeleteQuestionItem with id=" + id);
     };
 
-    onEditQuestionItem = () => {
-        console.log("onEditQuestionItem");
+    onEditQuestionItem = (id) => {
+        console.log("onEditQuestionItem with id=" + id);
     };
 
     onSaveClick = () => {
@@ -95,37 +95,29 @@ class QuestionCreation extends React.Component {
     renderQuestions = () => {
         if (!isUndefined(this.state.questions)) {
             const questions = this.prepareQuestions(this.state.questions);
-            const length = parseInt(
-                Object.keys(questions)
-                    .reduce((accumulator, key) => parseInt(accumulator) > parseInt(key) ? accumulator : key)
-            );
 
-            let reactCode = '';
-
-            debugger
-            for (let i = 0; i < length; i++) {
-                reactCode += `
-                    <div className={s.question_container}>
+            return Object.keys(questions)
+                .sort((k1, k2) => parseInt(k1) - parseInt(k2))
+                .map(key => (
+                    <div key={key} className={s.question_container}>
                         <div className={s.control}>
-                            <span>Вопрос №1</span>
-                            <button id={1} onClick={this.onEditQuestionClick}/>
+                            <span>Вопрос №{key + 1}</span>
+                            <button id={parseInt(key)} onClick={this.onEditQuestionClick}/>
                         </div>
                         {
-                            questions[i].map(q => (
-                                    <div className={s.question_item}>
-                                        <QuestionListItem onDelete={this.onDeleteQuestionItem}
+                            questions[key].map(q => (
+                                    <div key={q.id} className={s.question_item}>
+                                        <QuestionListItem key={q.id}
+                                                          onDelete={this.onDeleteQuestionItem}
                                                           onEdit={this.onEditQuestionItem}
-                                                          question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
+                                                          id={q.id}
+                                                          text={q.questionText}/>
                                     </div>
                                 )
                             )
                         }
                     </div>
-                `;
-
-            }
-
-            return reactCode;
+                ));
         } else {
             return (
                 <div className={s.question_container}>
