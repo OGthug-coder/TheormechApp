@@ -14,8 +14,17 @@ class ModalAnswersCreation extends React.Component {
         this.prepareAnswers(props.question);
 
         this.state = {
-            title: "",
-            question: props.question,
+            questionText: !isUndefined(props.question.questionText) ? props.question.questionText : "",
+            answers: !isUndefined(props.question.answers)
+                ? props.question.answers
+                : [0, 1, 2, 3].map(i => {
+                    return {
+                        serialNumber: i,
+                        answer: "",
+                        isRight: i === 0,
+                    }
+                }),
+            explain: !isUndefined(props.question.explain) && props.question.explain !== null ? props.question.explain : "",
             rightAnswer: !isUndefined(props.question.answers)
                 ? props.question.answers.filter(a => a.isRight === RightAnswerCode.RIGHT_ANSWER)[0].serialNumber
                 : 0,
@@ -32,7 +41,7 @@ class ModalAnswersCreation extends React.Component {
     };
 
     onQuestionTextChange = (value) => {
-
+        this.setState({})
     };
 
     onAnswerTextChange = (value, id) => {
@@ -48,12 +57,12 @@ class ModalAnswersCreation extends React.Component {
     };
 
     renderAnswers = () => {
-        if (!isUndefined(this.state.question.answers)) {
-            return this.state.question.answers
+        if (this.state.answers.length > 0) {
+            return this.state.answers
                 .sort((a1, a2) => a1.serialNumber - a2.serialNumber)
                 .map(answer => (
                     <div className={s.input}>
-                        <Input id={answer.id}
+                        <Input id={answer.serialNumber}
                                autoResize
                                placeholder={answer.answer}
                                rows={1}
@@ -61,22 +70,11 @@ class ModalAnswersCreation extends React.Component {
                                onChange={this.onAnswerTextChange}/>
                     </div>
                 ));
-        } else {
-            return [0, 1, 2, 3].map(id => (
-                <div className={s.input}>
-                    <Input id={id}
-                           rows={1}
-                           placeholder={""}
-                           maxLength={80}
-                           onChange={this.onAnswerTextChange}/>
-                </div>
-            ));
         }
     };
 
     render() {
         const question = this.state.question;
-
         return (
             <div className={s.container}>
                 <div className={s.sticky_container}>
@@ -90,7 +88,7 @@ class ModalAnswersCreation extends React.Component {
                             Вопрос
                         </div>
                         <div className={s.input}>
-                            <Input placeholder={!isUndefined(question.questionText) ? question.questionText : ""}
+                            <Input placeholder={this.state.questionText}
                                    maxLength={135}
                                    onChange={this.onQuestionTextChange}/>
                         </div>
@@ -116,7 +114,7 @@ class ModalAnswersCreation extends React.Component {
                         <div className={s.input_title}>
                             Объяснение
                         </div>
-                        <Input placeholder={this.state.title}
+                        <Input placeholder={this.state.explain}
                                maxLength={285}
                                onChange={this.onExplainTextChange}/>
                         <button className={s.save_button}

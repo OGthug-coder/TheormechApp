@@ -169,8 +169,9 @@ class QuestionCreation extends React.Component {
     render() {
         return (
             <>
-                <BackHeader style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}/>
-                <div className={`${s.container} ${this.state.modalAnswerCreation ? s.blur : ""}`}>
+                <BackHeader key={this.state.modalAnswerCreation}
+                            style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}/>
+                <div className={`${s.container} ${this.state.modalAnswerCreation ? '' : ""}`}>
                     <div className={s.header}>
                         Список вопросов
                         <button onClick={this.onAddQuestionClick}/>
