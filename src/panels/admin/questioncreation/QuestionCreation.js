@@ -6,6 +6,7 @@ import isUndefined from "../../../common/IsUndefined";
 import ModalAnswersCreation from "./fragments/ModalAnswersCreation";
 import QuestionListItem from "./fragments/QuestionListItem";
 import {withRouter} from 'react-router-dom'
+import RightAnswerCode from "../../../preview/util/RightAnswerCode";
 
 const PLACEHOLDER = 'PLACEHOLDER';
 
@@ -59,8 +60,28 @@ class QuestionCreation extends React.Component {
     };
 
     onAddQuestionItemClick = (id) => {
-        console.log("onAddQuestionItemClick");
-        this.setState({modalAnswerCreation: {}});
+        console.log("onAddQuestionItemClick id=" + id);
+        let newQuestion = {
+            questionText: "",
+            answers:  [0, 1, 2, 3].map(i => {
+                return {
+                    serialNumber: i,
+                    answer: "",
+                    isRight: i === 0 ? RightAnswerCode.RIGHT_ANSWER : RightAnswerCode.WRONG_ANSWER,
+                }
+            }),
+            explain: "",
+            reward: 0,
+            serialNumber: id,
+        };
+
+        let questions = this.state.questions;
+        questions.push(newQuestion);
+
+        this.testEditHelper.updateValue("questions", questions)
+        this.setState({
+            modalAnswerCreation: newQuestion,
+        });
     };
 
     onDeleteQuestionItem = (id) => {
@@ -87,12 +108,12 @@ class QuestionCreation extends React.Component {
                     }}>
                         <SelectWindow data={[
                             {
-                                id: 0,
+                                id: this.state.editWindowData.questionId,
                                 value: "Добавить вариант",
                                 onClick: this.onAddQuestionItemClick,
                             },
                             {
-                                id: 1,
+                                id: this.state.editWindowData.questionId,
                                 value: "Удалить вопрос",
                                 onClick: this.onDeleteQuestionClick,
                             }

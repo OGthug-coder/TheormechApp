@@ -14,20 +14,10 @@ class ModalAnswersCreation extends React.Component {
         this.prepareAnswers(props.question);
 
         this.state = {
-            questionText: !isUndefined(props.question.questionText) ? props.question.questionText : "",
-            answers: !isUndefined(props.question.answers)
-                ? props.question.answers
-                : [0, 1, 2, 3].map(i => {
-                    return {
-                        serialNumber: i,
-                        answer: "",
-                        isRight: i === 0,
-                    }
-                }),
-            explain: !isUndefined(props.question.explain) && props.question.explain !== null ? props.question.explain : "",
-            rightAnswer: !isUndefined(props.question.answers)
-                ? props.question.answers.filter(a => a.isRight === RightAnswerCode.RIGHT_ANSWER)[0].serialNumber
-                : 0,
+            questionText: props.question.questionText,
+            answers: props.question.answers,
+            explain: props.question.explain !== null ? props.question.explain : "",
+            rightAnswer: props.question.answers.filter(a => a.isRight === RightAnswerCode.RIGHT_ANSWER)[0].serialNumber,
         };
     }
 
