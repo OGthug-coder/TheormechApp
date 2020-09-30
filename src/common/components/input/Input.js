@@ -18,6 +18,13 @@ class Input extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if (!isUndefined(this.props.autoResize)) {
+            this.textAreaRef.current.style.height = "";
+            this.textAreaRef.current.style.height = Math.min(120, this.textAreaRef.current.scrollHeight) + "px";
+        }
+    }
+
     onChange = (e) => {
         const value = e.target.value;
         this.setState({value: value});

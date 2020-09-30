@@ -60,7 +60,7 @@ class QuestionCreation extends React.Component {
 
     onAddQuestionItemClick = (id) => {
         console.log("onAddQuestionItemClick");
-        this.setState({modalAnswerCreation: true});
+        this.setState({modalAnswerCreation: {}});
     };
 
     onDeleteQuestionItem = (id) => {
@@ -69,6 +69,7 @@ class QuestionCreation extends React.Component {
 
     onEditQuestionItem = (id) => {
         console.log("onEditQuestionItem with id=" + id);
+        this.setState({modalAnswerCreation: this.state.questions.filter(q => q.id === id)[0]});
     };
 
     onSaveClick = () => {
