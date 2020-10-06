@@ -22,7 +22,7 @@ class ModalAnswersCreation extends React.Component {
     prepareAnswers = (question) => {
         if (!isUndefined(question.answers)) {
             let counter = 0;
-            question.answers.map(a => {
+            question.answers.forEach(a => {
                 a.serialNumber = counter++;
             });
         }
@@ -62,7 +62,8 @@ class ModalAnswersCreation extends React.Component {
     };
 
     render() {
-        const question = this.state.question;
+        // TODO: Delete?
+        // const question = this.state.question; 
         return (
             <div className={s.container}>
                 <div className={s.sticky_container}>

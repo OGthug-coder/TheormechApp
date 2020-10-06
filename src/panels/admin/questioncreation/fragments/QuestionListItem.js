@@ -3,9 +3,6 @@ import s from "./QuestionListItem.module.css";
 
 
 class QuestionListItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     onDeleteClick = () => {
         this.props.onDelete(this.props.id);

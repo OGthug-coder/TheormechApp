@@ -3,9 +3,6 @@ import React from 'react';
 import s from './AnswerItemFragment.module.css';
 
 class AnswerItemFragment extends React.Component {
-    constructor(props) {
-        super(props);
-    }
   
     getOnClick = () => {
         if (!this.props.disabled) {

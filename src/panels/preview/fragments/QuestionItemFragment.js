@@ -5,9 +5,6 @@ import QuestionStatus from "../../../preview/util/QuestionStatus";
 import isUndefined from "../../../common/IsUndefined";
 
 class QuestionItemFragment extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     loadStatusPic = () => {
         if (this.props.status !== undefined) {

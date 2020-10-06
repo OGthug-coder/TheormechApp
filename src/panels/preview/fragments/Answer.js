@@ -5,9 +5,6 @@ import isUndefined from "../../../common/IsUndefined";
 import RightAnswerCode from "../../../preview/util/RightAnswerCode";
 
 class Answer extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
     getRightAnswer = () => {
         if (!isUndefined(this.props.question)) {

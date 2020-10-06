@@ -2,9 +2,6 @@ import React from 'react';
 import StickerStatus from "../util/StickerStatus";
 
 class StickerControl extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         let path;

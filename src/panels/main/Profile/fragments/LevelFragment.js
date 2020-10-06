@@ -4,9 +4,6 @@ import s from './LevelFragment.module.css';
 import isUndefined from "../../../../common/IsUndefined";
 
 class LevelFragment extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const sticker = this.props.sticker;
