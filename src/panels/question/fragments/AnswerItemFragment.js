@@ -6,19 +6,11 @@ class AnswerItemFragment extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            disabled: props.disabled,
-            answerType: props.answerType,
-            answerText: props.answerText,
-            onRightAnswer: props.onRightAnswer,
-            onWrongAnswer: props.onWrongAnswer,
-            isRightAnswer: props.isRightAnswer
-        }
     }
   
     getOnClick = () => {
-        if (!this.state.disabled) {
-            return this.state.isRightAnswer ? this.state.onRightAnswer : this.state.onWrongAnswer;
+        if (!this.props.disabled) {
+            return this.props.isRightAnswer ? this.props.onRightAnswer : this.props.onWrongAnswer;
         } else {
             return "";
         }
@@ -28,9 +20,9 @@ class AnswerItemFragment extends React.Component {
         return (
             <div className={s.answer_item} onClick={this.getOnClick()}>
                 {
-                    this.state.answerType === 'str' ?
+                    this.props.answerType === 'str' ?
                         (<div className={s.text} >
-                            {this.state.answerText}
+                            {this.props.answerText}
                         </div>) : ''
                 }
             </div>
