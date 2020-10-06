@@ -9,15 +9,6 @@ class StickerCard extends React.Component {
         super(props);
 
         this.state = {
-            id: props.id,
-            img: props.img,
-            name: props.name,
-            quote: props.quote,
-            description: props.description,
-            cost: props.cost,
-            status: props.status,
-            onBuyClick: props.onBuyClick,
-            onSelect: props.onSelect,
             scoreFocus: parseInt(props.scoreFocus) === props.id
         };
 
@@ -25,49 +16,52 @@ class StickerCard extends React.Component {
 
 
     render() {
-        const id = this.state.id.toString();
+        const id = this.props.id.toString();
 
         return (
             <div className={s.wrapper}>
-                <div id={this.state.id}
+                <div id={this.props.id}
                      className={s.card}
-                     onClick={this.state.status === StickerStatus.AVAILABLE ? this.state.onSelect : () => {
+                     onClick={this.props.status === StickerStatus.AVAILABLE ?
+                         this.props.onSelect : () => {
                      }}>
 
                     <img className={s.img}
-                         src={this.state.img}
+                         src={this.props.img}
                          alt="sticker"
                     />
                     <div className={s.content}>
                         <div className={s.name}>
-                            {this.state.name}
+                            {this.props.name}
                         </div>
                         <div className={s.quote}>
-                            {'«' + this.state.quote + '»'}
+                            {'«' + this.props.quote + '»'}
                         </div>
                         <div className={s.description}>
                             <div>Подробнее</div>
-                            {this.state.description}
+                            {this.props.description}
                         </div>
                     </div>
                     <div className={s.control}>
                         {
-                            this.state.status === StickerStatus.LOCKED
+                            this.props.status === StickerStatus.LOCKED
                                 ? <Score key={this.state.scoreFocus}
-                                         score={this.state.cost}
+                                         score={this.props.cost}
                                          focus={this.state.scoreFocus}/>
                                 : ""
                         }
 
                         <div className={s.status}>
-                            <StickerControl status={this.state.status}/>
+                            <StickerControl status={this.props.status}/>
                         </div>
                     </div>
                 </div>
-                <button className={`${s.button} ${this.state.status === StickerStatus.LOCKED ? "" : s.hidden}`}
-                        id={id}
-                        onClick={this.state.onBuyClick}>
-                    Купить
+                <button 
+                    className={`${s.button} ${this.props.status === StickerStatus.LOCKED ?
+                         "" : s.hidden}`}
+                    id={id}
+                    onClick={this.props.onBuyClick}>
+                        Купить
                 </button>
             </div>
 

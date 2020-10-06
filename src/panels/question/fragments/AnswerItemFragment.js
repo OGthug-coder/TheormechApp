@@ -5,7 +5,6 @@ import s from './AnswerItemFragment.module.css';
 class AnswerItemFragment extends React.Component {
     constructor(props) {
         super(props);
-
     }
   
     getOnClick = () => {
