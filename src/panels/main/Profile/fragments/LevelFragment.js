@@ -6,14 +6,10 @@ import isUndefined from "../../../../common/IsUndefined";
 class LevelFragment extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            sticker: props.sticker,
-        };
     }
 
     render() {
-        const sticker = this.state.sticker;
+        const sticker = this.props.sticker;
         return (
             <div className={s.level_wrapper}>
                 <div className={s.dignity}>

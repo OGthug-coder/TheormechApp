@@ -16,8 +16,6 @@ class Profile extends React.Component {
         this.application = props.application;
         this.profileService = this.application.provideProfileService();
         this.state = {
-            settings_window: props.settings_window,
-            onSettingsClick: props.onSettingsClick,
             aboutDev: false,
         };
 
@@ -37,15 +35,16 @@ class Profile extends React.Component {
     };
 
     onStickerClick = () => {
-        this.state.onSettingsClick();
+        this.props.onSettingsClick();
         setTimeout(() => this.props.history.push('/stickerShop'), 250);
     };
 
     provideVisibility = () => {
-        if (isUndefined(this.state.settings_window)) {
+        if (isUndefined(this.props.settings_window)) {
             return s.hidden_no_animation;
         } else {
-            return this.state.settings_window === true ? s.settings_window_anim : s.hidden;
+            return this.props.settings_window === true ?
+                 s.settings_window_anim : s.hidden;
         }
 
     };
@@ -56,7 +55,8 @@ class Profile extends React.Component {
             <div className={s.profile_card}>
                 <div className={s.slider}/>
                 <div className={s.about}>
-                    <Avatar src={!isUndefined(user) ? this.state.user.photo_200 : ""} size={100}/>
+                    <Avatar src={!isUndefined(user) ?
+                         this.state.user.photo_200 : ""} size={100}/>
                     <div className={s.bio}>
                         <div className={s.name}>
                             {
@@ -77,7 +77,10 @@ class Profile extends React.Component {
                 <LevelFragment key={user}
                                sticker={!isUndefined(user) ? user.activeSticker : undefined}/>
                 <div className={s.logo}>
-                    <a href={"https://vk.com/theormech"} target="_blank" rel="noopener noreferrer">
+                    <a 
+                        href={"https://vk.com/theormech"} 
+                        target="_blank" rel="noopener noreferrer"
+                    >
                         <img src={require("../../../img/profile/ic_tm_logo.png")}
                              alt={"logo"}/>
 
@@ -87,8 +90,9 @@ class Profile extends React.Component {
                     </div>
 
                     <div
-                        className={`${s.settings} ${isUndefined(this.state.settings_window) || this.state.settings_window === true ? s.active : s.disabled}`}
-                        onClick={this.state.onSettingsClick}>
+                        className={`${s.settings} ${isUndefined(this.props.settings_window) ||
+                             this.props.settings_window === true ? s.active : s.disabled}`}
+                        onClick={this.props.onSettingsClick}>
                     </div>
                 </div>
                 <div className={`${s.settings_window} ${this.provideVisibility()}`}>
