@@ -5,21 +5,14 @@ import s from "./QuestionListItem.module.css";
 class QuestionListItem extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            id: props.id,
-            text: props.text,
-            onDelete: props.onDelete,
-            onEdit: props.onEdit,
-        };
     }
 
     onDeleteClick = () => {
-        this.state.onDelete(this.state.id);
+        this.props.onDelete(this.props.id);
     };
 
     onEditClick = () => {
-        this.state.onEdit(this.state.id);
+        this.props.onEdit(this.props.id);
     };
 
     render() {
@@ -28,7 +21,7 @@ class QuestionListItem extends React.Component {
                 <button onClick={this.onDeleteClick} />
                 <div onClick={this.onEditClick}>
                     <span>Вариант 1</span>
-                    <span>{this.state.text}</span>
+                    <span>{this.props.text}</span>
                 </div>
                 <button onClick={this.onEditClick}/>
             </div>
