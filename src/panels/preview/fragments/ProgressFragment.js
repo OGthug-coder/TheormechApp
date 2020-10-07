@@ -6,8 +6,6 @@ class ProgressFragment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            maxScore: props.maxScore,
-            currentScore: props.currentScore,
             timeM: props.time === null ? 0 : props.time.toString().split(":")[0],
             timeS: props.time === null ? 0 : props.time.toString().split(":")[0]
         }
@@ -47,7 +45,7 @@ class ProgressFragment extends React.Component {
                 <div className={`${s.progress_item} ${s.score}`}>
                     {this.progressItem({
                             title: "Очки",
-                            elements: [this.state.currentScore, this.state.maxScore],
+                            elements: [this.props.currentScore, this.props.maxScore],
                             separator: "/",
                         }
                     )}

@@ -3,7 +3,7 @@ import React from 'react';
 import s from './task.module.css';
 import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
-import UserRoles from "../../../common/UserRoles";
+// import UserRoles from "../../../common/UserRoles";
 
 
 class TestCard extends React.Component {
@@ -13,15 +13,6 @@ class TestCard extends React.Component {
         this.application = props.application;
 
         this.state = {
-            id: props.id,
-            title: props.title,
-            img: props.img,
-            date: props.date,
-            onLongClick: props.onLongClick,
-            editMode: props.editMode,
-            onDeleteClick: props.onDeleteClick,
-            onEditClick: props.onEditClick,
-
             isTouchStarted: false,
         }
 
@@ -31,7 +22,7 @@ class TestCard extends React.Component {
     }
 
     renderButton = () => {
-        if (this.state.editMode) {
+        if (this.props.editMode) {
             return (
                 <Link to={`#`}
                       style={{visibility: "hidden"}}
@@ -41,7 +32,7 @@ class TestCard extends React.Component {
             );
         } else if (isUndefined(this.props.disableButton)) {
             return (
-                <Link to={`/preview/${this.state.id}`}
+                <Link to={`/preview/${this.props.id}`}
                       className={s.start_button}>
                     Начать тест
                 </Link>
@@ -74,12 +65,12 @@ class TestCard extends React.Component {
     };
 
     onLongTouch = () => {
-        this.state.onLongClick();
+        this.props.onLongClick();
     };
 
     onClick = () => {
         if (!this.clickDisabler) {
-            this.state.onEditClick(this.state.id);
+            this.props.onEditClick(this.props.id);
         }
     };
 
@@ -88,19 +79,19 @@ class TestCard extends React.Component {
             <div>
                 <div
                      className={s.card}
-                     onClick={this.state.editMode ? this.onClick : () => {}}
+                     onClick={this.props.editMode ? this.onClick : () => {}}
                      onTouchStart={this.onTouchStart}
                      onTouchEnd={this.onTouchEnd}>
                     <img className={s.pic}
-                         src={this.state.img}
+                         src={this.props.img}
                          alt={"test"}/>
                     <div className={s.container}>
                         <div className={s.name}>
-                            {this.state.title}
+                            {this.props.title}
                         </div>
 
                         <div className={s.info}>
-                            <div className={s.date}>{this.state.date}</div>
+                            <div className={s.date}>{this.props.date}</div>
                             <div className={s.progress}>
                                 <span className={this.state.progress >= 1 ? s.dot_on : s.dot}/>
                                 <span className={this.state.progress >= 2 ? s.dot_on : s.dot}/>
@@ -111,11 +102,11 @@ class TestCard extends React.Component {
                 </div>
                 {this.renderButton()}
                 {
-                    this.state.editMode ? (
+                    this.props.editMode ? (
                         <>
                             <div className={s.delete_button}>
-                                <div id={this.state.id}
-                                     onClick={this.state.onDeleteClick}/>
+                                <div id={this.props.id}
+                                     onClick={this.props.onDeleteClick}/>
                             </div>
                             <div className={s.status_icon}>
                                 <div />

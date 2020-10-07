@@ -14,8 +14,6 @@ class ModalAnswersCreation extends React.Component {
         this.prepareAnswers(props.question);
 
         this.state = {
-            questionText: props.question.questionText,
-            answers: props.question.answers,
             explain: props.question.explain !== null ? props.question.explain : "",
             rightAnswer: props.question.answers.filter(a => a.isRight === RightAnswerCode.RIGHT_ANSWER)[0].serialNumber,
         };
@@ -24,7 +22,7 @@ class ModalAnswersCreation extends React.Component {
     prepareAnswers = (question) => {
         if (!isUndefined(question.answers)) {
             let counter = 0;
-            question.answers.map(a => {
+            question.answers.forEach(a => {
                 a.serialNumber = counter++;
             });
         }
@@ -47,8 +45,8 @@ class ModalAnswersCreation extends React.Component {
     };
 
     renderAnswers = () => {
-        if (this.state.answers.length > 0) {
-            return this.state.answers
+        if (this.props.question.answers.length > 0) {
+            return this.props.question.answers
                 .sort((a1, a2) => a1.serialNumber - a2.serialNumber)
                 .map(answer => (
                     <div className={s.input}>
@@ -64,7 +62,8 @@ class ModalAnswersCreation extends React.Component {
     };
 
     render() {
-        const question = this.state.question;
+        // TODO: Delete?
+        // const question = this.state.question; 
         return (
             <div className={s.container}>
                 <div className={s.sticky_container}>
@@ -78,7 +77,7 @@ class ModalAnswersCreation extends React.Component {
                             Вопрос
                         </div>
                         <div className={s.input}>
-                            <Input placeholder={this.state.questionText}
+                            <Input placeholder={this.props.question.questionText}
                                    maxLength={135}
                                    onChange={this.onQuestionTextChange}/>
                         </div>

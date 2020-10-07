@@ -175,7 +175,7 @@ class QuestionCreation extends React.Component {
     prepareQuestions = (questions) => {
         const sortedQuestions = {};
 
-        questions.map(q => {
+        questions.forEach(q => {
             if (isUndefined(sortedQuestions[q.serialNumber])) {
                 sortedQuestions[q.serialNumber] = [];
                 sortedQuestions[q.serialNumber].push(q);
