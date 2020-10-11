@@ -36,7 +36,7 @@ class QuestionCreation extends React.Component {
                     ? this.state.questions
                         .reduce((accumulator, key) => accumulator.serialNumber > key.serialNumber ? accumulator : key)
                         .serialNumber
-                    : 0
+                    : -1
             ) + 1,
         });
 
@@ -124,7 +124,7 @@ class QuestionCreation extends React.Component {
         // Check if there are more questions with serialNumber of deleted question
         // If there is no question with the serial number, shift questions
         const needsShifting = questions.filter(q => q.serialNumber === serialNumber).length === 0;
-        debugger
+
         if (needsShifting) {
             this.shiftQuestions(questions, serialNumber);
         }

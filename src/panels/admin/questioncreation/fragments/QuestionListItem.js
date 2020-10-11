@@ -17,7 +17,6 @@ class QuestionListItem extends React.Component {
             <div className={s.question_item}>
                 <button onClick={this.onDeleteClick} />
                 <div onClick={this.onEditClick}>
-                    <span>Вариант 1</span>
                     <span>{this.props.text}</span>
                 </div>
                 <button onClick={this.onEditClick}/>

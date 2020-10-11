@@ -12,7 +12,7 @@ class ModalAnswersCreation extends React.Component {
         super(props);
 
         this.prepareAnswers(props.question);
-
+        debugger
         this.state = {
             explain: props.question.explain !== null ? props.question.explain : "",
             rightAnswer: props.question.answers.filter(a => a.isRight === RightAnswerCode.RIGHT_ANSWER)[0].serialNumber,

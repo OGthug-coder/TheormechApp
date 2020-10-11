@@ -16,23 +16,20 @@
 
 .question_item > div {
     width: calc(100% - 2*(28px + 15px));
-    height: 100%;
+    height: min-content;
     display: flex;
+    align-self: center;
     flex-direction: column;
     margin-right: 15px;
     margin-left: 15px;
 }
 
-.question_item > div > span:first-child {
-    font-size: 14px;
-}
-
-.question_item > div > span:last-child {
+.question_item > div > span {
     height: 50%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #838383;
+    color: black;
 }
 
 .question_item > button:first-child {
