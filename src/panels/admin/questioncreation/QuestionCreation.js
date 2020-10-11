@@ -32,9 +32,11 @@ class QuestionCreation extends React.Component {
         questions.push({
             questionText: PLACEHOLDER,
             serialNumber: parseInt(
-                this.state.questions
-                    .reduce((accumulator, key) => accumulator.serialNumber > key.serialNumber ? accumulator : key)
-                    .serialNumber
+                this.state.questions.length > 0
+                    ? this.state.questions
+                        .reduce((accumulator, key) => accumulator.serialNumber > key.serialNumber ? accumulator : key)
+                        .serialNumber
+                    : 0
             ) + 1,
         });
 
@@ -55,15 +57,37 @@ class QuestionCreation extends React.Component {
         console.log("onEditQuestionClick");
     };
 
-    onDeleteQuestionClick = (e) => {
-        console.log("onDeleteQuestionClick");
+    onDeleteQuestionClick = (serialNumber) => {
+        let questions = this.state.questions
+            .filter(question => question.serialNumber !== parseInt(serialNumber));
+
+        questions = this.shiftQuestions(questions, serialNumber);
+
+        this.setState({questions: questions});
+    };
+
+    shiftQuestions = (questions, serialNumber) => {
+        const maxSerialNumber = parseInt(this.state.questions
+            .reduce((acc, question) => acc.serialNumber > question.serialNumber ? acc : question)
+            .serialNumber
+        );
+
+        if (maxSerialNumber !== serialNumber) {
+            questions.map(q => {
+                if (q.serialNumber > serialNumber) {
+                    q.serialNumber--;
+                }
+            });
+        }
+
+        return questions;
     };
 
     onAddQuestionItemClick = (id) => {
         console.log("onAddQuestionItemClick id=" + id);
         let newQuestion = {
             questionText: "",
-            answers:  [0, 1, 2, 3].map(i => {
+            answers: [0, 1, 2, 3].map(i => {
                 return {
                     serialNumber: i,
                     answer: "",
@@ -85,7 +109,27 @@ class QuestionCreation extends React.Component {
     };
 
     onDeleteQuestionItem = (id) => {
-        console.log("onDeleteQuestionItem with id=" + id);
+        let serialNumber = 0;
+
+        const questions = this.state.questions.filter(q => {
+                if (q.id !== parseInt(id)) {
+                    return true
+                } else {
+                    serialNumber = q.serialNumber;
+                    return false
+                }
+            }
+        );
+
+        // Check if there are more questions with serialNumber of deleted question
+        // If there is no question with the serial number, shift questions
+        const needsShifting = questions.filter(q => q.serialNumber === serialNumber).length === 0;
+        debugger
+        if (needsShifting) {
+            this.shiftQuestions(questions, serialNumber);
+        }
+
+        this.setState({questions: questions});
     };
 
     onEditQuestionItem = (id) => {

@@ -51,6 +51,7 @@ class ModalAnswersCreation extends React.Component {
                 .map(answer => (
                     <div className={s.input}>
                         <Input id={answer.serialNumber}
+                               key={answer.serialNumber}
                                autoResize
                                placeholder={answer.answer}
                                rows={1}
