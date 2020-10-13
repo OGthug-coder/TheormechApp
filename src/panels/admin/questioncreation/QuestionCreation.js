@@ -22,6 +22,7 @@ class QuestionCreation extends React.Component {
             questions: !isUndefined(test.questions) ? test.questions : [],
             editWindowData: undefined,
             modalAnswerCreation: false,
+            latestId: -1,
         };
     }
 
@@ -40,6 +41,7 @@ class QuestionCreation extends React.Component {
             ) + 1,
         });
 
+        this.testEditHelper.updateValue("questions", questions)
         this.setState({questions: questions});
     };
 
@@ -61,8 +63,8 @@ class QuestionCreation extends React.Component {
         let questions = this.state.questions
             .filter(question => question.serialNumber !== parseInt(serialNumber));
 
-        questions = this.shiftQuestions(questions, serialNumber);
-
+        this.shiftQuestions(questions, serialNumber);
+        this.testEditHelper.updateValue("questions", questions)
         this.setState({questions: questions});
     };
 
@@ -84,8 +86,18 @@ class QuestionCreation extends React.Component {
     };
 
     onAddQuestionItemClick = (id) => {
-        console.log("onAddQuestionItemClick id=" + id);
+        const needsReplacement = this.state.questions
+            .filter(q => q.questionText === PLACEHOLDER && q.serialNumber === parseInt(id))
+            .length === 1;
+
+        const questions = this.state.questions;
+
+        if (needsReplacement) {
+            questions.filter(q => q.serialNumber !== parseInt(id));
+        }
+
         let newQuestion = {
+            id: this.state.latestId,
             questionText: "",
             answers: [0, 1, 2, 3].map(i => {
                 return {
@@ -96,15 +108,16 @@ class QuestionCreation extends React.Component {
             }),
             explain: "",
             reward: 0,
-            serialNumber: id,
+            serialNumber: parseInt(id),
         };
 
-        let questions = this.state.questions;
         questions.push(newQuestion);
 
         this.testEditHelper.updateValue("questions", questions)
         this.setState({
+            questions: questions,
             modalAnswerCreation: newQuestion,
+            latestId: this.state.latestId - 1,
         });
     };
 
@@ -129,12 +142,15 @@ class QuestionCreation extends React.Component {
             this.shiftQuestions(questions, serialNumber);
         }
 
+        this.testEditHelper.updateValue("questions", questions)
         this.setState({questions: questions});
     };
 
     onEditQuestionItem = (id) => {
         console.log("onEditQuestionItem with id=" + id);
-        this.setState({modalAnswerCreation: this.state.questions.filter(q => q.id === id)[0]});
+        const q = this.state.questions.filter(q => q.id === id);
+        debugger
+        this.setState({modalAnswerCreation: q[0]});
     };
 
     onSaveClick = () => {
