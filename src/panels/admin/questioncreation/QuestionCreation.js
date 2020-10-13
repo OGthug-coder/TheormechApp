@@ -103,6 +103,7 @@ class QuestionCreation extends React.Component {
                 return {
                     serialNumber: i,
                     answer: "",
+                    answerType: "text",
                     isRight: i === 0 ? RightAnswerCode.RIGHT_ANSWER : RightAnswerCode.WRONG_ANSWER,
                 }
             }),
@@ -142,19 +143,22 @@ class QuestionCreation extends React.Component {
             this.shiftQuestions(questions, serialNumber);
         }
 
-        this.testEditHelper.updateValue("questions", questions)
+        this.testEditHelper.updateValue("questions", questions);
         this.setState({questions: questions});
     };
 
     onEditQuestionItem = (id) => {
         console.log("onEditQuestionItem with id=" + id);
         const q = this.state.questions.filter(q => q.id === id);
-        debugger
         this.setState({modalAnswerCreation: q[0]});
     };
 
     onSaveClick = () => {
-        console.log("onSaveClick");
+        this.testEditHelper.sendChanges();
+    };
+
+    onBackClick = () => {
+        this.testEditHelper.sendChanges();
     };
 
     renderEditWindow = () => {
@@ -187,7 +191,15 @@ class QuestionCreation extends React.Component {
 
     onCloseEditWindowClick = () => {
         this.setState({editWindowData: undefined});
-        console.log("onCloseEditWindowClick");
+    };
+
+    updateQuestion = (question) => {
+        let questions = this.state.questions;
+        questions = questions.filter(q => q.id !== question.id);
+        questions.push(question);
+
+        this.testEditHelper.updateValue("questions", questions);
+        this.setState({questions: questions});
     };
 
     renderQuestions = () => {
@@ -251,6 +263,7 @@ class QuestionCreation extends React.Component {
         return (
             <>
                 <BackHeader key={this.state.modalAnswerCreation}
+                            onClick={this.onBackClick}
                             style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}/>
                 <div className={`${s.container} ${this.state.modalAnswerCreation ? '' : ""}`}>
                     <div className={s.header}>
@@ -272,7 +285,8 @@ class QuestionCreation extends React.Component {
                             <div className={s.answers_window}>
                                 <ModalAnswersCreation key={this.state.modalAnswerCreation}
                                                       question={this.state.modalAnswerCreation}
-                                                      onBackClick={() => this.setState({modalAnswerCreation: false})}/>
+                                                      onBackClick={() => this.setState({modalAnswerCreation: false})}
+                                                      updateQuestion={this.updateQuestion}/>
                             </div>
                         )
                         : ""

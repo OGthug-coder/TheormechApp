@@ -9,16 +9,24 @@ class BackHeader extends React.Component {
 
         this.state = {
             disabled: !isUndefined(props.disabled),
-            style: props.style
         };
     }
 
+    onBackClick = () => {
+        if (!this.state.disabled) {
+            if (!isUndefined(this.props.onClick)) {
+                this.props.onClick();
+            }
+            this.props.history.goBack();
+        }
+    };
+
     render() {
         return (
-            <div style={this.state.style} className={s.header}>
+            <div style={this.props.style} className={s.header}>
                 <button
                     className={s.exit_button}
-                    onClick={!this.state.disabled ? this.props.history.goBack : () => {}}/>
+                    onClick={this.onBackClick}/>
             </div>
         );
     }

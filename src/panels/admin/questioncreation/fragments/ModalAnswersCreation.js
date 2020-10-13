@@ -3,7 +3,6 @@ import s from "./ModalAnswersCreation.module.css";
 import ModalWindow from "../../../../common/components/modalwindow/ModalWindow";
 import Input from "../../../../common/components/input/Input";
 import BackButton from "../../../../common/components/backbutton/BackButton";
-import isUndefined from "../../../../common/IsUndefined";
 import RightAnswerCode from "../../../../preview/util/RightAnswerCode";
 
 
@@ -13,34 +12,74 @@ class ModalAnswersCreation extends React.Component {
 
         this.prepareAnswers(props.question);
         this.state = {
+            reward: props.question.reward,
+            questionText: props.question.questionText,
+            answers: props.question.answers,
             explain: props.question.explain !== null ? props.question.explain : "",
             rightAnswer: props.question.answers.filter(a => a.isRight === RightAnswerCode.RIGHT_ANSWER)[0].serialNumber,
         };
     }
 
     prepareAnswers = (question) => {
-        if (!isUndefined(question.answers)) {
-            let counter = 0;
-            question.answers.forEach(a => {
-                a.serialNumber = counter++;
-            });
-        }
+        let counter = 0;
+        question.answers.forEach(a => {
+            a.serialNumber = counter++;
+        });
     };
 
     onQuestionTextChange = (value) => {
-        this.setState({})
+        this.setState({questionText: value});
     };
 
     onAnswerTextChange = (value, id) => {
-
+        const answers = this.state.answers;
+        answers.map(a => {
+            if (a.serialNumber === parseInt(id)) {
+                a.answer = value
+            }
+        });
+        this.setState({answers: answers});
     };
 
     onExplainTextChange = (value) => {
+        this.setState({explain: value});
+    };
 
+    onTestTimeChange = (value) => {
+        const answers = this.state.answers;
+        answers.map(a => {
+            if (a.serialNumber === parseInt(value)) {
+                a.isRight = 1;
+            } else {
+                a.isRight = 0;
+            }
+        });
+        this.setState({answers: answers});
+    };
+
+    onRewardChange = (value) => {
+        this.setState({reward: parseInt(value)});
     };
 
     onSaveClick = () => {
+        const question = {
+            questionText: this.state.questionText,
+            explain: this.state.explain,
+            id: this.props.question.id,
+            reward: this.state.reward,
+            serialNumber: this.props.question.serialNumber,
+            answers: this.state.answers.map(a => {
+                delete a.serialNumber;
+                return a;
+            }),
+        };
 
+        this.props.updateQuestion(question);
+    };
+
+    onBackClick = () => {
+        this.onSaveClick();
+        this.props.onBackClick();
     };
 
     renderAnswers = () => {
@@ -62,13 +101,11 @@ class ModalAnswersCreation extends React.Component {
     };
 
     render() {
-        // TODO: Delete?
-        // const question = this.state.question; 
         return (
             <div className={s.container}>
                 <div className={s.sticky_container}>
                     <div className={`${s.back_button}`}>
-                        <BackButton disabled onClick={this.props.onBackClick}/>
+                        <BackButton disabled onClick={this.onBackClick}/>
                     </div>
                 </div>
                 <ModalWindow>
@@ -77,7 +114,7 @@ class ModalAnswersCreation extends React.Component {
                             Вопрос
                         </div>
                         <div className={s.input}>
-                            <Input placeholder={this.props.question.questionText}
+                            <Input placeholder={this.state.questionText}
                                    maxLength={135}
                                    onChange={this.onQuestionTextChange}/>
                         </div>
@@ -92,7 +129,9 @@ class ModalAnswersCreation extends React.Component {
                                 Верный ответ
                             </div>
                             <div className={s.select}>
-                                <select name="time" value={this.state.rightAnswer} onChange={this.onTestTimeChange}>
+                                <select name="time"
+                                        value={this.state.rightAnswer}
+                                        onChange={(e) => this.onTestTimeChange(e.target.value)}>
                                     <option value="0">1</option>
                                     <option value="1">2</option>
                                     <option value="2">3</option>
@@ -106,6 +145,15 @@ class ModalAnswersCreation extends React.Component {
                         <Input placeholder={this.state.explain}
                                maxLength={285}
                                onChange={this.onExplainTextChange}/>
+
+                        <div className={s.input_title}>
+                            Награда
+                        </div>
+                        <div className={s.input}>
+                            <Input placeholder={this.state.reward}
+                                   rows={1}
+                                   onChange={this.onRewardChange}/>
+                        </div>
                         <button className={s.save_button}
                                 onClick={this.onSaveClick}>
                             Сохранить

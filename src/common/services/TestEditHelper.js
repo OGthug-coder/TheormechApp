@@ -29,6 +29,7 @@ class TestEditHelper {
                 // this.api.updateTest(this.prepareTest());
                 console.log("update");
             }
+            this.changeCounter = 0;
         }
     }
 
