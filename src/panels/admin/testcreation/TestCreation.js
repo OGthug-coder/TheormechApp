@@ -34,9 +34,6 @@ class TestCreation extends React.Component {
         }
     }
 
-    componentDidMount() {
-    }
-
     componentWillUnmount() {
         this.testEditHelper.sendChanges();
     }

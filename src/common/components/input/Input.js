@@ -8,9 +8,7 @@ class Input extends React.Component {
         super(props);
 
         this.textAreaRef = React.createRef();
-
         this.state = {
-            id: props.rows,
             rows: !isUndefined(props.rows) ? props.rows : 3,
             value: props.placeholder,
             maxLength: props.maxLength,
@@ -35,8 +33,8 @@ class Input extends React.Component {
         }
 
         if (!isUndefined(this.props.onChange)) {
-            if (!isUndefined(this.state.id)) {
-                this.state.onChange(value, this.state.id);
+            if (!isUndefined(this.props.id)) {
+                this.state.onChange(value, this.props.id);
             } else {
                 this.state.onChange(value);
             }
@@ -48,7 +46,6 @@ class Input extends React.Component {
         return (
             <>
                 <textarea
-                    id={!isUndefined(this.state.id) ? this.state.id : ''}
                     rows={this.state.rows}
                     maxLength={this.state.maxLength}
                     ref={this.textAreaRef}

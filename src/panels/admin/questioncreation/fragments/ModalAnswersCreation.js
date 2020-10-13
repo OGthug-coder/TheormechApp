@@ -54,7 +54,10 @@ class ModalAnswersCreation extends React.Component {
                 a.isRight = 0;
             }
         });
-        this.setState({answers: answers});
+        this.setState({
+            answers: answers,
+            rightAnswer: value,
+        });
     };
 
     onRewardChange = (value) => {
@@ -68,10 +71,7 @@ class ModalAnswersCreation extends React.Component {
             id: this.props.question.id,
             reward: this.state.reward,
             serialNumber: this.props.question.serialNumber,
-            answers: this.state.answers.map(a => {
-                delete a.serialNumber;
-                return a;
-            }),
+            answers: this.state.answers
         };
 
         this.props.updateQuestion(question);
@@ -89,7 +89,7 @@ class ModalAnswersCreation extends React.Component {
                 .map(answer => (
                     <div className={s.input}>
                         <Input id={answer.serialNumber}
-                               key={answer.serialNumber}
+                               key={this.state.answers}
                                autoResize
                                placeholder={answer.answer}
                                rows={1}

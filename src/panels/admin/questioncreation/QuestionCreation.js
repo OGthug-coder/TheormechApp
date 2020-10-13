@@ -26,9 +26,11 @@ class QuestionCreation extends React.Component {
         };
     }
 
-    onAddQuestionClick = () => {
-        console.log("onAddQuestionClick");
+    componentWillUnmount() {
+        this.onSaveClick();
+    }
 
+    onAddQuestionClick = () => {
         const questions = this.state.questions;
         questions.push({
             questionText: PLACEHOLDER,
@@ -55,8 +57,6 @@ class QuestionCreation extends React.Component {
             };
             setTimeout(() => this.setState({editWindowData: clickData}), 100);
         }
-
-        console.log("onEditQuestionClick");
     };
 
     onDeleteQuestionClick = (serialNumber) => {
@@ -148,7 +148,6 @@ class QuestionCreation extends React.Component {
     };
 
     onEditQuestionItem = (id) => {
-        console.log("onEditQuestionItem with id=" + id);
         const q = this.state.questions.filter(q => q.id === id);
         this.setState({modalAnswerCreation: q[0]});
     };
@@ -241,7 +240,6 @@ class QuestionCreation extends React.Component {
                 </div>
             );
         }
-
     };
 
     prepareQuestions = (questions) => {
@@ -266,7 +264,8 @@ class QuestionCreation extends React.Component {
                             onClick={this.onBackClick}
                             style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}/>
                 <div className={`${s.container} ${this.state.modalAnswerCreation ? '' : ""}`}>
-                    <div className={s.header}>
+                    <div className={s.header}
+                         style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}>
                         Список вопросов
                         <button onClick={this.onAddQuestionClick}/>
                     </div>

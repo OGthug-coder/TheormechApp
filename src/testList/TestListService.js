@@ -1,19 +1,12 @@
 import NoHistoryFoundException from "../common/exceptions/NoHistoryFoundException";
 import EventCodeDto from "../preview/util/EventCodeDto";
-// import isUndefined from "../common/IsUndefined"; 
 
 class TestListService {
     constructor(api, user, testRepo) {
         this.api = api;
         this.user = user;
         this.testRepo = testRepo;
-
-        // this.setLightStatusBarStyle();
     }
-
-    // setLightStatusBarStyle() {
-    //     this.api.setStatusBarStyle("light");
-    // }
 
     prepareTests = (testsDto) => {
         return this.user.then(user => {
