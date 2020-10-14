@@ -7,6 +7,8 @@ import Score from "../../common/components/score/Score";
 import StickerStatus from "./util/StickerStatus";
 import isUndefined from "../../common/IsUndefined";
 import Vibration from "../../common/Vibration";
+import UserRoles from "../../common/UserRoles";
+import ModalStickerCreation from "./fragments/ModalStickerCreation";
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -15,7 +17,8 @@ class StickerShop extends React.Component {
         this.application = this.props.application;
         this.stickerShopService = this.application.provideStickerShopService();
         this.state = {
-            scoreFocus: undefined
+            scoreFocus: undefined,
+            modalStickerCreation: true,
         };
 
     }
@@ -113,6 +116,7 @@ class StickerShop extends React.Component {
         }
     };
 
+
     render() {
         return (
             <>
@@ -125,13 +129,26 @@ class StickerShop extends React.Component {
                     </div>
                     <div className={s.sticker_container}>
                         <div className={s.p}/>
+
                         {this.renderStickers()}
-                        <div className={s.wrapper}>
-                            <div className={s.content}></div>
-                        </div>
+
+                        {!isUndefined(this.state.user) && this.state.user.role != UserRoles.ADMIN ?
+                            <div className={s.wrapper}><div className={s.content}></div></div> : 
+                            ''
+                        }
+
                         <div className={s.p}/>
                     </div>
                 </div>
+                {
+                    this.state.modalStickerCreation
+                        ? (
+                            <div className={s.window}>
+                                <ModalStickerCreation/>
+                            </div>
+                        )
+                        : ""
+                }
             </>
         );
     }
