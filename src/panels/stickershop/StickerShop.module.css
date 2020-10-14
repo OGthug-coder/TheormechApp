@@ -57,6 +57,27 @@
 
 }
 
+.wrapper {
+    height: 390px;
+    min-width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 25px;
+    color: white;
+    background-color: white;
+}
+
+.content {
+    display: flex;
+    min-width: 200px;
+    min-height: 200px;
+    background-image: url('../../img/stickershop/add_sticker.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .sticker_container {
     width: 100vw;
     height: 100%;
@@ -75,7 +96,6 @@
     touch-action: manipulation;
 
 }
-
 
 .p {
     scroll-snap-align: center;
@@ -101,5 +121,4 @@
         grid-template-rows: 8vh 1fr;
     }
 }
-
 

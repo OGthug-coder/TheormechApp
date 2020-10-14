@@ -126,6 +126,9 @@ class StickerShop extends React.Component {
                     <div className={s.sticker_container}>
                         <div className={s.p}/>
                         {this.renderStickers()}
+                        <div className={s.wrapper}>
+                            <div className={s.content}></div>
+                        </div>
                         <div className={s.p}/>
                     </div>
                 </div>
