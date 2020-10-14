@@ -1,13 +1,15 @@
-import TestListService from "./testList/service/TestListService";
+import TestListService from "./testList/TestListService";
 import ProfileService from "./profile/service/ProfileService";
-import QuestionService from "./question/service/QuestionService";
+import QuestionService from "./question/QuestionService";
 import UserService from "./common/services/UserService";
-import PreviewService from "./preview/service/PreviewService";
+import PreviewService from "./preview/PreviewService";
 import TestRepo from "./common/testrepo/TestRepo";
 import Api from "./common/api/Api";
 import isUndefined from "./common/IsUndefined";
 import StickerShopService from "./stickershop/StickerShopService";
 import ResultService from "./result/ResultService";
+import TestCreationService from "./testcreation/TestCreationService";
+import TestEditHelper from "./common/services/TestEditHelper";
 
 class Application {
     #testListService;
@@ -20,6 +22,8 @@ class Application {
     #api;
     #previewService;
     #testRepo;
+    #testCreationService;
+    #testEditHelper;
 
     provideTestRepo() {
         if (isUndefined(this.#testRepo)) {
@@ -74,7 +78,6 @@ class Application {
         if (isUndefined(this.#user)) {
             this.#user = this.provideUserService().getUser();
         }
-
         return this.#user;
     }
 
@@ -106,6 +109,25 @@ class Application {
         return this.#resultService;
     }
 
+    provideTestCreationService() {
+        if (isUndefined(this.#testCreationService)) {
+            this.#testCreationService = new TestCreationService(this.provideApi());
+        }
+
+        return this.#testCreationService;
+    }
+
+    createTestEditHelper(test) {
+        this.#testEditHelper = new TestEditHelper(this.provideApi(), test);
+    }
+
+    provideTestEditHelper() {
+        return this.#testEditHelper;
+    }
+
+    deleteTestEditHelper() {
+        this.#testEditHelper = undefined;
+    }
 }
 
 export default Application;

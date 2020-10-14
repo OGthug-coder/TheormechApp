@@ -5,7 +5,7 @@
     display: -ms-grid;
     z-index: 1;
     display: grid;
-    grid-template-rows: 100px 12vh 1fr;
+    grid-template-rows: 14vh 1fr;
     justify-items: center;
     align-items: center;
     align-content: center;
@@ -59,14 +59,13 @@
 
 .sticker_container {
     width: 100vw;
-    height: 80vh;
+    height: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-grow: 1;
     flex-shrink: 0;
-    /*justify-content: center;*/
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -94,8 +93,13 @@
 }
 
 @media screen and (max-device-height: 600px) {
+    .sticker_container {
+        align-items: start;
+    }
+
     .container {
-        grid-template-rows: 100px 12vh 1fr;
+        grid-template-rows: 8vh 1fr;
     }
 }
+
 

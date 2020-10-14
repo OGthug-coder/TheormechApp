@@ -1,4 +1,4 @@
-import EventCodeDto from "../../preview/util/EventCodeDto";
+import EventCodeDto from "../preview/util/EventCodeDto";
 
 class QuestionService {
     constructor(api, repo, user) {
@@ -16,6 +16,8 @@ class QuestionService {
         if (test === undefined) {
             test = this.api.requestTest(id);
             this.testRepo.push(id, test);
+        } else {
+            test = new Promise((resolve, err) => resolve(test));
         }
 
         return test;

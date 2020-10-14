@@ -7,7 +7,6 @@ class AboutWindow extends React.Component {
         super(props);
 
         this.state = {
-            onExitClick: props.onExitClick,
             copyWarning: undefined,
         };
         this.navigator = navigator;
@@ -39,7 +38,7 @@ class AboutWindow extends React.Component {
                      onClick={() => {
                      }}>
                     <div className={s.exit}
-                         onClick={this.state.onExitClick}/>
+                         onClick={this.props.onExitClick}/>
                     <div className={s.title}>
                         Разработчики
                     </div>

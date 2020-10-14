@@ -5,19 +5,10 @@ import QuestionStatus from "../../../preview/util/QuestionStatus";
 import isUndefined from "../../../common/IsUndefined";
 
 class QuestionItemFragment extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            questionId: props.questionId,
-            serialNumber: props.serialNumber,
-            status: props.status,
-            onClick: props.onClick,
-        }
-    }
 
     loadStatusPic = () => {
-        if (this.state.status !== undefined) {
-            switch (this.state.status) {
+        if (this.props.status !== undefined) {
+            switch (this.props.status) {
                 case QuestionStatus.PASSED:
                     return require("../../../img/preview/ic_question_status_approve.svg");
                 case QuestionStatus.FAILED:
@@ -31,10 +22,10 @@ class QuestionItemFragment extends React.Component {
     };
 
     isActive = () => {
-        if (!isUndefined(this.state.status)) {
-            if (this.state.status === QuestionStatus.STARTED
-                || this.state.status === QuestionStatus.UNTOUCHED
-                || this.state.status === QuestionStatus.SKIPPED) {
+        if (!isUndefined(this.props.status)) {
+            if (this.props.status === QuestionStatus.STARTED
+                || this.props.status === QuestionStatus.UNTOUCHED
+                || this.props.status === QuestionStatus.SKIPPED) {
                 return false;
             }
         }
@@ -46,7 +37,7 @@ class QuestionItemFragment extends React.Component {
 
 
     render() {
-        const serialNumber = this.state.serialNumber;
+        const serialNumber = this.props.serialNumber;
         return (
             <>
                 <div className={s.question_item} >
@@ -59,9 +50,9 @@ class QuestionItemFragment extends React.Component {
                             Вопрос # {serialNumber !== undefined ? serialNumber + 1 : ".."}
                         </div>
                     </div>
-                    <button id={!isUndefined(this.state.questionId) ? this.state.questionId : 0}
+                    <button id={!isUndefined(this.props.questionId) ? this.props.questionId : 0}
                             className={s.answer}
-                            onClick={this.state.onClick}
+                            onClick={this.props.onClick}
                             disabled={!this.isActive()}/>
                 </div>
                 <div className={s.separator} />

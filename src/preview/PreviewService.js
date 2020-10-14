@@ -1,6 +1,6 @@
-import QuestionStatus from "../util/QuestionStatus";
-import EventCodeDto from "../util/EventCodeDto";
-import HistoryUtil from "../../common/services/HistoryUtil";
+import QuestionStatus from "./util/QuestionStatus";
+import EventCodeDto from "./util/EventCodeDto";
+import HistoryUtil from "../common/services/HistoryUtil";
 
 class PreviewService {
     constructor(api, repo) {
@@ -13,6 +13,8 @@ class PreviewService {
         if (test === undefined) {
             test = this.api.requestTest(id);
             this.testRepo.push(id, test);
+        } else {
+            test = new Promise((resolve, err) => resolve(test));
         }
 
         return test;

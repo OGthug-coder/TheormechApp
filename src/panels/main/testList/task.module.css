@@ -1,6 +1,6 @@
 .card {
     grid-area: card;
-    height: min-content;
+    height: 270px;
     width: 82vw;
     display: grid;
     grid-template-rows: 160px calc(80px + 1em + 15px);
@@ -101,7 +101,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    text-shadow: 0 4px 6px #34ABB5;
+    /*text-shadow: 0 4px 6px #34ABB5;*/
 
     position: relative;
     top: -20px;
@@ -110,6 +110,63 @@
 .start_button:active {
     background-size: 150px 150px;
     background: #3256E0 url("../../../img/testlist/button_pressed.svg") no-repeat center;
+}
+
+.disabled {
+    background-color: #BEBEBE;
+}
+
+.disabled:active {
+    background-color: #BEBEBE;
+}
+
+.delete_button {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
+.delete_button > div {
+    position: relative;
+    z-index: 100;
+    display: block;
+    top: calc(-130px - 1em - 15px - 160px);
+    right: -75vw;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background-color: #FF5353;
+}
+
+.delete_button > div::before {
+    content: "";
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 4px;
+    top: calc(50% - 3px);
+    left: calc(50% - 12px);
+
+    background-color: white;
+}
+
+.status_icon {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
+.status_icon > div {
+    position: relative;
+    display: block;
+    height: 38px;
+    width: 38px;
+    border-radius: 38px;
+    top: calc(-105px - 1em - 15px - 160px - 5px);
+    left: 10px;
+
+    background: white url("../../../img/testlist/ic_clock.png") no-repeat center;
+    background-size: 24px 24px;
 }
 
 @media screen and (max-device-height: 600px){

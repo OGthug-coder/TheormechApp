@@ -1,0 +1,23 @@
+.input {
+    box-sizing:border-box;
+    padding: 8px;
+    resize: none;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #4B71FF;
+    border-radius: 8px;
+}
+
+.input:hover {
+    outline: none;
+}
+
+.counter {
+    position: relative;
+    width: min-content;
+    white-space: nowrap;
+    top: -25px;
+    left: 75%;
+    color: #C4C4C4;
+    font-size: 14px;
+}
