@@ -6,8 +6,8 @@ import Vibration from "../Vibration";
 
 class Api {
     constructor() {
-        // this.URL = "https://atake.live:8443/v1/";
-        this.URL = 'http://localhost/v1/';
+        this.URL = "https://atake.live:8443/v1/";
+        // this.URL = 'http://localhost/v1/';
 
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
@@ -61,7 +61,6 @@ class Api {
 
         for (const [key, value] of Object.entries(test)) {
             if (key === 'questions') {
-                debugger
                 testFormData.append(key, JSON.stringify(value));
             } else {
                 testFormData.append(key, value);
@@ -225,24 +224,6 @@ class Api {
                 "params": this.PARAMS
             }
         }).then(response => response.json());
-    }
-
-    uploadImage(img) {
-        console.log(typeof img);
-        return new Promise((resolve, err) => resolve(img));
-        // const formData = new FormData();
-        // formData.append("img", img);
-        //
-        // const url = this.URL + "media/";
-        //
-        // return fetch(url, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "multipart/form-data",
-        //         "params": this.PARAMS
-        //     }
-        // }).then(response => response.json());
-
     }
 
 }
