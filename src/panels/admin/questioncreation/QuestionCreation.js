@@ -1,23 +1,50 @@
 import React from 'react';
 import BackHeader from "../../../common/components/backheader/BackHeader";
 import s from "./QuestionCreation.module.css";
-import QuestionListItem from "./fragments/QuestionListItem";
 import SelectWindow from "../../../common/components/selectwindow/SelectWindow";
 import isUndefined from "../../../common/IsUndefined";
 import ModalAnswersCreation from "./fragments/ModalAnswersCreation";
+import QuestionListItem from "./fragments/QuestionListItem";
+import {withRouter} from 'react-router-dom'
+import RightAnswerCode from "../../../preview/util/RightAnswerCode";
+
+const PLACEHOLDER = 'PLACEHOLDER';
 
 class QuestionCreation extends React.Component {
     constructor(props) {
         super(props);
 
+        this.application = props.application;
+        this.testEditHelper = this.application.provideTestEditHelper();
+        let test = this.testEditHelper.getTest();
+
         this.state = {
+            questions: !isUndefined(test.questions) ? test.questions : [],
             editWindowData: undefined,
+            modalAnswerCreation: false,
+            latestId: -1,
         };
     }
 
+    componentWillUnmount() {
+        this.onSaveClick();
+    }
 
     onAddQuestionClick = () => {
-        console.log("onAddQuestionClick");
+        const questions = this.state.questions;
+        questions.push({
+            questionText: PLACEHOLDER,
+            serialNumber: parseInt(
+                this.state.questions.length > 0
+                    ? this.state.questions
+                        .reduce((accumulator, key) => accumulator.serialNumber > key.serialNumber ? accumulator : key)
+                        .serialNumber
+                    : -1
+            ) + 1,
+        });
+
+        this.testEditHelper.updateValue("questions", questions)
+        this.setState({questions: questions});
     };
 
     onEditQuestionClick = (e) => {
@@ -30,28 +57,107 @@ class QuestionCreation extends React.Component {
             };
             setTimeout(() => this.setState({editWindowData: clickData}), 100);
         }
-
-        console.log("onEditQuestionClick");
     };
 
-    onDeleteQuestionClick = (e) => {
-        console.log("onDeleteQuestionClick");
+    onDeleteQuestionClick = (serialNumber) => {
+        let questions = this.state.questions
+            .filter(question => question.serialNumber !== parseInt(serialNumber));
+
+        this.shiftQuestions(questions, serialNumber);
+        this.testEditHelper.updateValue("questions", questions)
+        this.setState({questions: questions});
     };
 
-    onAddQuestionItemClick = (e) => {
-        console.log("onAddQuestionItemClick");
+    shiftQuestions = (questions, serialNumber) => {
+        const maxSerialNumber = parseInt(this.state.questions
+            .reduce((acc, question) => acc.serialNumber > question.serialNumber ? acc : question)
+            .serialNumber
+        );
+
+        if (maxSerialNumber !== serialNumber) {
+            questions.map(q => {
+                if (q.serialNumber > serialNumber) {
+                    q.serialNumber--;
+                }
+            });
+        }
+
+        return questions;
     };
 
-    onDeleteQuestionItem = () => {
-        console.log("onDeleteQuestionItem");
+    onAddQuestionItemClick = (id) => {
+        const needsReplacement = this.state.questions
+            .filter(q => q.questionText === PLACEHOLDER && q.serialNumber === parseInt(id))
+            .length === 1;
+
+        const questions = this.state.questions;
+
+        if (needsReplacement) {
+            questions.filter(q => q.serialNumber !== parseInt(id));
+        }
+
+        let newQuestion = {
+            id: this.state.latestId,
+            questionText: "",
+            answers: [0, 1, 2, 3].map(i => {
+                return {
+                    serialNumber: i,
+                    answer: "",
+                    answerType: "text",
+                    isRight: i === 0 ? RightAnswerCode.RIGHT_ANSWER : RightAnswerCode.WRONG_ANSWER,
+                }
+            }),
+            explain: "",
+            reward: 0,
+            serialNumber: parseInt(id),
+        };
+
+        questions.push(newQuestion);
+
+        this.testEditHelper.updateValue("questions", questions)
+        this.setState({
+            questions: questions,
+            modalAnswerCreation: newQuestion,
+            latestId: this.state.latestId - 1,
+        });
     };
 
-    onEditQuestionItem = () => {
-        console.log("onEditQuestionItem");
+    onDeleteQuestionItem = (id) => {
+        let serialNumber = 0;
+
+        const questions = this.state.questions.filter(q => {
+                if (q.id !== parseInt(id)) {
+                    return true
+                } else {
+                    serialNumber = q.serialNumber;
+                    return false
+                }
+            }
+        );
+
+        // Check if there are more questions with serialNumber of deleted question
+        // If there is no question with the serial number, shift questions
+        const needsShifting = questions.filter(q => q.serialNumber === serialNumber).length === 0;
+
+        if (needsShifting) {
+            this.shiftQuestions(questions, serialNumber);
+        }
+
+        this.testEditHelper.updateValue("questions", questions);
+        this.setState({questions: questions});
+    };
+
+    onEditQuestionItem = (id) => {
+        const q = this.state.questions.filter(q => q.id === id);
+        this.setState({modalAnswerCreation: q[0]});
     };
 
     onSaveClick = () => {
-        console.log("onSaveClick");
+        this.testEditHelper.sendChanges();
+    };
+
+    onBackClick = () => {
+        this.testEditHelper.sendChanges();
     };
 
     renderEditWindow = () => {
@@ -61,16 +167,16 @@ class QuestionCreation extends React.Component {
                      onClick={this.onCloseEditWindowClick}>
                     <div className={s.edit_window} style={{
                         top: this.state.editWindowData.top - 70,
-                        left: this.state.editWindowData.left - window.screen.width * 0.65
+                        left: this.state.editWindowData.left - window.innerWidth * 0.65
                     }}>
                         <SelectWindow data={[
                             {
-                                id: 0,
+                                id: this.state.editWindowData.questionId,
                                 value: "Добавить вариант",
                                 onClick: this.onAddQuestionItemClick,
                             },
                             {
-                                id: 1,
+                                id: this.state.editWindowData.questionId,
                                 value: "Удалить вопрос",
                                 onClick: this.onDeleteQuestionClick,
                             }
@@ -84,91 +190,109 @@ class QuestionCreation extends React.Component {
 
     onCloseEditWindowClick = () => {
         this.setState({editWindowData: undefined});
-        console.log("onCloseEditWindowClick");
     };
+
+    updateQuestion = (question) => {
+        let questions = this.state.questions;
+        questions = questions.filter(q => q.id !== question.id);
+        questions.push(question);
+
+        this.testEditHelper.updateValue("questions", questions);
+        this.setState({questions: questions});
+    };
+
+    renderQuestions = () => {
+        if (!isUndefined(this.state.questions)) {
+            const questions = this.prepareQuestions(this.state.questions);
+
+            return Object.keys(questions)
+                .sort((k1, k2) => parseInt(k1) - parseInt(k2))
+                .map(key => (
+                    <div key={key} className={s.question_container}>
+                        <div className={s.control}>
+                            <span>Вопрос №{parseInt(key) + 1}</span>
+                            <button id={parseInt(key)} onClick={this.onEditQuestionClick}/>
+                        </div>
+                        {
+                            questions[key].map(q => (
+                                q.questionText !== PLACEHOLDER ? (
+                                    <div key={q.id} className={s.question_item}>
+                                        <QuestionListItem key={q.id}
+                                                          onDelete={this.onDeleteQuestionItem}
+                                                          onEdit={this.onEditQuestionItem}
+                                                          id={q.id}
+                                                          text={q.questionText}/>
+                                    </div>
+                                ) : ""
+                            ))
+                        }
+
+
+                    </div>
+                ));
+        } else {
+            return (
+                <div className={s.question_container}>
+                    <div className={s.control}>
+                        <span>Вопрос №1</span>
+                        <button id={1} onClick={this.onEditQuestionClick}/>
+                    </div>
+                </div>
+            );
+        }
+    };
+
+    prepareQuestions = (questions) => {
+        const sortedQuestions = {};
+
+        questions.forEach(q => {
+            if (isUndefined(sortedQuestions[q.serialNumber])) {
+                sortedQuestions[q.serialNumber] = [];
+                sortedQuestions[q.serialNumber].push(q);
+            } else {
+                sortedQuestions[q.serialNumber].push(q);
+            }
+        });
+        return sortedQuestions;
+    };
+
 
     render() {
         return (
             <>
-                <div className={s.blur}>
-                    <BackHeader/>
-                    <div className={s.container}>
-                        <div className={s.header}>
-                            Список вопросов
-                            <button onClick={this.onAddQuestionClick}/>
-                        </div>
-                        <div className={s.question_container}>
-                            <div className={s.control}>
-                                <span>Вопрос №1</span>
-                                <button id={1} onClick={this.onEditQuestionClick}/>
-                                <div>
-
-                                </div>
-                            </div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/>
-                            </div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        </div>
-                        <div className={s.question_container}>
-                            <div className={s.control}>
-                                <span>Вопрос №1</span>
-                                <button id={2} onClick={this.onEditQuestionClick}/>
-                            </div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        </div>
-                        <div className={s.question_container}>
-                            <div className={s.control}>
-                                <span>Вопрос №1</span>
-                                <button id={3} onClick={this.onEditQuestionClick}/>
-                            </div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                            <div className={s.question_item}>
-                                <QuestionListItem onDelete={this.onDeleteQuestionItem}
-                                                  onEdit={this.onEditQuestionItem}
-                                                  question={{text: "Автомобили движутс...чыdsfsdfsd"}}/></div>
-                        </div>
-                        <button className={s.save_button}
-                                onClick={this.onSaveClick}>
-                            Сохранить
-                        </button>
+                <BackHeader key={this.state.modalAnswerCreation}
+                            onClick={this.onBackClick}
+                            style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}/>
+                <div className={`${s.container} ${this.state.modalAnswerCreation ? '' : ""}`}>
+                    <div className={s.header}
+                         style={this.state.modalAnswerCreation ? {filter: "blur(2px)"} : {}}>
+                        Список вопросов
+                        <button onClick={this.onAddQuestionClick}/>
                     </div>
-                    {this.renderEditWindow()}
+                    {
+                        this.renderQuestions()
+                    }
+                    <button className={s.save_button}
+                            onClick={this.onSaveClick}>
+                        Сохранить
+                    </button>
                 </div>
-                <div className={s.answers_window}>
-                    <ModalAnswersCreation />
-                </div>
-
+                {this.renderEditWindow()}
+                {
+                    this.state.modalAnswerCreation
+                        ? (
+                            <div className={s.answers_window}>
+                                <ModalAnswersCreation key={this.state.modalAnswerCreation}
+                                                      question={this.state.modalAnswerCreation}
+                                                      onBackClick={() => this.setState({modalAnswerCreation: false})}
+                                                      updateQuestion={this.updateQuestion}/>
+                            </div>
+                        )
+                        : ""
+                }
             </>
         );
     }
 }
 
-export default QuestionCreation;
+export default withRouter(QuestionCreation);

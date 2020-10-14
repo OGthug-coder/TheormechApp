@@ -3,10 +3,12 @@
     width: min-content;
     display: flex;
     flex-direction: column;
+    z-index: inherit;
 
 }
 
 .settings_item {
+    z-index: inherit;
     height: 40px;
     width: 60vw;
     margin: 2px;

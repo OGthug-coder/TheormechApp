@@ -19,7 +19,7 @@ class SelectWindow extends React.Component {
                             <div key={item.id}
                                  id={item.id}
                                  className={s.settings_item}
-                                 onClick={item.onClick}>
+                                 onClick={(e) => item.onClick(e.currentTarget.id)}>
                                 {item.value}
                             </div>
                         )

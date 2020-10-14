@@ -9,6 +9,8 @@ import StickerShop from "./panels/stickershop/StickerShop";
 import Main from "./panels/main/Main";
 import Result from "./panels/result/Result";
 import TestCreation from "./panels/admin/testcreation/TestCreation";
+import QuestionCreation from "./panels/admin/questioncreation/QuestionCreation";
+// import ModalAnswersCreation from "./panels/admin/questioncreation/fragments/ModalAnswersCreation";
 
 class App extends React.Component {
     constructor(props) {
@@ -21,24 +23,28 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Route excect path={'/createNewTest'}
+                <Route exact path={'/createQuestions'}
+                       render={({match}) => <QuestionCreation match={match} application={this.application}/>}
+                />
+                <Route exact path={'/testEditing'}
                        render={({match}) => <TestCreation match={match} application={this.application}/>}
                 />
                 <Route exact path={'/result/:testId'}
                        render={({match}) => <Result match={match} application={this.application}/>}
                 />
-                <Route excect path={'/question/:testId/:questionId'}
+                <Route exact path={'/question/:testId/:questionId'}
                        render={({match}) => <Question match={match} application={this.application}/>}
                 />
-                <Route excect path={'/preview/:testId'}
+                <Route exact path={'/preview/:testId'}
                        render={({match}) => <Preview match={match} application={this.application}/>}
                 />
                 <Route exact path={'/stickerShop'}
                        render={({match}) => <StickerShop match={match} application={this.application}/>}
                 />
-                <Route excect path={'/'}
+                <Route exact path={'/'}
                        render={({match}) => <Main match={match} application={this.application}/>}
                 />
+
             </Router>
         )
     }

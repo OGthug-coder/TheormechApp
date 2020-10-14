@@ -1,10 +1,11 @@
 import React from 'react';
 
 import s from './testList.module.css';
-import Task from "./Task";
-import {Link, withRouter} from "react-router-dom";
+import TestCard from "./TestCard";
+import {withRouter} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import UserRoles from "../../../common/UserRoles";
+import ConfirmModal from "../../../common/components/confirmmodal/ConfirmModal";
 
 class TestList extends React.Component {
     constructor(props) {
@@ -15,8 +16,8 @@ class TestList extends React.Component {
         this.state = {
             sortBy: props.socket,
             tests: [],
-            isTouchStarted: false,
             editMode: props.editMode,
+            confirmDeletion: false,
         }
     }
 
@@ -27,27 +28,35 @@ class TestList extends React.Component {
         this.fetchTests();
     }
 
-    onTouchStart = () => {
-        if (!this.state.isTouchStarted) {
-            this.setState({isTouchStarted: true});
-            this.longPressTimer = setTimeout(this.onLongTouch, 500);
-            setTimeout(() => this.setState({isTouchStarted: false}), 1000);
-        }
+    onEditClick = (id) => {
+        this.setState({editMode: !this.state.editMode});
+        const test = this.testListService.getTestFromRepo(id);
+        this.application.createTestEditHelper(test);
+
+        this.props.history.push("/testEditing");
     };
 
-    onLongTouch = () => {
+    onLongClick = () => {
+
         if (!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN) {
             this.setState({editMode: !this.state.editMode});
         }
     };
 
-    onTouchEnd = () => {
-        this.setState({touchStarted: false});
-        clearTimeout(this.longPressTimer);
+    onDeleteClick = (e) => {
+        this.setState({confirmDeletion: e.currentTarget.id})
     };
 
-    onDeleteClick = (e) => {
-        console.log("onDeleteClick \n id=" + e.currentTarget.id);
+    onDeleteApprove = (e) => {
+        console.log('onDeleteApprove');
+        this.testListService.deleteTest(this.state.confirmDeletion)
+            .then(tests => this.setState({tests: tests}));
+        this.setState({confirmDeletion: false});
+    };
+
+    onDeleteCancel = (e) => {
+        console.log('onDeleteCancel');
+        this.setState({confirmDeletion: false})
     };
 
     fetchTests = () => {
@@ -56,26 +65,29 @@ class TestList extends React.Component {
                 this.setState({tests: tests})
             });
     };
-    
+
     onAddClick = () => {
-      this.setState({editMode: !this.state.editMode});
+        this.setState({editMode: !this.state.editMode});
+        this.application.createTestEditHelper({});
+
+        this.props.history.push("/testEditing");
     };
 
     prepareList() {
         let tests = [];
 
         this.state.tests.map(test => tests.push(
-            <Task key={[test.id, this.state.editMode]}
-                  id={test.id}
-                  title={test.title}
-                  img={test.img}
-                  date={test.date.split(' ')[0]}
-                  progress={test.progress}
-                  application={this.application}
-                  onTouchStart={this.onTouchStart}
-                  onTouchEnd={this.onTouchEnd}
-                  editMode={this.state.editMode}
-                  onDeleteClick={this.onDeleteClick}
+            <TestCard key={[test.id, this.state.editMode]}
+                      id={test.id}
+                      title={test.title}
+                      img={test.img}
+                      date={test.date.split(' ')[0]}
+                      progress={test.progress}
+                      application={this.application}
+                      onLongClick={this.onLongClick}
+                      editMode={this.state.editMode}
+                      onDeleteClick={this.onDeleteClick}
+                      onEditClick={this.onEditClick}
             />));
         tests = this.testListService.sort(tests)
 
@@ -89,11 +101,22 @@ class TestList extends React.Component {
                 {this.prepareList()}
                 {
                     this.state.editMode ? (
-                        <Link to={"/createNewTest/"}
-                              className={s.add_button}
-                              onClick={this.onAddClick}/>
+                        <div className={s.add_button}
+                             onClick={this.onAddClick}/>
                     ) : ""
                 }
+                {
+                    this.state.confirmDeletion !== false ? (
+                        <div className={s.confirm_modal_container}>
+                            <div className={s.confirm_modal}>
+                                <ConfirmModal text={'Вы уверены, что хотите удалить тест?'}
+                                              onApprove={this.onDeleteApprove}
+                                              onCancel={this.onDeleteCancel}/>
+                            </div>
+                        </div>
+                    ) : ""
+                }
+
             </section>
         )
     }

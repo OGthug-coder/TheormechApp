@@ -3,26 +3,23 @@ import s from "./QuestionListItem.module.css";
 
 
 class QuestionListItem extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            question: props.question,
-            onDelete: props.onDelete,
-            onEdit: props. onEdit,
-        };
-    }
+    onDeleteClick = () => {
+        this.props.onDelete(this.props.id);
+    };
+
+    onEditClick = () => {
+        this.props.onEdit(this.props.id);
+    };
 
     render() {
-        const question = this.state.question;
         return (
             <div className={s.question_item}>
-                <button onClick={this.state.onDelete} />
-                <div onClick={this.state.onEdit}>
-                    <span>Вариант 1</span>
-                    <span>{question.text}</span>
+                <button onClick={this.onDeleteClick} />
+                <div onClick={this.onEditClick}>
+                    <span>{this.props.text}</span>
                 </div>
-                <button onClick={this.state.onEdit}/>
+                <button onClick={this.onEditClick}/>
             </div>
         )
     }

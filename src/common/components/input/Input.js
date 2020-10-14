@@ -8,15 +8,19 @@ class Input extends React.Component {
         super(props);
 
         this.textAreaRef = React.createRef();
-
         this.state = {
-            id: props.rows,
             rows: !isUndefined(props.rows) ? props.rows : 3,
-            value: "",
+            value: props.placeholder,
             maxLength: props.maxLength,
-            placeholder: props.placeholder,
             onChange: props.onChange,
         };
+    }
+
+    componentDidMount() {
+        if (!isUndefined(this.props.autoResize)) {
+            this.textAreaRef.current.style.height = "";
+            this.textAreaRef.current.style.height = Math.min(120, this.textAreaRef.current.scrollHeight) + "px";
+        }
     }
 
     onChange = (e) => {
@@ -29,8 +33,8 @@ class Input extends React.Component {
         }
 
         if (!isUndefined(this.props.onChange)) {
-            if (!isUndefined(this.state.id)) {
-                this.state.onChange(value, this.state.id);
+            if (!isUndefined(this.props.id)) {
+                this.state.onChange(value, this.props.id);
             } else {
                 this.state.onChange(value);
             }
@@ -42,13 +46,11 @@ class Input extends React.Component {
         return (
             <>
                 <textarea
-                    id={!isUndefined(this.state.id) ? this.state.id : ''}
                     rows={this.state.rows}
                     maxLength={this.state.maxLength}
                     ref={this.textAreaRef}
                     className={s.input}
                     value={this.state.value}
-                    placeholder={this.state.placeholder}
                     onChange={this.onChange}/>
                 {
                     !isUndefined(this.state.maxLength)

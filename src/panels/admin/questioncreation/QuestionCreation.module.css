@@ -118,8 +118,7 @@
 
 .edit_window {
     position: relative;
-    z-index: 1001;
-    display: block;
+    z-index: inherit;
     width: min-content;
     height: min-content;
 }

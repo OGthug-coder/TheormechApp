@@ -37,6 +37,7 @@
 
 .input {
     margin-bottom: 20px;
+    height: min-content;
 }
 
 .right_answer_choice {

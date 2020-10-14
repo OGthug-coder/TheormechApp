@@ -1,40 +1,46 @@
-import NoHistoryFoundException from "../../common/exceptions/NoHistoryFoundException";
-import EventCodeDto from "../../preview/util/EventCodeDto";
+import NoHistoryFoundException from "../common/exceptions/NoHistoryFoundException";
+import EventCodeDto from "../preview/util/EventCodeDto";
 
 class TestListService {
     constructor(api, user, testRepo) {
         this.api = api;
         this.user = user;
         this.testRepo = testRepo;
-
-        // this.setLightStatusBarStyle();
     }
 
-    // setLightStatusBarStyle() {
-    //     this.api.setStatusBarStyle("light");
-    // }
+    prepareTests = (testsDto) => {
+        return this.user.then(user => {
+            let tests = [];
+
+            testsDto.map(t => {
+                tests.push({
+                    id: t.id,
+                    title: t.title,
+                    img: t.img,
+                    date: t.date,
+                    progress: this.getProgress(t.questions, t.id, user.id)
+                })
+                return t;
+            });
+            return tests;
+        });
+    };
 
     getTests() {
-        const tests = this.api.requestTests().then(testsDto => {
-            return this.user.then(user => {
-                let tests = [];
-
-                testsDto.map(t => {
-                    tests.push({
-                        id: t.id,
-                        title: t.title,
-                        img: t.img,
-                        date: t.date,
-                        progress: this.getProgress(t.questions, t.id, user.id)
-                    })
-                    return t;
-                });
-                return tests;
-            });
+        return this.api.requestTests().then(testsDto => {
+            // Adding tests to the repo
+            testsDto.map(test => this.testRepo.push(test.id, test));
+            return this.prepareTests(testsDto)
         });
-        // Adding tests to the repo
-        tests.then(tests => tests.map(test => this.testRepo.push(test)))
-        return tests;
+    }
+
+    getTestFromRepo(id) {
+        return this.testRepo.get(id);
+    }
+
+    deleteTest(id) {
+        this.testRepo.remove(id);
+        return this.api.deleteTest(id).then(testsDto => this.prepareTests(testsDto));
     }
 
     sort(list) {
@@ -79,11 +85,11 @@ class TestListService {
 
     compare(o1, o2) {
         // replace day and month
-        let date2 = o2.props['date'].split('-')
-        date2 = date2[1] + '-' + date2[0] + '-' + date2[2]
+        let date2 = o2.props['date'].split('-');
+        date2 = date2[1] + '-' + date2[0] + '-' + date2[2];
         // replace day and month
-        let date1 = o1.props['date'].split('-')
-        date1 = date1[1] + '-' + date1[0] + '-' + date1[2]
+        let date1 = o1.props['date'].split('-');
+        date1 = date1[1] + '-' + date1[0] + '-' + date1[2];
         return new Date(date2) - new Date(date1);
     }
 }
