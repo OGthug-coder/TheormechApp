@@ -35,6 +35,9 @@ class TestCreation extends React.Component {
     }
 
     componentWillUnmount() {
+        if (!this.state.limited) {
+            this.testEditHelper.updateValue("timeToComplete", null);
+        }
         this.testEditHelper.sendChanges();
     }
 

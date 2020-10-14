@@ -9,7 +9,8 @@ class TestCreationService {
     getLimitation(test) {
         if (!isUndefined(test)
             && !isUndefined(test.timeToComplete)
-            && test.timeToComplete !== null) {
+            && test.timeToComplete !== null
+            && test.timeToComplete !== "null") {
             return true;
         } else {
             return false

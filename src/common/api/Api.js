@@ -56,12 +56,22 @@ class Api {
 
     updateTest(test) {
         const url = this.URL + "tests/";
+
+        let testFormData = new FormData();
+
+        for (const [key, value] of Object.entries(test)) {
+            if (key === 'questions') {
+                testFormData.append(key, JSON.stringify(value));
+            } else {
+                testFormData.append(key, value)
+            }
+        }
+
         fetch(url, {
             method: "PATCH",
-            body: JSON.stringify(test),
+            body: testFormData,
             headers: {
                 "params": this.PARAMS,
-                "Content-Type": "application/json"
             }
         });
     }

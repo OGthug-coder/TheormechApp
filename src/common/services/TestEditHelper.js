@@ -44,20 +44,23 @@ class TestEditHelper {
             }
         }
 
-        // Delete non questions
-        test.questions = test.questions.filter(q => q.questionText !== "PLACEHOLDER");
-        // Delete temp ids
-        test.questions.map(q => {
-            if (q.id < 0) {
-                delete q.id;
-            }
-            q.answers.map(a => {
-               delete a.serialNumber;
-               return a;
-            });
+        if (!isUndefined(test.questions)) {
+            // Delete non questions
+            test.questions = test.questions.filter(q => q.questionText !== "PLACEHOLDER");
+            // Delete temp ids
+            test.questions.map(q => {
+                if (q.id < 0) {
+                    delete q.id;
+                }
+                q.answers.map(a => {
+                    delete a.serialNumber;
+                    return a;
+                });
 
-            return q;
-        });
+                return q;
+            });
+        }
+
 
         return test;
     }
