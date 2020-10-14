@@ -61,9 +61,10 @@ class Api {
 
         for (const [key, value] of Object.entries(test)) {
             if (key === 'questions') {
+                debugger
                 testFormData.append(key, JSON.stringify(value));
             } else {
-                testFormData.append(key, value)
+                testFormData.append(key, value);
             }
         }
 
