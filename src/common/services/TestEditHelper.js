@@ -44,23 +44,35 @@ class TestEditHelper {
             }
         }
 
+        let maxScore = 0;
+
         if (!isUndefined(test.questions)) {
             // Delete non questions
             test.questions = test.questions.filter(q => q.questionText !== "PLACEHOLDER");
             // Delete temp ids
+            // and get maxScore
+            let index = 0;
+
             test.questions.map(q => {
                 if (q.id < 0) {
                     delete q.id;
                 }
+
                 q.answers.map(a => {
                     delete a.serialNumber;
                     return a;
                 });
 
+                if (q.serialNumber === index) {
+                    maxScore += q.reward;
+                    index++;
+                }
+
                 return q;
             });
         }
 
+        test.maxScore = maxScore;
 
         return test;
     }

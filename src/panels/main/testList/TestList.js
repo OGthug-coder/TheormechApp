@@ -37,7 +37,6 @@ class TestList extends React.Component {
     };
 
     onLongClick = () => {
-
         if (!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN) {
             this.setState({editMode: !this.state.editMode});
         }

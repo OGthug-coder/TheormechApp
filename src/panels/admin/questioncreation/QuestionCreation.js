@@ -86,14 +86,15 @@ class QuestionCreation extends React.Component {
     };
 
     onAddQuestionItemClick = (id) => {
+        const serialNumber = parseInt(id);
         const needsReplacement = this.state.questions
-            .filter(q => q.questionText === PLACEHOLDER && q.serialNumber === parseInt(id))
+            .filter(q => q.questionText === PLACEHOLDER && q.serialNumber === serialNumber)
             .length === 1;
 
         const questions = this.state.questions;
 
         if (needsReplacement) {
-            questions.filter(q => q.serialNumber !== parseInt(id));
+            questions.filter(q => q.serialNumber !== serialNumber);
         }
 
         let newQuestion = {
@@ -108,13 +109,13 @@ class QuestionCreation extends React.Component {
                 }
             }),
             explain: "",
-            reward: 0,
-            serialNumber: parseInt(id),
+            reward: questions.filter(q => q.serialNumber === serialNumber)[0].reward,
+            serialNumber: serialNumber,
         };
 
         questions.push(newQuestion);
 
-        this.testEditHelper.updateValue("questions", questions)
+        this.testEditHelper.updateValue("questions", questions);
         this.setState({
             questions: questions,
             modalAnswerCreation: newQuestion,
@@ -195,8 +196,13 @@ class QuestionCreation extends React.Component {
     updateQuestion = (question) => {
         let questions = this.state.questions;
         questions = questions.filter(q => q.id !== question.id);
-        questions.push(question);
+        questions.map(q => {
+            q.reward = question.reward;
+            return q;
+        });
 
+        questions.push(question);
+        
         this.testEditHelper.updateValue("questions", questions);
         this.setState({questions: questions});
     };
