@@ -3,6 +3,7 @@ import React from 'react';
 import s from './task.module.css';
 import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
+import {toDefaultFormat} from "../../../common/convertDate";
 // import UserRoles from "../../../common/UserRoles";
 
 
@@ -11,9 +12,10 @@ class TestCard extends React.Component {
         super(props);
 
         this.application = props.application;
-
+        console.log(toDefaultFormat(this.props.date) > new Date())
         this.state = {
             isTouchStarted: false,
+            isDelayed: toDefaultFormat(this.props.date) > new Date(),
         }
 
         this.clickDisabler = true;
@@ -91,7 +93,7 @@ class TestCard extends React.Component {
                         </div>
 
                         <div className={s.info}>
-                            <div className={s.date}>{this.props.date}</div>
+                            <div className={s.date}>{this.props.date.split(' ')[0]}</div>
                             <div className={s.progress}>
                                 <span className={this.state.progress >= 1 ? s.dot_on : s.dot}/>
                                 <span className={this.state.progress >= 2 ? s.dot_on : s.dot}/>
@@ -108,9 +110,13 @@ class TestCard extends React.Component {
                                 <div id={this.props.id}
                                      onClick={this.props.onDeleteClick}/>
                             </div>
-                            <div className={s.status_icon}>
-                                <div />
-                            </div>
+                            {
+                                this.state.isDelayed ? (
+                                    <div className={s.status_icon}>
+                                        <div />
+                                    </div>
+                                ) : ""
+                            }
                         </>
                     ) : (
                         ""
