@@ -37,7 +37,6 @@ class TestList extends React.Component {
     };
 
     onLongClick = () => {
-
         if (!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN) {
             this.setState({editMode: !this.state.editMode});
         }
@@ -81,7 +80,7 @@ class TestList extends React.Component {
                       id={test.id}
                       title={test.title}
                       img={test.img}
-                      date={test.date.split(' ')[0]}
+                      date={test.date}
                       progress={test.progress}
                       application={this.application}
                       onLongClick={this.onLongClick}
