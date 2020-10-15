@@ -32,7 +32,8 @@ class Preview extends React.Component {
                 this.previewService.getTest(this.testId)
                     .then(testInfo => {
                         testInfo.questions = this.previewService.prepareQuestions(testInfo.questions, this.state.history);
-                        this.setState({testInfo: testInfo})
+                        this.setState({testInfo: testInfo});
+                        this.configureTestTimer(testInfo);
 
                         const lastQuestion = this.previewService.getLastQuestion(history);
                         this.setState({lastQuestion: lastQuestion});
@@ -46,6 +47,23 @@ class Preview extends React.Component {
                 this.setState({currentScore: currentScore});
             });
     }
+
+    componentWillUnmount() {
+        if (!isUndefined(this.testTimer)) {
+            this.testTimer.unsubscribe(this.sub);
+        }
+    }
+
+    configureTestTimer = (test) => {
+        this.testTimer = this.application.provideTestTimer(test, this.toResultScreen);
+        this.sub = this.testTimer.subscribe((timer) => {
+            this.setState({timer: timer});
+        });
+    };
+
+    toResultScreen = () => {
+      console.log("time is up!");
+    };
 
     showAnswerWindow = (e) => {
         const id = parseInt(e.currentTarget.attributes.id.nodeValue);
@@ -185,10 +203,10 @@ class Preview extends React.Component {
                                 <div className={s.progress_title}>
                                     Мой прогресс
                                 </div>
-                                <ProgressFragment key={[this.state.currentScore, this.state.testInfo]}
+                                <ProgressFragment key={[this.state.currentScore, this.state.timer]}
                                                   maxScore={!isUndefined(testInfo) ? testInfo.maxScore : 0}
                                                   currentScore={!isUndefined(this.state.currentScore) ? this.state.currentScore : 0}
-                                                  time={!isUndefined(testInfo) ? testInfo.timeToComplete : null}/>
+                                                  time={!isUndefined(this.state.timer) ? this.state.timer : null}/>
                             </div>
                             <ul className={s.question_list}>
                                 {this.renderQuestions()}

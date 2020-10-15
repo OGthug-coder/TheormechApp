@@ -10,6 +10,7 @@ import StickerShopService from "./stickershop/StickerShopService";
 import ResultService from "./result/ResultService";
 import TestCreationService from "./testcreation/TestCreationService";
 import TestEditHelper from "./common/services/TestEditHelper";
+import TestTimer from "./common/services/TestTimer";
 
 class Application {
     #testListService;
@@ -24,6 +25,7 @@ class Application {
     #testRepo;
     #testCreationService;
     #testEditHelper;
+    #testTimer;
 
     provideTestRepo() {
         if (isUndefined(this.#testRepo)) {
@@ -127,6 +129,21 @@ class Application {
 
     deleteTestEditHelper() {
         this.#testEditHelper = undefined;
+    }
+
+    provideTestTimer(test, callback) {
+        if (isUndefined(this.#testTimer)) {
+            this.#testTimer = new TestTimer(test, callback, this.provideApi(), this.provideUser());
+        }
+
+        return this.#testTimer;
+    }
+
+    deleteTestTimer() {
+        if (!isUndefined(this.#testTimer)) {
+            this.#testTimer.clear();
+            this.#testTimer = undefined;
+        }
     }
 }
 

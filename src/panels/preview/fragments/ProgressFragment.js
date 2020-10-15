@@ -7,7 +7,7 @@ class ProgressFragment extends React.Component {
         super(props);
         this.state = {
             timeM: props.time === null ? 0 : props.time.toString().split(":")[0],
-            timeS: props.time === null ? 0 : props.time.toString().split(":")[0]
+            timeS: props.time === null ? 0 : props.time.toString().split(":")[1]
         }
 
         this.progressItem = (progressItemData) => {
