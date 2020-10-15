@@ -20,13 +20,7 @@ class ModalStickerCreation extends React.Component {
             quote: '',
         };
     }
-
-    onSaveClick = () => {
-
-    };
-
     onBackClick = () => {
-        this.onSaveClick();
         this.props.onBackClick();
     };
 

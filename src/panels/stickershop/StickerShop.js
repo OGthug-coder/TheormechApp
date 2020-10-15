@@ -121,16 +121,12 @@ class StickerShop extends React.Component {
     }
 
     onSaveClick = (sticker) => {
-        
-        // this.stickerShopService.saveSticker(sticker).then(
-        //     data => this.setState({
-        //         modalStickerCreation: false,
-        //         stickers: data
-        //     })
-        // )
-
-        this.setState({modalStickerCreation: false});
-        
+        this.stickerShopService.saveSticker(sticker).then(
+            data => this.setState({
+                modalStickerCreation: false,
+                stickers: data
+            })
+        )
     }
 
 
