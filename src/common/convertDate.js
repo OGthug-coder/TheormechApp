@@ -25,6 +25,10 @@ const toDoubleDigits = (number) => {
 
 export const toDefaultFormat = (date) => {
     const dateTime = date.split(" ");
+    if (dateTime.length === 1) {
+        debugger
+        return new Date(dateTime[0]);
+    }
     date = dateTime[0].split('-');
     let time = dateTime[1].split(":");
     return new Date(parseInt(date[2]), parseInt(date[1]) - 1, parseInt(date[0]),
