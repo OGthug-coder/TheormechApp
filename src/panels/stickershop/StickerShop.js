@@ -7,6 +7,8 @@ import Score from "../../common/components/score/Score";
 import StickerStatus from "./util/StickerStatus";
 import isUndefined from "../../common/IsUndefined";
 import Vibration from "../../common/Vibration";
+import UserRoles from "../../common/UserRoles";
+import ModalStickerCreation from "./fragments/ModalStickerCreation";
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -15,7 +17,8 @@ class StickerShop extends React.Component {
         this.application = this.props.application;
         this.stickerShopService = this.application.provideStickerShopService();
         this.state = {
-            scoreFocus: undefined
+            scoreFocus: undefined,
+            modalStickerCreation: false,
         };
 
     }
@@ -132,8 +135,13 @@ class StickerShop extends React.Component {
     render() {
         return (
             <>
-                <BackHeader/>
-                <div className={s.container}>
+                <BackHeader
+                    style={this.state.modalStickerCreation ? {filter: "blur(2px)"} : {}}
+                />
+                <div 
+                    className={s.container}
+                    style={this.state.modalStickerCreation ? {filter: "blur(2px)"} : {}}
+                >
                     <div className={s.headline}>
                         <span>Choose your fighter!</span>
                         <Score key={!isUndefined(this.state.user) ? this.state.user.score : ""}
@@ -141,10 +149,29 @@ class StickerShop extends React.Component {
                     </div>
                     <div className={s.sticker_container}>
                         <div className={s.p}/>
+
                         {this.renderStickers()}
+
+                        {!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN ?
+                            <div className={s.wrapper} onClick={this.addNewSticker}><div className={s.content}></div></div> : 
+                            ''
+                        }
+
                         <div className={s.p}/>
                     </div>
                 </div>
+                {
+                    this.state.modalStickerCreation
+                        ? (
+                            <div className={s.window}>
+                                <ModalStickerCreation
+                                    onSaveClick={this.onSaveClick}
+                                    onBackClick={() => this.setState({modalStickerCreation: false})}
+                                />
+                            </div>
+                        )
+                        : ""
+                }
             </>
         );
     }

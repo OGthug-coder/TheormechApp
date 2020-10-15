@@ -1,0 +1,142 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.sticky_container {
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.back_button {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 25px;
+    margin-left: 25px;
+    pointer-events: inherit;
+}
+
+.content {
+    width: calc(100% - 18vw);
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input_title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.input {
+    margin-bottom: 20px;
+    height: min-content;
+}
+
+.right_answer_choice {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.right_answer_choice > div {
+    font-size: 20px;
+    height: min-content;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.select > select {
+    height: 35px;
+    width: 45px;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    background-color: white;
+    color: #707070;
+}
+
+.save_button {
+    height: 50px;
+    width: 80%;
+    flex-shrink: 0;
+    margin: auto 10% 30px;
+
+    border-radius: 25px;
+    border: 1px solid #4986CC;
+
+    background-color: white;
+}
+
+.save_button:active {
+    background-color: #2D5BB9;
+    color: white;
+}
+
+.save_button:hover, .save_button:focus {
+    outline: none;
+}
+
+.select > select:hover {
+    outline: none;
+}
+
+.preview {
+    max-height: 200px;
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 25px;
+    background: #F2F2F2;
+}
+
+.preview_logo {
+    display: flex;
+    width: 200px;
+    height: 200px;
+}
+
+.input_frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; 
+}
+
+.input_button {
+    height: 50px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    border-radius: 25px;
+    border: 1px solid #4986CC;
+    background-color: #ffffff;
+}
+
+.input_button:hover {
+    background-color: #4986CC;
+}
+
+.input_label {
+    font-size: 20px;
+}
+
+.input_file {
+
+}
+
+.filename {
+
+}
