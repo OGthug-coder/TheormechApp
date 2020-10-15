@@ -107,3 +107,38 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.input_frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input_button {
+    height: 50px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    border-radius: 25px;
+    border: 1px solid #4986CC;
+    background-color: #ffffff;
+}
+
+.input_button:hover {
+    background-color: #4986CC;
+}
+
+.input_label {
+    font-size: 20px;
+}
+
+.input_file {
+
+}
+
+.filename {
+
+}

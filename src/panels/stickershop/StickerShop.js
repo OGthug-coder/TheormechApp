@@ -18,7 +18,7 @@ class StickerShop extends React.Component {
         this.stickerShopService = this.application.provideStickerShopService();
         this.state = {
             scoreFocus: undefined,
-            modalStickerCreation: true,
+            modalStickerCreation: false,
         };
 
     }
@@ -116,12 +116,21 @@ class StickerShop extends React.Component {
         }
     };
 
+    addNewSticker = () => {
+        this.setState({modalStickerCreation: true});
+    }
+
 
     render() {
         return (
             <>
-                <BackHeader/>
-                <div className={s.container}>
+                <BackHeader
+                    style={this.state.modalStickerCreation ? {filter: "blur(2px)"} : {}}
+                />
+                <div 
+                    className={s.container}
+                    style={this.state.modalStickerCreation ? {filter: "blur(2px)"} : {}}
+                >
                     <div className={s.headline}>
                         <span>Choose your fighter!</span>
                         <Score key={!isUndefined(this.state.user) ? this.state.user.score : ""}
@@ -133,7 +142,7 @@ class StickerShop extends React.Component {
                         {this.renderStickers()}
 
                         {!isUndefined(this.state.user) && this.state.user.role != UserRoles.ADMIN ?
-                            <div className={s.wrapper}><div className={s.content}></div></div> : 
+                            <div className={s.wrapper} onClick={this.addNewSticker}><div className={s.content}></div></div> : 
                             ''
                         }
 
@@ -144,7 +153,9 @@ class StickerShop extends React.Component {
                     this.state.modalStickerCreation
                         ? (
                             <div className={s.window}>
-                                <ModalStickerCreation/>
+                                <ModalStickerCreation
+                                    onBackClick={() => this.setState({modalStickerCreation: false})}
+                                />
                             </div>
                         )
                         : ""

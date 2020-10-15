@@ -10,7 +10,30 @@ class ModalStickerCreation extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.fileInput = React.createRef();
+        this.state = {
+            price: 0,
+            file: '',
+        };
+    }
+
+    onSaveClick = () => {
+
+    };
+
+    onBackClick = () => {
+        this.onSaveClick();
+        this.props.onBackClick();
+    };
+
+    onStickerPriceChange = (value) => {
+        this.setState({
+            price: value,
+        });
+    };
+
+    uploadFile = () => {
+        this.setState({file: this.fileInput.current.files[0].name});
     }
 
     render() {
@@ -28,9 +51,21 @@ class ModalStickerCreation extends React.Component {
                             <div className={s.preview_logo}/>
                         </div>
 
-                        <button className={s.save_button}>
-                            Загрузить фото
-                        </button>
+                        <div className={s.input_frame}>
+                            <div className={s.input_button}>
+                                <label className={s.input_label}>
+                                    Загрузить фото:
+                                    <input 
+                                        className={s.input_file} 
+                                        type="file" 
+                                        name="pic" 
+                                        ref={this.fileInput}
+                                        onChange={this.uploadFile}
+                                    />
+                                </label>
+                            </div>
+                            <span className={s.filename}>{this.state.file}</span>
+                        </div>
 
                         <div className={s.input_title}>
                             Имя учёного
@@ -47,7 +82,16 @@ class ModalStickerCreation extends React.Component {
 
                         <div className={s.input}>
                             <Input placeholder={''}
-                                   maxLength={135}/>
+                                   maxLength={150}/>
+                        </div>
+
+                        <div className={s.input_title}>
+                            Цитата
+                        </div>
+
+                        <div className={s.input}>
+                            <Input placeholder={''}
+                                   maxLength={90}/>
                         </div>
 
                         <div className={s.right_answer_choice}>
@@ -55,8 +99,9 @@ class ModalStickerCreation extends React.Component {
                                 Стоимость
                             </div>
                             <div className={s.select}>
-                                <select name="time"
-                                        value={0}>
+                                <select name="price"
+                                        value={this.state.price}
+                                        onChange={(e) => this.onStickerPriceChange(e.target.value)}>
                                     <option value="0">1</option>
                                     <option value="1">2</option>
                                     <option value="2">3</option>
@@ -64,7 +109,7 @@ class ModalStickerCreation extends React.Component {
                                 </select>
                             </div>
                             <Score key={100}
-                               score={1}/>
+                               score={parseInt(this.state.price) + 1}/>
                         </div>
 
                         <button className={s.save_button}>

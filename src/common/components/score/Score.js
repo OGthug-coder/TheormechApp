@@ -8,7 +8,6 @@ class Score extends React.Component {
 
         this.state = {
             focus: props.focus,
-            score: props.score
         };
     }
     render() {
@@ -24,7 +23,7 @@ class Score extends React.Component {
                     <path d="M12.5553 12.4514H10.9997V14.0067H12.5553V12.4514Z" fill="black"/>
                     <path d="M15.6664 14.0067H14.1108V15.5621H15.6664V14.0067Z" fill="black"/>
                 </svg>
-                <span className={s.score}>{this.state.score}</span>
+                <span className={s.score}>{this.props.score}</span>
             </div>
         );
     }
