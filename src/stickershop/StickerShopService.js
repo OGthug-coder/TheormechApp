@@ -23,6 +23,10 @@ class StickerShopService {
         return this.api.buySticker(userId, stickerId);
     }
 
+    saveSticker(sticker) {
+        return this.api.saveSticker(sticker);
+    }
+
 }
 
 export default StickerShopService;

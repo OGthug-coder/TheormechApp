@@ -120,6 +120,19 @@ class StickerShop extends React.Component {
         this.setState({modalStickerCreation: true});
     }
 
+    onSaveClick = (sticker) => {
+        
+        // this.stickerShopService.saveSticker(sticker).then(
+        //     data => this.setState({
+        //         modalStickerCreation: false,
+        //         stickers: data
+        //     })
+        // )
+
+        this.setState({modalStickerCreation: false});
+        
+    }
+
 
     render() {
         return (
@@ -141,7 +154,7 @@ class StickerShop extends React.Component {
 
                         {this.renderStickers()}
 
-                        {!isUndefined(this.state.user) && this.state.user.role != UserRoles.ADMIN ?
+                        {!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN ?
                             <div className={s.wrapper} onClick={this.addNewSticker}><div className={s.content}></div></div> : 
                             ''
                         }
@@ -154,6 +167,7 @@ class StickerShop extends React.Component {
                         ? (
                             <div className={s.window}>
                                 <ModalStickerCreation
+                                    onSaveClick={this.onSaveClick}
                                     onBackClick={() => this.setState({modalStickerCreation: false})}
                                 />
                             </div>

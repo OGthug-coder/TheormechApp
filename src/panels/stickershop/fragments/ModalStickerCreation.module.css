@@ -101,11 +101,8 @@
 
 .preview_logo {
     display: flex;
-    min-width: 200px;
-    min-height: 200px;
-    background-image: url('../../../img/stickershop/noimage.svg');
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 200px;
+    height: 200px;
 }
 
 .input_frame {
@@ -113,11 +110,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15px; 
 }
 
 .input_button {
     height: 50px;
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;

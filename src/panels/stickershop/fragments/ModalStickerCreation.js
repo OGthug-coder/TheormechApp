@@ -10,10 +10,14 @@ class ModalStickerCreation extends React.Component {
 
     constructor(props) {
         super(props);
-        this.fileInput = React.createRef();
         this.state = {
-            price: 0,
-            file: '',
+            cost: 1,
+            file: null,
+            filename: '',
+            img: require('../../../img/stickershop/noimage.svg'),
+            name: '',
+            description: '',
+            quote: '',
         };
     }
 
@@ -28,13 +32,43 @@ class ModalStickerCreation extends React.Component {
 
     onStickerPriceChange = (value) => {
         this.setState({
-            price: value,
+            cost: parseInt(value) + 1,
         });
     };
 
-    uploadFile = () => {
-        this.setState({file: this.fileInput.current.files[0].name});
+    uploadFile = (e) => {
+        console.log(e.target.files[0]);
+        this.setState({
+            file: e.target.files[0],
+            filename: e.target.files[0].name,
+            img: URL.createObjectURL(e.target.files[0]),
+        })
+        //this.setState({filename: this.fileInput.current.files[0].name});
     }
+
+    onNameChange = (value) => {
+        this.setState({name: value});
+    };
+
+    onDescriptionChange = (value) => {
+        this.setState({description: value});
+    };
+
+    onQuoteChange = (value) => {
+        this.setState({quote: value});
+    }
+
+    sendData = () => {
+        const data = {
+            img: this.state.file,
+            name: this.state.name,
+            description: this.state.description,
+            quote: this.state.quote,
+            cost: this.state.cost,
+        }
+        
+        this.props.onSaveClick(data);
+    }   
 
     render() {
         return (
@@ -48,23 +82,26 @@ class ModalStickerCreation extends React.Component {
                     <div className={s.content}>
 
                         <div className={s.preview}>
-                            <div className={s.preview_logo}/>
+                            <img 
+                                class={s.preview_logo}
+                                src={this.state.img}
+                            />
                         </div>
 
                         <div className={s.input_frame}>
                             <div className={s.input_button}>
                                 <label className={s.input_label}>
-                                    Загрузить фото:
+                                    Загрузить фото
                                     <input 
                                         className={s.input_file} 
                                         type="file" 
-                                        name="pic" 
-                                        ref={this.fileInput}
+                                        name="pic"
+                                        accept="image/*" 
                                         onChange={this.uploadFile}
                                     />
                                 </label>
                             </div>
-                            <span className={s.filename}>{this.state.file}</span>
+                            <span className={s.filename}>{this.state.filename}</span>
                         </div>
 
                         <div className={s.input_title}>
@@ -72,8 +109,9 @@ class ModalStickerCreation extends React.Component {
                         </div>
 
                         <div className={s.input}>
-                            <Input placeholder={''}
-                                   maxLength={135}/>
+                            <Input placeholder={this.state.name}
+                                   maxLength={135}
+                                   onChange={this.onNameChange}/>
                         </div>
 
                         <div className={s.input_title}>
@@ -81,8 +119,9 @@ class ModalStickerCreation extends React.Component {
                         </div>
 
                         <div className={s.input}>
-                            <Input placeholder={''}
-                                   maxLength={150}/>
+                            <Input placeholder={this.state.description}
+                                   maxLength={150}
+                                   onChange={this.state.onDescriptionChange}/>
                         </div>
 
                         <div className={s.input_title}>
@@ -90,8 +129,9 @@ class ModalStickerCreation extends React.Component {
                         </div>
 
                         <div className={s.input}>
-                            <Input placeholder={''}
-                                   maxLength={90}/>
+                            <Input placeholder={this.state.quote}
+                                   maxLength={90}
+                                   onChange={this.onQuoteChange}/>
                         </div>
 
                         <div className={s.right_answer_choice}>
@@ -99,8 +139,8 @@ class ModalStickerCreation extends React.Component {
                                 Стоимость
                             </div>
                             <div className={s.select}>
-                                <select name="price"
-                                        value={this.state.price}
+                                <select name="cost"
+                                        value={this.state.cost - 1}
                                         onChange={(e) => this.onStickerPriceChange(e.target.value)}>
                                     <option value="0">1</option>
                                     <option value="1">2</option>
@@ -109,10 +149,13 @@ class ModalStickerCreation extends React.Component {
                                 </select>
                             </div>
                             <Score key={100}
-                               score={parseInt(this.state.price) + 1}/>
+                               score={this.state.cost}/>
                         </div>
 
-                        <button className={s.save_button}>
+                        <button 
+                            className={s.save_button}
+                            onClick={this.sendData}
+                        >
                             Сохранить
                         </button>
                     </div>
