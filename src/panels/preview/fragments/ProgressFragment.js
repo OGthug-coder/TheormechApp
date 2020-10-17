@@ -2,6 +2,8 @@ import React from 'react';
 
 import s from './ProgressFragment.module.css';
 
+const INFINITY_SIGN = require('../../../img/preview/ic_infinity_sign.svg');
+
 class ProgressFragment extends React.Component {
     constructor(props) {
         super(props);
@@ -11,30 +13,46 @@ class ProgressFragment extends React.Component {
         }
 
         this.progressItem = (progressItemData) => {
-            return (
-                <>
-                    <div className={s.progress_item__title}>
-                        {progressItemData.title}
-                    </div>
-                    <div className={s.progress_item__counter}>
-                        <div className={s.progress_item__block}>
-                            <div>
-                                {progressItemData.elements[0]}
+            if (progressItemData.elements[0] == 0
+                && progressItemData.elements[1] == 0) {
+                return (
+                    <>
+                        <div className={s.progress_item__title}>
+                            {progressItemData.title}
+                        </div>
+                        <div className={s.progress_item__counter}>
+                            <img src={INFINITY_SIGN} alt={'infinity'}/>
+                        </div>
+
+                    </>
+                )
+            } else {
+                return (
+                    <>
+                        <div className={s.progress_item__title}>
+                            {progressItemData.title}
+                        </div>
+                        <div className={s.progress_item__counter}>
+                            <div className={s.progress_item__block}>
+                                <div>
+                                    {progressItemData.elements[0]}
+                                </div>
+                            </div>
+                            <div className={s.progress_itme__separator}>
+                                {progressItemData.separator}
+                            </div>
+                            <div
+                                className={`${s.progress_item__block} ${progressItemData.special == null ? '' : s.special}`}>
+                                <div>
+                                    {progressItemData.elements[1]}
+                                </div>
+
                             </div>
                         </div>
-                        <div className={s.progress_itme__separator}>
-                            {progressItemData.separator}
-                        </div>
-                        <div className={`${s.progress_item__block} ${progressItemData.special == null ? '' : s.special}` }>
-                            <div>
-                                {progressItemData.elements[1]}
-                            </div>
 
-                        </div>
-                    </div>
-
-                </>
-            )
+                    </>
+                )
+            }
         }
     }
 

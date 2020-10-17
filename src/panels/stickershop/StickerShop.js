@@ -152,7 +152,7 @@ class StickerShop extends React.Component {
 
                         {!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN ?
                             <div className={s.wrapper} onClick={this.addNewSticker}>
-                                <div className={s.content}></div>
+                                <div className={s.content}/>
                             </div> :
                             ''
                         }
