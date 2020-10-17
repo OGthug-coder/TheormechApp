@@ -1,3 +1,3 @@
-class InvalidException extends Error {}
+class InvalidDateFormatException extends Error {}
 
-export default InvalidException;
+export default InvalidDateFormatException;

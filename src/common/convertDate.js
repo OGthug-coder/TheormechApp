@@ -1,9 +1,8 @@
-// 21-07-2020 00:00:00
-import InvalidException from "./exceptions/InvalidException";
+import InvalidDateFormatException from "./exceptions/InvalidException";
 
 export const toCustomFormat = (date) => {
     if (isNaN(date.getTime())) {
-        throw new InvalidException();
+        throw new InvalidDateFormatException();
     }
 
     return toDoubleDigits(date.getDate()) + "-"
@@ -26,7 +25,6 @@ const toDoubleDigits = (number) => {
 export const toDefaultFormat = (date) => {
     const dateTime = date.split(" ");
     if (dateTime.length === 1) {
-        debugger
         return new Date(dateTime[0]);
     }
     date = dateTime[0].split('-');

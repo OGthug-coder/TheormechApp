@@ -1,6 +1,6 @@
 import isUndefined from "../IsUndefined";
 import {toCustomFormat} from "../convertDate";
-import InvalidException from "../exceptions/InvalidException";
+import InvalidDateFormatException from "../exceptions/InvalidException";
 
 class TestEditHelper {
     constructor(api, test) {
@@ -39,7 +39,7 @@ class TestEditHelper {
         try {
             test.date = !isUndefined(test.date) ? toCustomFormat(new Date(test.date)) : toCustomFormat(new Date());
         } catch (e) {
-            if (e instanceof InvalidException) {
+            if (e instanceof InvalidDateFormatException) {
             //       That means the date is already formatted
             }
         }
