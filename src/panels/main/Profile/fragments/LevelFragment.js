@@ -4,16 +4,9 @@ import s from './LevelFragment.module.css';
 import isUndefined from "../../../../common/IsUndefined";
 
 class LevelFragment extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            sticker: props.sticker,
-        };
-    }
 
     render() {
-        const sticker = this.state.sticker;
+        const sticker = this.props.sticker;
         return (
             <div className={s.level_wrapper}>
                 <div className={s.dignity}>
@@ -26,6 +19,7 @@ class LevelFragment extends React.Component {
                 </div>
                 <div className={s.quote}>
                     {!isUndefined(sticker) ? sticker.quote : ""}
+
                 </div>
                 <div className={s.sticker_wrapper}>
                     <div className={s.cloud}/>

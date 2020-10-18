@@ -128,6 +128,20 @@
 
 }
 
+.settings_window {
+    z-index: 1000;
+    position: absolute;
+    top: 76%;
+    left: 15%;
+    margin: 20px;
+    height: min-content;
+    width: min-content;
+}
+
+.settings_window_anim {
+    animation: slide_up var(--animation_time) linear;
+}
+
 .active {
     animation: rotate2 var(--animation_time) ease-out;
 }
@@ -136,34 +150,6 @@
     animation: rotate var(--animation_time) ease-in-out;
 }
 
-.settings_window {
-    z-index: 1000;
-    height: min-content;
-    width: min-content;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 76%;
-    left: 15%;
-    margin: 20px;
-
-    animation: slide_up var(--animation_time) linear;
-}
-
-.settings_item {
-    height: 40px;
-    width: 60vw;
-    margin: 2px;
-    border-radius: 25px;
-    background-color: white;
-    text-align: center;
-    line-height: 40px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-}
-
-.settings_item:active {
-    background-color: #F2F2F2;
-}
 
 .hidden_no_animation {
     display: none;

@@ -7,6 +7,8 @@ import Vibration from "../Vibration";
 class Api {
     constructor() {
         this.URL = "https://atake.live:8443/v1/";
+        //this.URL = 'http://172.20.10.6:80/v1/';
+
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
 
@@ -18,6 +20,7 @@ class Api {
         return fetch(url, {
             method: "GET",
             headers: {
+                "params": this.PARAMS,
                 "Content-Type": "application/json"
             }
         }).then(response => response.json())
@@ -26,11 +29,61 @@ class Api {
     }
 
     requestTest(id) {
-
         const url = this.URL + "tests/" + id;
         return fetch(url, {
             method: "GET",
             headers: {
+                "params": this.PARAMS,
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
+    }
+
+    saveTest(test) {
+        let testFormData = new FormData();
+
+        for (const [key, value] of Object.entries(test)) {
+            testFormData.append(key, value);
+        }
+
+        const url = this.URL + "tests/";
+        fetch(url, {
+            method: "POST",
+            body: testFormData,
+            headers: {
+                "params": this.PARAMS,
+            }
+        });
+    }
+
+    updateTest(test) {
+        const url = this.URL + "tests/";
+
+        let testFormData = new FormData();
+
+        for (const [key, value] of Object.entries(test)) {
+            if (key === 'questions') {
+                testFormData.append(key, JSON.stringify(value));
+            } else {
+                testFormData.append(key, value);
+            }
+        }
+
+        fetch(url, {
+            method: "PATCH",
+            body: testFormData,
+            headers: {
+                "params": this.PARAMS,
+            }
+        });
+    }
+
+    deleteTest(id) {
+        const url = this.URL + "tests/" + id;
+        return fetch(url, {
+            method: "DELETE",
+            headers: {
+                "params": this.PARAMS,
                 "Content-Type": "application/json"
             }
         }).then(response => response.json());
@@ -55,29 +108,6 @@ class Api {
     getVkProfile() {
         return bridge.send('VKWebAppGetUserInfo')
             .catch(e => console.log(e));
-        // const response = {
-        //     bdate: "1.10",
-        //     city: {
-        //         id: 0,
-        //         title: "Санкт-Петербург"
-        //     },
-        //     country: {
-        //         id: 0,
-        //         title: ""
-        //     },
-        //     first_name: "Артем",
-        //     id: 137239419,
-        //     last_name: "Бакута",
-        //     photo_100: "https://sun9-12.userapi.com/c857424/v857424321/c3b3d/_n0Y7-aYtwE.jpg?ava=1",
-        //     photo_200: "https://sun9-61.userapi.com/c857424/v857424321/c3b3c/QmbUxDlOVmo.jpg?ava=1",
-        //     photo_max_orig: "https://sun9-34.userapi.com/impf/c857424/v857424321/c3b3a/A-gC15Mizx8.jpg?size=0x0&quality=90&sign=9957305916153e2803f0bb9902588389&ava=1",
-        //     sex: 2,
-        //     timezone: 3,
-        // };
-        //
-        // return new Promise((resolve) => {
-        //     setTimeout(() => resolve(response), 200);
-        // });
     }
 
     vibrateNotification(type) {
@@ -86,7 +116,7 @@ class Api {
         } else if (this.ALLOW_VIBRATION) {
             switch (type) {
                 case Vibration.SUCCESS:
-                    window.navigator.vibrate([200, 50,  100])
+                    window.navigator.vibrate([200, 50, 100])
                     break;
                 case Vibration.ERROR:
                     window.navigator.vibrate([200, 50, 200])
@@ -196,6 +226,23 @@ class Api {
                 "params": this.PARAMS
             }
         }).then(response => response.json());
+    }
+
+    saveSticker(sticker) {
+        let stickerFormData = new FormData();
+
+        for (const [key, value] of Object.entries(sticker)) {
+            stickerFormData.append(key, value);
+        }
+
+        const url = this.URL + "stickers/";
+        return fetch(url, {
+            method: "POST",
+            body: stickerFormData,
+            headers: {
+                "params": this.PARAMS,
+            }
+        }).then(data => data.json());
     }
 
 }
