@@ -110,28 +110,6 @@ export default class TestTimerHelper {
         }
 
         if (!isFinished) {
-            let lastEventNumber = -1;
-
-            let lastEvent = this.history
-                .reduce((acc, event) => acc.question.serialNumber > event.question.serialNumber ? acc : event);
-            if (lastEvent.eventCode !== EventCodeDto.STARTED) {
-                lastEventNumber = lastEvent.question.serialNumber;
-            } else {
-                lastEventNumber = lastEvent.question.serialNumber;
-                // Test progress stopped on unanswered question
-                // skip it before others
-                // this.api.sendHistoryEvent(lastEvent.question.id, this.user.id, EventCodeDto.SKIPPED);
-            }
-
-            // Skip all other questions
-            // this.test.questions
-            //     .forEach(q => {
-            //         if (q.serialNumber > lastEventNumber) {
-            //             this.api.sendHistoryEvent(q.id, this.user.id, EventCodeDto.SKIPPED);
-            //             lastEventNumber++;
-            //         }
-            //     });
-
             const lastQuestion = this.test.questions
                 .reduce((acc, q) => acc.serialNumber >= q.serialNumber ? acc : q);
 

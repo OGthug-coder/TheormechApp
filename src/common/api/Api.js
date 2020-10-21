@@ -9,7 +9,6 @@ class Api {
         // this.URL = "https://atake.live:8443/v1/";
         this.URL = 'http://localhost/v1/';
 
-
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
     }
