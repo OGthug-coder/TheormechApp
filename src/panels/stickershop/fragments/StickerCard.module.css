@@ -1,7 +1,7 @@
 .wrapper {
     font-family: 'Roboto', sans-serif;
     scroll-snap-align: center;
-    width: 80vw;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,15 +91,19 @@
 
 @media screen and (max-height: 670px) {
     .card {
-        height: 360px;
+        height: 260px;
     }
 
     .name {
-        margin-top: 2vh;
+        font-size: 16px;
     }
 
     .description {
         display: none;
+    }
+
+    .quote {
+        font-size: 10px;
     }
 }
 

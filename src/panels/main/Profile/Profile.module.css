@@ -1,20 +1,21 @@
 .profile_card {
-    height: 95%;
+    min-height: 93%;
+    max-height: 95%;
+    min-width: 95%;
     margin-top: 15px;
     margin-right: 5vw;
     padding: 1vh 1vw 1vh 0;
     display: grid;
     background-color: #FFFFFF;
     border-radius: 25px;
-    grid-template-columns: 5vw 1fr;
-    grid-template-rows: minmax(100px, 150px) minmax(320px, 340px) 110px;
+    grid-template-columns: 3vw 1fr;
+    grid-template-rows: 30% 40% 30%;
     grid-template-areas: "slider about" "slider level_fragment" "slider logo";
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     font-family: "Roboto", sans-serif;
     align-items: center;
     justify-items: center;
     color: black;
-    /*grid-gap: 5px;*/
 }
 
 .slider {
@@ -47,6 +48,11 @@
     font-size: 14px;
 }
 
+.surname {
+    font-weight: bold;
+    font-size: 14px;
+}
+
 .score {
     margin-top: 10px;
 }
@@ -55,12 +61,12 @@
     grid-area: level_fragment;
 }
 
-.logo {
+.logo { 
     grid-area: logo;
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 1.5fr 32px;
-    margin: auto 5px 0;
+    grid-template-columns: 1fr 1.5fr 35px;
+    margin: 7% 5px 0px;
 }
 
 .logo > a > img {
@@ -71,16 +77,16 @@
     width: 75px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
 }
 
 .logo_text {
     text-decoration: none;
+    font-size: 14px;
     text-align: left;
-    padding-right: 5px;
     width: 80%;
-    margin-bottom: 20px;
+    margin: 10px 5px 0px;
 }
 
 .background {
@@ -119,6 +125,7 @@
     width: 33px;
     height: 33px;
     /*margin: auto 5px 0 0;*/
+    margin-bottom: 20px; 
     display: flex;
 
     align-self: end;
@@ -216,6 +223,7 @@
     .settings {
         margin-bottom: 20px;
     }
+
 }
 
 @media screen and (min-device-height: 700px){

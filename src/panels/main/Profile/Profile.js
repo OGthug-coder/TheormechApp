@@ -54,17 +54,26 @@ class Profile extends React.Component {
         return (
             <div className={s.profile_card}>
                 <div className={s.slider}/>
+                
                 <div className={s.about}>
                     <Avatar src={!isUndefined(user) ?
                          this.state.user.photo_200 : ""} size={100}/>
                     <div className={s.bio}>
-                        <div className={s.name}>
+                        <div className={s.surname}>
                             {
                                 !isUndefined(user)
-                                    ? user.first_name + " " + user.last_name
+                                    ? user.last_name
                                     : ""
                             }
                         </div>
+                        <div className={s.name}>
+                            {
+                                !isUndefined(user)
+                                    ? user.first_name
+                                    : ""
+                            }
+                        </div>
+                        
                         <div>
                             Студент теормеха
                         </div>

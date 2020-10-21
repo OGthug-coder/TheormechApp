@@ -21,14 +21,19 @@ class LevelFragment extends React.Component {
                     {!isUndefined(sticker) ? sticker.quote : ""}
 
                 </div>
-                <div className={s.sticker_wrapper}>
-                    <div className={s.cloud}/>
-                    <div className={s.cloud}/>
-                    <div className={s.cloud}/>
-                    <img className={s.sticker}
-                         src={!isUndefined(sticker) ? sticker.img : ""}
-                         alt={"sticker"}
-                    />
+                <div className={s.main_wrapper}>
+                    <div className={s.box}>
+                        <img className={s.sticker}
+                            src={!isUndefined(sticker) ? sticker.img : ""}
+                            alt={"sticker"}
+                        />
+                    </div>
+                    <div className={s.sticker_wrapper}>
+                        <div className={s.cloud}/>
+                        <div className={s.cloud}/>
+                        <div className={s.cloud}/>
+                        
+                    </div>
                 </div>
             </div>
         )

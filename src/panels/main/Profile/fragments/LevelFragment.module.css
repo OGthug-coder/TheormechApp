@@ -1,36 +1,32 @@
 .level_wrapper {
-    height: min-content;
+    margin-left: 0;
+    padding-left: 0; 
+    height: 100%;
     display: grid;
-    grid-template-rows: 40px min-content 200px;
-    grid-template-areas: "dignity" "quote" "sticker";
+    grid-template-rows: 40px min-content 100px;
     grid-gap: 5px;
 }
 
 .dignity {
-    grid-area: dignity;
     font-size: 16px;
     display: grid;
     margin: auto;
     grid-template-columns: 40px 1fr;
-    grid-template-areas:"brain text";
 }
 
 .dignity svg {
     margin: 0;
-    grid-area: brain;
     height: 34px;
     width: 34px;
 }
 
 .dignity div {
     margin-top: 7px;
-    grid-area: text;
     font-weight: bold;
 }
 
 .quote {
     font-weight: bold;
-    grid-area: quote;
     margin-right: 20px;
     margin-left: 20px;
     border-radius: 25px;
@@ -41,9 +37,14 @@
     padding: 10px;
 }
 
+.main_wrapper {
+    max-height: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
 .sticker_wrapper {
     display: grid;
-    grid-template-columns: 200px 1fr;
     grid-template-rows: repeat(3, 20px);
     grid-template-areas:
             "sticker cloud_1"
@@ -76,9 +77,15 @@
     border-radius: 25px;
 }
 
-.sticker {
-    margin: 5px;
-    max-height: 200px;
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 200px;
-    grid-area: sticker;
+}
+
+.sticker {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
