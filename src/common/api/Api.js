@@ -6,8 +6,8 @@ import Vibration from "../Vibration";
 
 class Api {
     constructor() {
-        this.URL = "https://atake.live:8443/v1/";
-        //this.URL = 'http://172.20.10.6:80/v1/';
+        // this.URL = "https://atake.live:8443/v1/";
+        this.URL = 'http://localhost/v1/';
 
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
@@ -47,13 +47,13 @@ class Api {
         }
 
         const url = this.URL + "tests/";
-        fetch(url, {
+        return fetch(url, {
             method: "POST",
             body: testFormData,
             headers: {
                 "params": this.PARAMS,
             }
-        });
+        }).then(response => response.json());
     }
 
     updateTest(test) {
