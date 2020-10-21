@@ -26,23 +26,25 @@ export default class TestTimerHelper {
     }
 
     getStartEventTime = () => {
-        this.startEventTimer = this.userPromise.then(user => {
-            return this.api.requestHistory(user.id, this.test.id)
-                .then(history => {
-                    const historyEvent = history.filter(event => event.question.serialNumber === 0
-                        && event.eventCode === EventCodeDto.STARTED);
+        this.startEventTimer = this.userPromise
+            .then(user => {
+                return this.api.requestHistory(user.id, this.test.id)
+                    .then(history => {
+                        const historyEvent = history.filter(event => event.question.serialNumber === 0
+                            && event.eventCode === EventCodeDto.STARTED);
 
-                    this.lastEvent = this.getLastEvent(history);
-                    this.history = history;
-                    this.user = user;
+                        this.lastEvent = this.getLastEvent(history);
+                        this.user = user;
 
-                    if (historyEvent.length === 1) {
-                        return historyEvent[0].date;
-                    } else {
-                        return NOT_STARTED;
-                    }
-                });
-        });
+                        if (historyEvent.length === 1) {
+                            return historyEvent[0].date;
+                        } else if (this.lastEvent.length > 0) {
+                            return NO_TIMER;
+                        } else {
+                            return NOT_STARTED;
+                        }
+                    });
+            });
     };
 
     subscribe = (callback) => {
@@ -53,7 +55,7 @@ export default class TestTimerHelper {
             } else if (startTime === NOT_STARTED) {
                 callback(this.test.timeToComplete);
             } else {
-                return timePromise.then(currentTimeMillis => {
+                timePromise.then(currentTimeMillis => {
                     let remain = new Date(currentTimeMillis) - toDefaultFormat(startTime);
                     // Getting seconds
                     let [minutes, seconds] = this.test.timeToComplete.split(":");
@@ -62,10 +64,21 @@ export default class TestTimerHelper {
                     seconds = parseInt(seconds);
 
                     let delay = (minutes * 60 + seconds) * 1000 - remain;
-                    return this.processDelay(delay, callback);
+                    this.processDelay(delay, callback);
                 })
             }
         });
+    };
+
+    getDelay = (currentTimeMillis, startTime) => {
+        let remain = new Date(currentTimeMillis) - toDefaultFormat(startTime);
+        // Getting seconds
+        let [minutes, seconds] = this.test.timeToComplete.split(":");
+
+        minutes = parseInt(minutes);
+        seconds = parseInt(seconds);
+
+        return (minutes * 60 + seconds) * 1000 - remain;
     };
 
     processDelay = (delay, callback) => {
@@ -103,6 +116,7 @@ export default class TestTimerHelper {
 
     finishTest = () => {
         let isFinished = false;
+        // check if a test is already finished
         if (this.lastEvent.length > 0) {
             isFinished = this.lastEvent
                 .filter(event => event.eventCode !== EventCodeDto.STARTED)
