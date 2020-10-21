@@ -2,7 +2,7 @@ import React from 'react';
 
 import s from "./Preview.module.css";
 import ProgressFragment from "./fragments/ProgressFragment";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import QuestionStatus from "../../preview/util/QuestionStatus";
 import QuestionItemFragment from "./fragments/QuestionItemFragment";
 import PreviewUtil from "../../preview/util/TestStatus";
@@ -23,10 +23,13 @@ class Preview extends React.Component {
         this.testId = props.match.params.testId;
 
         this.state = {};
-
     }
 
     componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData = () => {
         this.previewService.getHistory(this.testId, this.application.provideUser())
             .then(history => {
                 this.previewService.getTest(this.testId)
@@ -46,23 +49,21 @@ class Preview extends React.Component {
                 const currentScore = this.previewService.getCurrentScore(history);
                 this.setState({currentScore: currentScore});
             });
-    }
+    };
 
     componentWillUnmount() {
-        if (!isUndefined(this.testTimer)) {
-            this.testTimer.unsubscribe(this.sub);
+        if (!isUndefined(this.testTimerHelper)) {
+            this.application.deleteTestTimer();
         }
     }
 
     configureTestTimer = (test) => {
-        this.testTimer = this.application.provideTestTimer(test, this.toResultScreen);
-        this.sub = this.testTimer.subscribe((timer) => {
-            this.setState({timer: timer});
-        });
+        this.testTimerHelper = this.application.provideTestTimerHelper(test, this.toResultScreen);
+        this.testTimerHelper.subscribe((timer) => this.setState({timer: timer}));
     };
 
     toResultScreen = () => {
-      console.log("time is up!");
+        this.props.history.push("/result/" + this.state.testInfo.id);
     };
 
     showAnswerWindow = (e) => {
@@ -150,7 +151,6 @@ class Preview extends React.Component {
         }
     }
 
-
     getNextQuestionLink = () => {
         if (!isUndefined(this.state.testStatus)
             && !isUndefined(this.state.testInfo)
@@ -216,6 +216,7 @@ class Preview extends React.Component {
                     <div className={!isUndefined(this.state.testStatus)
                     && this.state.testStatus !== TestStatus.FINISHED ? s.button : s.hidden}>
                         <Link to={this.getNextQuestionLink()}
+                              onClick={this.toQuestionScreen}
                               className={s.link}>
                             <div>{this.getButtonText()}</div>
                         </Link>
@@ -237,4 +238,4 @@ class Preview extends React.Component {
     }
 }
 
-export default Preview;
+export default withRouter(Preview);

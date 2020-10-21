@@ -10,7 +10,7 @@ import StickerShopService from "./stickershop/StickerShopService";
 import ResultService from "./result/ResultService";
 import TestCreationService from "./testcreation/TestCreationService";
 import TestEditHelper from "./common/services/TestEditHelper";
-import TestTimer from "./common/services/TestTimer";
+import TestTimerHelper from "./common/services/TestTimerHelper";
 
 class Application {
     #testListService;
@@ -131,9 +131,9 @@ class Application {
         this.#testEditHelper = undefined;
     }
 
-    provideTestTimer(test, callback) {
+    provideTestTimerHelper(test, callback) {
         if (isUndefined(this.#testTimer)) {
-            this.#testTimer = new TestTimer(test, callback, this.provideApi(), this.provideUser());
+            this.#testTimer = new TestTimerHelper(test, callback, this.provideApi(), this.provideUser());
         }
 
         return this.#testTimer;

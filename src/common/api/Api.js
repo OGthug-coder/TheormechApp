@@ -6,13 +6,23 @@ import Vibration from "../Vibration";
 
 class Api {
     constructor() {
-        this.URL = "https://atake.live:8443/v1/";
-        // this.URL = 'http://localhost/v1/';
+        // this.URL = "https://atake.live:8443/v1/";
+        this.URL = 'http://localhost/v1/';
 
 
         this.PARAMS = window.location.search;
         this.ALLOW_VIBRATION = true;
+    }
 
+    requestTime() {
+        const url = this.URL + "time";
+
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
     }
 
     requestTests() {

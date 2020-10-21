@@ -1,6 +1,7 @@
 import React from 'react';
 
 import s from './ProgressFragment.module.css';
+import {NO_TIMER} from "../../../common/services/Timer";
 
 const INFINITY_SIGN = require('../../../img/preview/ic_infinity_sign.svg');
 
@@ -13,8 +14,7 @@ class ProgressFragment extends React.Component {
         }
 
         this.progressItem = (progressItemData) => {
-            if (progressItemData.elements[0] == 0
-                && progressItemData.elements[1] == 0) {
+            if (progressItemData === NO_TIMER) {
                 return (
                     <>
                         <div className={s.progress_item__title}>
