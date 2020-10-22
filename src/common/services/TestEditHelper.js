@@ -63,9 +63,9 @@ class TestEditHelper {
                     return a;
                 });
 
-                if (!index.include(q.serialNumber)) {
+                if (!indexes.includes(q.serialNumber)) {
                     maxScore += q.reward;
-                    index.push(q.serialNumber);
+                    indexes.push(q.serialNumber);
                 }
 
                 if (isUndefined(q.reward)) {
