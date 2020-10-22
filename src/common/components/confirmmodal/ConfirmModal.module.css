@@ -29,13 +29,14 @@
 
 .controls > button {
     outline: none;
-    width: 25vw;
+    min-width: 25vw;
     height: 35px;
     border: none;
     border-radius: 25px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
     color: white;
     font-size: 1.1em;
+    text-align: center;
 }
 
 .approve {

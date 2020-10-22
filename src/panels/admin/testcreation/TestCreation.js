@@ -64,6 +64,7 @@ class TestCreation extends React.Component {
     };
 
     onTestTimeChange = (e) => {
+        console.log(e.target.value);
         this.setState({timeToComplete: e.target.value})
         this.testEditHelper.updateValue('timeToComplete', e.target.value);
 
@@ -159,14 +160,10 @@ class TestCreation extends React.Component {
                                     this.state.limited
                                         ?
                                         <div className={s.select}>
-                                            <select name="time"
+                                            <input type={'time'} name="time"
                                                     value={this.state.timeToComplete}
                                                     onChange={this.onTestTimeChange}>
-                                                <option value="15">15</option>
-                                                <option value="30">30</option>
-                                                <option value="45">45</option>
-                                                <option value="60">60</option>
-                                            </select>
+                                            </input>
                                             минут
                                         </div>
                                         : ""

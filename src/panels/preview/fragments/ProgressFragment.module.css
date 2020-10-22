@@ -30,6 +30,7 @@
 
 .progress_item__title {
     font-size: 18px;
+    margin-bottom: 5px;
 }
 
 .progress_item__block {
@@ -40,6 +41,11 @@
     display: grid;
     justify-items: center;
     align-items: center;
+}
+
+.progress_item__counter > img {
+    height: 40px;
+    margin-left: 60px;
 }
 
 .special {

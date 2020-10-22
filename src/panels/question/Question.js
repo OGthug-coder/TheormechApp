@@ -36,16 +36,24 @@ class Question extends React.Component {
     }
 
     componentDidMount() {
-        // this.questionService.getQuestion(this.state.questionId)
-        //     .then(question => this.setState({question: question}));
         this.downloadData();
+    }
+
+    componentWillUnmount() {
+        if (!isUndefined(this.testTimerHelper)) {
+            this.application.deleteTestTimer();
+        }
     }
 
     downloadData = () => {
         this.questionService.getTest(this.state.testId)
             .then(test => {
                 const question = test.questions.find(q => q.id === this.state.questionId);
-                this.questionService.startQuestion(question.id);
+                this.questionService.startQuestion(question.id).then(status => {
+                    if (status.ok) {
+                        this.configureTestTimer(test)
+                    }
+                });
                 this.setState({question: question});
                 this.setState({test: test});
 
@@ -63,6 +71,18 @@ class Question extends React.Component {
                 this.setState({questionsLength: uniqQuestions.length});
 
             });
+    };
+
+    configureTestTimer = (test) => {
+        if (isUndefined(this.testTimerHelper)) {
+            this.testTimerHelper = this.application.provideTestTimerHelper(test, this.toResultScreen);
+            this.testTimerHelper
+                .subscribe((timer) => this.setState({timer: timer}));
+        }
+    };
+
+    toResultScreen = () => {
+        this.props.history.replace("/result/" + this.state.testId);
     };
 
     prepareList = () => {
@@ -91,15 +111,15 @@ class Question extends React.Component {
         this.setState({animation: 'correct'});
         this.questionService.vibrate(Vibration.SUCCESS);
 
-        this.questionService.passQuestion(this.state.questionId).then(response => {
-            if (response.status === HttpStatus.OK) {
+        this.questionService.passQuestion(this.state.questionId).then(status => {
+            if (status.ok) {
                 setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
                     this.setState({animation: undefined})
                     this.startNextQuestion(QuestionStatus.PASSED);
                 }, 1000);
             } else {
-
+                //    TODO
             }
         });
         this.setState({status: Status.PASSED});
@@ -109,14 +129,15 @@ class Question extends React.Component {
         this.setState({animation: 'incorrect'})
         this.questionService.vibrate(Vibration.ERROR);
 
-        this.questionService.failQuestion(this.state.questionId).then(response => {
-            if (response.status === HttpStatus.OK) {
+        this.questionService.failQuestion(this.state.questionId).then(status => {
+            if (status.ok) {
                 setTimeout(() => {
                     this.setState({status: Status.IN_PROGRESS});
                     this.setState({animation: undefined})
                     this.startNextQuestion(QuestionStatus.PASSED);
                 }, 1000);
             } else {
+                //    TODO
 
             }
         });
@@ -125,8 +146,8 @@ class Question extends React.Component {
 
     onSkip = () => {
         this.questionService.vibrate(Vibration.WARNING);
-        this.questionService.skipQuestion(this.state.questionId).then(response => {
-            if (response.status === HttpStatus.OK) {
+        this.questionService.skipQuestion(this.state.questionId).then(status => {
+            if (status.ok) {
                 this.setState({status: Status.IN_PROGRESS});
                 this.startNextQuestion(QuestionStatus.SKIPPED);
             } else {
@@ -160,47 +181,6 @@ class Question extends React.Component {
         }
     };
 
-    // onClick(e) {
-    //     console.log('pushed');
-    // }
-
-    onSwipeStart = (event) => {
-    };
-
-    onSwipeMove = (position, event) => {
-        this.setState({position: position.y});
-    };
-
-    onSwipeEnd = (event) => {
-        const start = this.state._position;
-        const id = setInterval(start < 0 ? backAnimationDown : backAnimationUp, 1, this);
-        let speed = Math.abs(start) / 83.82916675;
-        let time = 0;
-
-        function backAnimationDown(context) {
-            let pos = context.state._position;
-            time += 0.01;
-            if (Math.abs(pos) <= 10) {
-                clearInterval(id);
-            } else {
-                let move = nextMove(time) * speed;
-                context.setState({_on: pos + move});
-            }
-        }
-
-        function backAnimationUp(context) {
-            let pos = context.state._position;
-            if (pos < 0) {
-                clearInterval(id);
-            } else {
-                context.setState({_position: pos - speed});
-            }
-        }
-
-        const nextMove = (t) => 1 - t * t * t * t * t;
-    };
-
-
     render() {
         const question = this.state.question;
         return (
@@ -218,7 +198,7 @@ class Question extends React.Component {
                         }
                     </div>
                     <div className={s.timer}>
-                        {/*Оставшееся время: <span>14:52</span>*/}
+                        Оставшееся время: <span>{this.state.timer}</span>
                     </div>
                 </div>
                 <div className={`${s.question_card} `}
@@ -253,14 +233,6 @@ class Question extends React.Component {
                             <div className={s.chevron}/>
                         </div>
                     </div>
-
-                    {/*TODO: implement swipes*/}
-                    {/*<Swipe*/}
-                    {/*    onSwipeStart={this.onSwipeStart}*/}
-                    {/*    onSwipeMove={this.onSwipeMove}*/}
-                    {/*    onSwipeEnd={this.onSwipeEnd}>*/}
-                    {/*    <button className={s.slider}/>*/}
-                    {/*</Swipe>*/}
 
                     <div className={s.wave_card}/>
                 </div>

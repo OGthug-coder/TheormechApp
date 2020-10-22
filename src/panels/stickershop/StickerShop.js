@@ -136,7 +136,7 @@ class StickerShop extends React.Component {
                 <BackHeader
                     style={this.state.modalStickerCreation ? {filter: "blur(2px)"} : {}}
                 />
-                <div 
+                <div
                     className={s.container}
                     style={this.state.modalStickerCreation ? {filter: "blur(2px)"} : {}}
                 >
@@ -151,7 +151,9 @@ class StickerShop extends React.Component {
                         {this.renderStickers()}
 
                         {!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN ?
-                            <div className={s.wrapper} onClick={this.addNewSticker}><div className={s.content}></div></div> : 
+                            <div className={s.wrapper} onClick={this.addNewSticker}>
+                                <div className={s.content}/>
+                            </div> :
                             ''
                         }
 
