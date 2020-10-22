@@ -9,6 +9,8 @@ import isUndefined from "../../common/IsUndefined";
 import Vibration from "../../common/Vibration";
 import UserRoles from "../../common/UserRoles";
 import ModalStickerCreation from "./fragments/ModalStickerCreation";
+import ConfirmModal from "../../common/components/confirmmodal/ConfirmModal";
+
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -19,6 +21,7 @@ class StickerShop extends React.Component {
         this.state = {
             scoreFocus: undefined,
             modalStickerCreation: false,
+            confirmModal: false,
         };
 
     }
@@ -64,7 +67,7 @@ class StickerShop extends React.Component {
                     this.setState({stickers: stickers})
                 })
         }
-    };
+    }
 
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
@@ -88,7 +91,7 @@ class StickerShop extends React.Component {
                 setTimeout(() => this.setState({scoreFocus: undefined}), 300)
             }
         }
-    };
+    }
 
     renderStickers = () => {
         const stickers = this.state.stickers;
@@ -109,14 +112,14 @@ class StickerShop extends React.Component {
                         onBuyClick={this.onBuyClick}
                         scoreFocus={this.state.scoreFocus}
                         onEditMode={this.state.user.role}
-                        onDeleteClick={this.onDeleteClick}/>
+                        onDeleteClick={this.showConfirmModal}/>
                 );
                 return sticker;
             })
 
             return stickerComponents;
         }
-    };
+    }
 
     addNewSticker = () => {
         this.setState({modalStickerCreation: true});
@@ -124,16 +127,42 @@ class StickerShop extends React.Component {
 
     onSaveClick = (sticker) => {
         this.stickerShopService.saveSticker(sticker).then(
-            data => this.setState({
-                modalStickerCreation: false,
-                stickers: data
-            })
+            data => {
+                this.setState({
+                    modalStickerCreation: false,
+                    stickers: data
+                });
+            }
         )
     }
 
-    onDeleteClick = (id) => {
-        console.log(id);
-    };
+    closeConfirmModal = () => {
+        this.setState({
+            confirmModal: false,
+            activeSticker: null,
+        });
+    }
+
+    onDeleteClick = () => {
+        this.stickerShopService.deleteSticker(this.state.activeSticker).then(
+            data => {
+                this.setState({
+                    stickers: data
+                });
+            }
+        );
+
+        this.closeConfirmModal();
+    }
+
+    showConfirmModal = (id) => {
+        this.setState({
+            confirmModal: true,
+            activeSticker: id,
+        });
+    }
+
+    
 
 
     render() {
@@ -156,7 +185,7 @@ class StickerShop extends React.Component {
 
                         {this.renderStickers()}
 
-                        {!isUndefined(this.state.user) && this.state.user.role != UserRoles.ADMIN ?
+                        {!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN ?
                             <div className={s.wrapper} onClick={this.addNewSticker}>
                                 <div className={s.content}/>
                             </div> :
@@ -177,6 +206,19 @@ class StickerShop extends React.Component {
                             </div>
                         )
                         : ""
+                }
+                {
+                    this.state.confirmModal ? 
+                        (
+                            <div className={s.confirm_modal_container}>
+                                <div className={s.confirm_modal}>
+                                    <ConfirmModal text={'Вы уверены, что хотите удалить тест?'}
+                                        onApprove={this.onDeleteClick}
+                                        onCancel={this.closeConfirmModal}/>
+                                </div>
+                            </div>
+                        ) 
+                    : ""
                 }
             </>
         );

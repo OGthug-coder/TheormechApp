@@ -115,6 +115,24 @@
     height: min-content;
 }
 
+.confirm_modal_container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.confirm_modal {
+    width: min-content;
+    height: min-content;
+
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .sticker_container::-webkit-scrollbar {
     display: none; /* Safari and Chrome */

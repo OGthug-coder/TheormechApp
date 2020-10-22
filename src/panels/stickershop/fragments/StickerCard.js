@@ -30,9 +30,14 @@ class StickerCard extends React.Component {
                          this.props.onSelect : () => {
                      }}>
 
-                    {this.props.onEditMode !=  UserRoles.ADMIN ? 
-                        (<div className={s.delete_button} onClick={this.sendData}/>)
-                    : ""}
+                    {this.props.onEditMode ===  UserRoles.ADMIN ? 
+                        (
+                            //<div className={s.delete_button} onClick={this.sendData}/>
+                            <div className={s.delete_button}>
+                                <div id={this.props.id}
+                                     onClick={this.sendData}/>
+                            </div>
+                        ) : ""}
 
                     <img className={s.img}
                          src={this.props.img}
