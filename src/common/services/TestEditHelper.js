@@ -52,15 +52,10 @@ class TestEditHelper {
             test.questions = test.questions.filter(q => q.questionText !== "PLACEHOLDER");
             // Delete temp ids
             // and get maxScore
-            let index = 0;
-
+            let indexes = [];
             test.questions.map(q => {
                 if (q.id < 0) {
                     delete q.id;
-                }
-
-                if (isUndefined(q.reward)) {
-                    q.reward = 0;
                 }
 
                 q.answers.map(a => {
@@ -68,9 +63,13 @@ class TestEditHelper {
                     return a;
                 });
 
-                if (q.serialNumber === index) {
+                if (!index.include(q.serialNumber)) {
                     maxScore += q.reward;
-                    index++;
+                    index.push(q.serialNumber);
+                }
+
+                if (isUndefined(q.reward)) {
+                    q.reward = 0;
                 }
 
                 return q;
