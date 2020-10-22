@@ -150,7 +150,7 @@ class StickerShop extends React.Component {
 
                         {this.renderStickers()}
 
-                        {!isUndefined(this.state.user) && this.state.user.role === UserRoles.ADMIN ?
+                        {!isUndefined(this.state.user) && this.state.user.role != UserRoles.ADMIN ?
                             <div className={s.wrapper} onClick={this.addNewSticker}>
                                 <div className={s.content}/>
                             </div> :

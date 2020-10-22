@@ -58,7 +58,7 @@
 }
 
 .wrapper {
-    height: 390px;
+    height: 490px;
     min-width: 70%;
     display: flex;
     justify-content: center;
@@ -130,3 +130,14 @@
     }
 }
 
+@media screen and (max-height: 670px) {
+    .wrapper {
+        height: 390px;
+    }
+}
+
+@media screen and (min-height: 670px) {
+    .wrapper {
+        height: 490px;
+    }
+}
