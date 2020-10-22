@@ -56,13 +56,13 @@ class Api {
         }
 
         const url = this.URL + "tests/";
-        fetch(url, {
+        return fetch(url, {
             method: "POST",
             body: testFormData,
             headers: {
                 "params": this.PARAMS,
             }
-        });
+        }).then(response => response.json());
     }
 
     updateTest(test) {

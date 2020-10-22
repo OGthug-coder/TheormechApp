@@ -23,12 +23,13 @@ class TestEditHelper {
         if (this.changeCounter > 0) {
             if (this.isNew) {
                 if (!isUndefined(this.test.title)) {
-                    this.api.saveTest(this.prepareTest());
-                    console.log("save");
+                    this.api.saveTest(this.prepareTest()).then(test => {
+                        this.test = test;
+                        this.isNew = false;
+                    });
                 }
             } else {
                 this.api.updateTest(this.prepareTest());
-                console.log("update");
             }
             this.changeCounter = 0;
         }
@@ -51,8 +52,7 @@ class TestEditHelper {
             test.questions = test.questions.filter(q => q.questionText !== "PLACEHOLDER");
             // Delete temp ids
             // and get maxScore
-            let index = 0;
-
+            let indexes = [];
             test.questions.map(q => {
                 if (q.id < 0) {
                     delete q.id;
@@ -63,9 +63,13 @@ class TestEditHelper {
                     return a;
                 });
 
-                if (q.serialNumber === index) {
+                if (!indexes.includes(q.serialNumber)) {
                     maxScore += q.reward;
-                    index++;
+                    indexes.push(q.serialNumber);
+                }
+
+                if (isUndefined(q.reward)) {
+                    q.reward = 0;
                 }
 
                 return q;
