@@ -89,6 +89,18 @@
     visibility: hidden;
 }
 
+.delete_button {
+    position: relative;
+    z-index: 100000;
+    min-height: 30px;
+    max-height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    background-size: 30px;
+    background-repeat: none;
+    background-image: url("https://img.icons8.com/flat_round/64/000000/delete-sign.png");
+}
+
 @media screen and (max-height: 670px) {
     .card {
         height: 360px;

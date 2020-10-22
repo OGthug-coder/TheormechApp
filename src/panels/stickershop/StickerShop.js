@@ -93,7 +93,7 @@ class StickerShop extends React.Component {
     renderStickers = () => {
         const stickers = this.state.stickers;
         let stickerComponents = [];
-        if (!isUndefined(stickers)) {
+        if (!isUndefined(this.state.user) && !isUndefined(stickers)) {
             stickers.map(sticker => {
                 stickerComponents.push(
                     <StickerCard
@@ -107,7 +107,9 @@ class StickerShop extends React.Component {
                         status={sticker.status}
                         onSelect={this.onSelect}
                         onBuyClick={this.onBuyClick}
-                        scoreFocus={this.state.scoreFocus}/>
+                        scoreFocus={this.state.scoreFocus}
+                        onEditMode={this.state.user.role}
+                        onDeleteClick={this.onDeleteClick}/>
                 );
                 return sticker;
             })
@@ -128,6 +130,10 @@ class StickerShop extends React.Component {
             })
         )
     }
+
+    onDeleteClick = (id) => {
+        console.log(id);
+    };
 
 
     render() {
