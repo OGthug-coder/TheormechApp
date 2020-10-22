@@ -36,10 +36,15 @@ export default class TestTimerHelper {
                         this.lastEvent = this.getLastEvent(history);
                         this.user = user;
 
-                        if (historyEvent.length === 1) {
-                            return historyEvent[0].date;
-                        } else if (this.lastEvent.length > 0) {
-                            return NO_TIMER;
+
+                        if (historyEvent.length > 0) {
+                            if (this.lastEvent.length > 0) {
+                                // Test is finished
+                                return NO_TIMER;
+                            } else {
+                                // Test is not finished
+                                return historyEvent[0].date;
+                            }
                         } else {
                             return NOT_STARTED;
                         }

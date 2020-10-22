@@ -197,8 +197,10 @@ class QuestionCreation extends React.Component {
         let questions = this.state.questions;
         questions = questions.filter(q => q.id !== question.id);
         questions.map(q => {
-            q.reward = question.reward;
-            return q;
+            if (q.serialNumber === question.serialNumber) {
+                q.reward = question.reward;
+                return q;
+            }
         });
 
         questions.push(question);
