@@ -79,6 +79,7 @@ class ModalStickerCreation extends React.Component {
                             <img 
                                 class={s.preview_logo}
                                 src={this.state.img}
+                                alt={"sticker pic"}
                             />
                         </div>
 
