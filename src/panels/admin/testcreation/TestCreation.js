@@ -161,8 +161,20 @@ class TestCreation extends React.Component {
                                         ?
                                         <div className={s.select}>
                                             <input type={'time'} name="time"
-                                                    value={this.state.timeToComplete}
-                                                    onChange={this.onTestTimeChange}>
+                                                   value={this.state.timeToComplete}
+                                                   onChange={this.onTestTimeChange}>
+                                                <select>
+                                                    <option value="1:0">1</option>
+                                                    <option value="2:0">2</option>
+                                                    <option value="3:0">3</option>
+                                                    <option value="4:0">4</option>
+                                                    <option value="5:0">5</option>
+                                                    <option value="10:0">10</option>
+                                                    <option value="15:0">15</option>
+                                                    <option value="20:0">20</option>
+                                                    <option value="25:0">25</option>
+                                                    <option value="30:0">30</option>
+                                                </select>
                                             </input>
                                             минут
                                         </div>
