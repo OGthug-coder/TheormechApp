@@ -70,6 +70,7 @@ class StickerShop extends React.Component {
     }
 
     onBuyClick = (event) => {
+        console.log('buy');
         if (!isUndefined(this.state.user)) {
             const cost = this.state.stickers.find(s => s.id === parseInt(event.target.id)).cost;
             if (this.state.user.score >= cost) {
@@ -144,6 +145,7 @@ class StickerShop extends React.Component {
     }
 
     onDeleteClick = () => {
+        console.log('delete');
         this.stickerShopService.deleteSticker(this.state.activeSticker).then(
             data => {
                 this.setState({
@@ -212,7 +214,7 @@ class StickerShop extends React.Component {
                         (
                             <div className={s.confirm_modal_container}>
                                 <div className={s.confirm_modal}>
-                                    <ConfirmModal text={'Вы уверены, что хотите удалить тест?'}
+                                    <ConfirmModal text={'Вы уверены, что хотите удалить стикер?'}
                                         onApprove={this.onDeleteClick}
                                         onCancel={this.closeConfirmModal}/>
                                 </div>

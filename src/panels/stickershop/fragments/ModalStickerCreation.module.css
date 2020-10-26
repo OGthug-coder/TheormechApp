@@ -127,10 +127,15 @@
 
 .input_button:hover {
     background-color: #4986CC;
+    color: #ffffff;
 }
 
 .input_label {
     font-size: 20px;
+}
+
+.cost_input {
+    max-height: 10px;
 }
 
 .input_file {

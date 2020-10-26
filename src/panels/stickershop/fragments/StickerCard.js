@@ -24,13 +24,7 @@ class StickerCard extends React.Component {
 
         return (
             <div className={s.wrapper}>
-                <div id={this.props.id}
-                     className={s.card}
-                     onClick={this.props.status === StickerStatus.AVAILABLE ?
-                         this.props.onSelect : () => {
-                     }}>
-
-                    {this.props.onEditMode ===  UserRoles.ADMIN ? 
+                {this.props.onEditMode ===  UserRoles.ADMIN ? 
                         (
                             //<div className={s.delete_button} onClick={this.sendData}/>
                             <div className={s.delete_button}>
@@ -39,6 +33,11 @@ class StickerCard extends React.Component {
                             </div>
                         ) : ""}
 
+                <div id={this.props.id}
+                     className={s.card}
+                     onClick={this.props.status === StickerStatus.AVAILABLE ?
+                         this.props.onSelect : () => {
+                     }}>
                     <img className={s.img}
                          src={this.props.img}
                          alt="sticker"
