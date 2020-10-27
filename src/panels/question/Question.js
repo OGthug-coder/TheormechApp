@@ -201,10 +201,7 @@ class Question extends React.Component {
                         Оставшееся время: <span>{this.state.timer}</span>
                     </div>
                 </div>
-                <div className={`${s.question_card} `}
-                     style={{
-                         top: `${this.state._position}px`
-                     }}>
+                <div className={`${s.question_card} `}>
                     {this.state.animation === undefined
                         ?
                         <div className={s.question_text}>
