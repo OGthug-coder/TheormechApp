@@ -160,25 +160,33 @@ class TestCreation extends React.Component {
                                     this.state.limited
                                         ?
                                         <div className={s.select}>
-                                            <input type={'time'} name="time"
-                                                   value={this.state.timeToComplete}
-                                                   onChange={this.onTestTimeChange}>
-                                                <select>
-                                                    <option value="1:0">1</option>
-                                                    <option value="2:0">2</option>
-                                                    <option value="3:0">3</option>
-                                                    <option value="4:0">4</option>
-                                                    <option value="5:0">5</option>
-                                                    <option value="10:0">10</option>
-                                                    <option value="15:0">15</option>
-                                                    <option value="20:0">20</option>
-                                                    <option value="25:0">25</option>
-                                                    <option value="30:0">30</option>
-                                                </select>
-                                            </input>
+                                            <select name="time"
+                                                    value={this.state.timeToComplete}
+                                                    onChange={this.onTestTimeChange}>
+                                                <option value="1:0">01:00</option>
+                                                <option value="2:0">02:00</option>
+                                                <option value="3:0">03:00</option>
+                                                <option value="4:0">04:00</option>
+                                                <option value="5:0">05:00</option>
+                                                <option value="6:0">06:00</option>
+                                                <option value="7:0">07:00</option>
+                                                <option value="8:0">08:00</option>
+                                                <option value="9:0">09:00</option>
+                                                <option value="10:0">10:00</option>
+                                                <option value="15:0">15:00</option>
+                                                <option value="20:0">20:00</option>
+                                                <option value="25:0">25:00</option>
+                                                <option value="30:0">30:00</option>
+                                                <option value="35:0">35:00</option>
+                                                <option value="40:0">40:00</option>
+                                                <option value="45:0">45:00</option>
+                                                <option value="50:0">50:00</option>
+                                                <option value="55:0">55:00</option>
+                                                <option value="60:0">60:00</option>
+                                            </select>
                                             минут
                                         </div>
-                                        : ""
+                                    : ""
                                 }
 
                             </div>
