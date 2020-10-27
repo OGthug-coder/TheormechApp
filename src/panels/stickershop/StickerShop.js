@@ -164,8 +164,6 @@ class StickerShop extends React.Component {
         });
     }
 
-    
-
 
     render() {
         return (
@@ -210,17 +208,17 @@ class StickerShop extends React.Component {
                         : ""
                 }
                 {
-                    this.state.confirmModal ? 
+                    this.state.confirmModal ?
                         (
                             <div className={s.confirm_modal_container}>
                                 <div className={s.confirm_modal}>
                                     <ConfirmModal text={'Вы уверены, что хотите удалить стикер?'}
-                                        onApprove={this.onDeleteClick}
-                                        onCancel={this.closeConfirmModal}/>
+                                                  onApprove={this.onDeleteClick}
+                                                  onCancel={this.closeConfirmModal}/>
                                 </div>
                             </div>
-                        ) 
-                    : ""
+                        )
+                        : ""
                 }
             </>
         );
