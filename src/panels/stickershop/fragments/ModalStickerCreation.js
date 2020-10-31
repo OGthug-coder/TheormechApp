@@ -18,6 +18,7 @@ class ModalStickerCreation extends React.Component {
             name: '',
             description: '',
             quote: '',
+            btnWarning: false,
         };
     }
     onBackClick = () => {
@@ -31,13 +32,12 @@ class ModalStickerCreation extends React.Component {
     };
 
     uploadFile = (e) => {
-        console.log(e.target.files[0]);
         this.setState({
             file: e.target.files[0],
             filename: e.target.files[0].name,
             img: URL.createObjectURL(e.target.files[0]),
+            btnWarning: false,
         })
-        //this.setState({filename: this.fileInput.current.files[0].name});
     }
 
     onNameChange = (value) => {
@@ -53,15 +53,20 @@ class ModalStickerCreation extends React.Component {
     }
 
     sendData = () => {
-        const data = {
+        if (this.state.file !== null) {
+
+            const data = {
             img: this.state.file,
             name: this.state.name,
             description: this.state.description,
             quote: this.state.quote,
             cost: this.state.cost,
+            }
+
+            this.props.onSaveClick(data);
+        } else {
+            this.setState({btnWarning: true});
         }
-        
-        this.props.onSaveClick(data);
     }   
 
     render() {
@@ -77,8 +82,9 @@ class ModalStickerCreation extends React.Component {
 
                         <div className={s.preview}>
                             <img 
-                                class={s.preview_logo}
+                                className={s.preview_logo}
                                 src={this.state.img}
+                                alt={"sticker pic"}
                             />
                         </div>
 
@@ -146,12 +152,21 @@ class ModalStickerCreation extends React.Component {
                                score={this.state.cost}/>
                         </div>
 
+                        {
+                            this.state.btnWarning ? (
+                            <p className={s.warningText}>
+                                Загрузите фото
+                            </p>
+                            ) : ""
+                        }
+                        
                         <button 
-                            className={s.save_button}
+                            className={`${s.save_button} ${this.state.btnWarning ? s.btnWarning : ""}`}
                             onClick={this.sendData}
                         >
                             Сохранить
                         </button>
+                        
                     </div>
                 </ModalWindow>
             </div>

@@ -33,7 +33,7 @@ class ModalAnswersCreation extends React.Component {
 
     onAnswerTextChange = (value, id) => {
         const answers = this.state.answers;
-        answers.map(a => {
+        answers.forEach(a => {
             if (a.serialNumber === parseInt(id)) {
                 a.answer = value
             }
@@ -47,7 +47,7 @@ class ModalAnswersCreation extends React.Component {
 
     onTestTimeChange = (value) => {
         const answers = this.state.answers;
-        answers.map(a => {
+        answers.forEach(a => {
             if (a.serialNumber === parseInt(value)) {
                 a.isRight = 1;
             } else {

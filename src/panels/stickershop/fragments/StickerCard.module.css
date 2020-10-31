@@ -89,6 +89,36 @@
     visibility: hidden;
 }
 
+.delete_button {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
+.delete_button > div {
+    position: relative;
+    z-index: 100;
+    display: block;
+    top: 10%;
+    left: 67vw;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background-color: #FF5353;
+}
+
+.delete_button > div::before {
+    content: "";
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 4px;
+    top: calc(50% - 3px);
+    left: calc(50% - 12px);
+
+    background-color: white;
+}
+
 @media screen and (max-height: 670px) {
     .card {
         height: 360px;

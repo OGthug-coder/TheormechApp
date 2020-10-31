@@ -72,12 +72,12 @@
     border-radius: 25px;
     border: 1px solid #4986CC;
 
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .save_button:active {
     background-color: #2D5BB9;
-    color: white;
+    color: #ffffff;
 }
 
 .save_button:hover, .save_button:focus {
@@ -127,10 +127,15 @@
 
 .input_button:hover {
     background-color: #4986CC;
+    color: #ffffff;
 }
 
 .input_label {
     font-size: 20px;
+}
+
+.cost_input {
+    max-height: 10px;
 }
 
 .input_file {
@@ -139,4 +144,15 @@
 
 .filename {
 
+}
+
+.btnWarning {
+    background-color: #ff0000;
+    outline: none;
+    color: #ffffff;
+    border: 0;
+}
+
+.warningText {
+    color: red;
 }

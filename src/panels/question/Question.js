@@ -6,7 +6,6 @@ import isUndefined from "../../common/IsUndefined";
 import RightAnswerCode from "../../preview/util/RightAnswerCode";
 import getNextQuestionUrl from "../../common/getNextQuestionUrl";
 import QuestionStatus from "../../preview/util/QuestionStatus";
-import HttpStatus from "../../common/api/HttpStatus";
 import AnswerItemFragment from "./fragments/AnswerItemFragment";
 import CorrectAnimation from "./fragments/CorectAnimation"
 import IncorrectAnimation from "./fragments/IncorrectAnimation"

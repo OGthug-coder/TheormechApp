@@ -9,6 +9,8 @@ import isUndefined from "../../common/IsUndefined";
 import Vibration from "../../common/Vibration";
 import UserRoles from "../../common/UserRoles";
 import ModalStickerCreation from "./fragments/ModalStickerCreation";
+import ConfirmModal from "../../common/components/confirmmodal/ConfirmModal";
+
 
 class StickerShop extends React.Component {
     constructor(props) {
@@ -19,18 +21,19 @@ class StickerShop extends React.Component {
         this.state = {
             scoreFocus: undefined,
             modalStickerCreation: false,
+            confirmModal: false,
         };
 
     }
 
     componentDidMount() {
-
-
         this.stickerShopService.getAllStickers().then(stickers => {
             this.application.provideUser().then(user => {
                 stickers = this.prepareStickers(stickers, user);
-                this.setState({stickers: stickers});
-                this.setState({user: user});
+                this.setState({
+                    stickers: stickers,
+                    user: user
+                });
             });
         });
     }
@@ -64,7 +67,7 @@ class StickerShop extends React.Component {
                     this.setState({stickers: stickers})
                 })
         }
-    };
+    }
 
     onBuyClick = (event) => {
         if (!isUndefined(this.state.user)) {
@@ -88,12 +91,12 @@ class StickerShop extends React.Component {
                 setTimeout(() => this.setState({scoreFocus: undefined}), 300)
             }
         }
-    };
+    }
 
     renderStickers = () => {
         const stickers = this.state.stickers;
         let stickerComponents = [];
-        if (!isUndefined(stickers)) {
+        if (!isUndefined(this.state.user) && !isUndefined(stickers)) {
             stickers.map(sticker => {
                 stickerComponents.push(
                     <StickerCard
@@ -107,26 +110,56 @@ class StickerShop extends React.Component {
                         status={sticker.status}
                         onSelect={this.onSelect}
                         onBuyClick={this.onBuyClick}
-                        scoreFocus={this.state.scoreFocus}/>
+                        scoreFocus={this.state.scoreFocus}
+                        onEditMode={this.state.user.role}
+                        onDeleteClick={this.showConfirmModal}/>
                 );
                 return sticker;
             })
 
             return stickerComponents;
         }
-    };
+    }
 
     addNewSticker = () => {
         this.setState({modalStickerCreation: true});
     }
 
     onSaveClick = (sticker) => {
-        this.stickerShopService.saveSticker(sticker).then(
-            data => this.setState({
-                modalStickerCreation: false,
-                stickers: data
-            })
-        )
+        if (!isUndefined(this.state.user)) {
+            this.setState({modalStickerCreation: false});
+            this.stickerShopService.saveSticker(sticker).then(
+                data => {
+                    const stickers = this.prepareStickers(data, this.state.user);
+                    this.setState({stickers: stickers});
+                }
+            )
+        }
+    }
+
+    closeConfirmModal = () => {
+        this.setState({
+            confirmModal: false,
+            activeStickerId: null,
+        });
+    }
+
+    onDeleteClick = () => {
+        this.stickerShopService.deleteSticker(this.state.activeStickerId).then(
+            data => {
+                const stickers = this.prepareStickers(data, this.state.user);
+                this.setState({stickers: stickers});
+            }
+        );
+
+        this.closeConfirmModal();
+    }
+
+    showConfirmModal = (id) => {
+        this.setState({
+            confirmModal: true,
+            activeStickerId: id,
+        });
     }
 
 
@@ -168,6 +201,19 @@ class StickerShop extends React.Component {
                                     onSaveClick={this.onSaveClick}
                                     onBackClick={() => this.setState({modalStickerCreation: false})}
                                 />
+                            </div>
+                        )
+                        : ""
+                }
+                {
+                    this.state.confirmModal ?
+                        (
+                            <div className={s.confirm_modal_container}>
+                                <div className={s.confirm_modal}>
+                                    <ConfirmModal text={'Вы уверены, что хотите удалить стикер?'}
+                                                  onApprove={this.onDeleteClick}
+                                                  onCancel={this.closeConfirmModal}/>
+                                </div>
                             </div>
                         )
                         : ""

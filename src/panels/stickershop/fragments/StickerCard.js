@@ -3,6 +3,7 @@ import s from "./StickerCard.module.css";
 import Score from "../../../common/components/score/Score";
 import StickerControl from "./StickerControl";
 import StickerStatus from "../util/StickerStatus";
+import UserRoles from "../../../common/UserRoles";
 
 class StickerCard extends React.Component {
     constructor(props) {
@@ -14,18 +15,28 @@ class StickerCard extends React.Component {
 
     }
 
+    sendData = () => {
+        this.props.onDeleteClick(this.props.id);
+    }
 
     render() {
         const id = this.props.id.toString();
 
         return (
             <div className={s.wrapper}>
+                {this.props.onEditMode ===  UserRoles.ADMIN ? 
+                        (
+                            <div className={s.delete_button}>
+                                <div id={this.props.id}
+                                     onClick={this.sendData}/>
+                            </div>
+                        ) : ""}
+
                 <div id={this.props.id}
                      className={s.card}
                      onClick={this.props.status === StickerStatus.AVAILABLE ?
                          this.props.onSelect : () => {
                      }}>
-
                     <img className={s.img}
                          src={this.props.img}
                          alt="sticker"

@@ -27,6 +27,10 @@ class StickerShopService {
         return this.api.saveSticker(sticker);
     }
 
+    deleteSticker(id) {
+        return this.api.deleteSticker(id);
+    }
+
 }
 
 export default StickerShopService;

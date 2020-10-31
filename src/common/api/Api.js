@@ -254,6 +254,17 @@ class Api {
         }).then(data => data.json());
     }
 
+    deleteSticker(id) {
+        const url = this.URL + "stickers/" + id;
+        return fetch(url, {
+            method: "DELETE",
+            headers: {
+                "params": this.PARAMS,
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
+    }
+
 }
 
 export default Api;
