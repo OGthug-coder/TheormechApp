@@ -32,14 +32,12 @@ class ModalStickerCreation extends React.Component {
     };
 
     uploadFile = (e) => {
-        console.log(e.target.files[0]);
         this.setState({
             file: e.target.files[0],
             filename: e.target.files[0].name,
             img: URL.createObjectURL(e.target.files[0]),
             btnWarning: false,
         })
-        //this.setState({filename: this.fileInput.current.files[0].name});
     }
 
     onNameChange = (value) => {
@@ -84,7 +82,7 @@ class ModalStickerCreation extends React.Component {
 
                         <div className={s.preview}>
                             <img 
-                                class={s.preview_logo}
+                                className={s.preview_logo}
                                 src={this.state.img}
                                 alt={"sticker pic"}
                             />

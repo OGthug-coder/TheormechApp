@@ -27,13 +27,13 @@ class StickerShop extends React.Component {
     }
 
     componentDidMount() {
-
-
         this.stickerShopService.getAllStickers().then(stickers => {
             this.application.provideUser().then(user => {
                 stickers = this.prepareStickers(stickers, user);
-                this.setState({stickers: stickers});
-                this.setState({user: user});
+                this.setState({
+                    stickers: stickers,
+                    user: user
+                });
             });
         });
     }
@@ -70,7 +70,6 @@ class StickerShop extends React.Component {
     }
 
     onBuyClick = (event) => {
-        console.log('buy');
         if (!isUndefined(this.state.user)) {
             const cost = this.state.stickers.find(s => s.id === parseInt(event.target.id)).cost;
             if (this.state.user.score >= cost) {
@@ -127,30 +126,29 @@ class StickerShop extends React.Component {
     }
 
     onSaveClick = (sticker) => {
-        this.stickerShopService.saveSticker(sticker).then(
-            data => {
-                this.setState({
-                    modalStickerCreation: false,
-                    stickers: data
-                });
-            }
-        )
+        if (!isUndefined(this.state.user)) {
+            this.setState({modalStickerCreation: false});
+            this.stickerShopService.saveSticker(sticker).then(
+                data => {
+                    const stickers = this.prepareStickers(data, this.state.user);
+                    this.setState({stickers: stickers});
+                }
+            )
+        }
     }
 
     closeConfirmModal = () => {
         this.setState({
             confirmModal: false,
-            activeSticker: null,
+            activeStickerId: null,
         });
     }
 
     onDeleteClick = () => {
-        console.log('delete');
-        this.stickerShopService.deleteSticker(this.state.activeSticker).then(
+        this.stickerShopService.deleteSticker(this.state.activeStickerId).then(
             data => {
-                this.setState({
-                    stickers: data
-                });
+                const stickers = this.prepareStickers(data, this.state.user);
+                this.setState({stickers: stickers});
             }
         );
 
@@ -160,7 +158,7 @@ class StickerShop extends React.Component {
     showConfirmModal = (id) => {
         this.setState({
             confirmModal: true,
-            activeSticker: id,
+            activeStickerId: id,
         });
     }
 
