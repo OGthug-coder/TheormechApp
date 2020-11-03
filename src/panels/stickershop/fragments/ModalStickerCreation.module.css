@@ -54,15 +54,6 @@
     margin-top: auto;
 }
 
-.select > select {
-    height: 35px;
-    width: 45px;
-    border: 1px solid #E1E1E1;
-    border-radius: 8px;
-    background-color: white;
-    color: #707070;
-}
-
 .save_button {
     height: 50px;
     width: 80%;

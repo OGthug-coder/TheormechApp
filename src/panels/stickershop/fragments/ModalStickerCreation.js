@@ -4,6 +4,7 @@ import ModalWindow from "../../../common/components/modalwindow/ModalWindow";
 import BackButton from "../../../common/components/backbutton/BackButton";
 import Input from "../../../common/components/input/Input";
 import Score from "../../../common/components/score/Score";
+import Select from "../../../common/components/select/Select";
 
 
 class ModalStickerCreation extends React.Component {
@@ -138,16 +139,12 @@ class ModalStickerCreation extends React.Component {
                             <div>
                                 Стоимость
                             </div>
-                            <div className={s.select}>
-                                <select name="cost"
-                                        value={this.state.cost - 1}
-                                        onChange={(e) => this.onStickerPriceChange(e.target.value)}>
-                                    <option value="0">1</option>
-                                    <option value="1">2</option>
-                                    <option value="2">3</option>
-                                    <option value="3">4</option>
-                                </select>
-                            </div>
+                            <Select 
+                                name={"cost"} 
+                                value={this.state.cost - 1}
+                                onChange={(e) => this.onStickerPriceChange(e.target.value)}
+                                numOptions={5}
+                            />
                             <Score key={100}
                                score={this.state.cost}/>
                         </div>

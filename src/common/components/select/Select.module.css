@@ -1,0 +1,8 @@
+.select > select {
+    height: 35px;
+    width: 65px;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    background-color: white;
+    color: #707070;
+}

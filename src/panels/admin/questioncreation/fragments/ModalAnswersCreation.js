@@ -4,6 +4,7 @@ import ModalWindow from "../../../../common/components/modalwindow/ModalWindow";
 import Input from "../../../../common/components/input/Input";
 import BackButton from "../../../../common/components/backbutton/BackButton";
 import RightAnswerCode from "../../../../preview/util/RightAnswerCode";
+import Select from "../../../../common/components/select/Select";
 
 
 class ModalAnswersCreation extends React.Component {
@@ -128,16 +129,12 @@ class ModalAnswersCreation extends React.Component {
                             <div>
                                 Верный ответ
                             </div>
-                            <div className={s.select}>
-                                <select name="time"
-                                        value={this.state.rightAnswer}
-                                        onChange={(e) => this.onTestTimeChange(e.target.value)}>
-                                    <option value="0">1</option>
-                                    <option value="1">2</option>
-                                    <option value="2">3</option>
-                                    <option value="3">4</option>
-                                </select>
-                            </div>
+                            <Select 
+                                name={"time"}
+                                value={this.state.rightAnswer}
+                                onChange={(e) => this.onTestTimeChange(e.target.value)}
+                                numOptions={5}
+                            />
                         </div>
                         <div className={s.input_title}>
                             Объяснение
