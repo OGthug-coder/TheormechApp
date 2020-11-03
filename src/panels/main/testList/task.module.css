@@ -1,6 +1,6 @@
 .card {
     grid-area: card;
-    height: 270px;
+    height: min-content;
     width: 82vw;
     display: grid;
     grid-template-rows: 160px calc(80px + 1em + 15px);
@@ -23,6 +23,7 @@
 }
 
 .container {
+    height: available;
     grid-area: container;
     z-index: 1;
     background-color: #FFFFFF;
