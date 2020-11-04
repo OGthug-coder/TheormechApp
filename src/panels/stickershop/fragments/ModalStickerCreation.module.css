@@ -52,6 +52,7 @@
     height: min-content;
     margin-bottom: auto;
     margin-top: auto;
+    margin-right: 10px;
 }
 
 .save_button {
