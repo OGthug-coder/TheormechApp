@@ -143,7 +143,13 @@ class ModalStickerCreation extends React.Component {
                                 name={"cost"} 
                                 value={this.state.cost - 1}
                                 onChange={(e) => this.onStickerPriceChange(e.target.value)}
-                                numOptions={5}
+                                options={{
+                                    "0" : 1,
+                                    "1" : 2,
+                                    "2" : 3,
+                                    "3" : 4,
+                                    "4" : 5
+                                }}
                             />
                             <Score key={100}
                                score={this.state.cost}/>

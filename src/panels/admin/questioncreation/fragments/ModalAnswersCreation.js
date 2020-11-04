@@ -133,7 +133,13 @@ class ModalAnswersCreation extends React.Component {
                                 name={"time"}
                                 value={this.state.rightAnswer}
                                 onChange={(e) => this.onTestTimeChange(e.target.value)}
-                                numOptions={5}
+                                options={{
+                                    "0" : 1,
+                                    "1" : 2,
+                                    "2" : 3,
+                                    "3" : 4,
+                                    "4" : 5
+                                }}
                             />
                         </div>
                         <div className={s.input_title}>

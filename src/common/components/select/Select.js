@@ -7,14 +7,14 @@ class Select extends React.Component {
         super(props);
     }
 
-    renderOptions = (number) => {
-        let options = [];
-        for (let i = 0; i < number; i++){
-            options.push(
-                <option value={i.toString()}>{i + 1}</option>
+    renderOptions = (options) => {
+        let optionList = [];
+        for (let i in options) {
+            optionList.push(
+                <option value={i}>{options[i]}</option>
             );
         }
-        return options;
+        return optionList;
     }
 
     render(){
@@ -23,7 +23,7 @@ class Select extends React.Component {
                 <select name={this.props.name}
                         value={this.props.value}
                         onChange={this.props.onChange}>
-                    {this.renderOptions(this.props.numOptions)}
+                    {this.renderOptions(this.props.options)}
                 </select>
             </div>
         );

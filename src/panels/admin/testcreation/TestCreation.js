@@ -6,6 +6,8 @@ import Input from "../../../common/components/input/Input";
 import isUndefined from "../../../common/IsUndefined";
 import {toDefaultFormat} from "../../../common/convertDate";
 import {withRouter} from "react-router-dom";
+import Select from "../../../common/components/select/Select";
+
 
 class TestCreation extends React.Component {
     constructor(props) {
@@ -159,13 +161,16 @@ class TestCreation extends React.Component {
                                 {
                                     this.state.limited
                                         ?
-                                        <div className={s.select}>
-                                            <input type={'time'} name="time"
-                                                    value={this.state.timeToComplete}
-                                                    onChange={this.onTestTimeChange}>
-                                            </input>
-                                            минут
-                                        </div>
+                                        <Select 
+                                            name={"time"}
+                                            value={this.state.timeToComplete}
+                                            onChange={this.onTestTimeChange}
+                                            options={{
+                                                "10" : 10,
+                                                "15" : 15,
+                                                "30" : 30,
+                                            }}
+                                        /> 
                                         : ""
                                 }
 
