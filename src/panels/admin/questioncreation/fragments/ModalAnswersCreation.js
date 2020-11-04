@@ -129,16 +129,15 @@ class ModalAnswersCreation extends React.Component {
                             <div>
                                 Верный ответ
                             </div>
-                            <Select 
+                            <Select
                                 name={"time"}
                                 value={this.state.rightAnswer}
                                 onChange={(e) => this.onTestTimeChange(e.target.value)}
                                 options={{
-                                    "0" : 1,
-                                    "1" : 2,
-                                    "2" : 3,
-                                    "3" : 4,
-                                    "4" : 5
+                                    "0": 1,
+                                    "1": 2,
+                                    "2": 3,
+                                    "3": 4
                                 }}
                             />
                         </div>
