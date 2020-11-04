@@ -120,24 +120,6 @@ input[type="file"] {
     margin-right: 10px;
 }
 
-.select {
-    margin-top: 0.25em;
-}
-
-.select > select {
-    height: 35px;
-    width: 90px;
-    border: 1px solid #E1E1E1;
-    border-radius: 8px;
-    background-color: white;
-    color: #707070;
-}
-
-.select > select:hover {
-    outline: none;
-}
-
-
 .next {
     margin: 2vh 9vw 2vh auto;
     display: grid;

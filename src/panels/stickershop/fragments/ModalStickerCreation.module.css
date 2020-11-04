@@ -54,15 +54,6 @@
     margin-top: auto;
 }
 
-.select > select {
-    height: 35px;
-    width: 45px;
-    border: 1px solid #E1E1E1;
-    border-radius: 8px;
-    background-color: white;
-    color: #707070;
-}
-
 .save_button {
     height: 50px;
     width: 80%;
@@ -95,14 +86,17 @@
     justify-content: center;
     align-items: center;
     margin: 20px auto;
-    border-radius: 25px;
+    padding: 5px;
+    border-radius: 5px;
     background: #F2F2F2;
 }
 
 .preview_logo {
     display: flex;
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 .input_frame {
