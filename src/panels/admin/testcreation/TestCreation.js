@@ -6,6 +6,8 @@ import Input from "../../../common/components/input/Input";
 import isUndefined from "../../../common/IsUndefined";
 import {toDefaultFormat} from "../../../common/convertDate";
 import {withRouter} from "react-router-dom";
+import Select from "../../../common/components/select/Select";
+
 
 class TestCreation extends React.Component {
     constructor(props) {
@@ -64,6 +66,7 @@ class TestCreation extends React.Component {
     };
 
     onTestTimeChange = (e) => {
+        console.log(e.target.value);
         this.setState({timeToComplete: e.target.value})
         this.testEditHelper.updateValue('timeToComplete', e.target.value);
 
@@ -158,17 +161,33 @@ class TestCreation extends React.Component {
                                 {
                                     this.state.limited
                                         ?
-                                        <div className={s.select}>
-                                            <select name="time"
-                                                    value={this.state.timeToComplete}
-                                                    onChange={this.onTestTimeChange}>
-                                                <option value="15">15</option>
-                                                <option value="30">30</option>
-                                                <option value="45">45</option>
-                                                <option value="60">60</option>
-                                            </select>
-                                            минут
-                                        </div>
+                                        <Select 
+                                            name={"time"}
+                                            value={this.state.timeToComplete}
+                                            onChange={this.onTestTimeChange}
+                                            options={{
+                                                "1:0" : "01:00",
+                                                "2:0" : "02:00",
+                                                "3:0" : "03:00",
+                                                "4:0" : "04:00",
+                                                "5:0" : "05:00",
+                                                "6:0" : "06:00",
+                                                "7:0" : "07:00",
+                                                "8:0" : "08:00",
+                                                "9:0" : "09:00",
+                                                "10:0" : "10:00",
+                                                "15:0" : "15:00",
+                                                "20:0" : "20:00",
+                                                "25:0" : "25:00",
+                                                "30:0" : "30:00",
+                                                "35:0" : "35:00",
+                                                "40:0" : "40:00",
+                                                "45:0" : "45:00",
+                                                "50:0" : "50:00",
+                                                "55:0" : "55:00",
+                                                "60:0" : "60:00",
+                                            }}
+                                        /> 
                                         : ""
                                 }
 

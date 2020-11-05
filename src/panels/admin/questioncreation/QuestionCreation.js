@@ -75,7 +75,7 @@ class QuestionCreation extends React.Component {
         );
 
         if (maxSerialNumber !== serialNumber) {
-            questions.map(q => {
+            questions.forEach(q => {
                 if (q.serialNumber > serialNumber) {
                     q.serialNumber--;
                 }
@@ -196,9 +196,11 @@ class QuestionCreation extends React.Component {
     updateQuestion = (question) => {
         let questions = this.state.questions;
         questions = questions.filter(q => q.id !== question.id);
-        questions.map(q => {
-            q.reward = question.reward;
-            return q;
+        questions.forEach(q => {
+            if (q.serialNumber === question.serialNumber) {
+                q.reward = question.reward;
+                return q;
+            }
         });
 
         questions.push(question);

@@ -3,15 +3,25 @@ import NoUserFoundException from "../exceptions/NoUserFoundException";
 import HttpStatus from "./HttpStatus.js";
 import bridge from '@vkontakte/vk-bridge';
 import Vibration from "../Vibration";
+import isUndefined from "../IsUndefined";
 
 class Api {
     constructor() {
         this.URL = "https://atake.live:8443/v1/";
-        //this.URL = 'http://172.20.10.6:80/v1/';
 
         this.PARAMS = window.location.search;
-        this.ALLOW_VIBRATION = true;
+        this.ALLOW_VIBRATION = !isUndefined(window.navigator.vibrate);
+    }
 
+    requestTime() {
+        const url = this.URL + "time";
+
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
     }
 
     requestTests() {
@@ -47,13 +57,13 @@ class Api {
         }
 
         const url = this.URL + "tests/";
-        fetch(url, {
+        return fetch(url, {
             method: "POST",
             body: testFormData,
             headers: {
                 "params": this.PARAMS,
             }
-        });
+        }).then(response => response.json());
     }
 
     updateTest(test) {
@@ -243,6 +253,17 @@ class Api {
                 "params": this.PARAMS,
             }
         }).then(data => data.json());
+    }
+
+    deleteSticker(id) {
+        const url = this.URL + "stickers/" + id;
+        return fetch(url, {
+            method: "DELETE",
+            headers: {
+                "params": this.PARAMS,
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json());
     }
 
 }

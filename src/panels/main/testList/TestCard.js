@@ -4,7 +4,6 @@ import s from './task.module.css';
 import {Link} from "react-router-dom";
 import isUndefined from "../../../common/IsUndefined";
 import {toDefaultFormat} from "../../../common/convertDate";
-// import UserRoles from "../../../common/UserRoles";
 
 
 class TestCard extends React.Component {
@@ -12,7 +11,6 @@ class TestCard extends React.Component {
         super(props);
 
         this.application = props.application;
-        console.log(toDefaultFormat(this.props.date) > new Date())
         this.state = {
             isTouchStarted: false,
             isDelayed: toDefaultFormat(this.props.date) > new Date(),
@@ -80,10 +78,11 @@ class TestCard extends React.Component {
         return (
             <div>
                 <div
-                     className={s.card}
-                     onClick={this.props.editMode ? this.onClick : () => {}}
-                     onTouchStart={this.onTouchStart}
-                     onTouchEnd={this.onTouchEnd}>
+                    className={s.card}
+                    onClick={this.props.editMode ? this.onClick : () => {
+                    }}
+                    onTouchStart={this.onTouchStart}
+                    onTouchEnd={this.onTouchEnd}>
                     <img className={s.pic}
                          src={this.props.img}
                          alt={"test"}/>
@@ -113,7 +112,7 @@ class TestCard extends React.Component {
                             {
                                 this.state.isDelayed ? (
                                     <div className={s.status_icon}>
-                                        <div />
+                                        <div/>
                                     </div>
                                 ) : ""
                             }

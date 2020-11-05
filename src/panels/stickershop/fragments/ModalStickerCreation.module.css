@@ -52,15 +52,7 @@
     height: min-content;
     margin-bottom: auto;
     margin-top: auto;
-}
-
-.select > select {
-    height: 35px;
-    width: 45px;
-    border: 1px solid #E1E1E1;
-    border-radius: 8px;
-    background-color: white;
-    color: #707070;
+    margin-right: 10px;
 }
 
 .save_button {
@@ -72,12 +64,12 @@
     border-radius: 25px;
     border: 1px solid #4986CC;
 
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .save_button:active {
     background-color: #2D5BB9;
-    color: white;
+    color: #ffffff;
 }
 
 .save_button:hover, .save_button:focus {
@@ -95,14 +87,17 @@
     justify-content: center;
     align-items: center;
     margin: 20px auto;
-    border-radius: 25px;
+    padding: 5px;
+    border-radius: 5px;
     background: #F2F2F2;
 }
 
 .preview_logo {
     display: flex;
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 .input_frame {
@@ -127,10 +122,15 @@
 
 .input_button:hover {
     background-color: #4986CC;
+    color: #ffffff;
 }
 
 .input_label {
     font-size: 20px;
+}
+
+.cost_input {
+    max-height: 10px;
 }
 
 .input_file {
@@ -139,4 +139,15 @@
 
 .filename {
 
+}
+
+.btnWarning {
+    background-color: #ff0000;
+    outline: none;
+    color: #ffffff;
+    border: 0;
+}
+
+.warningText {
+    color: red;
 }
