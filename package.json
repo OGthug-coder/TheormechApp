@@ -3,6 +3,7 @@
   "version": "0.2.4",
   "description": "",
   "main": "index.js",
+  "homepage": "./",
   "scripts": {
     "start": "cross-env PORT=10888 HTTPS=false react-scripts start",
     "build": "react-scripts build",
