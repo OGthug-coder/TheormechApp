@@ -6,7 +6,7 @@ import bridge from "@vkontakte/vk-bridge";
 import App from "./App";
 
 // Init VK  Mini App
-bridge.send("VKWebAppInit")
+bridge.send("VKWebAppInit", {})
 
 if (navigator.userAgent.indexOf("iPhone") !== -1) {
     bridge.send("VKWebAppSetViewSettings", {
