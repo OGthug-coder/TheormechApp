@@ -134,6 +134,7 @@ export default class TestTimerHelper {
 
             this.api.sendHistoryEvent(lastQuestion.id, this.user.id, EventCodeDto.SKIPPED);
             this.callback();
+
         }
     };
 

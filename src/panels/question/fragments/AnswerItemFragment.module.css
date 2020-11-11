@@ -1,9 +1,8 @@
 .answer_item {
-
     margin: 10px auto;
     padding: 5px;
     width: 270px;
-    height: 50px;
+    height: 55px;
     z-index: 3;
     position: relative;
 
@@ -51,6 +50,6 @@
 
 @media screen and (min-device-height: 750px) {
     .answer_item {
-        margin: 20px auto;
+        margin: 10px auto;
     }
 }
