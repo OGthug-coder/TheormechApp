@@ -197,8 +197,18 @@ class Question extends React.Component {
                         }
                     </div>
                     <div className={s.timer}>
-                        Оставшееся время: <span>{this.state.timer}</span>
+                        {
+                            isUndefined(this.state.timer)
+                                ? ""
+                                : (
+                                    <>
+                                        Оставшееся время: <span>{this.state.timer}</span>
+                                    </>
+                                )
+
+                        }
                     </div>
+
                 </div>
                 <div className={`${s.question_card} `}>
                     {this.state.animation === undefined
@@ -212,7 +222,6 @@ class Question extends React.Component {
                             {this.state.animation === 'incorrect' ? <IncorrectAnimation/> : ""}
                         </div>
                     }
-
                     <section className={s.answers_container}>
                         {!isUndefined(question) ? this.prepareList() : []}
                     </section>

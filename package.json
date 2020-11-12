@@ -3,6 +3,7 @@
   "version": "0.2.4",
   "description": "",
   "main": "index.js",
+  "homepage": "./",
   "scripts": {
     "start": "cross-env PORT=10888 HTTPS=false react-scripts start",
     "build": "react-scripts build",
@@ -38,14 +39,10 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "defaults"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "defaults"
     ]
   }
 }
