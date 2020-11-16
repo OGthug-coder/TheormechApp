@@ -66,7 +66,6 @@ class TestCreation extends React.Component {
     };
 
     onTestTimeChange = (e) => {
-        console.log(e.target.value);
         this.setState({timeToComplete: e.target.value})
         this.testEditHelper.updateValue('timeToComplete', e.target.value);
 
@@ -190,7 +189,6 @@ class TestCreation extends React.Component {
                                         /> 
                                         : ""
                                 }
-
                             </div>
                         </div>
                         <div className={s.input_title}>

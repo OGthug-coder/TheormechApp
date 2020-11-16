@@ -27,6 +27,7 @@
 }
 
 .timer {
+    height: 1em;
     padding-top: 5px;
     font-size: 14px;
 }
