@@ -1,5 +1,6 @@
 import NoHistoryFoundException from "../common/exceptions/NoHistoryFoundException";
 import EventCodeDto from "../preview/util/EventCodeDto";
+import {toDefaultFormat} from "../common/convertDate";
 
 class TestListService {
     constructor(api, user, testRepo) {
@@ -84,13 +85,10 @@ class TestListService {
     }
 
     compare(o1, o2) {
+        let date2 = o2['date']
         // replace day and month
-        let date2 = o2.props['date'].split('-');
-        date2 = date2[1] + '-' + date2[0] + '-' + date2[2];
-        // replace day and month
-        let date1 = o1.props['date'].split('-');
-        date1 = date1[1] + '-' + date1[0] + '-' + date1[2];
-        return new Date(date2) - new Date(date1);
+        let date1 = o1.props['date'];
+        return toDefaultFormat(date2) - toDefaultFormat(date1);
     }
 }
 

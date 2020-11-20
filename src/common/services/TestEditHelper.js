@@ -1,5 +1,5 @@
 import isUndefined from "../IsUndefined";
-import {toCustomFormat} from "../convertDate";
+import {toDefaultFormat} from "../convertDate";
 import InvalidDateFormatException from "../exceptions/InvalidException";
 
 class TestEditHelper {
@@ -38,7 +38,7 @@ class TestEditHelper {
     prepareTest() {
         let test = this.test;
         try {
-            test.date = !isUndefined(test.date) ? toCustomFormat(new Date(test.date)) : toCustomFormat(new Date());
+            test.date = !isUndefined(test.date) ? toDefaultFormat(new Date(test.date)) : toDefaultFormat(new Date());
         } catch (e) {
             if (e instanceof InvalidDateFormatException) {
             //       That means the date is already formatted
