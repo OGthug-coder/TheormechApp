@@ -1,5 +1,5 @@
 import isUndefined from "../IsUndefined";
-import {toMillis, toDefaultFormat} from "../convertDate";
+import {toMillis} from "../convertDate";
 import InvalidDateFormatException from "../exceptions/InvalidException";
 
 class TestEditHelper {
