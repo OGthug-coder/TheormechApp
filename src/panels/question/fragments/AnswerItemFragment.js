@@ -8,7 +8,7 @@ class AnswerItemFragment extends React.Component {
         if (!this.props.disabled) {
             return this.props.isRightAnswer ? this.props.onRightAnswer : this.props.onWrongAnswer;
         } else {
-            return "";
+            return () => {};
         }
     };
 

@@ -1,5 +1,6 @@
 import TestStatus from "../../preview/util/TestStatus";
 import EventCodeDto from "../../preview/util/EventCodeDto";
+import {toDefaultFormat} from "../convertDate";
 
 class HistoryUtil {
     static getCurrentScore(history) {
@@ -29,16 +30,8 @@ class HistoryUtil {
     }
 
     static compare = (o1, o2) => {
-        let date = o2.split(" ");
-        let [day, month, year] = date[0].split("-");
-        let [hour, minute, second] = date[1].split(":");
-        const dateTime2 = new Date(year, month - 1, day, hour, minute, second);
-
-        date = o1.split(" ");
-        [day, month, year] = date[0].split("-");
-        [hour, minute, second] = date[1].split(":");
-        const dateTime1 = new Date(year, month - 1, day, hour, minute, second);
-
+        const dateTime2 = toDefaultFormat(o2);
+        const dateTime1 = toDefaultFormat(o1);
         return dateTime2 - dateTime1;
     };
 
