@@ -36,7 +36,6 @@ export default class TestTimerHelper {
                         this.lastEvent = this.getLastEvent(history);
                         this.user = user;
 
-
                         if (historyEvent.length > 0) {
                             if (this.lastEvent.length > 0) {
                                 // Test is finished
@@ -56,7 +55,7 @@ export default class TestTimerHelper {
         const timePromise = this.api.requestTime();
         return this.startEventTimer.then(startTime => {
             if (startTime === NO_TIMER) {
-                return NO_TIMER;
+                callback(NO_TIMER);
             } else if (startTime === NOT_STARTED) {
                 callback(this.test.timeToComplete);
             } else {
