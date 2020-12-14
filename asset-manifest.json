@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/TheormechApp/static/css/main.c67f2d57.chunk.css",
-    "main.js": "/TheormechApp/static/js/main.167957f4.chunk.js",
-    "main.js.map": "/TheormechApp/static/js/main.167957f4.chunk.js.map",
+    "main.css": "/TheormechApp/static/css/main.6c8742bd.chunk.css",
+    "main.js": "/TheormechApp/static/js/main.ee078436.chunk.js",
+    "main.js.map": "/TheormechApp/static/js/main.ee078436.chunk.js.map",
     "runtime-main.js": "/TheormechApp/static/js/runtime-main.0a444a0b.js",
     "runtime-main.js.map": "/TheormechApp/static/js/runtime-main.0a444a0b.js.map",
     "static/css/2.cdee455b.chunk.css": "/TheormechApp/static/css/2.cdee455b.chunk.css",
-    "static/js/2.5088b53c.chunk.js": "/TheormechApp/static/js/2.5088b53c.chunk.js",
-    "static/js/2.5088b53c.chunk.js.map": "/TheormechApp/static/js/2.5088b53c.chunk.js.map",
+    "static/js/2.845f085d.chunk.js": "/TheormechApp/static/js/2.845f085d.chunk.js",
+    "static/js/2.845f085d.chunk.js.map": "/TheormechApp/static/js/2.845f085d.chunk.js.map",
     "index.html": "/TheormechApp/index.html",
-    "precache-manifest.410d02dc77529b91a1bb362eb9578bc3.js": "/TheormechApp/precache-manifest.410d02dc77529b91a1bb362eb9578bc3.js",
+    "precache-manifest.72eb0ac73e00a6aec8638a2da36af40e.js": "/TheormechApp/precache-manifest.72eb0ac73e00a6aec8638a2da36af40e.js",
     "service-worker.js": "/TheormechApp/service-worker.js",
     "static/css/2.cdee455b.chunk.css.map": "/TheormechApp/static/css/2.cdee455b.chunk.css.map",
-    "static/css/main.c67f2d57.chunk.css.map": "/TheormechApp/static/css/main.c67f2d57.chunk.css.map",
-    "static/js/2.5088b53c.chunk.js.LICENSE.txt": "/TheormechApp/static/js/2.5088b53c.chunk.js.LICENSE.txt",
+    "static/css/main.6c8742bd.chunk.css.map": "/TheormechApp/static/css/main.6c8742bd.chunk.css.map",
+    "static/js/2.845f085d.chunk.js.LICENSE.txt": "/TheormechApp/static/js/2.845f085d.chunk.js.LICENSE.txt",
     "static/media/StickerShop.module.css": "/TheormechApp/static/media/add_sticker.1de157fc.svg",
     "static/media/Main.module.css": "/TheormechApp/static/media/bacj.6207aff3.svg",
     "static/media/Result.module.css": "/TheormechApp/static/media/ic_circle.8ad2295f.svg",
@@ -38,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.0a444a0b.js",
     "static/css/2.cdee455b.chunk.css",
-    "static/js/2.5088b53c.chunk.js",
-    "static/css/main.c67f2d57.chunk.css",
-    "static/js/main.167957f4.chunk.js"
+    "static/js/2.845f085d.chunk.js",
+    "static/css/main.6c8742bd.chunk.css",
+    "static/js/main.ee078436.chunk.js"
   ]
 }
