@@ -91,7 +91,7 @@ class TestCreation extends React.Component {
 
     onQuestionEditClick = () => {
         if (this.state.title !== "Введите название" && this.state.title !== '') {
-            this.props.history.push("/createQuestions")
+            this.props.history.push("/TheormechApp/createQuestions")
         }
     };
 

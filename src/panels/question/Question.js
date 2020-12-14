@@ -171,7 +171,8 @@ class Question extends React.Component {
 
             const url = getNextQuestionUrl(this.state.test, this.state.question.serialNumber);
             if (!isUndefined(url)) {
-                const qId = parseInt(url.split("/")[3]);
+                let splitted = url.split("/");
+                const qId = parseInt(splitted[splitted.length - 1]);
                 this.setState({questionId: qId});
                 this.downloadData();
             } else {
