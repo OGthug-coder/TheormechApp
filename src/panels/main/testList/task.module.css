@@ -33,6 +33,7 @@
 
 .name {
     height: 60px;
+    width: available;
     font-style: normal;
     margin: 5px 10px 5px;
     font-size: 18px;

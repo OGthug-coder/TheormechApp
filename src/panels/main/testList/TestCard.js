@@ -12,6 +12,7 @@ class TestCard extends React.Component {
 
         this.application = props.application;
         this.state = {
+            date: this.prepareDate(this.props.date),
             isTouchStarted: false,
             isDelayed: toDefaultFormat(this.props.date) > new Date(),
         }
@@ -20,6 +21,11 @@ class TestCard extends React.Component {
 
         props.progress.then(progress => this.setState({progress: progress}));
     }
+
+    prepareDate = (date) => {
+        let dateTime = toDefaultFormat(date);
+        return `${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}`;
+    };
 
     renderButton = () => {
         if (this.props.editMode) {
@@ -92,7 +98,7 @@ class TestCard extends React.Component {
                         </div>
 
                         <div className={s.info}>
-                            <div className={s.date}>{this.props.date.split(' ')[0]}</div>
+                            <div className={s.date}>{this.state.date}</div>
                             <div className={s.progress}>
                                 <span className={this.state.progress >= 1 ? s.dot_on : s.dot}/>
                                 <span className={this.state.progress >= 2 ? s.dot_on : s.dot}/>

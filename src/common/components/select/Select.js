@@ -3,9 +3,6 @@ import s from "./Select.module.css";
 
 
 class Select extends React.Component {
-    constructor(props){
-        super(props);
-    }
 
     renderOptions = (options) => {
         let optionList = [];

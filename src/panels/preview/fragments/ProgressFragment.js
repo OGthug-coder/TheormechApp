@@ -2,15 +2,18 @@ import React from 'react';
 
 import s from './ProgressFragment.module.css';
 import {NO_TIMER} from "../../../common/services/Timer";
+import isUndefined from "../../../common/IsUndefined";
 
 const INFINITY_SIGN = require('../../../img/preview/ic_infinity_sign.svg');
 
 class ProgressFragment extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            timeM: props.time === null ? 0 : props.time.toString().split(":")[0],
-            timeS: props.time === null ? 0 : props.time.toString().split(":")[1]
+        if (this.props.time !== NO_TIMER) {
+            this.state = {
+                timeM: props.time === null ? 0 : props.time.toString().split(":")[0],
+                timeS: props.time === null ? 0 : props.time.toString().split(":")[1]
+            }
         }
 
         this.progressItem = (progressItemData) => {
@@ -18,7 +21,7 @@ class ProgressFragment extends React.Component {
                 return (
                     <>
                         <div className={s.progress_item__title}>
-                            {progressItemData.title}
+                            {"Время"}
                         </div>
                         <div className={s.progress_item__counter}>
                             <img src={INFINITY_SIGN} alt={'infinity'}/>
@@ -69,13 +72,16 @@ class ProgressFragment extends React.Component {
                     )}
                 </div>
                 <div className={`${s.progress_item} ${s.time}`}>
-                    {this.progressItem({
-                            title: "Время",
-                            elements: [this.state.timeM, this.state.timeS],
-                            separator: ":",
-                            special: true
-                        }
-                    )}
+                    {
+                        this.state === null
+                            ? this.progressItem(NO_TIMER)
+                            : this.progressItem({
+                                title: "Время",
+                                elements: [this.state.timeM, this.state.timeS],
+                                separator: ":",
+                                special: true
+                            })
+                    }
                 </div>
             </div>
 
