@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/TheormechApp/precache-manifest.f0af63dbae0a077706f26ba48d641148.js"
+  "/TheormechApp/precache-manifest.c01197015d801f73efa018e4b6348ea0.js"
 );
 
 self.addEventListener('message', (event) => {
