@@ -33,7 +33,7 @@ class TestList extends React.Component {
         const test = this.testListService.getTestFromRepo(id);
         this.application.createTestEditHelper(test);
 
-        this.props.history.push("/testEditing");
+        this.props.history.push("/TheormechApp/testEditing");
     };
 
     onLongClick = () => {
@@ -69,7 +69,7 @@ class TestList extends React.Component {
         this.setState({editMode: !this.state.editMode});
         this.application.createTestEditHelper({});
 
-        this.props.history.push("/testEditing");
+        this.props.history.push("/TheormechApp/testEditing");
     };
 
     prepareList() {

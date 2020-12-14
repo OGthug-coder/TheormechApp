@@ -10,7 +10,6 @@ import Main from "./panels/main/Main";
 import Result from "./panels/result/Result";
 import TestCreation from "./panels/admin/testcreation/TestCreation";
 import QuestionCreation from "./panels/admin/questioncreation/QuestionCreation";
-// import ModalAnswersCreation from "./panels/admin/questioncreation/fragments/ModalAnswersCreation";
 
 class App extends React.Component {
     constructor(props) {
@@ -23,25 +22,25 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Route exact path={'/createQuestions'}
+                <Route exact path={'/TheormechApp/createQuestions'}
                        render={({match}) => <QuestionCreation match={match} application={this.application}/>}
                 />
-                <Route exact path={'/testEditing'}
+                <Route exact path={'/TheormechApp/testEditing'}
                        render={({match}) => <TestCreation match={match} application={this.application}/>}
                 />
-                <Route exact path={'/result/:testId'}
+                <Route exact path={'/TheormechApp/result/:testId'}
                        render={({match}) => <Result match={match} application={this.application}/>}
                 />
-                <Route exact path={'/question/:testId/:questionId'}
+                <Route exact path={'/TheormechApp/question/:testId/:questionId'}
                        render={({match}) => <Question match={match} application={this.application}/>}
                 />
-                <Route exact path={'/preview/:testId'}
+                <Route exact path={'/TheormechApp/preview/:testId'}
                        render={({match}) => <Preview match={match} application={this.application}/>}
                 />
-                <Route exact path={'/stickerShop'}
+                <Route exact path={'/TheormechApp/stickerShop'}
                        render={({match}) => <StickerShop match={match} application={this.application}/>}
                 />
-                <Route exact path={'/'}
+                <Route exact path={'/TheormechApp/'}
                        render={({match}) => <Main match={match} application={this.application}/>}
                 />
 

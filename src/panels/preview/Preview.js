@@ -63,7 +63,7 @@ class Preview extends React.Component {
     };
 
     toResultScreen = () => {
-        this.props.history.push("/result/" + this.state.testInfo.id);
+        this.props.history.push("/TheormechApp/result/" + this.state.testInfo.id);
     };
 
     showAnswerWindow = (e) => {

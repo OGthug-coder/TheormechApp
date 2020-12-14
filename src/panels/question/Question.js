@@ -81,7 +81,7 @@ class Question extends React.Component {
     };
 
     toResultScreen = () => {
-        this.props.history.replace("/result/" + this.state.testId);
+        this.props.history.replace("/TheormechApp/result/" + this.state.testId);
     };
 
     prepareList = () => {
@@ -175,7 +175,7 @@ class Question extends React.Component {
                 this.setState({questionId: qId});
                 this.downloadData();
             } else {
-                this.props.history.replace("/result/" + this.state.testId);
+                this.props.history.replace("/TheormechApp/result/" + this.state.testId);
             }
         }
     };

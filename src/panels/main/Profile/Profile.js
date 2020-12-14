@@ -36,7 +36,7 @@ class Profile extends React.Component {
 
     onStickerClick = () => {
         this.props.onSettingsClick();
-        setTimeout(() => this.props.history.push('/stickerShop'), 250);
+        setTimeout(() => this.props.history.push('/TheormechApp/stickerShop'), 250);
     };
 
     provideVisibility = () => {

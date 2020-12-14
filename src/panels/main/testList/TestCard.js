@@ -32,7 +32,7 @@ class TestCard extends React.Component {
             );
         } else if (isUndefined(this.props.disableButton)) {
             return (
-                <Link to={`/preview/${this.props.id}`}
+                <Link to={`/TheormechApp/preview/${this.props.id}`}
                       className={s.start_button}>
                     Начать тест
                 </Link>
