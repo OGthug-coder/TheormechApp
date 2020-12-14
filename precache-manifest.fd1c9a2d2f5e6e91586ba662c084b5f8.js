@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0a666f98459e427820dc9bbde42f9c78",
+    "revision": "6f357fffc957aa48dc1b0970ab747148",
     "url": "/TheormechApp/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/TheormechApp/static/css/2.cdee455b.chunk.css"
   },
   {
-    "revision": "d9da423317c960719371",
+    "revision": "bea4a0970c8c4b713f4d",
     "url": "/TheormechApp/static/css/main.6c8742bd.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/TheormechApp/static/js/2.845f085d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d9da423317c960719371",
-    "url": "/TheormechApp/static/js/main.bcbee08d.chunk.js"
+    "revision": "bea4a0970c8c4b713f4d",
+    "url": "/TheormechApp/static/js/main.7f28cb23.chunk.js"
   },
   {
     "revision": "8fc0b5572d693d5cc7c8",
