@@ -46,11 +46,14 @@ class StickerCard extends React.Component {
                             {this.props.name}
                         </div>
                         <div className={s.quote}>
-                            {'«' + this.props.quote + '»'}
+                            {/*{'«' + this.props.quote + '»'}*/}
+                            «Дмитрий Менделеев -  русский учёный. Занимался множеством различных  наук. Наиболее известен открытием пери»
+
                         </div>
                         <div className={s.description}>
                             <div>Подробнее</div>
-                            {this.props.description}
+                            {/*{this.props.description}*/}
+                            «Дмитрий Менделеев -  русский учёный. Занимался множеством различных  наук. Наиболее известен открытием периодического закона, позволившего создать пер»
                         </div>
                     </div>
                     <div className={s.control}>

@@ -2,6 +2,7 @@
     font-family: 'Roboto', sans-serif;
     scroll-snap-align: center;
     width: 80vw;
+    height: available;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,7 +59,7 @@
 }
 
 .name {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     margin-bottom: 10px;
     touch-action: manipulation;
@@ -67,7 +68,7 @@
 
 .quote {
     height: min-content;
-    font-size: 1.1em;
+    font-size: 1em;
     font-style: italic;
     margin-right: 0;
     white-space: pre-wrap;
@@ -119,23 +120,27 @@
     background-color: white;
 }
 
-@media screen and (max-height: 670px) {
+@media screen and (max-device-height: 720px) {
     .card {
-        height: 360px;
+        height: 62vh;
     }
-
-    .name {
-        margin-top: 2vh;
-    }
-
     .description {
         display: none;
     }
 }
 
-@media screen and (min-height: 670px) {
+@media screen and (max-device-height: 580px){
     .card {
-        height: 460px;
+        height: 380px;
+    }
+    .name {
+        font-size: 19px;
+    }
+}
+
+@media screen and (min-device-height: 720px) {
+    .card {
+        height: 65vh;
     }
 
     .description > div {
