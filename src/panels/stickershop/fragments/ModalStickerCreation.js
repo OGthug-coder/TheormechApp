@@ -122,7 +122,7 @@ class ModalStickerCreation extends React.Component {
                         <div className={s.input}>
                             <Input placeholder={this.state.description}
                                    maxLength={150}
-                                   onChange={this.state.onDescriptionChange}/>
+                                   onChange={this.onDescriptionChange}/>
                         </div>
 
                         <div className={s.input_title}>
