@@ -13,6 +13,10 @@
     padding-top: env(safe-area-inset-top);
 }
 
+.tests_container > div:last-child {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
 
 /*no scrollbar*/
 .tests_container::-webkit-scrollbar {
