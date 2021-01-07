@@ -1,5 +1,6 @@
 .page {
-    height: calc(100% - 80px);
+    height: calc(100% - 80px - 2*env(safe-area-inset-bottom));
+    padding-bottom: calc(2*env(safe-area-inset-bottom));
     width: 100%;
     background-color: white;
     display: flex;

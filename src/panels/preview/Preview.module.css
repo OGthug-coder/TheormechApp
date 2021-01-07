@@ -70,13 +70,14 @@
 }
 
 .sticky_container {
+    margin-top: calc(env(safe-area-inset-top) + 1vh);
     height: 150px;
 }
 
 .back_button {
     position: -webkit-sticky;
     position: sticky;
-    top: 25px;
+    top: calc(env(safe-area-inset-top));
     margin-left: 25px;
     pointer-events: inherit;
 }
@@ -182,7 +183,7 @@
 @supports (-webkit-touch-callout: none) {
     /* CSS specific to iOS devices */
     .link {
-        margin-bottom: 15px;
+        margin-bottom: calc(15px + env(safe-area-inset-bottom));
     }
 }
 

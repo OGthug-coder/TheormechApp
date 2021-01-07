@@ -96,7 +96,7 @@ class TestList extends React.Component {
 
     render() {
         return (
-            <section className={s.news_container}>
+            <section className={s.tests_container}>
                 {this.prepareList()}
                 {
                     this.state.editMode ? (

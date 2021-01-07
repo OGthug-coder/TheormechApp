@@ -1,6 +1,7 @@
 .container {
     width: 82%;
-    height: calc(100% - 80px);
+    height: calc(100% - 80px - env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
     margin-left: auto;
     margin-right: auto;
     display: flex;

@@ -1,4 +1,4 @@
-.news_container {
+.tests_container {
     overflow: scroll;
     height: 100%;
     display: grid;
@@ -9,13 +9,13 @@
     padding-right: 20px;
 }
 
-.news_container > div:first-child {
-    margin-top: 20px;
+.tests_container > div:first-child {
+    padding-top: env(safe-area-inset-top);
 }
 
 
 /*no scrollbar*/
-.news_container::-webkit-scrollbar {
+.tests_container::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
 }
 

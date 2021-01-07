@@ -9,14 +9,13 @@
     grid-template-areas: "news profile";
     align-content: center;
     touch-action: manipulation;
-
 }
 /*no scrollbar*/
 .main_window::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 
-.news_wrapper {
+.tests_wrapper {
     scroll-snap-align: center;
     margin-left: 5px;
     margin-right: 5px;
@@ -24,7 +23,6 @@
     overflow: hidden;
     grid-area: news;
     touch-action: manipulation;
-
 }
 
 .profile {

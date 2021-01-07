@@ -6,7 +6,7 @@
 .back_button {
     position: -webkit-sticky;
     position: sticky;
-    top: 25px;
+    top: calc(env(safe-area-inset-top) + 1vh);
     margin-left: 25px;
 }
 
@@ -17,6 +17,7 @@
     font-style: normal;
     font-weight: normal;
     text-align: center;
+    padding-top: env(safe-area-inset-top);
     color: #FFFFFF;
 }
 
@@ -42,7 +43,7 @@
     grid-template-areas: "question_text" "answer_container" "control" "slider";
 
     width: 90%;
-    height: 82%;
+    height: calc(82% - env(safe-area-inset-bottom));
     align-items: end;
     background: linear-gradient(179.79deg, #699AFF 0.1%, #3171F7 21.78%);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
@@ -178,7 +179,7 @@
     height: 75%;
     overflow: hidden;
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
 
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -229,7 +230,7 @@
 
 @media screen and (max-device-height: 600px) {
     .question_card {
-        height: 85%;
+        height: calc(85% - env(safe-area-inset-bottom));
     }
 }
 

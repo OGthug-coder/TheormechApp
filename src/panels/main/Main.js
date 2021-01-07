@@ -36,7 +36,7 @@ class Main extends React.Component {
         return (
             <Swipe onSwipeMove={this.onSwipeMove}>
                 <div className={s.main_window}>
-                    <div className={s.news_wrapper}>
+                    <div className={s.tests_wrapper}>
                         <TestList key={this.state.rerender}
                                   application={this.application}
                                   sortBy={'date'}/>
