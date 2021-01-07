@@ -10,6 +10,7 @@ import AnswerItemFragment from "./fragments/AnswerItemFragment";
 import CorrectAnimation from "./fragments/CorectAnimation"
 import IncorrectAnimation from "./fragments/IncorrectAnimation"
 import Vibration from "../../common/Vibration";
+import {NO_TIMER} from "../../common/services/Timer";
 
 class Status {
     static IN_PROGRESS = 0;
@@ -199,7 +200,7 @@ class Question extends React.Component {
                     </div>
                     <div className={s.timer}>
                         {
-                            isUndefined(this.state.timer)
+                            this.state.timer === NO_TIMER
                                 ? ""
                                 : (
                                     <>

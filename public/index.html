@@ -21,10 +21,10 @@
         }
 
         html::after {
-            content: "beta: 0.2.9";
+            content: "beta: 0.3.0";
             position: absolute;
             z-index: 1000;
-            top: calc(100% - 1em);
+            top: calc(100% - 1em - env(safe-area-inset-bottom));
             left: 0;
             color: #838383;
         }
