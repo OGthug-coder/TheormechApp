@@ -30,7 +30,7 @@
     height: 50px;
     border-radius: 50px;
 
-    top: calc(100% - 70px);
+    top: calc(100% - 70px - env(safe-area-inset-bottom));
     left: calc(50% - 25px);
 
     background: white url("../../../img/testlist/ic_cross.png") no-repeat center;
@@ -63,6 +63,9 @@
 }
 
 
-
-
-
+@supports (-webkit-touch-callout: none) and (min-height: 800px) {
+    /* CSS specific to iOS devices */
+    .add_button {
+        height: 15px;
+    }
+}
