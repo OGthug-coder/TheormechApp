@@ -32,15 +32,15 @@
 }
 
 .name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 60px;
     width: available;
     font-style: normal;
     margin: 5px 10px 5px;
     font-size: 18px;
     line-height: 27px;
-    display: flex;
-    align-items: center;
-    text-align: center;
     letter-spacing: -0.04em;
 }
 
