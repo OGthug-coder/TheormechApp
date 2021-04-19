@@ -8,11 +8,12 @@
 }
 
 .copy_warning {
-    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6vh;
     width: 69vw;
     margin: 10vh auto 0;
-    text-align: center;
-    padding-top: 8px;
     color: white;
 
     background: #5D80FF;
